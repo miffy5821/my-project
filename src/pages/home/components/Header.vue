@@ -3,18 +3,40 @@
     <div class="nav">
         <img class="nav-logo" src="../../../assets/home-img/logo.png">
           <ul class="nav-bar-box">
-            <li><a>首页</a></li>
-            <li><a>大唐棋牌</a></li>
-            <li><a>棋牌</a></li>
-            <li><a>真人</a></li>
-            <li><a>电子</a></li>
-            <li><a>电竞</a></li>
-            <li><a>体育</a></li>
-            <li><a>彩票</a></li>
-            <li><a>扑鱼</a></li>
+            <router-link to="/home">
+            <li>首页</li>
+            </router-link>
+            <router-link to="/datang">
+            <li>大唐棋牌</li>
+            </router-link>
+            <router-link to="/chess">
+            <li>棋牌</li>
+            </router-link>
+            <router-link to="/live">
+            <li>真人</li>
+            </router-link>
+            <router-link to="/electronic">
+            <li>电子</li>
+            </router-link>
+            <router-link to="/gaming">
+            <li>电竞</li>
+            </router-link>
+            <router-link to="/sports">
+            <li>体育</li>
+            </router-link>
+            <router-link to="/lottery">
+            <li>彩票</li>
+            </router-link>
+            <router-link to="/fishing">
+            <li>扑鱼</li>
+            </router-link>
+            <router-link to="/discounts">
             <li><a>优惠</a></li>
+            </router-link>
             <li><a>品牌风采</a></li>
-            <li><a>积分商场</a></li>
+            <router-link to="/gift">
+            <li>积分商场</li>
+            </router-link>
           </ul>
         <div class="navLogin">
           <span>注册</span><span>登录</span><span>试玩</span>
@@ -55,6 +77,7 @@ export default {
     display: inline-block;
     width: auto;
     height: 78px;
+    color:black;
     margin: 0 20px 0 0;
   }
   .navLogin{

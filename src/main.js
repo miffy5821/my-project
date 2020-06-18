@@ -6,9 +6,11 @@ import VueAwesomeSwiper from 'vue-awesome-swiper'
 import router from './router'
 import './assets/styles/reset.css'
 import 'swiper/dist/css/swiper.css'
+import scroll from 'vue-seamless-scroll'
 
 Vue.config.productionTip = false
 Vue.use(VueAwesomeSwiper)
+Vue.use(scroll)
 /* eslint-disable no-new */
 new Vue({
   el: '#app',

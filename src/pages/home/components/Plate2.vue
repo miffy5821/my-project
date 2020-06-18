@@ -54,66 +54,19 @@
           </div>
       </div>
     </div>
-    <div class="plate2-games">
-      <swiper-slide>
-        <div class="games" v-for="item of gamesList" :key="item.id">
-          <img class="games-img" :src="item.imgUrl"/>
-          <div class="games-int">
-            <div class="game-title">{{item.title}}</div>
-            <div class="game-kind">{{item.kind}}</div>
-            <div class="game-button">进入游戏</div>
-          </div>
-        </div>
-      </swiper-slide>
-    </div>
   </div>
 </template>
 
 <script>
 export default {
   name: 'homePlate2',
-  data () {
-    return {
-      gamesList: [{
-        id: '0001',
-        imgUrl: '/static/home/games1.png',
-        title: '9个焰火面',
-        kind: 'MG电子'
-      }, {
-        id: '0002',
-        imgUrl: '/static/home/games2.png',
-        title: '三卡吹牛',
-        kind: 'PD电子'
-      },{
-        id: '0003',
-        imgUrl: '/static/home/games3.png',
-        title: '金钱蛙',
-        kind: 'PD电子'
-      },{
-        id: '0004',
-        imgUrl: '/static/home/games4.png',
-        title: '欢乐帮',
-        kind: 'HABA电子'
-      },{
-        id: '0005',
-        imgUrl: '/static/home/games5.png',
-        title: '双喜熊猫',
-        kind: 'HABA电子'
-      },{
-        id: '0006',
-        imgUrl: '/static/home/games6.png',
-        title: '108好汉',
-        kind: 'MG电子'
-      }]
-    }
-  }
 }
 </script>
 
 <style scoped>
   .plate2{
     width: 1200px;
-    height: 500px;
+    height: 360px;
     margin-right: auto;
     margin-top: 40px;
     margin-left: auto;
@@ -184,7 +137,7 @@ export default {
   .plate2-right{
     width: 290px;
     height: 398px;
-    margin: -360px 0 0 905px ;
+    margin: -360px 0 0 909px ;
   }
   .prize{
     width: 288px;
@@ -261,50 +214,5 @@ export default {
   }
   .div2:hover {
     animation-play-state:paused;
-  }
-  .plate2-games{
-    width: 1200px;
-    height: 120px;
-    margin-top: -20px;
-    border: 1px solid gainsboro;
-  }
-  .games{
-    width: 240px;
-    height: 89px;
-    margin-top: auto;
-    margin-bottom: auto;
-    display: flex;
-  }
-  .games-img{
-    width: 89px;
-    height: 89px;
-    background-image:;
-    background-size:cover;
-    margin-top: 15px;
-  }
-  .games-int{
-    width: 68px;
-    height: 89px;
-    display: inline-block;
-    padding-left: 10px;
-    margin-top: 30px;
-  }
-  .game-title{
-    width: auto;
-    height: 24px;
-    font-size: 14px;
-  }
-  .game-kind {
-    width: 68px;
-    height: 17px;
-    font-size: 12px;
-  }
-  .game-button{
-    width: 68px;
-    height: 22px;
-    line-height: 22px;
-    background-color: chocolate;
-    border-radius:2px;
-    font-size: 12px;
   }
 </style>
