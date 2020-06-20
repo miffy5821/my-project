@@ -34,6 +34,18 @@
   </div>
 </template>
 <script>
+  import Vue from 'Vue'
+  import VueAxiosPlugin from 'vue-axios-plugin'
+
+  // Vue.use(VueAxiosPlugin, {
+  //   // 请求拦截处理
+  //   reqHandleFunc: config => config,
+  //   reqErrorFunc: error => Promise.reject(error),
+  //   // 响应拦截处理
+  //   resHandleFunc: response => response,
+  //   resErrorFunc: error => Promise.reject(error)
+  // })
+
   export default {
     name: 'electronicContent',
     data() {
@@ -85,11 +97,39 @@
       // removeActive($event) {
       //   $event.currentTarget.className = "";
       // },
+      // this.$axios.get(url, data, options).then((response) => {
+      // console.log(response)
+      // })
+
       select(code) {
         this.currentGameClass = code;
       }
     },
   }
+
+  // new Vue({
+  //   el: '#app',
+  //   data: {
+  //     sites: []
+  //   },
+  //   created: function () {
+  //     //为了在内部函数能使用外部函数的this对象，要给它赋值了一个名叫self的变量。
+  //     let self = this;
+  //     $.ajax({
+  //       url: 'https://version.feivor.com/txh_game_img.json',
+  //       type: 'post',
+  //       data: {},
+  //       dataType: 'json'
+  //     }).then(function (res) {
+  //       console.log(res);
+  //       //把从json获取的数据赋值给数组
+  //       self.sites = res;
+  //     }).fail(function () {
+  //       console.log('失败');
+  //     })
+  //   }
+  // })
+
 </script>
 <style scoped>
   .electronic {
