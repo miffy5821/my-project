@@ -20,10 +20,10 @@
           <div class="icon"></div>
         </div>
         <div class="games">
-          <div class="games-">
-            <img class="games-img" src="/static/electronic/xmg1.png" alt="">
+          <div class="games-" v-for="item of MGData" :key="item.id">
+            <img class="games-img" :src="item.url" alt="">
             <div class="game-label">新MG</div>
-            <p class="games-name">9个烈焰面具</p>
+            <p class="games-name">{{item.gamename }}</p>
             <div>
             </div>
           </div>
@@ -34,18 +34,6 @@
   </div>
 </template>
 <script>
-  import Vue from 'Vue'
-  import VueAxiosPlugin from 'vue-axios-plugin'
-
-  // Vue.use(VueAxiosPlugin, {
-  //   // 请求拦截处理
-  //   reqHandleFunc: config => config,
-  //   reqErrorFunc: error => Promise.reject(error),
-  //   // 响应拦截处理
-  //   resHandleFunc: response => response,
-  //   resErrorFunc: error => Promise.reject(error)
-  // })
-
   export default {
     name: 'electronicContent',
     data() {
@@ -87,54 +75,33 @@
           id: '0012',
           navName: 'IG电子'
         }],
-        currentGameClass: '0001'
+        currentGameClass: '0001',
+        MGData:[]
       }
     },
     methods: {
-      // changeActive($event) {
-      //   $event.currentTarget.className = "active";
-      // },
-      // removeActive($event) {
-      //   $event.currentTarget.className = "";
-      // },
-      // this.$axios.get(url, data, options).then((response) => {
-      // console.log(response)
-      // })
-
       select(code) {
         this.currentGameClass = code;
       }
     },
+    mounted() {
+      this.axios.get('https://version.feivor.com/txh_game_img.json').then(resp => {
+        console.log(resp.data);
+        this.MGData = resp.data.electronic.MG;
+      })
+        .catch(error => {
+          this.$notify.error({
+            title: '提示',
+            message: error
+          })
+        })
+    }
   }
-
-  // new Vue({
-  //   el: '#app',
-  //   data: {
-  //     sites: []
-  //   },
-  //   created: function () {
-  //     //为了在内部函数能使用外部函数的this对象，要给它赋值了一个名叫self的变量。
-  //     let self = this;
-  //     $.ajax({
-  //       url: 'https://version.feivor.com/txh_game_img.json',
-  //       type: 'post',
-  //       data: {},
-  //       dataType: 'json'
-  //     }).then(function (res) {
-  //       console.log(res);
-  //       //把从json获取的数据赋值给数组
-  //       self.sites = res;
-  //     }).fail(function () {
-  //       console.log('失败');
-  //     })
-  //   }
-  // })
 
 </script>
 <style scoped>
   .electronic {
     width: 100%;
-    height: 1680px;
     background-color: #f9f9f9;
   }
 
@@ -147,13 +114,11 @@
 
   .content {
     width: 100%;
-    height: 1000px;
     border: 1px solid #eaeaea;
   }
 
   .electronic- {
     width: 1200px;
-    height: 946px;
     margin-top: 30px;
     margin-bottom: 30px;
     margin-right: auto;
@@ -239,14 +204,17 @@
 
   .games {
     width: 1150px;
-    height: 646px;
+    height: 100%;
+    justify-content:space-around;
+    display: flex;
+    flex-wrap:wrap ;
     padding: 0 25px 0 25px;
   }
 
   .games- {
     width: 170px;
     height: 190px;
-    float: left;
+    margin-bottom: 20px;
     position: relative;
     cursor: pointer;
   }

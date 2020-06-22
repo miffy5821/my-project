@@ -39,15 +39,7 @@
             </router-link>
           </ul>
         <div class="navLogin">
-          <span class="left">
-             <router-link to="/register">
-            注册
-          </router-link>
-          </span>
-          <span class="center">
-            <a>登录</a></span>
-          <span class="right">
-            <a>试玩</a></span>
+          <span class="left"><a>注册</a></span><span class="center"><a>登录</a></span><span class="right"><a>试玩</a></span>
       </div>
     </div>
   </div>
@@ -112,10 +104,6 @@ export default {
     text-align: left;
     color: white;
   }
-  .left a{
-    color: white;
-    text-decoration: none;
-  }
   .right{
     width: 48px;
     height: 25px;
@@ -125,10 +113,6 @@ export default {
     color: white;
     margin-right: -10px;
     text-align: right;
-  }
-  .right a{
-    color: white;
-    text-decoration: none;
   }
   .center{
     width: 58px;

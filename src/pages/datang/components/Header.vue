@@ -37,7 +37,7 @@
         </router-link>
       </ul>
       <div class="navLogin">
-          <span>注册</span><span>登录</span><span>试玩</span>
+        <span class="left"><a>注册</a></span><span class="center"><a>登录</a></span><span class="right"><a>试玩</a></span>
       </div>
     </div>
   </div>
@@ -85,11 +85,47 @@ export default {
   }
   .navLogin{
     width: 148px;
-    height: 23px;
+    height: 25px;
     margin-top: 20px;
-    background-color: orange;
-    border: 1px solid black;
+    cursor: pointer;
+    background-color:#c8a675;
     border-radius: 30px;
+  }
+  .navLogin span{
+    margin: 5px;
+  }
+  .navLogin a{
+    text-decoration: none;
+  }
+  .left{
+    width: 48px;
+    height: 25px;
+    font-size: 14px;
+    margin: 5px;
+    margin-left: -10px;
+    line-height: 23px;
+    text-align: left;
+    color: white;
+  }
+  .right{
+    width: 48px;
+    height: 25px;
+    font-size: 14px;
+    margin: 5px;
+    line-height: 23px;
+    color: white;
+    margin-right: -10px;
+    text-align: right;
+  }
+  .center{
+    width: 58px;
+    height: 25px;
+    font-size: 14px;
+    padding:2px;
+    border-radius: 30px;
+    text-align: center;
+    background: white;
+    color:#c8a675 ;
   }
 
 
