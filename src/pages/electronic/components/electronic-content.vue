@@ -15,7 +15,17 @@
           </ul>
         </div>
         <div class="ele-search">
-          <button class="hot">热门游戏</button>
+          <button class=" submenu hot">热门游戏</button>
+          <button class="submenu">最新游戏</button>
+          <button class="submenu">3-10线</button>
+          <button class="submenu">15-20线</button>
+          <button class="submenu">25+线</button>
+          <button class="submenu">特色游戏</button>
+          <button class="submenu">老虎机</button>
+          <button class="submenu">接机游戏</button>
+          <button class="submenu">累积奖池</button>
+          <button class="submenu">卡牌</button>
+          <button class="submenu">刮刮乐</button>
           <input class=" search" placeholder="请输入游戏名称"/>
           <div class="icon"></div>
         </div>
@@ -27,7 +37,13 @@
             <div>
             </div>
           </div>
-
+        </div>
+        <div  class="page">
+          <div class="turn-page">
+            <button class="pev">上一页</button>
+            <span class="nowPage">1</span>/<span class="total">6</span>
+            <button class="next">下一页</button>
+          </div>
         </div>
       </div>
     </div>
@@ -159,19 +175,25 @@
 
   .ele-search {
     width: 1200px;
-    height: 60px;
+    height: 36px;
     margin-top: 50px;
+    display: flex;
+    margin-bottom: 50px;
   }
 
-  .hot {
-    width: 98px;
+  .submenu{
+    width: 75px;
     height: 36px;
-    line-height: 36px;
+    line-height: 16px;
     text-align: center;
-    margin-left: 10px;
     color: white;
-    font-size: 13px;
-    float: left;
+    font-size: 12px;
+    margin-left: 10px;
+    background: silver;
+    border: none;
+  }
+
+  .hot{
     background-color: orange;
     border: none;
   }
@@ -183,8 +205,8 @@
     font-size: 14px;
     color: #dddee1;
     border: 1px solid #eaeaea;
-    float: right;
-    margin-right: 42px;
+    position:relative ;
+    left: 50px;
     padding: 4px 7px 4px 12px;
   }
 
@@ -193,11 +215,12 @@
     height: 32px;
     background-color: orange;
     display: inline-block;
-    float: right;
     padding-left: 5px;
-    background-image: url("/static/electronic/search.png");
+    background-image: url(/static/electronic/search.png);
+    background-position: 50%;
     text-align: center;
-    margin-right: -207px;
+    position: relative;
+    left: 58px;
     background-size: contain;
     background-repeat: no-repeat;
   }
@@ -245,5 +268,54 @@
     font-size: 14px;
     text-align: center;
     margin-top: -15px;
+  }
+  .page{
+   width: 1200px;
+    height:50px;
+    margin-top: 30px;
+  }
+  .turn-page{
+   width: 300px;
+    height: 50px;
+    margin: 0 auto;
+  }
+  .pev{
+    width: 80px;
+    height: 26px;
+    line-height: 16px;
+    text-align: center;
+    color: white;
+    font-size: 14px;
+    margin-right: 10px;
+    background: chocolate;
+    border: none;
+  }
+  .nowPage{
+    width: 20px;
+    height: 10px;
+    line-height: 10px;
+    text-align: center;
+    font-size: 14px;
+    color: darkgray;
+  }
+  .total{
+    width: 20px;
+    height: 10px;
+    line-height: 10px;
+    text-align: center;
+    font-size: 14px;
+    color: darkgray;
+
+  }
+  .next{
+    width: 80px;
+    height: 26px;
+    line-height: 16px;
+    text-align: center;
+    color: white;
+    font-size: 14px;
+    margin-left: 10px;
+    background: chocolate;
+    border: none;
   }
 </style>
