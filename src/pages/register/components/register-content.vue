@@ -1,50 +1,78 @@
 <template>
-<div class="content">
-    <div class="register-content">
-      <div class="register-img"><img src="/static/home/register.jpg" alt=""></div>
-      <div class="register-box">
-        <div class="register-statement">注册澳门银河账户,您将会领略到前所未有的博彩体验.如果您已拥有澳门银河账户,则可直接登录</div>
-        <div class="register-">
-          <div class="logon-mode">
+  <form>
+    <div class="content">
+      <div class="register-content">
+        <div class="register-img"><img src="/static/home/register.jpg" alt=""></div>
+        <div class="register-box">
+          <div class="register-statement">注册澳门银河账户,您将会领略到前所未有的博彩体验.如果您已拥有澳门银河账户,则可直接登录</div>
+          <div class="register-">
+            <div class="logon-mode">
               <span class="span1">快速注册</span> <span class="span2">手机注册</span>
-          </div>
-            <div class="register-item">
-              <span class="icon-user"></span>
-              <input class="user-input" type="text" placeholder="非必填"/>
             </div>
-            <div class="register-item">
-              <span class="icon-user"></span>
-              <input class="user-input" type="text"  placeholder="用户名（请输入5-10个数字或字母）"/>
-             </div>
-            <div class="register-item">
-              <span class="icon-phone"></span>
-              <input class="phone-input" placeholder="+86 中国"/><input class="phone"  placeholder="请输入正确的手机号码"/>
-            </div>
-            <div class="register-item">
-              <span class="icon-password"></span><input class="user-input" type=" number"  placeholder="请输入密码"/>
-            </div>
-            <div class="register-item">
-              <span class="icon-verification"></span>
-              <input class="user-input"  placeholder="请输入验证码"/>
-              <img class="verification-code"/>
-            </div>
-            <div class="register-item">
-              <span class="icon-WeChat"></span><input class="user-input" placeholder="请输入微信号或QQ号"/>
-            </div>
+            <div class="register-zc">
+              <div class="register-item">
+                <div class="icon-box"><img src="/static/home/zhuce_yonghu.png"/></div>
+                <div class="divInput"><input type="text" placeholder="非必填"/></div>
+                <p class="item"></p>
+              </div>
+              <div class="register-item">
+                <div class="icon-box"><img src="/static/home/zhuce_yonghu.png"/></div>
+                <div class="divInput"><input type="text" placeholder="用户名（请输入5-10位数字或字母）"/></div>
+                <p class="item"></p>
+              </div>
 
+              <div class="register-item">
+                <div class="icon-box"><img src="/static/home/zhuce_phone.png"/></div>
+                <div class="register-phone">
+                  <input class="phone-input" placeholder="+86 中国"/><input class="phone" type="number" placeholder="请输入正确的手机号码"/>
+                </div>
+                <p class="item"></p>
+              </div>
+
+              <div class="register-item">
+                <div class="icon-box"><img src="/static/home/zhu_safety.png"/></div>
+                <div class="divInput"><input type="text" placeholder="密码（请输入6-8位数字或者字母、下划线）"/></div>
+                <p class="item"></p>
+              </div>
+
+              <div class="register-item">
+                <div class="icon-box"><img src="/static/home/zhuce_yaoqin.png" class="icon"/></div>
+                <div class="verification"><input type="text" placeholder="请输入验证码"/></div>
+                <img src="" class="verification-code"/>
+                <p class="item"></p>
+              </div>
+
+              <div class="register-item">
+                <div class="icon-box"><img src="/static/home/zhuce_weixin.png"/></div>
+                <div class="divInput"><input type="text" placeholder="请输入微信号或者QQ号"/></div>
+                <p class="item"></p>
+              </div>
+            </div>
+          </div>
+          <div class="register-details">
+            <input class="radio" type="radio" :value=peach id="peach" v-model="checkedes" />
+            <span class="text">我已经届满合法博彩年龄,且同意各项 开户条约。</span>
+          </div>
+          <div class="btn" id="submit">立即注册</div>
         </div>
-        <div class="register-details"></div>
-        <div class="btn">立即注册</div>
+
       </div>
     </div>
-</div>
+  </form>
 </template>
 <script>
   export default {
-    name: "RegisterContent"
+    name: "RegisterContent",
+    data() {
+      return {
+
+      }
+    }
   }
+
 </script>
 <style scoped>
+
   .content{
     width: 100%;
     height: 827px;
@@ -62,10 +90,6 @@
     width: 538px;
     height: 677px;
   }
-  img{
-    width: 100%;
-    height: auto;
-  }
   .register-box{
     width: 580px;
     height: 675px;
@@ -82,7 +106,7 @@
   }
   .register-{
     width: 440px;
-    height: 428px;
+    height: 480px;
     padding: 0 70px;
   }
   .logon-mode{
@@ -91,89 +115,96 @@
     border-bottom:1px solid #eaeaea;
     margin-bottom: 30px;
   }
+  .register-zc{
+    width: 540px;
+    height: 350px;
+    margin: 0 auto 10px auto;
+ }
   .register-item{
     width: 440px;
-    height: 55px;
-    position: relative;
+    height: 70px;
+    display: flex;
+    flex-wrap:wrap;
   }
-  .icon-user{
+  .icon-box{
     width: 45px;
     height: 42px;
-    position: absolute;
-    left:0;
-    top:5px;
-    background:  #c2c2c2 url("/static/home/zhuce_yonghu.png") no-repeat;
-    background-size: 20px 20px;
-    background-position: 50%;
+    background:#c2c2c2;
   }
-  .user-input{
+  .icon-box img{
+    width: 20px;
+    height: 20px;
+    margin-top: 10px;
+    background:#c2c2c2;
+  }
+  .divInput{
+    width: 378px;
+    height: 42px;
+  }
+  .divInput input{
     width: 378px;
     height: 16px;
     line-height: 16px;
     font-size: 16px;
-    margin: 5px 0 0 45px;
     padding: 11px 0 11px 15px;
   }
-  .icon-phone{
-    width: 45px;
+
+  .item {
+    width: auto;
+    height: 20px;
+    line-height: 20px;
+    text-align: center;
+    padding-top:5px;
+    color: red;
+    font-size: 13px;
+  }
+
+  .verification{
+    width: 397px;
     height: 42px;
-    position: absolute;
-    left:0;
-    top:5px;
-    background: #c2c2c2 url("/static/home/zhuce_phone.png") no-repeat;
-    background-size: 20px 20px;
-    background-position: 50%;
+    margin: -43px 0 0 43px;
+  }
+  .verification input{
+    width: 200px;
+    height: 16px;
+    line-height: 16px;
+    font-size: 16px;
+    margin-left:-173px;
+    padding: 11px 0 11px 15px;
+  }
+  .verification-code{
+    width: 155px;
+    height: 40px;
+    margin-right: 0;
+    margin-left: 285px;
+    margin-top: -45px;
+    border: 1px solid black;
+  }
+  .register-phone{
+    width: 397px;
+    height: 42px;
+    margin: -44px 0 0 43px;
+    /*display: flex;*/
+    /*flex-wrap: wrap;*/
   }
   .phone-input{
     width: 80px;
     height: 16px;
     line-height: 16px;
     font-size: 16px;
-    position: absolute;
-    left:45px;
-    top:5px;
     padding: 11px 0 11px 15px;
   }
   .phone{
-    width: 273px;
+    width: 272px;
     height: 16px;
     line-height: 16px;
     font-size: 16px;
-    position: absolute;
-    left:150px;
-    top:5px;
+    margin-left: 7px;
+    /*margin-left:255px;*/
+    /*margin-top: -50px;*/
     padding: 11px 0 11px 15px;
   }
-  .icon-password{
-    width: 45px;
-    height: 42px;
-    position: absolute;
-    left:0;
-    top:5px;
-    background: #c2c2c2 url("/static/home/zhuce_yaoqin.png") no-repeat;
-    background-size: 20px 20px;
-    background-position: 50%;
-  }
-  .icon-verification{
-    width: 45px;
-    height: 42px;
-    position: absolute;
-    left:0;
-    top:5px;
-    background: #c2c2c2 url("/static/home/zhu_safety.png") no-repeat;
-    background-size: 20px 20px;
-    background-position: 50%;
-  }
-  .icon-WeChat{
-    width: 45px;
-    height: 42px;
-    position: absolute;
-    left:0;
-    top:5px;
-    background: #c2c2c2  url("/static/home/zhuce_weixin.png") no-repeat ;
-    background-size: 20px 20px;
-    background-position: 50%;
-  }
+
   .span1{
     width: 118px;
     height: 49px;
@@ -194,18 +225,32 @@
     color: #222222;
   }
   .register-details{
-    width: 550px;
+    width: 450px;
     height: 15px;
     padding: 0 15px;
-    margin: 20px 0;
-    border: 1px solid black;
+    margin:10px auto 10px auto;
+    display: flex;
+    flex-wrap: wrap;
+  }
+  .radio{
+    width: 15px;
+    height: 15px;
+  }
+  .text{
+    width: auto;
+    height: 15px;
+    font-size: 13px;
+    line-height: 15px;
+
   }
   .btn{
     width: 470px;
     height: 50px;
+    line-height: 50px;
+    text-align: center;
     border-radius: 5px;
-    background: darkgrey;
+    color:#6c6c6c;
+    background:#ddd;
     margin: 20px auto;
-    border: 1px solid black;
   }
 </style>
