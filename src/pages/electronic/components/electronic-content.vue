@@ -21,21 +21,11 @@
             class="submenu hot"
           >{{item}}</button>
 
-          <!-- <button class="submenu">最新游戏</button>
-          <button class="submenu">3-10线</button>item
-          <button class="submenu">15-20线</button>
-          <button class="submenu">25+线</button>
-          <button class="submenu">特色游戏</button>
-          <button class="submenu">老虎机</button>
-          <button class="submenu">接机游戏</button>
-          <button class="submenu">累积奖池</button>
-          <button class="submenu">卡牌</button>
-          <button class="submenu">刮刮乐</button>-->
           <input class="search" placeholder="请输入游戏名称" />
           <div class="icon"></div>
         </div>
         <div class="games">
-          <div class="games-" v-for="item of currenPageData" :key="item.id">
+          <div class="games-" v-for="item of currentPageData" :key="item.id">
             <img class="games-img" :src="item.url" alt />
             <div class="game-label">新MG</div>
             <p class="games-name">{{item.gamename }}</p>
@@ -67,7 +57,7 @@ export default {
       currentData: [],
       currentPage: 1,
       pageSize: 24,
-      currenPageData:[] ,// 当前页数据
+      currentPageData:[] ,// 当前页数据
       pageCount:0
     };
   },
@@ -87,7 +77,7 @@ export default {
       }
       this.currentData = this.gameList[key];
       this.slicePage();
-      
+
     },
     subSelect(key) {
       this.currentPage = 1;
@@ -95,7 +85,7 @@ export default {
       this.slicePage();
     },
     pages(isNext) {
-      this.pageCount = Math.ceil(this.currentData.length / this.pageSize); 
+      this.pageCount = Math.ceil(this.currentData.length / this.pageSize);
       if(isNext){
         if(this.currentPage >= this.pageCount) return;
         this.currentPage+=1;
@@ -105,15 +95,14 @@ export default {
         this.currentPage -=1;
       }
       this.slicePage();
-   
 
     },
     slicePage(){
-      this.pageCount = Math.ceil(this.currentData.length / this.pageSize); 
+      this.pageCount = Math.ceil(this.currentData.length / this.pageSize);
       const start = (this.currentPage -1) * this.pageSize;
       const end = start + this.pageSize;
 
-      this.currenPageData = this.currentData.slice(start,end);
+      this.currentPageData = this.currentData.slice(start,end);
     }
   },
   mounted() {

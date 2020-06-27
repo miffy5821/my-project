@@ -7,9 +7,10 @@
           <div class="register-statement">注册澳门银河账户,您将会领略到前所未有的博彩体验.如果您已拥有澳门银河账户,则可直接登录</div>
           <div class="register-">
             <div class="logon-mode">
-              <span class="span1">快速注册</span> <span class="span2">手机注册</span>
+              <span class="span1" :class="{'active': show === 1}" @click="show = 1">快速注册</span>
+              <span class="span1" :class="{'active': show === 2}" @click="show = 2">手机注册</span>
             </div>
-            <div class="register-zc">
+            <div class="register-kszc" v-show="show === 1">
               <div class="register-item">
                 <div class="icon-box"><img src="/static/home/zhuce_yonghu.png"/></div>
                 <div class="divInput"><input type="text" placeholder="非必填"/></div>
@@ -47,15 +48,44 @@
                 <div class="divInput"><input type="text" placeholder="请输入微信号或者QQ号"/></div>
                 <p class="item"></p>
               </div>
+              <div class="register-details">
+                <input class="radio" type="radio"/>
+                <span class="text">我已经届满合法博彩年龄,且同意各项 开户条约。</span>
+              </div>
+              <div class="btn" >立即注册</div>
+            </div>
+            <div class="register-sjzc" v-show="show === 2">
+              <div class="register-item">
+                <div class="icon-box"><img src="/static/home/zhuce_yonghu.png"/></div>
+                <div class="divInput"><input type="text" placeholder="非必填"/></div>
+                <p class="item"></p>
+              </div>
+              <div class="register-item">
+                <div class="icon-box"><img src="/static/home/zhuce_phone.png"/></div>
+                <div class="register-phone">
+                  <span class="phone-input">+86 中国</span><input class="phone" type="number" placeholder="请输入正确的手机号码"/>
+                </div>
+                <p class="item"></p>
+              </div>
+              <div class="register-item">
+                <div class="icon-box"><img src="/static/home/zhuce_yaoqin.png" class="icon"/></div>
+                <div class="verification"><input type="text" placeholder="请输入验证码"/></div>
+                <img src="" class="verification-code"/>
+                <p class="item"></p>
+              </div>
+              <div class="register-item">
+                <div class="icon-box"><img src="/static/home/zhuce_weixin.png"/></div>
+                <div class="divInput"><input type="text" placeholder="请输入微信号或者QQ号"/></div>
+                <p class="item"></p>
+              </div>
+              <div class="register-details">
+                <input class="radio" type="radio"  />
+                <span class="text">我已经届满合法博彩年龄,且同意各项 开户条约。</span>
+              </div>
+              <div class="btn" >立即注册</div>
+            </div>
             </div>
           </div>
-          <div class="register-details">
-            <input class="radio" type="radio" :value=peach id="peach" v-model="checkedes" />
-            <span class="text">我已经届满合法博彩年龄,且同意各项 开户条约。</span>
-          </div>
-          <div class="btn" id="submit">立即注册</div>
-        </div>
-
       </div>
     </div>
   </form>
@@ -65,7 +95,7 @@
     name: "RegisterContent",
     data() {
       return {
-
+        show: 1
       }
     }
   }
@@ -104,6 +134,7 @@
     padding: 0 35px;
     margin-top: 35px;
   }
+
   .register-{
     width: 440px;
     height: 480px;
@@ -115,11 +146,18 @@
     border-bottom:1px solid #eaeaea;
     margin-bottom: 30px;
   }
-  .register-zc{
+  .register-kszc{
     width: 540px;
-    height: 350px;
+    height: 550px;
+    cursor:pointer;
     margin: 0 auto 10px auto;
  }
+  .register-sjzc{
+    width: 540px;
+    height: 350px;
+    cursor:pointer;
+    margin: 0 auto 10px auto;
+  }
   .register-item{
     width: 440px;
     height: 70px;
@@ -183,29 +221,29 @@
   .register-phone{
     width: 397px;
     height: 42px;
-    margin: -44px 0 0 43px;
-    /*display: flex;*/
-    /*flex-wrap: wrap;*/
+    margin: -43px 0 0 44px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content:space-between;
   }
   .phone-input{
-    width: 80px;
-    height: 16px;
-    line-height: 16px;
+    width:70px;
+    height: 18px;
+    line-height: 18px;
     font-size: 16px;
-    padding: 11px 0 11px 15px;
+    border: 1px solid #c2c2c2;
+    padding: 11px 17px 11px 15px;
   }
   .phone{
-    width: 272px;
+    width: 254px;
     height: 16px;
     line-height: 16px;
     font-size: 16px;
-    margin-left: 7px;
-    /*margin-left:255px;*/
-    /*margin-top: -50px;*/
-    padding: 11px 0 11px 15px;
+    margin-right: 0;
+    padding: 11px 0 11px 17px;
   }
 
-  .span1{
+  .active{
     width: 118px;
     height: 49px;
     font-size: 16px;
@@ -213,10 +251,9 @@
     font-weight: 700;
     color: #c8a675;
     padding:20px 27px 13px 27px;
-    margin: 18px 35px  10px -60px;
     border-bottom: 3px solid #c8a675;
   }
-  .span2{
+  .span1{
     width: 118px;
     height: 49px;
     line-height: 49px;
@@ -228,9 +265,7 @@
     width: 450px;
     height: 15px;
     padding: 0 15px;
-    margin:10px auto 10px auto;
-    display: flex;
-    flex-wrap: wrap;
+    margin-left:-90px;
   }
   .radio{
     width: 15px;
@@ -249,8 +284,9 @@
     line-height: 50px;
     text-align: center;
     border-radius: 5px;
-    color:#6c6c6c;
-    background:#ddd;
-    margin: 20px auto;
+    color: #6c6c6c;
+    background: #ddd;
+    cursor:pointer;
+    margin: 20px 0 20px -13px;
   }
 </style>
