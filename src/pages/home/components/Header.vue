@@ -42,10 +42,13 @@
           <span class="left">
              <router-link to="/register">
             注册
-          </router-link>
+            </router-link>
           </span>
           <span class="center">
-            <a>登录</a></span>
+              <router-link to="/login">
+                登录
+              </router-link>
+          </span>
           <span class="right">
             <a>试玩</a></span>
       </div>
