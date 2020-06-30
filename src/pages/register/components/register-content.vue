@@ -13,46 +13,46 @@
             <div class="register-kszc" v-show="show === 1">
               <div class="register-item">
                 <div class="icon-box"><img src="/static/home/zhuce_yonghu.png"/></div>
-                <div class="divInput"><input type="text" placeholder="非必填"/></div>
+                <div class="divInput"><input v-model=" quickInput.referral" type="text" placeholder="非必填"/></div>
                 <p class="item"></p>
               </div>
               <div class="register-item">
                 <div class="icon-box"><img src="/static/home/zhuce_yonghu.png"/></div>
-                <div class="divInput"><input type="text" placeholder="用户名（请输入5-10位数字或字母）"/></div>
+                <div class="divInput"><input  v-model="quickInput.name" type="text" placeholder="用户名（请输入5-10位数字或字母）"/></div>
                 <p class="item"></p>
               </div>
 
               <div class="register-item">
                 <div class="icon-box"><img src="/static/home/zhuce_phone.png"/></div>
                 <div class="register-phone">
-                  <input class="phone-input" placeholder="+86 中国"/><input class="phone" type="number" placeholder="请输入正确的手机号码"/>
+                  <span class="phone-input">+86 中国</span><input v-model="quickInput.phone" class="phone" type="number" placeholder="请输入正确的手机号码"/>
                 </div>
                 <p class="item"></p>
               </div>
 
               <div class="register-item">
                 <div class="icon-box"><img src="/static/home/zhu_safety.png"/></div>
-                <div class="divInput"><input type="text" placeholder="密码（请输入6-8位数字或者字母、下划线）"/></div>
+                <div class="divInput"><input v-model="quickInput.password" type="text" placeholder="密码（请输入6-8位数字或者字母、下划线）"/></div>
                 <p class="item"></p>
               </div>
 
               <div class="register-item">
                 <div class="icon-box"><img src="/static/home/zhuce_yaoqin.png" class="icon"/></div>
-                <div class="verification"><input type="text" placeholder="请输入验证码"/></div>
+                <div class="verification"><input v-model=" quickInput.verificationCode" type="text" placeholder="请输入验证码"/></div>
                 <img src="" class="verification-code"/>
                 <p class="item"></p>
               </div>
 
               <div class="register-item">
                 <div class="icon-box"><img src="/static/home/zhuce_weixin.png"/></div>
-                <div class="divInput"><input type="text" placeholder="请输入微信号或者QQ号"/></div>
+                <div class="divInput"><input v-model="quickInput.weChat" type="text" placeholder="请输入微信号或者QQ号"/></div>
                 <p class="item"></p>
               </div>
               <div class="register-details">
                 <input class="radio" type="radio"/>
                 <span class="text">我已经届满合法博彩年龄,且同意各项 开户条约。</span>
               </div>
-              <div class="btn" >立即注册</div>
+              <div class="btn"  @click="getValue">立即注册</div>
             </div>
             <div class="register-sjzc" v-show="show === 2">
               <div class="register-item">
@@ -82,7 +82,7 @@
                 <input class="radio" type="radio"  />
                 <span class="text">我已经届满合法博彩年龄,且同意各项 开户条约。</span>
               </div>
-              <div class="btn" >立即注册</div>
+              <div class="btn">立即注册</div>
             </div>
             </div>
           </div>
@@ -95,7 +95,20 @@
     name: "RegisterContent",
     data() {
       return {
-        show: 1
+        show: 1,
+        quickInput:{
+          referral: '',
+          name:'',
+          phone: '',
+          password: '',
+          verificationCode: '',
+          weChat: ''
+        }
+      }
+    },
+    methods:{
+      getValue(){
+      console.log('quickInput',this.quickInput);
       }
     }
   }
