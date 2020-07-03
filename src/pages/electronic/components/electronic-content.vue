@@ -175,7 +175,7 @@ export default {
 }
 
 .electronic-kind li {
-  float: left;
+
   width: 92px;
   line-height: 80px;
   text-align: center;
