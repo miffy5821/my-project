@@ -54,7 +54,6 @@
       </ul>
     </div>
   </div>
-
 </template>
 
 <script>
@@ -170,12 +169,18 @@ export default {
     background-image: url("/static/home/float-all01.png");
     background-position: 3px -15px;
   }
+  .fw-online:hover{
+    width: 50px;
+    height: 50px;
+    background-image: url("/static/home/float-all01.png");
+    background-position: 3px -15px;
+  }
   .fw-complain{
-     width: 50px;
-     height: 50px;
-     margin-left:3px;
-     background-image: url("/static/home/float-mail.png");
-   }
+    width: 50px;
+    height: 50px;
+    margin-left:3px;
+    background-image: url("/static/home/float-mail.png");
+  }
   .fw-complain:hover{
     width: 50px;
     height: 50px;
@@ -200,11 +205,11 @@ export default {
     background-position: 3px -285px;
   }
   .fw-help:hover{
-       width: 50px;
-       height: 50px;
-       background-image: url("/static/home/float-all01.png");
-       background-position: 3px -285px;
-     }
+    width: 50px;
+    height: 50px;
+    background-image: url("/static/home/float-all01.png");
+    background-position: 3px -285px;
+  }
   .go-top{
     width: 50px;
     height: 50px;

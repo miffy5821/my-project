@@ -50,7 +50,9 @@
               </router-link>
           </span>
           <span class="right">
-            <a>试玩</a></span>
+            <router-link to="/personal">
+            试玩
+          </router-link></span>
       </div>
     </div>
   </div>

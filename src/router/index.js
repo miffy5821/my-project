@@ -12,6 +12,8 @@ import fishing from '@/pages/fishing/fishing.vue'
 import discounts from '@/pages/discounts/discounts.vue'
 import gift from '@/pages/gift/gift.vue'
 import register from '@/pages/register/register.vue'
+import login from '@/pages/login/login.vue'
+import personal from '@/pages/personal/personal.vue'
 
 Vue.use(Router)
 
@@ -64,6 +66,14 @@ export default new Router({
     path: '/register',
     name: 'register',
     component: register
+  },{
+    path: '/login',
+    name: 'login',
+    component: login
+  },{
+    path: '/personal',
+    name: 'personal',
+    component: personal
   }
   ]
 })

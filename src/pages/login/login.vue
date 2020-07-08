@@ -1,15 +1,18 @@
 <template>
-<login-content></login-content>
+  <div>
+     <login-content></login-content>
+  </div>
 </template>
 
 <script>
-  import loginContent from "./components/login-content";
+  import LoginContent from "./components/login-content";
 
 export default {
-  components: {LoginContent},
-  loginContent:'loginContent'
+  components: {
+    LoginContent:'LoginContent'
+  }
 }
 </script>
-<style lang="scss" scoped>
+<style >
 
 </style>
