@@ -14,6 +14,7 @@ import gift from '@/pages/gift/gift.vue'
 import register from '@/pages/register/register.vue'
 import login from '@/pages/login/login.vue'
 import personal from '@/pages/personal/personal.vue'
+import deposit from '@/pages/personal/components/deposit.vue'
 
 Vue.use(Router)
 
@@ -73,7 +74,21 @@ export default new Router({
   },{
     path: '/personal',
     name: 'personal',
-    component: personal
+    component: personal,
+    children: [
+      {
+        // 当 /user/:id/profile 匹配成功，
+        // UserProfile 会被渲染在 User 的 <router-view> 中
+        path: 'conversion',
+        component: conversion
+      },
+      {
+        // 当 /user/:id/profile 匹配成功，
+        // UserProfile 会被渲染在 User 的 <router-view> 中
+        path: 'deposit',
+        component: deposit
+      },
+    ]
   }
   ]
 })

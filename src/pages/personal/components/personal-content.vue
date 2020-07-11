@@ -66,52 +66,55 @@
           <p>扫码下载APP</p>
         </div>
       </div>
-      <div class="center">
-        <div class="tg">
-          <div class="tg-icon"><img class="iconTg" src="/static/personal/phone.png" alt=""></div>
-          <p class="tgContent">尊敬的澳门银河贵宾，由于线上充值会员多通道拥挤，充值成功率降低，建议贵宾使用公司线下转卡方式充值，
-            笔笔入款1.5%,感谢您对我司一直以来的支持，祝您游戏愉快~</p>
-        </div>
-        <div class="ym">
-          <p class="ymContent">请牢记我们官方唯一的域名导航 www.888y.com</p>
-        </div>
-        <div class="switch">
-          <button class="switchButton">切换至手动转账</button>
-        </div>
-        <div class="asset">
-          <div class="assetName">我的资产</div>
-        </div>
-        <div class="asset-case">
-          <div class="asset-left">
-            <div class="tex1">0.00</div>
-            <div class="asset-btn">
-              <button class="asset-btn1">提款</button>
-              <button class="asset-btn1 btnColor">存款</button>
-            </div>
-            <div></div>
+      <!--<div class="center">-->
+        <!--<div class="tg">-->
+          <!--<div class="tg-icon"><img class="iconTg" src="/static/personal/phone.png" alt=""></div>-->
+          <!--<p class="tgContent">尊敬的澳门银河贵宾，由于线上充值会员多通道拥挤，充值成功率降低，建议贵宾使用公司线下转卡方式充值，-->
+            <!--笔笔入款1.5%,感谢您对我司一直以来的支持，祝您游戏愉快~</p>-->
+        <!--</div>-->
+        <!--<div class="ym">-->
+          <!--<p class="ymContent">请牢记我们官方唯一的域名导航 www.888y.com</p>-->
+        <!--</div>-->
+        <!--<div class="switch">-->
+          <!--<button class="switchButton">切换至手动转账</button>-->
+        <!--</div>-->
+        <!--<div class="asset">-->
+          <!--<div class="assetName">我的资产</div>-->
+        <!--</div>-->
+        <!--<div class="asset-case">-->
+          <!--<div class="asset-left">-->
+            <!--<div class="tex1">0.00</div>-->
+            <!--<div class="asset-btn">-->
+              <!--<button class="asset-btn1">提款</button>-->
+              <!--<button class="asset-btn1 btnColor">存款</button>-->
+            <!--</div>-->
+            <!--<div></div>-->
+          <!--</div>-->
+          <!--<div class="asset-right">-->
+            <!--<div class="asset-">-->
+              <!--<button class="asset-btn2">刷新</button>-->
+            <!--</div>-->
+            <!--<div class="asset-wallet">-->
+              <!--<span class="wallet">中心钱包</span>-->
+              <!--<span class="sum">￥0.00</span>-->
+              <!--<span class="recycle">一键回收</span>-->
+            <!--</div>-->
+            <!--<div class="asset-wallet">-->
+              <!--<span class="integral">积分总额</span>-->
+              <!--<span class="total">0</span>-->
+            <!--</div>-->
+          <!--</div>-->
+        <!--</div>-->
+        <!--<div class="assetDistribute">-->
+          <!--<div class="assetName">财产分布</div>-->
+        <!--</div>-->
+        <!--<div class="Distribute">-->
+          <!--<div class="Distribute-ctn"></div>-->
+        <!--</div>-->
+      <!--</div>-->
+      <div class="content">
+          <router-view></router-view>
           </div>
-          <div class="asset-right">
-            <div class="asset-">
-              <button class="asset-btn2">刷新</button>
-            </div>
-            <div class="asset-wallet">
-              <span class="wallet">中心钱包</span>
-              <span class="sum">￥0.00</span>
-              <span class="recycle">一键回收</span>
-            </div>
-            <div class="asset-wallet">
-              <span class="integral">积分总额</span>
-              <span class="total">0</span>
-            </div>
-          </div>
-        </div>
-        <div class="assetDistribute">
-          <div class="assetName">财产分布</div>
-        </div>
-        <div class="Distribute">
-          <div class="Distribute-ctn"></div>
-        </div>
-      </div>
     </div>
   </div>
 </template>
