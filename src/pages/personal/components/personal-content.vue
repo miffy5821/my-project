@@ -14,47 +14,47 @@
           <div class="personal-list">
             <ul class="nav">
               <li  class="nav-color">
-                <router-link to="/personal-content">
+                <router-link to="/personal/conversion">
                   <img class="nav-icon " src="/static/personal/phone.png"/> <span class="active">额度转换</span>
                 </router-link>
               </li>
               <li>
-                <router-link to="/deposit">
+                <router-link to="/personal/deposit">
                   <img class="nav-icon" src="/static/personal/phone.png"/> <span>存款专区</span>
                 </router-link>
               </li>
               <li>
-                <router-link to="/withdrawal">
+                <router-link to="/personal/withdrawal">
                   <img class="nav-icon" src="/static/personal/phone.png"/> <span>取款专区</span>
                 </router-link>
               </li>
               <li>
-                <router-link to="/capital">
+                <router-link to="/personal/capital">
                   <img class="nav-icon" src="/static/personal/phone.png"/> <span>资金记录</span>
                 </router-link>
               </li>
               <li>
-                <router-link to="/bet">
+                <router-link to="/personal/bet">
                   <img class="nav-icon" src="/static/personal/phone.png"/> <span>投注记录</span>
                 </router-link>
               </li>
               <li>
-                <router-link to="/agency">
+                <router-link to="/personal/agency">
                   <img class="nav-icon" src="/static/personal/phone.png"/> <span>高级代理人</span>
                 </router-link>
               </li>
               <li>
-                <router-link to="/personal-data">
+                <router-link to="/personal/personal-data">
                   <img class="nav-icon" src="/static/personal/phone.png"/> <span>个人资料</span>
                 </router-link>
               </li>
               <li>
-                <router-link to="/information">
+                <router-link to="/personal/information">
                   <img class="nav-icon" src="/static/personal/phone.png"/> <span>信息公告</span>
                 </router-link>
               </li>
               <li>
-                <router-link to="/change-password">
+                <router-link to="/personal/change-password">
                   <img class="nav-icon" src="/static/personal/phone.png"/> <span>修改密码</span>
                 </router-link>
               </li>
@@ -66,52 +66,7 @@
           <p>扫码下载APP</p>
         </div>
       </div>
-      <!--<div class="center">-->
-        <!--<div class="tg">-->
-          <!--<div class="tg-icon"><img class="iconTg" src="/static/personal/phone.png" alt=""></div>-->
-          <!--<p class="tgContent">尊敬的澳门银河贵宾，由于线上充值会员多通道拥挤，充值成功率降低，建议贵宾使用公司线下转卡方式充值，-->
-            <!--笔笔入款1.5%,感谢您对我司一直以来的支持，祝您游戏愉快~</p>-->
-        <!--</div>-->
-        <!--<div class="ym">-->
-          <!--<p class="ymContent">请牢记我们官方唯一的域名导航 www.888y.com</p>-->
-        <!--</div>-->
-        <!--<div class="switch">-->
-          <!--<button class="switchButton">切换至手动转账</button>-->
-        <!--</div>-->
-        <!--<div class="asset">-->
-          <!--<div class="assetName">我的资产</div>-->
-        <!--</div>-->
-        <!--<div class="asset-case">-->
-          <!--<div class="asset-left">-->
-            <!--<div class="tex1">0.00</div>-->
-            <!--<div class="asset-btn">-->
-              <!--<button class="asset-btn1">提款</button>-->
-              <!--<button class="asset-btn1 btnColor">存款</button>-->
-            <!--</div>-->
-            <!--<div></div>-->
-          <!--</div>-->
-          <!--<div class="asset-right">-->
-            <!--<div class="asset-">-->
-              <!--<button class="asset-btn2">刷新</button>-->
-            <!--</div>-->
-            <!--<div class="asset-wallet">-->
-              <!--<span class="wallet">中心钱包</span>-->
-              <!--<span class="sum">￥0.00</span>-->
-              <!--<span class="recycle">一键回收</span>-->
-            <!--</div>-->
-            <!--<div class="asset-wallet">-->
-              <!--<span class="integral">积分总额</span>-->
-              <!--<span class="total">0</span>-->
-            <!--</div>-->
-          <!--</div>-->
-        <!--</div>-->
-        <!--<div class="assetDistribute">-->
-          <!--<div class="assetName">财产分布</div>-->
-        <!--</div>-->
-        <!--<div class="Distribute">-->
-          <!--<div class="Distribute-ctn"></div>-->
-        <!--</div>-->
-      <!--</div>-->
+
       <div class="content">
           <router-view></router-view>
           </div>
