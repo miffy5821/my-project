@@ -81,7 +81,7 @@
 <style>
   .personal {
     width: 100%;
-    height: 1500px;
+    height: 1050px;
     display: flex;
     cursor:pointer;
     background-color: #f7f6f4;
@@ -89,7 +89,7 @@
 
   .personalBox {
     width: 1200px;
-    height: 1150px;
+    height: 1000px;
     margin-top: 20px;
     margin-right: auto;
     margin-left: auto;

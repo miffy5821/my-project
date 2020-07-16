@@ -8,14 +8,6 @@
       <div class="swiper-button-prev" slot="button-prev"></div>
       <div class="swiper-button-next" slot="button-next"></div>
     </swiper>
-    <!--<div class="gg">-->
-      <!--<div class="notice">-->
-        <!--<img class="notice-img" src="../../../assets/home-img/gg.png"/>-->
-        <!--<div class="notice-ins">最新公告:</div>-->
-        <!--<div class="notice-roll"></div>-->
-        <!--<div class="notice-more">查看更多&gt;</div>-->
-      <!--</div>-->
-    <!--</div>-->
     <div class="gg">
       <div class="notice">
         <img class="notice-img" src="../../../assets/home-img/gg.png"/>

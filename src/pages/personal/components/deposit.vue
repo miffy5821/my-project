@@ -7,49 +7,68 @@
         笔笔入款1.5%,感谢您对我司一直以来的支持，祝您游戏愉快~</p>
     </div>
     <div class="ym">
-      <p class="ymContent">请牢记我们官方唯一的域名导航 www.888y.com</p>
     </div>
-    <div class="switch">
-      <button class="switchButton">切换至手动转账</button>
+    <div class="deposit">
+      <div class="depositName">存款专区</div>
     </div>
-    <div class="asset">
-      <div class="assetName">我的资产</div>
-    </div>
-    <div class="asset-case">
-      <div class="asset-left">
-        <div class="tex1">0.00</div>
-        <div class="asset-btn">
-          <button class="asset-btn1">提款</button>
-          <button class="asset-btn1 btnColor">存款</button>
-        </div>
-        <div></div>
+    <div class="deposit-case">
+     <div class="deposit-zone">
+       <ul class="depositWay">
+         <li class="active1"><img class="bankCard " src="/static/personal/bankCard.png"/>快捷支付 </li><span class="cross-line">|</span>
+         <li><img class="bankCard" src="/static/personal/bankCard.png"/>天下尊享支付</li><span class="cross-line">|</span>
+         <li><img class="bankCard" src="/static/personal/bankCard.png"/>支付宝支付</li><span class="cross-line">|</span>
+         <li><img class="bankCard" src="/static/personal/bankCard.png"/>云闪付</li><span class="cross-line">|</span>
+         <li><img class="bankCard" src="/static/personal/bankCard.png"/>比特币支付</li><span class="cross-line">|</span>
+         <li><img class="bankCard" src="/static/personal/bankCard.png"/>网银支付</li><span class="cross-line">|</span>
+         <li><img class="bankCard" src="/static/personal/bankCard.png"/>银联支付</li>
+       </ul>
+     </div>
+      <div class="step">
+        <el-steps :active="active" finish-status="success">
+          <el-step title="输入金额"></el-step>
+          <el-step title="存款成功"></el-step>
+        </el-steps>
+
       </div>
-      <div class="asset-right">
-        <div class="asset-">
-          <button class="asset-btn2">刷新</button>
-        </div>
-        <div class="asset-wallet">
-          <span class="wallet">中心钱包</span>
-          <span class="sum">￥0.00</span>
-          <span class="recycle">一键回收</span>
-        </div>
-        <div class="asset-wallet">
-          <span class="integral">积分总额</span>
-          <span class="total">0</span>
-        </div>
+      <div class="way">
+        <img class="bankCard" src="/static/personal/bankCard.png"/>
+        <span class="tex">支付1</span>
+      </div>
+      <div class="amount-box">
+        <div class="amount-deposited">
+          <label>存款金额 ：</label>
+          <input type="number" class="Distribute"/>
+          <div class="ts">单笔限额20-50000(元)</div>
+          <el-button  class="btn-next" @click="next">下一步</el-button>
+      </div>
       </div>
     </div>
-    <div class="assetDistribute">
-      <div class="assetName">财产分布</div>
+      <div class="tip">
+        <h2>温馨提示</h2>
+        <p>为确保您的款项及时到账，请您留意以下几点：</p>
+
+        <p> 1.在输入您的存款金额时确保您提交的金额在限额范围之内；</p>
+
+        <p> 2.若您支付过程中遇到问题未完成，请重新下单；</p>
+
+        <p> 3.支付遇到困难？点击“<a>联系客服</a>”人员获得帮助;</p>
+      </div>
     </div>
-    <div class="Distribute">
-      <div class="Distribute-ctn"></div>
-    </div>
-  </div>
 </template>
 <script>
   export default {
-    name: 'deposit'
+    name: 'deposit',
+    data() {
+      return {
+        active: 0
+      };
+    },
+
+    methods: {
+      next() {
+        if (this.active++ > 1) this.active = 0;
+      }
+    }
   }
 </script>
 <style>
@@ -97,43 +116,16 @@
 
   .ym {
     width: 978px;
-    height: 38px;
-    margin: 10px;
+    height: 20px;
   }
 
-  .ymContent {
-    width: 978px;
-    height: 38px;
-    text-align: left;
-    line-height: 38px;
-    font-size: 36px;
-    color: red;
 
-  }
-
-  .switch {
-    width: 998px;
-    height: 35px;
-  }
-
-  .switchButton {
-    width: 160px;
-    height: 30px;
-    color: goldenrod;
-    border: 1px solid goldenrod;
-    border-radius: 5px;
-    text-align: center;
-    margin-left: 750px;
-    background: white;
-    font-size: 14px;
-  }
-
-  .asset {
+  .deposit {
     width: 998px;
     height: 50px;
   }
 
-  .assetName {
+  .depositName {
     height: 40px;
     background: linear-gradient(90deg, #f2f2f2, #fff);
     line-height: 40px;
@@ -146,142 +138,147 @@
     color: #666;
   }
 
-  .asset-case {
-    width: 998px;
-    height: 160px;
-    padding: 10px;
+  .deposit-case {
+    width: 1000px;
+    height:505px;
+  }
+  .deposit-zone{
+    width: 1000px;
+    height: 40px;
+    border-bottom: 1px solid darkgray;
+  }
+  .depositWay{
+    width: 932px;
+    height: 40px;
     display: flex;
     flex-wrap: wrap;
-  }
-
-  .asset-left {
-    width: 400px;
-    height: 160px;
-    padding: 20px 30px;
-    border-right: 1px solid #eaeaea;
-  }
-
-  .tex1 {
-    width: 380px;
-    height: 80px;
-    font-size: 50px;
-    font-weight: 700;
-    padding-left: 10px;
-    text-align: left;
-    color: black;
-  }
-
-  .asset-btn {
-    width: 399px;
-    height: 40px;
-    display: flex;
-    justify-content: flex-start;
-  }
-
-  .asset-btn1 {
-    width: 130px;
-    height: 40px;
-    margin: 0 10px;
-    color: #c8a675;
-    padding: 0 15px;
-    text-align: center;
-    line-height: 40px;
-    background: white;
-    font-size: 14px;
-    border: 1px solid #c8a675;
-    border-radius: 5px;
-  }
-
-  .btnColor {
-    background: #c8a675;
-    color: white;
-  }
-
-  .asset-right {
-    width: 500px;
-    height: 160px;
-  }
-
-  .asset- {
-    width: 500px;
-    height: 50px;
-    display: flex;
-    justify-content: flex-end;
-  }
-
-  .asset-btn2 {
-    width: 60px;
-    height: 35px;
-    font-size: 14px;
-    background: #c8a675;
-    border: none;
-    border-radius: 5px;
-    margin-right: 20px;
-  }
-
-  .asset-wallet {
-    width: 238px;
-    height: 50px;
-    line-height: 50px;
-    font-size: 14px;
-    display: flex;
-    margin-left: 30px;
-    justify-content: flex-start;
-
-  }
-
-  .wallet {
-    width: 56px;
-    height: 19px;
-    margin-right: 20px;
-    font-size: 14px;
-  }
-
-  .sum {
-    width: 42px;
-    font-size: 14px;
-    height: 19px;
-    margin-right: 20px;
-  }
-
-  .recycle {
-    width: 80px;
-    height: 28px;
-    line-height: 28px;
-    border: 1px solid #c8a675;
-    border-radius: 5px;
-    font-size: 13px;
+    margin-left: 20px;
     margin-top: 10px;
-    color: #c8a675;
+    margin-right: 48px;
   }
-
-  .integral {
-    width: 56px;
-    height: 19px;
-    margin-right: 20px;
+  .depositWay li{
+    width: auto;
+    height: 38px;
     font-size: 14px;
+    line-height: 36px;
+    color: darkgray;
+    text-align: center;
+  }
+  .active1{
+    color:goldenrod;
+    border-bottom: 3px solid goldenrod;
   }
 
-  .total {
-    width: 10px;
-    height: 19px;
+  .bankCard {
+    width: 25px;
+    height: 25px;
+    margin-right: 8px;
+  }
+
+  .cross-line {
+    height: 50px;
+    width: auto;
+    margin-top: 12px;
+    color: darkgray;
+    padding-left: 18px;
+    padding-right: 18px;
+  }
+
+  .step {
+   /* width: 800px;*/
+    height: 24px;
+    padding: 40px 100px;
+  }
+
+  .way {
+    width: 145px;
+    height: 43px;
+    text-align: center;
+    line-height: 43px;
+    border: 1px solid red;
+    margin-top: 20px;
+    margin-bottom: 30px;
+    margin-left: 80px;
+  }
+
+  .tex {
     font-size: 14px;
+    color: darkgray;
   }
 
-  .assetDistribute {
-    width: 998px;
-    height: 300px;
-    border: 1px dashed silver;
-    margin-top: 60px;
-    padding-top: 30px;
+  .amount-box {
+    width: 1000px;
+    height: 245px;
+    text-align: center;
+    line-height: 245px;
+    background: #eee;
+  }
+
+  .amount-deposited {
+    width: 740px;
+    height: 145px;
+    text-align: left;
+    font-size: 15px;
+    position: relative;
+    line-height: 145px;
+    margin: auto auto;
+    margin-top: 50px;
   }
 
   .Distribute {
-
+    width: 280px;
+    height: 35px;
+    border: 1px solid gray;
+    border-radius: 5px;
   }
 
-  .Distribute-ctn {
+  .ts {
+    width: 230px;
+    height: 35px;
+    color: black;
+    padding-left: 20px;
+    font-size: 14px;
+    line-height: 35px;
+    background: goldenrod;
+    border: 1px solid chocolate;
+    position: absolute;
+    left: 420px;
+    top: 52px;
+  }
 
+  .btn-next {
+    width: 200px;
+    height: 35px;
+    padding-top: 10px;
+    font-size: 16px;
+    color: white;
+    background: goldenrod;
+    border: 1px solid darkgray;
+    border-radius: 5px;
+    text-align: center;
+    position: absolute;
+    left: 85px;
+    top: 140px;
+  }
+
+  .tip {
+    width: 1000px;
+    height: 485px;
+    padding:35px;
+    text-align: left;
+  }
+  .tip h2{
+    font-size: 20px;
+    color: red;
+    margin-bottom: 10px;
+  }
+  .tip p{
+    font-size: 15px;
+    color: black;
+    margin-top: 10px;
+  }
+  .tip a{
+    color: red;
   }
 </style>
 
