@@ -19,7 +19,7 @@ import conversion from '@/pages/personal/components/conversion.vue'
 import withdrawal from '@/pages/personal/components/withdrawal.vue'
 import capital from '@/pages/personal/components/capital.vue'
 import bet from '@/pages/personal/components/bet.vue'
-import agency from '@/pages/personal/components/agency.vue'
+import agency from '@/pages/agency/agency.vue'
 import personalData from '@/pages/personal/components/personalData.vue'
 import information from '@/pages/personal/components/information.vue'
 import changePassword from '@/pages/personal/components/changePassword.vue'
@@ -107,10 +107,6 @@ export default new Router({
         name: 'bet',
         component: bet
       }, {
-        path: 'agency',
-        name: 'agency',
-        component: agency
-      }, {
         path: 'personalData',
         name: 'personalData',
         component: personalData
@@ -122,8 +118,11 @@ export default new Router({
         path: 'changePassword',
         name: 'changePassword',
         component: changePassword
-      },
-    ]
+      }]
+  }, {
+    path: '/agency',
+    name: 'agency',
+    component: agency
   }
   ]
 })

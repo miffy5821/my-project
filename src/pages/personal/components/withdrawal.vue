@@ -42,9 +42,7 @@
     <div class="assetDistribute">
       <div class="assetName">财产分布</div>
     </div>
-    <div class="Distribute">
-      <div class="Distribute-ctn"></div>
-    </div>
+
   </div>
 </template>
 <script>

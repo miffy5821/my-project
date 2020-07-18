@@ -6,49 +6,107 @@
         笔笔入款1.5%,感谢您对我司一直以来的支持，祝您游戏愉快~</p>
     </div>
     <div class="ym">
-      <p class="ymContent">请牢记我们官方唯一的域名导航 www.888y.com</p>
     </div>
-    <div class="switch">
-      <button class="switchButton">切换至手动转账</button>
+    <div class="capital">
+      <div class="capitalName">投资记录</div>
     </div>
-    <div class="asset">
-      <div class="assetName">我的资产</div>
-    </div>
-    <div class="asset-case">
-      <div class="asset-left">
-        <div class="tex1">0.00</div>
-        <div class="asset-btn">
-          <button class="asset-btn1">提款</button>
-          <button class="asset-btn1 btnColor">存款</button>
-        </div>
-        <div></div>
+    <div class="capital-case">
+      <div class="block left">
+        <el-date-picker
+          v-model="value1"
+          type="daterange"
+          range-separator="至"
+          start-placeholder="开始日期"
+          end-placeholder="结束日期">
+        </el-date-picker>
       </div>
-      <div class="asset-right">
-        <div class="asset-">
-          <button class="asset-btn2">刷新</button>
-        </div>
-        <div class="asset-wallet">
-          <span class="wallet">中心钱包</span>
-          <span class="sum">￥0.00</span>
-          <span class="recycle">一键回收</span>
-        </div>
-        <div class="asset-wallet">
-          <span class="integral">积分总额</span>
-          <span class="total">0</span>
-        </div>
+      <el-select class="inputWidth" v-model="value" placeholder="快捷选时">
+        <el-option
+          v-for="item in options1"
+          :key="item.value"
+          :label="item.label"
+          :value="item.value">
+        </el-option>
+      </el-select>
+      <button class="button">选择游戏平台</button>
+      <div class="Select-game ">
+        <p class="tex1">当前平台:<span class="tex2">请先选择需要查看的游戏平台</span></p>
       </div>
+
     </div>
-    <div class="assetDistribute">
-      <div class="assetName">财产分布</div>
+    <div class="queries">
+      <ul class="capitalBox">
+        <li>游戏平台</li>
+        <li>日期</li>
+        <li>下注金额</li>
+        <li>派金金额</li>
+        <li>输赢金额</li>
+        <li>有效投注</li>
+      </ul>
+
     </div>
-    <div class="Distribute">
-      <div class="Distribute-ctn"></div>
+    <div class="record">
+      <img class="recordImg" src="/static/personal/none.svg"/>
+      <p>暂无数据</p>
+    </div>
+    <div>
+      <p class="tex3">当前页总投注：总计0元<p>|</p>当前页派彩： 总计0元<p>|</p>当前页输赢： 总计0元<p>|</p>当前页有效投注： 总计0元</p>
     </div>
   </div>
 </template>
 <script>
   export default {
-    name: 'bet'
+    name: 'capital',
+    data() {
+      return {
+        pickerOptions: {
+          shortcuts: [{
+            text: '最近一周',
+            onClick(picker) {
+              const end = new Date();
+              const start = new Date();
+              start.setTime(start.getTime() - 3600 * 1000 * 24 * 7);
+              picker.$emit('pick', [start, end]);
+            }
+          }, {
+            text: '最近一个月',
+            onClick(picker) {
+              const end = new Date();
+              const start = new Date();
+              start.setTime(start.getTime() - 3600 * 1000 * 24 * 30);
+              picker.$emit('pick', [start, end]);
+            }
+          }, {
+            text: '最近三个月',
+            onClick(picker) {
+              const end = new Date();
+              const start = new Date();
+              start.setTime(start.getTime() - 3600 * 1000 * 24 * 90);
+              picker.$emit('pick', [start, end]);
+            }
+          }]
+        },
+        options1: [{
+          value: '选项1',
+          label: '今天'
+        }, {
+          value: '选项2',
+          label: '昨天'
+        }, {
+          value: '选项3',
+          label: '近三天'
+        }, {
+          value: '选项4',
+          label: '近一周'
+        }, {
+          value: '选项5',
+          label: '近一个月'
+        }],
+        value: '',
+        value1: ''
+      };
+    }
+
   }
 </script>
 <style>
@@ -96,43 +154,16 @@
 
   .ym {
     width: 978px;
-    height: 38px;
-    margin: 10px;
+    height: 20px;
   }
 
-  .ymContent {
-    width: 978px;
-    height: 38px;
-    text-align: left;
-    line-height: 38px;
-    font-size: 36px;
-    color: red;
 
-  }
-
-  .switch {
-    width: 998px;
-    height: 35px;
-  }
-
-  .switchButton {
-    width: 160px;
-    height: 30px;
-    color: goldenrod;
-    border: 1px solid goldenrod;
-    border-radius: 5px;
-    text-align: center;
-    margin-left: 750px;
-    background: white;
-    font-size: 14px;
-  }
-
-  .asset {
+  .capital {
     width: 998px;
     height: 50px;
   }
 
-  .assetName {
+  .capitalName {
     height: 40px;
     background: linear-gradient(90deg, #f2f2f2, #fff);
     line-height: 40px;
@@ -145,142 +176,89 @@
     color: #666;
   }
 
-  .asset-case {
-    width: 998px;
-    height: 160px;
+  .capital-case {
+    width: 939px;
+    height:40px;
+    margin:20px;
     padding: 10px;
     display: flex;
     flex-wrap: wrap;
+    justify-content:space-between;
+    border-radius: 3px;
+    background: #eee;
   }
 
-  .asset-left {
-    width: 400px;
-    height: 160px;
-    padding: 20px 30px;
-    border-right: 1px solid #eaeaea;
-  }
-
-  .tex1 {
-    width: 380px;
-    height: 80px;
-    font-size: 50px;
-    font-weight: 700;
-    padding-left: 10px;
+  .left{
     text-align: left;
-    color: black;
+    width: 350px;
   }
 
-  .asset-btn {
-    width: 399px;
-    height: 40px;
-    display: flex;
-    justify-content: flex-start;
+  .inputWidth{
+    width: 120px;
   }
 
-  .asset-btn1 {
-    width: 130px;
-    height: 40px;
-    margin: 0 10px;
-    color: #c8a675;
-    padding: 0 15px;
-    text-align: center;
-    line-height: 40px;
-    background: white;
-    font-size: 14px;
-    border: 1px solid #c8a675;
-    border-radius: 5px;
-  }
-
-  .btnColor {
-    background: #c8a675;
-    color: white;
-  }
-
-  .asset-right {
-    width: 500px;
-    height: 160px;
-  }
-
-  .asset- {
-    width: 500px;
-    height: 50px;
-    display: flex;
-    justify-content: flex-end;
-  }
-
-  .asset-btn2 {
-    width: 60px;
-    height: 35px;
-    font-size: 14px;
-    background: #c8a675;
-    border: none;
-    border-radius: 5px;
-    margin-right: 20px;
-  }
-
-  .asset-wallet {
-    width: 238px;
-    height: 50px;
-    line-height: 50px;
-    font-size: 14px;
-    display: flex;
-    margin-left: 30px;
-    justify-content: flex-start;
-
-  }
-
-  .wallet {
-    width: 56px;
-    height: 19px;
-    margin-right: 20px;
-    font-size: 14px;
-  }
-
-  .sum {
-    width: 42px;
-    font-size: 14px;
-    height: 19px;
-    margin-right: 20px;
-  }
-
-  .recycle {
+  .button{
     width: 80px;
-    height: 28px;
-    line-height: 28px;
-    border: 1px solid #c8a675;
-    border-radius: 5px;
-    font-size: 13px;
-    margin-top: 10px;
-    color: #c8a675;
-  }
-
-  .integral {
-    width: 56px;
-    height: 19px;
+    height: 40px;
+    border: none;
+    border-radius: 3px;
+    color: white;
+    font-size: 14px;
+    padding: 10px;
+    margin-left: 15px;
     margin-right: 20px;
+    background: goldenrod;
+  }
+  .queries{
+    width: 927px;
+    height: 23px;
+    padding:16px;
+    margin:20px 20px 0 20px;
+    background: #fafafa;
+    border: 1px solid #e8e8e8;
+    transition: background .3s ease;
+  }
+  .capitalBox{
+    width: 893px;
+    height: 23px;
+    font-weight: 700;
+    padding-left: 15px;
+    padding-right: 15px;
+    color: #909399;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+  }
+  .capitalBox li{
+    width: auto;
+    height: 23px;
+    line-height: 25px;
+    text-align: center;
     font-size: 14px;
   }
+  .record {
+    width: 927px;
+    height: 495px;
+    margin:0 20px 20px  20px;
+    padding:0 16px 16px 16px;
+    background: #fff;
+    border-left: 1px solid #e8e8e8;
+    border-right: 1px solid #e8e8e8;
+    border-bottom: 1px solid #e8e8e8;
+  }
 
-  .total {
-    width: 10px;
-    height: 19px;
+  .recordImg{
+    width: 62px;
+    height: 40px;
+    margin-bottom: 15px;
+    margin-top: 200px;
+  }
+  .record p{
+    width: auto;
+    height: 25px;
+    text-align: center;
     font-size: 14px;
-  }
-
-  .assetDistribute {
-    width: 998px;
-    height: 300px;
-    border: 1px dashed silver;
-    margin-top: 60px;
-    padding-top: 30px;
-  }
-
-  .Distribute {
-
-  }
-
-  .Distribute-ctn {
-
+    color: gray;
   }
 </style>
 
