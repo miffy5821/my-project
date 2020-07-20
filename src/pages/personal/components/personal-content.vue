@@ -39,7 +39,7 @@
                 </router-link>
               </li>
               <li>
-                <router-link to="/pages/agency">
+                <router-link to="/agency">
                   <img class="nav-icon" src="/static/personal/phone.png"/> <span>高级代理人</span>
                 </router-link>
               </li>

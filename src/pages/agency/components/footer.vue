@@ -67,7 +67,6 @@ export default {
   .bottom{
     width: 100%;
     height: 144px;
-    margin-top: 90px;
     background-color:#1c171d;
     background-image: url("../../../assets/home-img/bottom-bg.png");
   }

@@ -13,13 +13,13 @@
 
 <script>
   import HomeHeader from './components/Header'
-  import  agencyContent from './components/agencyContent'
+  import agencyContent from './components/agencyContent'
   import homeFooter from './components/footer'
 
   export default {
     components: {
       HomeHeader: HomeHeader,
-      agencyContent:  agencyContent,
+      agencyContent: agencyContent,
       homeFooter: homeFooter
     }
   }

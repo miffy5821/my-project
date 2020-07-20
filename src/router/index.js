@@ -118,8 +118,8 @@ export default new Router({
         path: 'changePassword',
         name: 'changePassword',
         component: changePassword
-      }]
-  }, {
+      },]
+  },{
     path: '/agency',
     name: 'agency',
     component: agency

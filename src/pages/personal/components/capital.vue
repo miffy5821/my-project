@@ -145,7 +145,7 @@
 
   }
 </script>
-<style>
+<style >
   .center {
     width: 1000px;
     height: 1000px;
@@ -225,11 +225,10 @@
   }
 
   .left{
-    text-align: left;
     width: 350px;
   }
 
-  .inputWidth{
+  .capital-case .inputWidth{
     width: 120px;
   }
 

@@ -11,7 +11,7 @@
       <div class="capitalName">投资记录</div>
     </div>
     <div class="capital-case">
-      <div class="block left">
+      <div class="block left11">
         <el-date-picker
           v-model="value1"
           type="daterange"
@@ -28,10 +28,10 @@
           :value="item.value">
         </el-option>
       </el-select>
-      <button class="button">选择游戏平台</button>
-      <div class="Select-game ">
-        <p class="tex1">当前平台:<span class="tex2">请先选择需要查看的游戏平台</span></p>
-      </div>
+      <button class="btn11">选择游戏平台</button>
+      <el-divider class="bet-line"></el-divider>
+      <p class="tex1">当前平台:<span class="tex22">请先选择需要查看的游戏平台</span></p>
+
 
     </div>
     <div class="queries">
@@ -50,7 +50,7 @@
       <p>暂无数据</p>
     </div>
     <div>
-      <p class="tex3">当前页总投注：总计0元<p>|</p>当前页派彩： 总计0元<p>|</p>当前页输赢： 总计0元<p>|</p>当前页有效投注： 总计0元</p>
+      <p class="tex11">当前页总投注：总计0元&nbsp;&nbsp;|&nbsp;&nbsp;当前页派彩： 总计0元&nbsp;&nbsp;|&nbsp;&nbsp;当前页输赢： 总计0元&nbsp;&nbsp;|&nbsp;&nbsp;当前页有效投注： 总计0元</p>
     </div>
   </div>
 </template>
@@ -178,7 +178,7 @@
 
   .capital-case {
     width: 939px;
-    height:40px;
+    height:90px;
     margin:20px;
     padding: 10px;
     display: flex;
@@ -188,17 +188,21 @@
     background: #eee;
   }
 
-  .left{
-    text-align: left;
+  .left11{
     width: 350px;
   }
 
+  .bet-line{
+    color: #e8e8e8;
+    margin-bottom: 10px;
+    margin-top: 10px;
+  }
   .inputWidth{
     width: 120px;
   }
 
-  .button{
-    width: 80px;
+  .btn11{
+    width: 110px;
     height: 40px;
     border: none;
     border-radius: 3px;
@@ -253,11 +257,25 @@
     margin-bottom: 15px;
     margin-top: 200px;
   }
-  .record p{
+  .tex1{
+    width:800px;
+    height: 25px;
+    text-align: left;
+    line-height: 25px;
+    font-size: 14px;
+    color: black;
+  }
+  .tex22{
+    line-height: 25px;
+    font-size: 14px;
+    margin-left: 10px;
+    color: #c8a675;
+  }
+  .tex11{
     width: auto;
     height: 25px;
-    text-align: center;
     font-size: 14px;
+    text-align: center;
     color: gray;
   }
 </style>
