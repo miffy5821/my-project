@@ -44,7 +44,7 @@
                 </router-link>
               </li>
               <li>
-                <router-link to="/personal/personal-data">
+                <router-link to="/personal/personalData">
                   <img class="nav-icon" src="/static/personal/phone.png"/> <span>个人资料</span>
                 </router-link>
               </li>
@@ -54,7 +54,7 @@
                 </router-link>
               </li>
               <li>
-                <router-link to="/personal/change-password">
+                <router-link to="/personal/changePassword">
                   <img class="nav-icon" src="/static/personal/phone.png"/> <span>修改密码</span>
                 </router-link>
               </li>
