@@ -25,12 +25,12 @@
 
 <script>
   export default {
-    name: "login-content"
+    name: 'LoginContent'
   }
 
 </script>
-<style lang="scss" scoped>
-  // 最外层 设置position定位
+<style  scoped>
+  /* 最外层设置position定位*/
   .login {
     width: 100%;
     height: 100%;
@@ -39,7 +39,7 @@
     background-color: darkgray;
     font-size: 16px;
   }
-  // 遮罩 设置背景层，z-index值要足够大确保能覆盖，高度 宽度设置满 做到全屏遮罩
+  /*// 遮罩 设置背景层，z-index值要足够大确保能覆盖，高度 宽度设置满 做到全屏遮罩*/
   .login-cover {
     background: rgba(0,0,0, 0.8);
     position: fixed;
@@ -49,7 +49,7 @@
     width: 100%;
     height: 100%;
   }
-  // 内容层 z-index要比遮罩大，否则会被遮盖，
+  /*// 内容层 z-index要比遮罩大，否则会被遮盖，*/
   .login-content{
     position: fixed;
     top: 35%;

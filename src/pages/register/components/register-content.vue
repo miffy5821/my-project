@@ -1,4 +1,3 @@
-小铁妞 美嘉, [01.07.20 02:44]
 <template>
   <div class="content">
     <div class="register-content">
