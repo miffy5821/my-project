@@ -12,10 +12,10 @@
     </div>
     <div class="ifm-data">
       <ul class="ifmBox">
-        <li class="current"><img class="ifm-img" src="/static/personal/day.png" alt="">今天</li>
-        <li><img class="ifm-img" src="/static/personal/day.png" alt="">3天</li>
-        <li><img class="ifm-img" src="/static/personal/day.png" alt="">一周</li>
-        <li><img class="ifm-img" src="/static/personal/day.png" alt="">一个月</li>
+        <li class="current"><img class="ifm-img" src="/static/personal/day.png" alt=""><span class="ifm-text">今天</span></li>
+        <li><img class="ifm-img" src="/static/personal/day.png" alt=""><span class="ifm-text">3天</span></li>
+        <li><img class="ifm-img" src="/static/personal/day.png" alt=""><span class="ifm-text">一周</span></li>
+        <li><img class="ifm-img" src="/static/personal/day.png" alt=""><span class="ifm-text">一个月</span></li>
       </ul>
     </div>
     <div class="email">
@@ -126,7 +126,7 @@
   }
   .current{
     color: #c2a77d;
-    border-bottom: 2px solid #c2a77d;
+    border-bottom:3px solid  #c2a77d;
   }
   .ifm-img{
     width: 15px;
@@ -180,7 +180,7 @@
   .ifm-content {
     width: 945px;
     height: 200px;
-    margin:0 20px 20px  0px;
+    margin:0 20px 20px  0;
     padding:0 16px 16px 16px;
     background: #fff;
     border-left: 1px solid #e8e8e8;

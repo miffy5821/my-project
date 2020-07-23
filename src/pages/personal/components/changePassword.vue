@@ -7,10 +7,10 @@
     </div>
     <div class="ym">
     </div>
-    <div class="deposit">
-      <div class="depositName">登录密码</div>
+    <div class="change">
+      <div class="changeName">登录密码</div>
     </div>
-    <div class="deposit-case">
+    <div class="change-case">
       <div class="step">
         <el-steps :active="active" finish-status="success">
           <el-step title="重置密码"></el-step>
@@ -85,12 +85,12 @@
   }
 
 
-  .deposit {
+  .change {
     width: 998px;
     height: 50px;
   }
 
-  .depositName {
+  .changeName {
     height: 40px;
     background: linear-gradient(90deg, #f2f2f2, #fff);
     line-height: 40px;
@@ -103,7 +103,7 @@
     color: #666;
   }
 
-  .deposit-case {
+  .change-case {
     width: 1000px;
     height:505px;
   }

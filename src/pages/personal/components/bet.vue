@@ -7,10 +7,10 @@
     </div>
     <div class="ym">
     </div>
-    <div class="capital">
-      <div class="capitalName">投资记录</div>
+    <div class="bet">
+      <div class="betName">投资记录</div>
     </div>
-    <div class="capital-case">
+    <div class="bet-case">
       <div class="block left11">
         <el-date-picker
           v-model="value1"
@@ -30,12 +30,12 @@
       </el-select>
       <button class="btn11">选择游戏平台</button>
       <el-divider class="bet-line"></el-divider>
-      <p class="tex1">当前平台:<span class="tex22">请先选择需要查看的游戏平台</span></p>
+      <p class="tex121">当前平台:<span class="tex22">请先选择需要查看的游戏平台</span></p>
 
 
     </div>
     <div class="queries">
-      <ul class="capitalBox">
+      <ul class="betBox">
         <li>游戏平台</li>
         <li>日期</li>
         <li>下注金额</li>
@@ -158,12 +158,12 @@
   }
 
 
-  .capital {
+  .bet {
     width: 998px;
     height: 50px;
   }
 
-  .capitalName {
+  .betName {
     height: 40px;
     background: linear-gradient(90deg, #f2f2f2, #fff);
     line-height: 40px;
@@ -176,7 +176,7 @@
     color: #666;
   }
 
-  .capital-case {
+  .bet-case {
     width: 939px;
     height:90px;
     margin:20px;
@@ -222,7 +222,7 @@
     border: 1px solid #e8e8e8;
     transition: background .3s ease;
   }
-  .capitalBox{
+  .betBox{
     width: 893px;
     height: 23px;
     font-weight: 700;
@@ -233,7 +233,7 @@
     flex-wrap: wrap;
     justify-content: space-between;
   }
-  .capitalBox li{
+  .betBox li{
     width: auto;
     height: 23px;
     line-height: 25px;
@@ -257,7 +257,7 @@
     margin-bottom: 15px;
     margin-top: 200px;
   }
-  .tex1{
+  .tex121{
     width:800px;
     height: 25px;
     text-align: left;
