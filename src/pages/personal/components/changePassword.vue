@@ -11,20 +11,27 @@
       <div class="changeName">登录密码</div>
     </div>
     <div class="change-case">
-      <div class="step">
+      <div class="cw-step">
         <el-steps :active="active" finish-status="success">
           <el-step title="重置密码"></el-step>
           <el-step title="设定成功"></el-step>
         </el-steps>
       </div>
       <div class="pw">
-        <label >旧密码</label>
+        <div class="changeWord-item">
+          <label>旧密码:</label>
           <input type="text" placeholder="请输入6-12位数字或字母组合">
-        <label>新密码</label>
+        </div>
+        <div class="changeWord-item">
+          <label>新密码:</label>
           <input type="text" placeholder="请输入6-12位数字或字母组合">
-        <label>确认密码</label>
-        <input type="text" placeholder="请再次输入密码">
-        <el-button style="margin-top: 12px;" @click="next">下一步</el-button>
+        </div>
+        <div class="changeWord-item">
+          <label>确认密码:</label>
+          <input type="text" placeholder="请再次输入密码">
+        </div>
+
+        <el-button class="cw-btn" @click="next">下一步</el-button>
       </div>
 
     </div>
@@ -33,7 +40,16 @@
 <script>
   export default {
     name: 'changePassord',
-
+    data() {
+      return {
+        active: 1
+      }
+    },
+    methods: {
+      next() {
+        this.active = 2;
+      }
+    }
   }
 </script>
 <style>
@@ -106,19 +122,61 @@
   .change-case {
     width: 1000px;
     height:505px;
+
   }
 
- .step{
-   width: 100%;
-   height: 100px;
+ .cw-step{
+   width:600px;
+   height: 20px;
+   margin-left: auto;
+   margin-right: auto;
    padding: 50px 80px;
+   text-align: left;
  }
 
   .pw{
-    width: 100%;
-    height: 500px;
+    width:840px;
+    height: 300px;
     padding: 80px;
     text-align: center;
+  }
+
+  .changeWord-item{
+    width: calc(100% - 400px);
+    height:40px ;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .changeWord-item label{
+    font-size: 14px;
+    color: #222222;
+    margin-right: 15px;
+    line-height: 40px;
+    width: 80px;
+    text-align: right;
+  }
+  .changeWord-item input{
+    width: 250px;
+    height: 25px;
+    border-radius: 3px;
+    border: 1px solid #d9d9d9;
+    color:  #d9d9d9;
+    font-size: 14px;
+    padding: 6px 11px 6px 15px;
+  }
+  .cw-btn{
+    width: 100px;
+    padding: 5px;
+    line-height: 25px;
+    color: #fff;
+    margin-top: 20px;
+    margin-left: -80px;
+    background-color: #c2a77d;
+    border-color: #c2a77d;
   }
 </style>
 

@@ -48,7 +48,7 @@
         </tr>
       </table>
     </div>
-    <el-divider  class="dada-line" ></el-divider>
+    <el-divider class="dada-line" ></el-divider>
   </div>
 </template>
 <script>
