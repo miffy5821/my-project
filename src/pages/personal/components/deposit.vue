@@ -15,9 +15,9 @@
         <ul class="depositWay">
           <li class="active1"><img class="bankCard " src="/static/personal/bankCard.png"/>快捷支付</li>
           <span class="cross-line">|</span>
-          <li><img class="bankCard" src="/static/personal/bankCard.png"/>天下尊享支付</li>
+          <li><img class="bankCard" src="https://line.jzs001.cn/group1/M00/00/7A/Z_QBx18Bp_SAE4gGAAADmClhtIo177.jpg"/>天下尊享支付</li>
           <span class="cross-line">|</span>
-          <li><img class="bankCard" src="/static/personal/bankCard.png"/>支付宝支付</li>
+          <li><img class="bankCard" src="https://line.txwl-888.com/group1/M00/00/2F/ZxcuGF5Ki0aADrqAAAAJTOT7d78069.png"/>支付宝支付</li>
           <span class="cross-line">|</span>
           <li><img class="bankCard" src="/static/personal/bankCard.png"/>云闪付</li>
           <span class="cross-line">|</span>
@@ -29,13 +29,13 @@
         </ul>
       </div>
       <div class="depositWay-content">
+        <!--快捷支付-->
         <!--<div class="kj">-->
         <!--<div class="step">-->
           <!--<el-steps :active="active" finish-status="success">-->
             <!--<el-step title="输入金额"></el-step>-->
             <!--<el-step title="存款成功"></el-step>-->
           <!--</el-steps>-->
-
         <!--</div>-->
         <!--<div class="way">-->
           <!--<img class="bankCard" src="/static/personal/bankCard.png"/>-->
@@ -61,18 +61,72 @@
           <!--<p> 3.支付遇到困难？点击“<a>联系客服</a>”人员获得帮助;</p>-->
         <!--</div>-->
       <!--</div>-->
-        <div class="tx">
-          <div class="tx-top">
-            <img class="tx-img" src="https://image.beike188.com/YHHB/user_img/excellent_banner.jpg">
-            <div class="tx-way-box">
-            <div class="tx-way tx-way-active">
-             <img src="https://line.jzs001.cn/group1/M00/00/7A/Z_QBx18Bp_SAE4gGAAADmClhtIo177.jpg"> <span>VIP支付</span>
-            </div>
-            <div class="tx-way">
-              <img src="https://line.jzs001.cn/group1/M00/00/7A/Z_QBx18Bp_SAE4gGAAADmClhtIo177.jpg"> <span>数字支付</span>
-            </div>
+
+        <!--天下尊享支付-->
+        <!--<div class="tx">-->
+          <!--<div class="tx-top">-->
+            <!--<img class="tx-img" src="https://image.beike188.com/YHHB/user_img/excellent_banner.jpg">-->
+            <!--<div class="tx-way-box">-->
+            <!--<div class="tx-way tx-way-active">-->
+             <!--<img src="https://line.jzs001.cn/group1/M00/00/7A/Z_QBx18Bp_SAE4gGAAADmClhtIo177.jpg"> <span>VIP支付</span>-->
+            <!--</div>-->
+            <!--<div class="tx-way">-->
+              <!--<img src="https://line.jzs001.cn/group1/M00/00/7A/Z_QBx18Bp_SAE4gGAAADmClhtIo177.jpg"> <span>数字支付</span>-->
+            <!--</div>-->
+           <!--</div>-->
+            <!--<div class="tx-button">-->
+              <!--<button class="tx-btn11">去支付</button>-->
+            <!--</div>-->
+          <!--</div>-->
+          <!--<div class="tip">-->
+            <!--<h2>温馨提示</h2>-->
+            <!--<p>为确保您的款项及时到账，请您留意以下几点：</p>-->
+            <!--<p> 1.在输入您的存款金额时确保您提交的金额在限额范围之内；</p>-->
+            <!--<p> 2.若您支付过程中遇到问题未完成，请重新下单；</p>-->
+            <!--<p> 3.支付遇到困难？点击“<a>联系客服</a>”人员获得帮助;</p>-->
+          <!--</div>-->
+        <!--</div>-->
+
+        <!--支付宝支付-->
+        <div class="treasure">
+           <div class="treasure-ways">
+             <div class="step">
+             <el-steps :active="active" finish-status="success">
+             <el-step title="输入金额"></el-step>
+             <el-step title="存款成功"></el-step>
+             </el-steps>
+             </div>
+             <div class="zfb-way-box">
+               <div class="zfb-way zfb-way-active">
+                 <img src="https://line.txwl-888.com/group1/M00/00/2F/ZxcuGF5Ki0aADrqAAAAJTOT7d78069.png">
+                 <span>支付1</span>
+               </div>
+               <div class="zfb-way">
+                 <img src="https://line.txwl-888.com/group1/M00/00/2F/ZxcuGF5Ki0aADrqAAAAJTOT7d78069.png">
+                 <span>支付2</span>
+               </div>
+               <div class="zfb-way">
+                 <img src="https://line.txwl-888.com/group1/M00/00/2F/ZxcuGF5Ki0aADrqAAAAJTOT7d78069.png">
+                 <span>支付3</span>
+               </div>
+               <div class="zfb-way">
+                 <img src="https://line.txwl-888.com/group1/M00/00/2F/ZxcuGF5Ki0aADrqAAAAJTOT7d78069.png">
+                 <span>支付4</span>
+               </div>
+               <div class="zfb-way">
+                 <img src="https://line.txwl-888.com/group1/M00/00/2F/ZxcuGF5Ki0aADrqAAAAJTOT7d78069.png">
+                 <span>支付5</span>
+               </div>
+             </div>
            </div>
-            <button class="tx-btn">去支付</button>
+          <div class="treasure-amount">
+            <div class="amount-treasure">
+            <label>存款金额 ：</label>
+            <input type="number" class="Distribute"/>
+            <div class="ts">单笔限额100-5000(元)</div>
+            <el-button class="btn-next" @click="next">下一步</el-button>
+            </div>
+
           </div>
         </div>
       </div>
@@ -155,7 +209,6 @@
     padding: 0 30px;
     width: 200px;
     text-align: left;
-    padding-left: -30px;
     font-size: 15px;
     font-weight: 700;
     color: #666;
@@ -222,7 +275,7 @@
   }
 
   .step {
-    width: 600px;
+    width: 750px;
     height: 20px;
     margin-left: auto;
     margin-right: auto;
@@ -334,6 +387,7 @@
     margin-top: 15px;
     display: flex;
     flex-wrap: wrap;
+    border-bottom: 1px solid #eaeaea;
   }
   .tx-img{
     width: 97%;
@@ -357,7 +411,7 @@
     padding: 15px;
     line-height: 15px;
     margin-right: 30px;
-    border: 1px dashed darkgray;
+    border: 1px dashed #cacaca;
   }
 
   .tx-way img{
@@ -375,17 +429,75 @@
     border: 1px solid red;
   }
 
-  .tx-btn{
-    width: 150px;
-    height: 15px;
-    padding: 15px;
-    background: orange;
-    color: white;
+   .tx-button{
+     width: 800px;
+     height: 50px;
+     margin-right: auto;
+     margin-left: auto;
+   }
+  .tx-btn11{
+    width: 200px;
+    /* height: 10px; */
+    color: #fff;
+    background-color: #c2a77d;
     border: none;
+    padding: 10px 0;
     border-radius: 5px;
-    margin-top: 50px;
-    margin-left:auto;
+    margin-left: auto;
     margin-right: auto;
   }
+
+
+
+  .zfb-way-box{
+    width: 770px;
+    height: 50px;
+    display: flex;
+    flex-wrap: wrap;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 25px;
+  }
+
+  .zfb-way{
+    width: 100px;
+    height: 15px;
+    padding: 15px;
+    line-height: 15px;
+    margin-right: 20px;
+    border: 1px dashed #cacaca;
+  }
+
+  .zfb-way img{
+    width: 20px;
+    height: 20px;
+    margin-right: 15px;
+  }
+
+  .zfb-way span {
+    font-size: 15px;
+    color: grey;
+  }
+
+  .zfb-way-active {
+    border: 1px solid red;
+  }
+
+  .treasure-amount {
+    width: 842px;
+    min-height: 120px;
+    padding: 50px 80px;
+    background: #eee;
+    margin-top: 30px;
+    white-space: normal;
+  }
+  .amount-treasure{
+    width: 740px;
+    height: 145px;
+    text-align: left;
+    font-size: 15px;
+    position: relative;
+  }
+
 </style>
 
