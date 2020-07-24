@@ -64,12 +64,15 @@
         <div class="tx">
           <div class="tx-top">
             <img class="tx-img" src="https://image.beike188.com/YHHB/user_img/excellent_banner.jpg">
-            <div class="tx-way">
+            <div class="tx-way-box">
+            <div class="tx-way tx-way-active">
              <img src="https://line.jzs001.cn/group1/M00/00/7A/Z_QBx18Bp_SAE4gGAAADmClhtIo177.jpg"> <span>VIP支付</span>
             </div>
             <div class="tx-way">
               <img src="https://line.jzs001.cn/group1/M00/00/7A/Z_QBx18Bp_SAE4gGAAADmClhtIo177.jpg"> <span>数字支付</span>
             </div>
+           </div>
+            <button class="tx-btn">去支付</button>
           </div>
         </div>
       </div>
@@ -338,20 +341,51 @@
     margin-right: auto;
     margin-left: auto;
   }
+
+  .tx-way-box{
+    width: 500px;
+    height: 50px;
+    display: flex;
+    flex-wrap: wrap;
+    margin-left: 80px;
+    margin-top: -35px;
+  }
+
   .tx-way{
-    width: 120px;
+    width: 100px;
     height: 15px;
-    padding: 10px;
+    padding: 15px;
     line-height: 15px;
     margin-right: 30px;
+    border: 1px dashed darkgray;
   }
 
   .tx-way img{
-
+    width: 20px;
+    height: 20px;
+    margin-right: 15px;
   }
 
   .tx-way span{
+    font-size: 15px;
+    color: grey;
+  }
 
+  .tx-way-active{
+    border: 1px solid red;
+  }
+
+  .tx-btn{
+    width: 150px;
+    height: 15px;
+    padding: 15px;
+    background: orange;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    margin-top: 50px;
+    margin-left:auto;
+    margin-right: auto;
   }
 </style>
 
