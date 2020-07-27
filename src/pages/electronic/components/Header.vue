@@ -15,7 +15,9 @@
             <router-link to="/live">
             <li>真人</li>
             </router-link>
-            <li><a>电子</a></li>
+            <router-link to="/electronic">
+            <li  class="current-page">电子</li>
+            </router-link>
             <router-link to="/gaming">
             <li>电竞</li>
             </router-link>
@@ -74,7 +76,7 @@ export default {
   .nav-bar-box li{
     display: inline-block;
     width: auto;
-    height: 78px;
+    height: 30px;
     color:black;
     margin: 0 20px 0 0;
   }
@@ -122,6 +124,9 @@ export default {
     background: white;
     color:#c8a675 ;
   }
-
+  .current-page{
+    color: #c8a675;
+    border-bottom:2px solid #c8a675;
+  }
 
 </style>

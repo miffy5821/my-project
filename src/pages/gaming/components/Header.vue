@@ -15,7 +15,9 @@
         <router-link to="/live">
           <li>真人</li>
         </router-link>
-        <li><a>电子</a></li>
+        <router-link to="/electronic">
+          <li>电子</li>
+        </router-link>
         <router-link to="/gaming">
           <li class="current-page">电竞</li>
         </router-link>

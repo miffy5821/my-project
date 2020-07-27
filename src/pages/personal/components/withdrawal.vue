@@ -7,47 +7,88 @@
         笔笔入款1.5%,感谢您对我司一直以来的支持，祝您游戏愉快~</p>
     </div>
     <div class="ym">
-      <p class="ymContent">请牢记我们官方唯一的域名导航 www.888y.com</p>
-    </div>
-    <div class="switch">
-      <button class="switchButton">切换至手动转账</button>
-    </div>
-    <div class="asset">
-      <div class="assetName">我的资产</div>
-    </div>
-    <div class="asset-case">
-      <div class="asset-left">
-        <div class="tex1">0.00</div>
-        <div class="asset-btn">
-          <button class="asset-btn1">提款</button>
-          <button class="asset-btn1 btnColor">存款</button>
-        </div>
-        <div></div>
-      </div>
-      <div class="asset-right">
-        <div class="asset-">
-          <button class="asset-btn2">刷新</button>
-        </div>
-        <div class="asset-wallet">
-          <span class="wallet">中心钱包</span>
-          <span class="sum">￥0.00</span>
-          <span class="recycle">一键回收</span>
-        </div>
-        <div class="asset-wallet">
-          <span class="integral">积分总额</span>
-          <span class="total">0</span>
-        </div>
-      </div>
-    </div>
-    <div class="assetDistribute">
-      <div class="assetName">财产分布</div>
     </div>
 
+    <div class="wd">
+      <div class="wd-password">提款密码</div>
+    </div>
+    <div class="wd-case">
+      <!--步骤条-->
+      <div class="dw-step">
+        <el-steps :active="active" finish-status="success">
+          <el-step title="设定密码"></el-step>
+          <el-step title="设定成功"></el-step>
+        </el-steps>
+      </div>
+
+      <!--设置密码-->
+      <!--<div class="wd-pw">-->
+      <!--<div class="wd-item">-->
+      <!--<label>新密码:</label>-->
+      <!--<input type="text" placeholder="4位数字组合">-->
+      <!--</div>-->
+      <!--<div class="wd-item">-->
+      <!--<label>确认密码:</label>-->
+      <!--<input type="text" placeholder="请再次输入密码">-->
+      <!--</div>-->
+      <!--<el-button class="wd-btn" @click="next">下一步</el-button>-->
+    <!--</div>-->
+
+      <!--密码修改成功后的提示-->
+      <!--<div class="setWord-succeed">-->
+        <!--<p class="succeed">提款密码修改成功!</p>-->
+        <!--<p class="dw-tx">贴心提醒</p>-->
+        <!--<p class="dw-help">当您完成设定后,若有疑问,可联系<span>线上客服</span>获得帮助</p>-->
+      <!--</div>-->
+
+      <!--提款专区-->
+      <div class="withdrawal-">
+        <div class="withdrawal-area">
+          <div class="wd-way">
+            <div class="wd-way1 wd-way-current">提现到银行卡</div>
+            <div class="wd-way2">提现到支付宝</div>
+          </div>
+          <div class="addBankCard">
+            <div class="wd-add">+</div>
+            <p>添加银行卡</p>
+          </div>
+          <hr class="wd-line">
+          <div class="daMaLiang">
+            <p class="">提现金额：<span>0.00元</span></p>
+            <p>完成打码量：<span>完成打码量：0</span>/<span>要求打码量：0</span></p>
+            <div class="amount-wd">
+              <label>提款金额 ：</label>
+              <input type="number" class="wd-input" property="请输入金额"/>
+              <div class="ts">单笔提款限额（元）：100-500000</div>
+            </div>
+            <div class="amount-wd">
+              <label>提款密码 ：</label>
+              <input type="password" class="wd-input" property="请输入提款密码"/>
+              <span>忘记密码</span>
+            </div>
+            <div class="wd-button">
+              <el-button class="btn-next" @click="next">下一步</el-button>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 <script>
   export default {
-    name: 'withdrawal'
+    name: 'withdrawal',
+    data() {
+      return {
+        active: 1
+      }
+    },
+    methods: {
+      next() {
+        this.active = 2;
+      }
+    }
   }
 </script>
 <style>
@@ -99,39 +140,13 @@
     margin: 10px;
   }
 
-  .ymContent {
-    width: 978px;
-    height: 38px;
-    text-align: left;
-    line-height: 38px;
-    font-size: 36px;
-    color: red;
 
-  }
-
-  .switch {
-    width: 998px;
-    height: 35px;
-  }
-
-  .switchButton {
-    width: 160px;
-    height: 30px;
-    color: goldenrod;
-    border: 1px solid goldenrod;
-    border-radius: 5px;
-    text-align: center;
-    margin-left: 750px;
-    background: white;
-    font-size: 14px;
-  }
-
-  .asset {
+  .wd{
     width: 998px;
     height: 50px;
   }
 
-  .assetName {
+  .wd-password{
     height: 40px;
     background: linear-gradient(90deg, #f2f2f2, #fff);
     line-height: 40px;
@@ -144,142 +159,145 @@
     color: #666;
   }
 
-  .asset-case {
-    width: 998px;
-    height: 160px;
-    padding: 10px;
+  .wd-case{
+    width:100%;
+    height: 660px;
     display: flex;
     flex-wrap: wrap;
   }
-
-  .asset-left {
-    width: 400px;
-    height: 160px;
-    padding: 20px 30px;
-    border-right: 1px solid #eaeaea;
+  .dw-step {
+    width: 750px;
+    height: 20px;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 50px 80px;
+    text-align: left;
+  }
+  .wd-pw{
+    width:840px;
+    height:250px;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
   }
 
-  .tex1 {
-    width: 380px;
-    height: 80px;
-    font-size: 50px;
-    font-weight: 700;
-    padding-left: 10px;
+  .wd-item{
+    width: calc(100% - 400px);
+    height:40px ;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .wd-item label{
+    font-size: 14px;
+    color: #222222;
+    margin-right: 15px;
+    line-height: 40px;
+    width: 80px;
+    text-align: right;
+  }
+  .wd-item input{
+    width: 250px;
+    height: 25px;
+    border-radius: 3px;
+    border: 1px solid #d9d9d9;
+    color:  #d9d9d9;
+    font-size: 14px;
+    padding: 6px 11px 6px 15px;
+  }
+  .wd-btn{
+    width: 100px;
+    padding: 5px;
+    line-height: 25px;
+    color: #fff;
+    margin-top: 20px;
+    margin-left: -80px;
+    background-color: #c2a77d;
+    border-color: #c2a77d;
+  }
+  .setWord-succeed{
+    width: 500px;
+    height: 250px;
+    margin-top: 50px;
+    margin-right: auto;
+    margin-left: auto;
+  }
+
+  .succeed{
+    font-size: 20px;
+    font-weight: 800;
+    text-align: left;
+    color:#c8a675;
+    margin-top: 25px;
+    margin-bottom: 50px;
+  }
+  .dw-tx{
+    font-size: 14px;
     text-align: left;
     color: black;
+    margin-bottom: 20px;
   }
-
-  .asset-btn {
-    width: 399px;
-    height: 40px;
-    display: flex;
-    justify-content: flex-start;
-  }
-
-  .asset-btn1 {
-    width: 130px;
-    height: 40px;
-    margin: 0 10px;
-    color: #c8a675;
-    padding: 0 15px;
-    text-align: center;
-    line-height: 40px;
-    background: white;
-    font-size: 14px;
-    border: 1px solid #c8a675;
-    border-radius: 5px;
-  }
-
-  .btnColor {
-    background: #c8a675;
-    color: white;
-  }
-
-  .asset-right {
-    width: 500px;
-    height: 160px;
-  }
-
-  .asset- {
-    width: 500px;
-    height: 50px;
-    display: flex;
-    justify-content: flex-end;
-  }
-
-  .asset-btn2 {
-    width: 60px;
-    height: 35px;
-    font-size: 14px;
-    background: #c8a675;
-    border: none;
-    border-radius: 5px;
-    margin-right: 20px;
-  }
-
-  .asset-wallet {
-    width: 238px;
-    height: 50px;
-    line-height: 50px;
-    font-size: 14px;
-    display: flex;
-    margin-left: 30px;
-    justify-content: flex-start;
-
-  }
-
-  .wallet {
-    width: 56px;
-    height: 19px;
-    margin-right: 20px;
-    font-size: 14px;
-  }
-
-  .sum {
-    width: 42px;
-    font-size: 14px;
-    height: 19px;
-    margin-right: 20px;
-  }
-
-  .recycle {
-    width: 80px;
-    height: 28px;
-    line-height: 28px;
-    border: 1px solid #c8a675;
-    border-radius: 5px;
-    font-size: 13px;
-    margin-top: 10px;
+  .dw-help{
+    font-size: 16px;
+    text-align: left;
     color: #c8a675;
   }
-
-  .integral {
-    width: 56px;
-    height: 19px;
-    margin-right: 20px;
-    font-size: 14px;
+  .dw-help span{
+    color: red;
+  }
+  .withdrawal- {
+    width: 100%;
+    height: 500px;
+    background: #eee;
+  }
+  .withdrawal-area{
+    width: 800px;
+    height: 500px;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 30px 0 50px;
+  }
+  .wd-way{
+    width: 800px;
+    height: 50px;
   }
 
-  .total {
-    width: 10px;
-    height: 19px;
-    font-size: 14px;
-  }
-
-  .assetDistribute {
-    width: 998px;
-    height: 300px;
-    border: 1px dashed silver;
-    margin-top: 60px;
-    padding-top: 30px;
-  }
-
-  .Distribute {
+  .wd-way1 {
 
   }
+  .wd-way2 {
 
-  .Distribute-ctn {
+  }
+  .wd-way-current{
 
+  }
+  .addBankCard{
+    width: 180px;
+    height: 30px;
+    border: 1px solid white;
+  }
+  .wd-add{
+
+  }
+  .addBankCard p{
+
+  }
+  .wd-line{
+
+  }
+  .daMaLiang{
+    width: 800px;
+    height: 400px;
+    text-align: left;
+    /*display: flex;*/
+    /*flex-wrap: wrap;*/
+  }
+  .dw-button{
+    width: 800px;
+    height: 25px;
   }
 </style>
 

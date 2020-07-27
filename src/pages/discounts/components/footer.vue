@@ -116,7 +116,7 @@ export default {
     height: 200px;
     position: fixed;
     right: -424px;
-    top:718px;
+    top:75%;
     cursor: pointer;
     transition: all  1s ease-in-out;
     z-index: 999;
@@ -135,7 +135,7 @@ export default {
     position: fixed;
     cursor:pointer;
     left: 83%;
-    top:600px;
+    top:65%;
     z-index: 2;
   }
   .floatWindow-box{

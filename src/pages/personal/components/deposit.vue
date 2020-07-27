@@ -206,6 +206,48 @@
           <!--</div>-->
         <!--</div>-->
 
+        <!--网银-->
+        <!--<div class="treasure">-->
+          <!--<div class="treasure-ways">-->
+            <!--<div class="step">-->
+              <!--<el-steps :active="active" finish-status="success">-->
+                <!--<el-step title="输入金额"></el-step>-->
+                <!--<el-step title="存款成功"></el-step>-->
+              <!--</el-steps>-->
+            <!--</div>-->
+            <!--<div class="zfb-way-box">-->
+              <!--<div class="zfb-way zfb-way-active">-->
+                <!--<img src="https://line.txwl-888.com/group1/M00/00/2F/ZxcuGF5LTcqAWnY_AAAKw3rnSTE651.png">-->
+                <!--<span>支付1</span>-->
+              <!--</div>-->
+              <!--<div class="zfb-way">-->
+                <!--<img src="https://line.txwl-888.com/group1/M00/00/2F/ZxcuGF5LTcqAWnY_AAAKw3rnSTE651.png">-->
+                <!--<span>支付2</span>-->
+              <!--</div>-->
+            <!--</div>-->
+          <!--</div>-->
+          <!--<div class="treasure-amount">-->
+            <!--<div class="amount-treasure">-->
+              <!--<div style="display: none">-->
+                <!--<label>选择银行 ：</label>-->
+                <!--<img src="https://line.txwl-888.com/group1/M00/00/33/DsBDFV5OBPKALijyAAAJOg-rlEU387.png"/>-->
+              <!--</div>-->
+              <!--<label>存款金额 ：</label>-->
+              <!--<input type="number" class="Distribute"/>-->
+              <!--<div class="ts">单笔限额50-5000(元)</div>-->
+              <!--<el-button class="btn-next" @click="next">下一步</el-button>-->
+            <!--</div>-->
+          <!--</div>-->
+          <!--<div class="tip">-->
+            <!--<h2>温馨提示</h2>-->
+            <!--<p>为确保您的款项及时到账，请您留意以下几点：</p>-->
+            <!--<p> 1.在输入您的存款金额时确保您提交的金额在限额范围之内；</p>-->
+            <!--<p> 2.若您支付过程中遇到问题未完成，请重新下单；</p>-->
+            <!--<p> 3.支付遇到困难？点击“<a>联系客服</a>”人员获得帮助;</p>-->
+          <!--</div>-->
+        <!--</div>-->
+
+        <!--银联卡-->
         <div class="treasure">
           <div class="treasure-ways">
             <div class="step">
@@ -216,24 +258,20 @@
             </div>
             <div class="zfb-way-box">
               <div class="zfb-way zfb-way-active">
-                <img src="https://line.txwl-888.com/group1/M00/00/2F/ZxcuGF5LTcqAWnY_AAAKw3rnSTE651.png">
+                <img src="/static/personal/bankCard.png">
                 <span>支付1</span>
               </div>
               <div class="zfb-way">
-                <img src="https://line.txwl-888.com/group1/M00/00/2F/ZxcuGF5LTcqAWnY_AAAKw3rnSTE651.png">
+                <img src="/static/personal/bankCard.png">
                 <span>支付2</span>
               </div>
             </div>
           </div>
           <div class="treasure-amount">
             <div class="amount-treasure">
-              <div style="display: none">
-                <label>选择银行 ：</label>
-                <img src="https://line.txwl-888.com/group1/M00/00/33/DsBDFV5OBPKALijyAAAJOg-rlEU387.png"/>
-              </div>
               <label>存款金额 ：</label>
               <input type="number" class="Distribute"/>
-              <div class="ts">单笔限额50-5000(元)</div>
+              <div class="ts">单笔限额300-10000(元)</div>
               <el-button class="btn-next" @click="next">下一步</el-button>
             </div>
           </div>
