@@ -46,29 +46,27 @@
         <div class="withdrawal-area">
           <div class="wd-way">
             <div class="wd-way1 wd-way-current">提现到银行卡</div>
-            <div class="wd-way2">提现到支付宝</div>
+            <div class="wd-way2"> <el-button type="text" @click="open">提现到支付宝</el-button></div>
           </div>
           <div class="addBankCard">
             <div class="wd-add">+</div>
             <p>添加银行卡</p>
           </div>
-          <hr class="wd-line">
+          <el-divider class="wd-line"></el-divider>
           <div class="daMaLiang">
-            <p class="">提现金额：<span>0.00元</span></p>
-            <p>完成打码量：<span>完成打码量：0</span>/<span>要求打码量：0</span></p>
+            <p class="">提现金额：<span class="daMaLiang-span1">0.00元</span></p>
+            <p>完成打码量：<span class="daMaLiang-span2">完成打码量：0</span>/<span class="daMaLiang-span2">要求打码量：0</span></p>
             <div class="amount-wd">
               <label>提款金额 ：</label>
-              <input type="number" class="wd-input" property="请输入金额"/>
+              <input type="number" class="wd-input"  placeholder="请输入金额"/>
               <div class="ts">单笔提款限额（元）：100-500000</div>
             </div>
             <div class="amount-wd">
               <label>提款密码 ：</label>
-              <input type="password" class="wd-input" property="请输入提款密码"/>
+              <input type="password" class="wd-input"  placeholder="请输入提款密码"/>
               <span>忘记密码</span>
             </div>
-            <div class="wd-button">
-              <el-button class="btn-next" @click="next">下一步</el-button>
-            </div>
+            <el-button class="wd-btn-next" @click="next">下一步</el-button>
           </div>
 
         </div>
@@ -87,7 +85,17 @@
     methods: {
       next() {
         this.active = 2;
+      },
+
+      open() {
+        this.$alert('你还没有绑定支付宝，是否绑定支付宝？', '信息', {
+          confirmButtonText: '前往',
+          callback: action => {
+            this.$router.push({path: 'alipay'});
+          }
+        });
       }
+
     }
   }
 </script>
@@ -261,43 +269,141 @@
     padding: 30px 0 50px;
   }
   .wd-way{
-    width: 800px;
-    height: 50px;
+    width: 700px;
+    height: 35px;
+    display: flex;
+    flex-wrap: wrap;
+    margin-right: auto;
+    margin-left: auto;
+    border: 1px solid #c8a675;
+    border-radius: 5px;
   }
-
   .wd-way1 {
-
+    width: 350px;
+    height: 35px;
+    color: #c8a675;
+    text-align: center;
+    line-height: 35px;
+    font-size: 15px;
   }
   .wd-way2 {
-
+    width: 350px;
+    height: 35px;
+    color: #c8a675;
+    text-align: center;
+    line-height: 35px;
+    font-size: 15px;
   }
-  .wd-way-current{
 
+  .wd-way-current{
+    background: #c8a675;
+    color: white;
   }
   .addBankCard{
     width: 180px;
-    height: 30px;
+    height: 80px;
+    margin-top: 20px;
+    margin-left: 70px;
+    background: white;
+    color: #c8a675;
     border: 1px solid white;
   }
   .wd-add{
-
+    height: 30px;
+    width: 30px;
+    line-height: 30px;
+    font-size: 16px;
+    margin:8px auto 8px auto ;
+    border: 1px solid #c8a675;
+    border-radius: 50%;
+    color: #c8a675;
   }
   .addBankCard p{
-
+    color: #c8a675;
+    font-size: 14px;
   }
   .wd-line{
-
+    width: 690px;
+    margin-right: auto;
+    margin-left: auto;
   }
   .daMaLiang{
     width: 800px;
-    height: 400px;
+    height: 280px;
     text-align: left;
     /*display: flex;*/
     /*flex-wrap: wrap;*/
   }
-  .dw-button{
-    width: 800px;
-    height: 25px;
+  .daMaLiang p{
+    width: 500px;
+    height: 30px;
+    margin-top: 10px;
+    margin-left:80px;
+    font-size: 14px;
+    color: #222222;
+  }
+  .daMaLiang-span1{
+    width: 150px;
+    height: 30px;
+    padding-left: 20px;
+    color:#c8a675 ;
+  }
+  .daMaLiang-span2{
+    width: 150px;
+    height: 30px;
+    padding-left: 5px;
+    padding-right: 10px;
+    color:#c8a675 ;
+  }
+  .amount-wd{
+    width: 750px;
+    height: 50px;
+    margin-top: 10px;
+    margin-left: 80px;
+    display: flex;
+    flex-wrap: wrap;
+  }
+  .amount-wd label{
+    font-size: 14px;
+    color: #222222;
+    line-height: 35px;
+  }
+  .amount-wd input{
+    width: 190px;
+    height: 32px;
+    padding-left: 10px;
+    font-size: 14px;
+    border: 1px solid #eaeaea ;
+    border-radius: 5px;
+  }
+  .ts{
+    width: 280px;
+    height: 35px;
+    line-height: 35px;
+    border: 1px solid #f96;
+    border-radius: 5px;
+    margin-left: 20px;
+    padding-left: 10px;
+    font-size: 14px;
+    background: #FEF5E3;
+    color: #222222;
+  }
+  .amount-wd span{
+    font-size: 14px;
+    color: red;
+    line-height: 35px;
+    margin-left: 20px;
+  }
+  .wd-btn-next{
+    width: 140px;
+    padding: 5px;
+    line-height: 25px;
+    color: #fff;
+    position: relative;
+    left: 350px;
+    top: 10px;
+    background-color: #c2a77d;
+    border-color: #c2a77d;
   }
 </style>
 

@@ -3,7 +3,7 @@
     <div class="nav">
       <img class="nav-logo" src="../../../assets/home-img/logo.png">
       <ul class="nav-bar-box">
-        <router-link to="">
+        <router-link to="/">
           <li>首页</li>
         </router-link>
         <router-link to="/datang">

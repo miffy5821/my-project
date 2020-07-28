@@ -23,6 +23,7 @@ import agency from '@/pages/agency/agency.vue'
 import personalData from '@/pages/personal/components/personalData.vue'
 import information from '@/pages/personal/components/information.vue'
 import changePassword from '@/pages/personal/components/changePassword.vue'
+import alipay from '@/pages/personal/components/alipay.vue'
 
 Vue.use(Router)
 
@@ -118,6 +119,10 @@ export default new Router({
         path: 'changePassword',
         name: 'changePassword',
         component: changePassword
+      }, {
+        path: 'alipay',
+        name: 'alipay',
+        component: alipay
       },]
   },{
     path: '/agency',

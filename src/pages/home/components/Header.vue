@@ -3,8 +3,8 @@
     <div class="nav">
         <img class="nav-logo" src="../../../assets/home-img/logo.png">
           <ul class="nav-bar-box">
-            <router-link to="/home">
-            <li>首页</li>
+            <router-link to="/">
+            <li  class="current-page">首页</li>
             </router-link>
             <router-link to="/datang">
             <li>大唐棋牌</li>
@@ -92,6 +92,11 @@ export default {
     height: 78px;
     color:black;
     margin: 0 20px 0 0;
+  }
+  .current-page{
+    color: #c8a675;
+    height: 30px;
+    border-bottom:2px solid #c8a675;
   }
   .navLogin{
     width: 148px;
