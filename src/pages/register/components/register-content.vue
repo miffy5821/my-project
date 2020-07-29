@@ -111,23 +111,28 @@
             </div>
             <div class="btn" @click="quickRegister()">立即注册</div>
           </el-form>
-          <div class="register-sjzc" v-show="show === 2">
-            <div class="register-item">
-              <div class="icon-box">
-                <img src="/static/home/zhuce_yonghu.png" />
-              </div>
-              <div class="divInput">
-                <input type="text" placeholder="非必填" />
-              </div>
-              <p class="item"></p>
-            </div>
+          <!--<div class="register-sjzc" v-show="show === 2">-->
+            <el-form
+              :model="phoneRegisteredCheck"
+              :rules="phoneRegisteredRules"
+              ref="phoneRegisteredCheck"
+              class="register-sjzc"
+              v-show="show === 2"
+            >
             <div class="register-item">
               <div class="icon-box">
                 <img src="/static/home/zhuce_phone.png" />
               </div>
               <div class="register-phone">
                 <span class="phone-input">+86 中国</span>
-                <input class="phone" type="number" placeholder="请输入正确的手机号码" />
+                <el-form-item prop="phoneNumber">
+                  <el-input
+                    class="phone"
+                    type="number"
+                    v-model=" phoneRegisteredCheck.phoneNumber"
+                    placeholder="请输入正确的手机号码"
+                  ></el-input>
+                </el-form-item>
               </div>
               <p class="item"></p>
             </div>
@@ -135,8 +140,10 @@
               <div class="icon-box">
                 <img src="/static/home/zhuce_yaoqin.png" class="icon" />
               </div>
-              <div class="verification">
-                <input type="text" placeholder="请输入验证码" />
+              <div class="ks-verification">
+                <el-form-item prop="verifyCode">
+                  <el-input type="text" v-model="phoneRegisteredCheck.verifyCode" placeholder="请输入验证码"></el-input>
+                </el-form-item>
               </div>
               <img src class="verification-code" />
               <p class="item"></p>
@@ -146,7 +153,20 @@
                 <img src="/static/home/zhuce_weixin.png" />
               </div>
               <div class="divInput">
-                <input type="text" placeholder="请输入微信号或者QQ号" />
+                <el-form-item prop="wecaht">
+                  <el-input type="text" v-model="phoneRegisteredCheck.wecaht" placeholder="请输入微信号或者QQ号"></el-input>
+                </el-form-item>
+              </div>
+              <p class="item"></p>
+            </div>
+            <div class="register-item">
+              <div class="icon-box">
+                <img src="/static/home/zhuce_yonghu.png" />
+              </div>
+              <div class="divInput">
+                <el-form-item prop="refrerrCode">
+                  <el-input v-model="phoneRegisteredCheck.refrerrCode" type="text" placeholder="非必填"></el-input>
+                </el-form-item>
               </div>
               <p class="item"></p>
             </div>
@@ -155,7 +175,8 @@
               <span class="text">我已经届满合法博彩年龄,且同意各项 开户条约。</span>
             </div>
             <div class="btn">立即注册</div>
-          </div>
+            </el-form>
+          <!--</div>-->
         </div>
       </div>
     </div>
@@ -177,27 +198,50 @@
         },
         quickRules: {
           refrerrCode: [
-            { required: true, message: "请输入邀请码", trigger: "blur" }
+            { required: true, message: "请输入邀请码",pattern:/^[a-zA-Z][a-zA-Z0-9_-]{5,16}$/, trigger: "blur" }
           ],
           username: [
-            { required: true, message: "请输入活动名称", trigger: "blur" }
+            { required: true, message: "请输入用户名",pattern:/^[a-zA-Z0-9_-]{4,16}$/, trigger: "blur" }
           ],
-          password: [{ required: true, message: "请选择日期", trigger: "blur" }],
+          password: [{ required: true, message: "请输入密码",pattern:/^[a-zA-Z][a-zA-Z0-9_-]{6,15}$/, trigger: "blur" }],
           phoneNumber: [
-            { required: true, message: "请选择时间", trigger: "blur" }
+            { required: true, message: "请输入手机号码", pattern: /^1[34578]\d{11}$/,trigger: "blur" }
           ],
           verifyCode: [
-            { required: true, message: "请选择时间", trigger: "blur" }
+            { required: true, message: "验证码不能为空", pattern:/^[a-zA-Z][a-zA-Z0-9_-]{4,6}$/,trigger: "blur" }
           ],
           wecaht: [
-            { required: true, message: "请输入微信或者qq号码", trigger: "blur" }
+            { required: true, message: "请输入微信或者qq号码",pattern:/^[a-zA-Z][a-zA-Z0-9_-]{5,15}$/, trigger: "blur" }
           ]
+        },
+        phoneRegisteredCheck:{
+          phoneNumber: "",
+          verifyCode: "",
+          wecaht: "",
+          refrerrCode: ""
+        },
+        phoneRegisteredRules: {
+          phoneNumber: [
+            { required: true, message: "请输入手机号码", pattern: /^1[34578]\d{11}$/,trigger: "blur" }
+          ],
+          verifyCode: [
+            { required: true, message: "验证码不能为空", pattern:/^[a-zA-Z][a-zA-Z0-9_-]{4,6}$/, trigger: "blur" }
+          ],
+          wecaht: [
+            { required: true, message: "请输入微信或者qq号码", pattern:/^[a-zA-Z][a-zA-Z0-9_-]{5,15}$/, trigger: "blur" }
+          ],
+          refrerrCode: [
+            { required: true, message: "请输入邀请码",pattern:/^[a-zA-Z][a-zA-Z0-9_-]{5,16}$/, trigger: "blur" }
+          ],
         }
       };
     },
     methods: {
       quickRegister() {
         console.log("quickCheck", this.quickCheck);
+      },
+      phoneRegister() {
+        console.log(" phoneRegisteredCheck", this. phoneRegisteredCheck);
       }
     }
   };
@@ -334,11 +378,26 @@
     border: 1px solid #c2c2c2;
     padding: 11px 17px 11px 15px;
   }
+ .ks-verification {
+       width: 230px;
+       height: 42px;
+       display: flex;
+      justify-content: space-between;
+
+       }
+  .ks-verification input {
+      width: 190px;
+      height: 16px;
+      line-height: 16px;
+      font-size: 16px;
+      padding: 11px 0 11px 15px;
+     }
   .phone {
-    width: 254px;
-    height: 16px;
+    width: 245px;
+    height: 15px;
     line-height: 16px;
     font-size: 16px;
+    padding: 11px 0 11px 15px;
     margin-right: 0;
     /* padding: 11px 0 11px 17px; */
   }
