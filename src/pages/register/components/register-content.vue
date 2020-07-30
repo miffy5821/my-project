@@ -106,8 +106,14 @@
               <p class="item"></p>
             </div>
             <div class="register-details">
-              <input class="radio" type="radio" />
+              <el-form-item>
+                <el-checkbox-group v-model="quickCheck.radioBox">
+                  <!--<input class="radio"  type="checkbox"  />-->
+                  <el-checkbox name="type"></el-checkbox>
+                </el-checkbox-group>
+              </el-form-item>
               <span class="text">我已经届满合法博彩年龄,且同意各项 开户条约。</span>
+              <p class="item"></p>
             </div>
             <div class="btn" @click="quickRegister()">立即注册</div>
           </el-form>
@@ -171,10 +177,12 @@
               <p class="item"></p>
             </div>
             <div class="register-details">
-              <input class="radio" type="radio" />
+              <input class="radio" type="checkbox" />
               <span class="text">我已经届满合法博彩年龄,且同意各项 开户条约。</span>
+              <p class="item"></p>
             </div>
             <div class="btn">立即注册</div>
+
             </el-form>
           <!--</div>-->
         </div>
@@ -194,7 +202,8 @@
           password: "",
           phoneNumber: "",
           verifyCode: "",
-          wecaht: ""
+          wecaht: "",
+          radioBox:[]
         },
         quickRules: {
           refrerrCode: [
@@ -212,13 +221,15 @@
           ],
           wecaht: [
             { required: true, message: "请输入微信或者qq号码",pattern:/^[a-zA-Z][a-zA-Z0-9_-]{5,15}$/, trigger: "blur" }
-          ]
+          ],
+          radioBox:[{ type: 'array', required: true, message: '请阅读并勾选开户协议', trigger: 'change' }]
         },
         phoneRegisteredCheck:{
           phoneNumber: "",
           verifyCode: "",
           wecaht: "",
-          refrerrCode: ""
+          refrerrCode: "",
+          radioBox: ""
         },
         phoneRegisteredRules: {
           phoneNumber: [
@@ -233,7 +244,8 @@
           refrerrCode: [
             { required: true, message: "请输入邀请码",pattern:/^[a-zA-Z][a-zA-Z0-9_-]{5,16}$/, trigger: "blur" }
           ],
-        }
+          radioBox:[{required: true, message: "请阅读并勾选开户协议", trigger: "blur"}
+          ]}
       };
     },
     methods: {
@@ -355,27 +367,24 @@
     padding: 11px 0 11px 15px;
   }
   .verification-code {
-    width: 155px;
-    height: 40px;
+    width: 160px;
+    height: 38px;
     margin-right: 0;
-    /* margin-left: 285px; */
-    /* margin-top: -45px; */
     border: 1px solid black;
   }
   .register-phone {
     width: 397px;
     height: 42px;
-    /* margin: -43px 0 0 44px; */
     display: flex;
-    /* flex-wrap: wrap; */
-    justify-content: space-between;
+    flex-wrap: wrap;
   }
   .phone-input {
-    width: 70px;
+    width: 85px;
     height: 18px;
     line-height: 18px;
     font-size: 16px;
-    border: 1px solid #c2c2c2;
+    border: 1px solid #DCDFE6;
+    border-radius: 4px;
     padding: 11px 17px 11px 15px;
   }
  .ks-verification {
@@ -397,9 +406,8 @@
     height: 15px;
     line-height: 16px;
     font-size: 16px;
-    padding: 11px 0 11px 15px;
+    padding: 0 0 11px 13px;
     margin-right: 0;
-    /* padding: 11px 0 11px 17px; */
   }
 
   .active {
@@ -423,8 +431,8 @@
   .register-details {
     width: 450px;
     height: 15px;
-    padding: 0 15px;
-    margin-left: -90px;
+    display: flex;
+    flex-wrap: wrap;
   }
   .radio {
     width: 15px;
@@ -434,6 +442,7 @@
     width: auto;
     height: 15px;
     font-size: 13px;
+    margin-left: 8px;
     line-height: 15px;
   }
   .btn {
