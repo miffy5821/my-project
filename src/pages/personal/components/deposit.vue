@@ -654,7 +654,7 @@
     position: relative;
     line-height: 145px;
     margin: auto auto;
-    margin-top: 50px;
+
   }
 
 </style>
