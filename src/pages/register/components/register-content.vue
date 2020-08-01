@@ -104,27 +104,26 @@
                   <el-input type="text" v-model="quickCheck.wecaht" placeholder="请输入微信号或者QQ号"></el-input>
                 </el-form-item>
               </div>
-              <p class="item"></p>
             </div>
             <div class="register-item">
               <el-form-item prop="protocol">
                 <el-checkbox-group v-model="quickCheck.protocol">
-                  <!--<input class="radio"  type="checkbox"  />-->
                   <el-checkbox name="type" label="我已经届满合法博彩年龄,且同意各项 开户条约。"></el-checkbox>
                 </el-checkbox-group>
-                <!--<div class="text">我已经届满合法博彩年龄,且同意各项 开户条约。</div>-->
               </el-form-item>
-
-              <p class="item"></p>
             </div>
             <div class="btn" @click="quickRegister('quickCheck')">立即注册</div>
           </el-form>
 
 
-          <!--<div class="register-sjzc" v-show="show === 2">-->
+
+
+          <!--&lt;!&ndash;<div class="register-sjzc" >-->
+         <!---->
           <el-form
             :model="phoneRegisteredCheck"
             :rules="phoneRegisteredRules"
+            status-icon
             ref="phoneRegisteredCheck"
             class="register-sjzc"
             v-show="show === 2"
@@ -144,19 +143,22 @@
                   ></el-input>
                 </el-form-item>
               </div>
-              <p class="item"></p>
             </div>
+
             <div class="register-item">
               <div class="icon-box">
                 <img src="/static/home/zhuce_yaoqin.png" class="icon"/>
               </div>
               <div class="ks-verification">
                 <el-form-item prop="verifyCode">
-                  <el-input type="text" v-model="phoneRegisteredCheck.verifyCode" placeholder="请输入四位数的验证码"></el-input>
+                  <el-input
+                    type="text"
+                    v-model="phoneRegisteredCheck.verifyCode"
+                    placeholder="请输入四位数的验证码"
+                  ></el-input>
                 </el-form-item>
               </div>
               <img src class="verification-code"/>
-              <p class="item"></p>
             </div>
             <div class="register-item">
               <div class="icon-box">
@@ -167,7 +169,6 @@
                   <el-input type="text" v-model="phoneRegisteredCheck.wecaht" placeholder="请输入微信号或者QQ号"></el-input>
                 </el-form-item>
               </div>
-              <p class="item"></p>
             </div>
             <div class="register-item">
               <div class="icon-box">
@@ -178,16 +179,19 @@
                   <el-input v-model="phoneRegisteredCheck.refrerrCode" type="text" placeholder="请输入推荐码(选填)"></el-input>
                 </el-form-item>
               </div>
-              <p class="item"></p>
             </div>
-            <div class="register-details">
-              <input class="radio" type="checkbox"/>
-              <span class="text">我已经届满合法博彩年龄,且同意各项 开户条约。</span>
-              <p class="item"></p>
+
+            <div class="register-item">
+              <el-form-item prop="protocol">
+                <el-checkbox-group v-model="quickCheck.protocol">
+                  <el-checkbox name="type" label="我已经届满合法博彩年龄,且同意各项 开户条约。"></el-checkbox>
+                </el-checkbox-group>
+              </el-form-item>
             </div>
-            <el-form-item>
-              <el-button class="btn" type="primary" @click=" phoneRegister('ruleForm')">立即注册</el-button>
-            </el-form-item>
+            <div class="btn" @click=" phoneRegister('phoneRegisteredCheck')">立即注册</div>
+            <!--<el-form-item>-->
+              <!--<el-button class="btn" type="primary" @click=" phoneRegister('ruleForm')">立即注册</el-button>-->
+            <!--</el-form-item>-->
           </el-form>
           <!--</div>-->
         </div>
@@ -212,11 +216,17 @@
         },
         quickRules: {
           refrerrCode: [
-            {required: false, message: '请输入正确的推荐码', trigger: 'blur'}
-            // {message: '请输入正确的推荐码', pattern: /^(?![0-9]+$)(?![a-zA-Z]+$)[0-9A-Za-z]$/, trigger: 'blur'},
+            {required: false,
+              message: '请输入正确的推荐码',
+              trigger: 'blur'}
+            // {message: '请输入正确的推荐码',
+            // pattern: /^(?![0-9]+$)(?![a-zA-Z]+$)[0-9A-Za-z]$/,
+            // trigger: 'blur'},
           ],
           username: [
-            {required: true, message: '请输入用户名', trigger: 'blur'},
+            {required: true,
+              message: '请输入用户名',
+              trigger: 'blur'},
             {
               pattern: /^((?![0-9]+$)(?![a-zA-Z]+$)[0-9A-Za-z]{6,11}|1[3456789]\d{9})$/,
               message: '对不起,用户名由6-11数字和字母组合\n',
@@ -234,8 +244,12 @@
               trigger: 'blur'
             }],
           phoneNumber: [
-            {required: true, message: '手机号码不能为空', trigger: 'blur'},
-            {pattern: /^1[2-9][0-9]{9}$/, message: '请输入正确的手机号码', trigger: 'blur'}
+            {required: true,
+              message: '手机号码不能为空',
+              trigger: 'blur'},
+            {pattern: /^1[2-9][0-9]{9}$/,
+              message: '请输入正确的手机号码',
+              trigger: 'blur'}
           ],
           // verifyCode: [
           //   {required: true, message: '请输入验证码', trigger: 'blur'},
@@ -252,7 +266,10 @@
               trigger: 'blur'
             }
           ],
-          protocol: [{type: 'array', required: true, message: '请阅读并勾选开户协议', trigger: 'change'}]
+          protocol: [{type: 'array',
+            required: true,
+            message: '请阅读并勾选开户协议',
+            trigger: 'change'}]
         },
 
         phoneRegisteredCheck: {
@@ -260,29 +277,46 @@
           verifyCode: '',
           wecaht: '',
           refrerrCode: '',
-          radioBox: []
+          protocol: []
         },
         phoneRegisteredRules: {
           phoneNumber: [
-            {required: true, message: '手机号码不能为空', trigger: 'blur'},
-            {pattern: /^1[2-9][0-9]{9}$/, message: '请输入正确的手机号码', trigger: 'blur'}
+            {required: true,
+              message: '手机号码不能为空',
+              trigger: 'blur'},
+            {pattern: /^1[2-9][0-9]{9}$/,
+              message: '请输入正确的手机号码',
+              trigger: 'blur'}
           ],
           verifyCode: [
-            {required: true, message: '请输入正确的验证码', pattern: /^[0-9]{4}$/, trigger: 'blur'}
-          ],
+            {required: true, message: '请输入验证码', trigger: 'blur'},
+            {message: '请输入4位数字验证码', pattern: /^[0-9]{4}$/, trigger: 'blur'}],
           wecaht: [
             {
               required: true,
-              message: '请输入正确的微信或者qq号码',
-              pattern: /^[a-zA-Z][-_a-zA-Z0-9]{5,19}$/ || /^[0-9]{4,15}$/,
+              message: '请输入微信号',
+              trigger: 'blur'
+            },
+            {
+              message: '请输入正确的微信号',
+              pattern: /^[a-zA-Z][-_a-zA-Z0-9]{5,19}$/,
               trigger: 'blur'
             }
           ],
           refrerrCode: [
-            {required: false, message: '请输入邀请码', pattern: /^[a-zA-Z][a-zA-Z0-9_-]{5,16}$/, trigger: 'blur'}
+            {required: false,
+              message: '请输入正确的推荐码',
+              trigger: 'blur'}
+            // {message: '请输入正确的推荐码',
+            // pattern: /^(?![0-9]+$)(?![a-zA-Z]+$)[0-9A-Za-z]$/,
+            // trigger: 'blur'},
           ],
-          radioBox: [{required: true, type: 'array', message: '请阅读并勾选开户协议', trigger: 'change'}
-          ]
+          protocol: [{
+            type: 'array',
+            required: true,
+            message: '请阅读并勾选开户协议',
+            trigger: 'change'
+          }]
         }
       };
     },
