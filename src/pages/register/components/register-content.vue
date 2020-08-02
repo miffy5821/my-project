@@ -29,7 +29,6 @@
                 </el-form-item>
               </div>
             </div>
-            <!-- // <p class="item">{{message}}</p> -->
 
             <div class="register-item">
               <div class="icon-box">
@@ -44,7 +43,6 @@
                   ></el-input>
                 </el-form-item>
               </div>
-              <p class="item"></p>
             </div>
 
             <div class="register-item">
@@ -62,7 +60,6 @@
                   ></el-input>
                 </el-form-item>
               </div>
-              <!--<p class="item"></p>-->
             </div>
 
             <div class="register-item">
@@ -105,6 +102,7 @@
                 </el-form-item>
               </div>
             </div>
+
             <div class="register-item">
               <el-form-item prop="protocol">
                 <el-checkbox-group v-model="quickCheck.protocol">
@@ -118,8 +116,8 @@
 
 
 
-          <!--&lt;!&ndash;<div class="register-sjzc" >-->
-         <!---->
+
+
           <el-form
             :model="phoneRegisteredCheck"
             :rules="phoneRegisteredRules"
@@ -160,6 +158,7 @@
               </div>
               <img src class="verification-code"/>
             </div>
+
             <div class="register-item">
               <div class="icon-box">
                 <img src="/static/home/zhuce_weixin.png"/>
@@ -170,6 +169,7 @@
                 </el-form-item>
               </div>
             </div>
+
             <div class="register-item">
               <div class="icon-box">
                 <img src="/static/home/zhuce_yonghu.png"/>
@@ -189,11 +189,7 @@
               </el-form-item>
             </div>
             <div class="btn" @click=" phoneRegister('phoneRegisteredCheck')">立即注册</div>
-            <!--<el-form-item>-->
-              <!--<el-button class="btn" type="primary" @click=" phoneRegister('ruleForm')">立即注册</el-button>-->
-            <!--</el-form-item>-->
           </el-form>
-          <!--</div>-->
         </div>
       </div>
     </div>
