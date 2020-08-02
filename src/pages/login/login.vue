@@ -26,7 +26,7 @@
         <button class="login-btn" type="submit">立即登录</button>
         <div class="login-reminder">
           <p>如您没有账户 <span>点击注册>></span></p>
-          <p class="text-left">忘记密码</p>
+          <p class="text-left"  @click="$emit('onLogin')">忘记密码</p>
         </div>
         </div>
         <div class="login-advisory">

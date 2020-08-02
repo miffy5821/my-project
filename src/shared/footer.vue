@@ -1,7 +1,7 @@
 <template>
   <div class="bottom">
     <div class="bottom-content">
-      <img class="bottom-logo" src="../../../assets/home-img/logo_button.png" alt="">
+      <img class="bottom-logo" src="../assets/home-img/logo_button.png" alt="">
       <div class="aboutMe">
         <span>用户协议 | </span>
         <span>关于我们 |</span>
@@ -14,7 +14,7 @@
         <div class="bottom-sm">Copyright © 2017 澳门银河Galaxy Macau All Rights Reserved</div>
       </div>
       <div class="bottom-right">
-        <img class="button-img" src="../../../assets/home-img/button-right.png">
+        <img class="button-img" src="../assets/home-img/button-right.png">
         <p class="bottom-p">友情提示：博彩有风险，量力乐其中</p>
       </div>
     </div>
@@ -69,7 +69,7 @@ export default {
     height: 144px;
     margin-top: 90px;
     background-color:#1c171d;
-    background-image: url("../../../assets/home-img/bottom-bg.png");
+    background-image: url("../assets/home-img/bottom-bg.png");
   }
   .bottom-content{
     width: 1200px;

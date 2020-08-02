@@ -77,10 +77,6 @@ export default new Router({
     name: 'register',
     component: register
   }, {
-    path: '/login',
-    name: 'login',
-    component: login
-  }, {
     path: '/personal',
     name: 'personal',
     component: personal,

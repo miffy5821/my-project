@@ -530,6 +530,7 @@
     font-size: 16px;
     padding: 20px 27px 13px 27px;
     color: #222222;
+    cursor: pointer;
   }
 
   .register-details {
