@@ -12,9 +12,9 @@
 </template>
 
 <script>
-  import HomeHeader from './components/Header'
+  import HomeHeader from '../../shared/Header'
   import  personalContent from './components/personal-content'
-  import homeFooter from './components/footer'
+  import homeFooter from '../../shared/footer'
 
   export default {
     components: {

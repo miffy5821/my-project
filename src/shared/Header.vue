@@ -108,14 +108,13 @@
   .nav-bar-box li {
     display: inline-block;
     width: auto;
-    height: 78px;
+    height: 35px;
     color: black;
     margin: 0 20px 0 0;
   }
 
   .current-page {
     color: #c8a675;
-    height: 30px;
     border-bottom: 2px solid #c8a675;
   }
 

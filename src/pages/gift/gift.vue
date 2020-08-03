@@ -7,9 +7,9 @@
   </div>
 </template>
 <script>
-  import HomeHeader from './components/Header'
+  import HomeHeader from '../../shared/Header'
   import giftContent from "./components/gift-content";
-  import giftFooter from './components/footer'
+  import giftFooter from '../../shared/footer'
 
 
 

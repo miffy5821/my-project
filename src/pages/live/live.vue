@@ -7,9 +7,9 @@
 </template>
 
 <script>
-  import HomeHeader from './components/Header'
+  import HomeHeader from '../../shared/Header'
   import liveContent from "./components/live-content";
-  import homeFooter from './components/footer'
+  import homeFooter from '../../shared/footer'
 
   export default {
     components: {

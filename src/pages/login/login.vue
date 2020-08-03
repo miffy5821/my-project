@@ -3,6 +3,7 @@
     <div class="shadow">
       <div class="loginContent">
         <div class="login-interface">
+          <img class="dele-icon" @click="$emit('onLogin')" src="/static/home/dele.png">
           <img src="/static/home/logo.png"/>
         <el-divider>账号登录密码</el-divider>
         <div class="login-area">
@@ -26,7 +27,7 @@
         <button class="login-btn" type="submit">立即登录</button>
         <div class="login-reminder">
           <p>如您没有账户 <span>点击注册>></span></p>
-          <p class="text-left"  @click="$emit('onLogin')">忘记密码</p>
+          <p class="text-left"  >忘记密码</p>
         </div>
         </div>
         <div class="login-advisory">
@@ -60,7 +61,7 @@
   .shadow {
     width: 100%;
     height: 100%;
-    background: rgba(0,0,0, 0.1);
+    background: rgba(0,0,0, 0.6);
     position: fixed;
     z-index: 200;
     top: 0;
@@ -83,7 +84,14 @@
     padding: 20px 50px 0 50px;
     background:white;
   }
+  .dele-icon{
+    width: 20px;
+    height: 20px;
+    position: relative;
+    top:-25px;
+    left: 290px;
 
+  }
   .login-area{
     width: 300px;
     height:120px;
