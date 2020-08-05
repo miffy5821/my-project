@@ -109,6 +109,7 @@ export default {
     this.axios
       .get("https://version.feivor.com/txh_game_img.json")
       .then(resp => {
+        console.log(resp);
         this.gameList = resp.data.electronic; // 储存所有电子游戏数据
         const games = Object.keys(resp.data.electronic); // 获取一级目录游戏
         const data = games.map(item => {

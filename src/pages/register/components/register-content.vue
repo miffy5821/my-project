@@ -25,7 +25,7 @@
               </div>
               <div class="divInput">
                 <el-form-item prop="refrerrCode">
-                  <el-input v-model="quickCheck.refrerrCode" type="text" placeholder="请输入推荐码(选填)"></el-input>
+                  <el-input v-model="quickCheck.recommendCode" type="text" placeholder="请输入推荐码(选填)"></el-input>
                 </el-form-item>
               </div>
             </div>
@@ -55,7 +55,7 @@
                   <el-input
                     class="phone"
                     type="number"
-                    v-model="quickCheck.phoneNumber"
+                    v-model="quickCheck.mobileNo"
                     placeholder="请输入正确的手机号码"
                   ></el-input>
                 </el-form-item>
@@ -78,27 +78,13 @@
               <p class="item"></p>
             </div>
 
-            <!--<div class="register-item">-->
-              <!--<div class="icon-box">-->
-                <!--<img src="/static/home/zhuce_yaoqin.png" class="icon"/>-->
-              <!--</div>-->
-              <!--<div class="verification">-->
-                <!--<el-form-item prop="verifyCode">-->
-                  <!--<el-input type="text" v-model="quickCheck.verifyCode" placeholder="请输入四位数的验证码"></el-input>-->
-                <!--</el-form-item>-->
-
-                <!--<img src class="verification-code"/>-->
-              <!--</div>-->
-              <!--<p class="item"></p>-->
-            <!--</div>-->
-
             <div class="register-item">
               <div class="icon-box">
                 <img src="/static/home/zhuce_weixin.png"/>
               </div>
               <div class="divInput">
-                <el-form-item prop="wecaht">
-                  <el-input type="text" v-model="quickCheck.wecaht" placeholder="请输入微信号或者QQ号"></el-input>
+                <el-form-item prop="weixin">
+                  <el-input type="text" v-model="quickCheck.weixin" placeholder="请输入微信号"></el-input>
                 </el-form-item>
               </div>
             </div>
@@ -148,10 +134,10 @@
                 <img src="/static/home/zhuce_yaoqin.png" class="icon"/>
               </div>
               <div class="ks-verification">
-                <el-form-item prop="verifyCode">
+                <el-form-item prop="msgCode">
                   <el-input
                     type="text"
-                    v-model="phoneRegisteredCheck.verifyCode"
+                    v-model="phoneRegisteredCheck.msgCode"
                     placeholder="请输入四位数的验证码"
                   ></el-input>
                 </el-form-item>
@@ -164,8 +150,8 @@
                 <img src="/static/home/zhuce_weixin.png"/>
               </div>
               <div class="divInput">
-                <el-form-item prop="wecaht">
-                  <el-input type="text" v-model="phoneRegisteredCheck.wecaht" placeholder="请输入微信号或者QQ号"></el-input>
+                <el-form-item prop="weixin">
+                  <el-input type="text" v-model="phoneRegisteredCheck.weixin" placeholder="请输入微信号或者QQ号"></el-input>
                 </el-form-item>
               </div>
             </div>
@@ -175,8 +161,8 @@
                 <img src="/static/home/zhuce_yonghu.png"/>
               </div>
               <div class="divInput">
-                <el-form-item prop="refrerrCode">
-                  <el-input v-model="phoneRegisteredCheck.refrerrCode" type="text" placeholder="请输入推荐码(选填)"></el-input>
+                <el-form-item prop="recommendCode">
+                  <el-input v-model="phoneRegisteredCheck.recommendCode" type="text" placeholder="请输入推荐码(选填)"></el-input>
                 </el-form-item>
               </div>
             </div>
@@ -196,22 +182,25 @@
   </div>
 </template>
 <script>
+  const qs = require('qs');
   export default {
     name: 'RegisterContent',
     data () {
       return {
         show: 1,
+        data: '',
         quickCheck: {
-          refrerrCode: '',
+          recommendCode: '',
           username: '',
           password: '',
-          phoneNumber: '',
-          // verifyCode: '',
-          wecaht: '',
-          protocol: []
+          mobileNo: '',
+          weixin: '',
+          protocol: [],
+          terminal:0,
+          repassword:'000000'
         },
         quickRules: {
-          refrerrCode: [
+          recommendCode: [
             {required: false,
               message: '请输入正确的推荐码',
               trigger: 'blur'}
@@ -239,7 +228,7 @@
               pattern: /^(?![0-9]+$)(?![a-zA-Z]+$)[0-9A-Za-z]{6,12}$/,
               trigger: 'blur'
             }],
-          phoneNumber: [
+          mobileNo: [
             {required: true,
               message: '手机号码不能为空',
               trigger: 'blur'},
@@ -247,10 +236,7 @@
               message: '请输入正确的手机号码',
               trigger: 'blur'}
           ],
-          // verifyCode: [
-          //   {required: true, message: '请输入验证码', trigger: 'blur'},
-          //   {message: '请输入4位数字验证码', pattern: /^[0-9]{4}$/, trigger: 'blur'}],
-          wecaht: [
+          weixin: [
             {
               required: true,
               message: '请输入微信号',
@@ -258,7 +244,7 @@
             },
             {
               message: '请输入正确的微信号',
-              pattern: /^[a-zA-Z][-_a-zA-Z0-9]{5,19}$/,
+              pattern:/^(?![0-9]+$)(?![a-zA-Z]+$)[0-9A-Za-z]{6,12}$/,
               trigger: 'blur'
             }
           ],
@@ -270,24 +256,34 @@
 
         phoneRegisteredCheck: {
           phoneNumber: '',
-          verifyCode: '',
+          msgCode: '',
           wecaht: '',
-          refrerrCode: '',
-          protocol: []
+          recommendCode: '',
+          protocol: [],
+          terminal:'',
+          repassword:''
         },
         phoneRegisteredRules: {
           phoneNumber: [
-            {required: true,
+            {
+              required: true,
               message: '手机号码不能为空',
               trigger: 'blur'},
-            {pattern: /^1[2-9][0-9]{9}$/,
+            {
+              pattern: /^1[2-9][0-9]{9}$/,
               message: '请输入正确的手机号码',
               trigger: 'blur'}
           ],
-          verifyCode: [
-            {required: true, message: '请输入验证码', trigger: 'blur'},
-            {message: '请输入4位数字验证码', pattern: /^[0-9]{4}$/, trigger: 'blur'}],
-          wecaht: [
+          msgCode: [
+            {
+              required: true,
+              message: '请输入验证码',
+              trigger: 'blur'},
+            {
+              message: '请输入4位数字验证码',
+              pattern: /^[0-9]{4}$/,
+              trigger: 'blur'}],
+          weixin: [
             {
               required: true,
               message: '请输入微信号',
@@ -295,11 +291,11 @@
             },
             {
               message: '请输入正确的微信号',
-              pattern: /^[a-zA-Z][-_a-zA-Z0-9]{5,19}$/,
+              pattern: /^(?![0-9]+$)(?![a-zA-Z]+$)[0-9A-Za-z]{6,12}$/,
               trigger: 'blur'
             }
           ],
-          refrerrCode: [
+          recommendCode: [
             {required: false,
               message: '请输入正确的推荐码',
               trigger: 'blur'}
@@ -317,10 +313,17 @@
       };
     },
     methods: {
-      quickRegister (formName) {
+      quickRegister(formName) {
         this.$refs[formName].validate((valid) => {
           if (valid) {
             alert('submit!');
+            this.quickCheck.repassword = this.quickCheck.password;
+            this.axios.post('api/unauthor/gateway/account/register',qs.stringify(this.quickCheck))
+              .then((response) => {
+                this.data=response.data
+                console.log(this.data)
+              })
+
           } else {
             console.log(this.quickCheck);
             console.log('error submit!!');
@@ -328,7 +331,7 @@
           }
         });
       },
-      phoneRegister (formName) {
+      phoneRegister(formName) {
         this.$refs[formName].validate((valid) => {
           if (valid) {
             alert('submit!');
@@ -338,8 +341,16 @@
           }
         });
       },
+    },
+    mounted() {
+      this.axios.post('api/unauthor/gateway/account/register',qs.stringify(this.quickCheck))
+        .then((response) => {
+          this.data=response.data
+          console.log(this.data)
+      })
+
     }
-  };
+  }
 </script>
 <style scoped>
   .content {
