@@ -346,8 +346,48 @@
       this.axios.post('api/unauthor/gateway/account/register',qs.stringify(this.quickCheck))
         .then((response) => {
           this.data=response.data
-          console.log(this.data)
-      })
+          console.log(this.data);
+
+          // Add a request interceptor
+          axios.interceptors.request.use(function (config) {
+            // Do something before request is sent
+            return config;
+          }, function (error) {
+            // Do something with request error
+            return Promise.reject(error);
+          });
+
+      // Add a response interceptor
+          axios.interceptors.response.use(function (response) {
+            // Do something with response data
+            return response;
+          }, function (error) {
+            // Do something with response error
+            return Promise.reject(error);
+          })
+      }),
+        // 用户登录
+        login() {
+        this.postData = {
+          account: this.userInfo.account,
+          password: this.$md5(this.userInfo.password),
+        };
+        this.$http.post(configIp.apiConfig.user.login, this.postData)
+          .then(res => {
+            if (res.data.meta.status == 200) {
+              // 保存token
+              window.localStorage.setItem("token", res.data.data.token);
+              // 提示
+              this.$message.success(res.data.meta.msg);
+              // 跳转
+              this.$router.push("/index");
+            } else if (res.data.meta.status == 400) {
+              // 提示
+              this.$message.error(res.data.meta.msg);
+            }).catch(err => {
+          console.log("登录失败");
+        })
+      }
 
     }
   }
