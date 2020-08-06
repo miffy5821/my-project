@@ -14,17 +14,29 @@ import VueAxios from 'vue-axios'
 import ElementUI from 'element-ui';
 import 'element-ui/lib/theme-chalk/index.css';
 
+// http request 拦截器
+axios.interceptors.request.use(
+  config => {
+    if (localStorage.token) { //判断token是否存在
+      config.headers.authorization = localStorage.token;  //将token设置成请求头
+    }
+    return config;
+  },
+  err => {
+    return Promise.reject(err);
+  }
+);
 
 Vue.use(VueAxios, axios)
 Vue.use(ElementUI)
 
-Vue.config.productionTip = false
-Vue.use(VueAwesomeSwiper)
-Vue.use(scroll)
+Vue.config.productionTip = false;
+Vue.use(VueAwesomeSwiper);
+Vue.use(scroll);
 /* eslint-disable no-new */
 new Vue({
   el: '#app',
   router,
-  components: { App },
+  components: {App},
   template: '<App/>'
-})
+});

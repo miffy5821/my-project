@@ -100,10 +100,6 @@
           </el-form>
 
 
-
-
-
-
           <el-form
             :model="phoneRegisteredCheck"
             :rules="phoneRegisteredRules"
@@ -162,7 +158,8 @@
               </div>
               <div class="divInput">
                 <el-form-item prop="recommendCode">
-                  <el-input v-model="phoneRegisteredCheck.recommendCode" type="text" placeholder="请输入推荐码(选填)"></el-input>
+                  <el-input v-model="phoneRegisteredCheck.recommendCode" type="text"
+                            placeholder="请输入推荐码(选填)"></el-input>
                 </el-form-item>
               </div>
             </div>
@@ -188,7 +185,6 @@
     data () {
       return {
         show: 1,
-        data: '',
         quickCheck: {
           recommendCode: '',
           username: '',
@@ -196,22 +192,26 @@
           mobileNo: '',
           weixin: '',
           protocol: [],
-          terminal:0,
-          repassword:'000000'
+          terminal: 0,
+          repassword: '000000'
         },
         quickRules: {
           recommendCode: [
-            {required: false,
+            {
+              required: false,
               message: '请输入正确的推荐码',
-              trigger: 'blur'}
+              trigger: 'blur'
+            }
             // {message: '请输入正确的推荐码',
             // pattern: /^(?![0-9]+$)(?![a-zA-Z]+$)[0-9A-Za-z]$/,
             // trigger: 'blur'},
           ],
           username: [
-            {required: true,
+            {
+              required: true,
               message: '请输入用户名',
-              trigger: 'blur'},
+              trigger: 'blur'
+            },
             {
               pattern: /^((?![0-9]+$)(?![a-zA-Z]+$)[0-9A-Za-z]{6,11}|1[3456789]\d{9})$/,
               message: '对不起,用户名由6-11数字和字母组合\n',
@@ -229,12 +229,16 @@
               trigger: 'blur'
             }],
           mobileNo: [
-            {required: true,
+            {
+              required: true,
               message: '手机号码不能为空',
-              trigger: 'blur'},
-            {pattern: /^1[2-9][0-9]{9}$/,
+              trigger: 'blur'
+            },
+            {
+              pattern: /^1[2-9][0-9]{9}$/,
               message: '请输入正确的手机号码',
-              trigger: 'blur'}
+              trigger: 'blur'
+            }
           ],
           weixin: [
             {
@@ -244,14 +248,16 @@
             },
             {
               message: '请输入正确的微信号',
-              pattern:/^(?![0-9]+$)(?![a-zA-Z]+$)[0-9A-Za-z]{6,12}$/,
+              pattern: /^(?![0-9]+$)(?![a-zA-Z]+$)[0-9A-Za-z]{6,12}$/,
               trigger: 'blur'
             }
           ],
-          protocol: [{type: 'array',
+          protocol: [{
+            type: 'array',
             required: true,
             message: '请阅读并勾选开户协议',
-            trigger: 'change'}]
+            trigger: 'change'
+          }]
         },
 
         phoneRegisteredCheck: {
@@ -260,29 +266,33 @@
           wecaht: '',
           recommendCode: '',
           protocol: [],
-          terminal:'',
-          repassword:''
+          terminal: '',
+          repassword: ''
         },
         phoneRegisteredRules: {
           phoneNumber: [
             {
               required: true,
               message: '手机号码不能为空',
-              trigger: 'blur'},
+              trigger: 'blur'
+            },
             {
               pattern: /^1[2-9][0-9]{9}$/,
               message: '请输入正确的手机号码',
-              trigger: 'blur'}
+              trigger: 'blur'
+            }
           ],
           msgCode: [
             {
               required: true,
               message: '请输入验证码',
-              trigger: 'blur'},
+              trigger: 'blur'
+            },
             {
               message: '请输入4位数字验证码',
               pattern: /^[0-9]{4}$/,
-              trigger: 'blur'}],
+              trigger: 'blur'
+            }],
           weixin: [
             {
               required: true,
@@ -296,9 +306,11 @@
             }
           ],
           recommendCode: [
-            {required: false,
+            {
+              required: false,
               message: '请输入正确的推荐码',
-              trigger: 'blur'}
+              trigger: 'blur'
+            }
             // {message: '请输入正确的推荐码',
             // pattern: /^(?![0-9]+$)(?![a-zA-Z]+$)[0-9A-Za-z]$/,
             // trigger: 'blur'},
@@ -313,17 +325,10 @@
       };
     },
     methods: {
-      quickRegister(formName) {
+      quickRegister (formName) {
         this.$refs[formName].validate((valid) => {
           if (valid) {
-            alert('submit!');
-            this.quickCheck.repassword = this.quickCheck.password;
-            this.axios.post('api/unauthor/gateway/account/register',qs.stringify(this.quickCheck))
-              .then((response) => {
-                this.data=response.data
-                console.log(this.data)
-              })
-
+            this.requestRegister();
           } else {
             console.log(this.quickCheck);
             console.log('error submit!!');
@@ -331,7 +336,7 @@
           }
         });
       },
-      phoneRegister(formName) {
+      phoneRegister (formName) {
         this.$refs[formName].validate((valid) => {
           if (valid) {
             alert('submit!');
@@ -341,53 +346,49 @@
           }
         });
       },
-    },
-    mounted() {
-      this.axios.post('api/unauthor/gateway/account/register',qs.stringify(this.quickCheck))
-        .then((response) => {
-          this.data=response.data
-          console.log(this.data);
+      // 用户登录
+      // login () {
+      //   this.postData = {
+      //     account: this.userInfo.account,
+      //     password: this.$md5(this.userInfo.password),
+      //   };
+        // this.$http.post(configIp.apiConfig.user.login, this.postData)
+        //   .then(res => {
+        //       if (res.data.meta.status == 200) {
+        //         // 保存token
+        //         window.localStorage.setItem('token', res.data.data.token);
+        //         // 提示
+        //         this.$message.success(res.data.meta.msg);
+        //         // 跳转
+        //         this.$router.push('/index');
+        //       } else if (res.data.meta.status == 400) {
+        //         // 提示
+        //         this.$message.error(res.data.meta.msg);
+        //       }
+        //     }
+        //   ).catch(err => {
+        //   console.log('登录失败');
+        // })
+      },
+      requestRegister () {
+        this.axios.post('api/unauthor/gateway/account/register', qs.stringify(this.quickCheck))
+          .then((response) => {
 
-          // Add a request interceptor
-          axios.interceptors.request.use(function (config) {
-            // Do something before request is sent
-            return config;
-          }, function (error) {
-            // Do something with request error
-            return Promise.reject(error);
-          });
+            if (response.status === 10000) {
+              const data = response.data;
+              alert(response.msg);
+              window.localStorage.setItem('token', data.token);
+              this.$router.push('/')
+            } else {
+              alert(response.msg);
+            }
 
-      // Add a response interceptor
-          axios.interceptors.response.use(function (response) {
-            // Do something with response data
-            return response;
-          }, function (error) {
-            // Do something with response error
-            return Promise.reject(error);
-          })
-      }),
-        // 用户登录
-        login() {
-        this.postData = {
-          account: this.userInfo.account,
-          password: this.$md5(this.userInfo.password),
-        };
-        this.$http.post(configIp.apiConfig.user.login, this.postData)
-          .then(res => {
-            if (res.data.meta.status == 200) {
-              // 保存token
-              window.localStorage.setItem("token", res.data.data.token);
-              // 提示
-              this.$message.success(res.data.meta.msg);
-              // 跳转
-              this.$router.push("/index");
-            } else if (res.data.meta.status == 400) {
-              // 提示
-              this.$message.error(res.data.meta.msg);
-            }).catch(err => {
-          console.log("登录失败");
+          }).catch(error => {
+            alert(error);
         })
       }
+    },
+    mounted () {
 
     }
   }
