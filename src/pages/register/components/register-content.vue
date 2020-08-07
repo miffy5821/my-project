@@ -346,29 +346,6 @@
           }
         });
       },
-      // 用户登录
-      // login () {
-      //   this.postData = {
-      //     account: this.userInfo.account,
-      //     password: this.$md5(this.userInfo.password),
-      //   };
-        // this.$http.post(configIp.apiConfig.user.login, this.postData)
-        //   .then(res => {
-        //       if (res.data.meta.status == 200) {
-        //         // 保存token
-        //         window.localStorage.setItem('token', res.data.data.token);
-        //         // 提示
-        //         this.$message.success(res.data.meta.msg);
-        //         // 跳转
-        //         this.$router.push('/index');
-        //       } else if (res.data.meta.status == 400) {
-        //         // 提示
-        //         this.$message.error(res.data.meta.msg);
-        //       }
-        //     }
-        //   ).catch(err => {
-        //   console.log('登录失败');
-        // })
       },
       requestRegister () {
         this.axios.post('api/unauthor/gateway/account/register', qs.stringify(this.quickCheck))
@@ -376,7 +353,8 @@
 
             if (response.status === 10000) {
               const data = response.data;
-              alert(response.msg);
+              // alert(response.msg);
+              this.$confirm.succeed(response.msg);
               window.localStorage.setItem('token', data.token);
               this.$router.push('/')
             } else {
@@ -386,10 +364,22 @@
           }).catch(error => {
             alert(error);
         })
-      }
-    },
-    mounted () {
+      },
+    methods: {
+      succeed() {
+        this.$confirm('❤️尊敬的会员您好：平台新增支付宝提款，您绑定支付宝时请您仔细核对支付宝账号是否输入正确，' +
+          '避免绑定错误出款到他人账号给您带来不必要的损失哦！！！', '<i class="el-icon-warning"></i>重要通知', {
+          confirmButtonText: '确定',
+          type: 'warning'
+        }).then(() => {
+          this.$message({
+            type: 'success',
+            message: '删除成功!'
+          });
+        }).catch(() => {
 
+        });
+      }
     }
   }
 </script>
