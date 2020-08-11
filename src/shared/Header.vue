@@ -39,63 +39,66 @@
                 </router-link>
             </ul>
             <div class="navLogin" v-if="!getIsLogin">
-          <span class="left">
+          <div class="left">
              <router-link to="/register">
             注册
             </router-link>
-          </span>
-                <span class="center" @click="toggleLogin()">
+          </div>
+                <div class="center" @click="toggleLogin()">
                 登录
-          </span>
-                <span class="right">
+          </div>
+                <div class="right">
             <router-link to="/personal">
             试玩
-          </router-link></span>
+          </router-link></div>
             </div>
 
-<!--            <div class="login-after" v-if="getIsLogin">-->
-            <div class="login-after">
-                ￥0.00
-                <router-link to="/personal/deposit">
-                    <button class="login-after-deposit">
-                        存款
-                    </button>
-                </router-link>
-            </div>
-            <div class="personal-img" v-show="mouseenter">
-                <img src="/static/home/个人.png" class="img-login-after">
-            </div>
-            <div class="nav-login"   >
-                <ul>
+            <!--登陆后的效果-->
+            <div class="login-after" v-if="getIsLogin">
+<!--                <div class="login-after" >-->
+                <div class="login-after-btn">
+                    ￥0.00
                     <router-link to="/personal/deposit">
-                        <li>
-                            存款专区
-                        </li>
+                        <button class="login-after-deposit">
+                            存款
+                        </button>
                     </router-link>
-                    <router-link to="/personal/withdrawal">
-                        <li>
-                            取款专区
+                </div>
+                <div class="personal-img">
+                    <img src="/static/home/个人.png" class="img-login-after">
+                </div>
+                <div class="nav-login11">
+                    <ul>
+                        <router-link to="/personal/deposit">
+                            <li>
+                                存款专区
+                            </li>
+                        </router-link>
+                        <router-link to="/personal/withdrawal">
+                            <li>
+                                取款专区
+                            </li>
+                        </router-link>
+                        <router-link to="/personal/capital">
+                            <li>
+                                资金记录
+                            </li>
+                        </router-link>
+                        <router-link to="/personal/conversion">
+                            <li>
+                                财务转账
+                            </li>
+                        </router-link>
+                        <router-link to="/personal/information">
+                            <li>
+                                消息<span>(2)</span>
+                            </li>
+                        </router-link>
+                        <li class="border-line">
+                            退出
                         </li>
-                    </router-link>
-                    <router-link to="/personal/capital">
-                        <li>
-                            资金记录
-                        </li>
-                    </router-link>
-                    <router-link to="/personal/conversion">
-                        <li>
-                            财务转账
-                        </li>
-                    </router-link>
-                    <router-link to="/personal/information">
-                        <li>
-                            消息<span>(2)</span>
-                        </li>
-                    </router-link>
-                    <li class="border-line">
-                        退出
-                    </li>
-                </ul>
+                    </ul>
+                </div>
             </div>
         </div>
         <Login @onLogin="toggleLogin()" v-if="isShowLogin"></Login>
@@ -114,19 +117,19 @@
         props:['isLogin'],
         data () {
             return {
-                isShowLogin: false, // 是否显示登录框
+                isShowLogin:false, // 是否显示登录框
             }
         },
         methods: {
             toggleLogin () {
                 this.isShowLogin = !this.isShowLogin;
             },
-            mouseenter () {
-               this.show=true;
-            },
-            mouseout (){
-            this.show=false;
-            }
+        //     enter () {
+        //        this.class={"nav-login":display=};
+        //     },
+        //    leaver (){
+        //     this.seen=false;
+        //     },
         },
         computed:{
             getIsLogin(){
@@ -180,13 +183,11 @@
         height: 25px;
         margin-top: 20px;
         cursor: pointer;
-        display: none;
+        /*display: none;*/
+        display: flex;
+        flex-wrap: wrap;
         background-color: #c8a675;
         border-radius: 30px;
-    }
-
-    .navLogin span {
-        margin: 5px;
     }
 
     .navLogin a {
@@ -194,11 +195,11 @@
     }
 
     .left {
-        width: 48px;
+        width: 30px;
         height: 25px;
         font-size: 14px;
-        margin: 5px;
-        line-height: 23px;
+        padding-left: 10px;
+        line-height: 25px;
         text-align: left;
         color: white;
     }
@@ -209,11 +210,11 @@
     }
 
     .right {
-        width: 48px;
+        width: 30px;
         height: 25px;
         font-size: 14px;
-        margin: 5px;
-        line-height: 23px;
+        margin-left: 12px;
+        line-height: 25px;
         color: white;
         text-align: right;
     }
@@ -224,19 +225,30 @@
     }
 
     .center {
-        width: 58px;
-        height: 25px;
+        width: 40px;
+        height: 19px;
+        line-height: 19px;
         font-size: 14px;
-        padding: 2px;
+        padding: 2px 2px 2px 5px;
+        margin-top: 1px;
+        margin-left: 10px;
         border-radius: 30px;
         text-align: center;
         background: white;
         color: #c8a675;
     }
     .login-after{
+        width: 250px;
+        height: 30px;
+        position: absolute;
+        left: 1400px;
+        top:30px;
+        display: flex;
+        flex-wrap: wrap;
+    }
+    .login-after-btn{
         width: 100px;
         height: 18px;
-        margin-top: 20px;
         cursor: pointer;
         font-size:13px ;
         color:white;
@@ -267,6 +279,7 @@
     .img-login-after{
         width: 30px;
         height:30px;
+        margin-left: 20px;
         background-color:#c8a675 ;
         border-radius: 50%;
     }
@@ -274,38 +287,38 @@
     .personal-img{
         width: 40px;
         height: 40px;
-        position: absolute;
-        left:1550px;
-        top:30px;
     }
-    .nav-login{
+    .nav-login11{
         width: 120px;
         height: 230px;
-        position: absolute;
         color: black;
-        left: 1510px;
-        top:85px;
+        margin-left:80px;
+        margin-top: 10px;
         display: none;
         background: white;
         border: 1px solid darkgrey;
         border-radius: 5px;
-        z-index: 99;
+        z-index: 999;
     }
-    .nav-login ul{
+    .nav-login11 ul{
         width: 120px;
         height: 200px;
         margin-top: 10px;
     }
-    .nav-login ul li{
+    .nav-login11 a{
+        color: #1c171d;
+        text-decoration:none;
+    }
+    .nav-login11 ul li{
         width: 120px;
         height: 35px;
         line-height: 35px;
         font-size: 14px;
-        color: #1c171d;
-        text-decoration:none;
     }
     .border-line{
         border-top: 1px solid lightgrey;
     }
-
+    .img-login-after:hover ~ .nav-login11{
+        display: block;
+    }
 </style>

@@ -76,7 +76,6 @@
                                     ></el-input>
                                 </el-form-item>
                             </div>
-                            <p class="item"></p>
                         </div>
 
                         <div class="register-item">
@@ -168,12 +167,12 @@
 
                         <div class="register-item">
                             <el-form-item prop="protocol">
-                                <el-checkbox-group v-model="quickCheck.protocol">
+                                <el-checkbox-group v-model="phoneRegisteredCheck.protocol">
                                     <el-checkbox name="type" label="我已经届满合法博彩年龄,且同意各项 开户条约。"></el-checkbox>
                                 </el-checkbox-group>
                             </el-form-item>
                         </div>
-                        <div class="btn" @click=" phoneRegister('phoneRegisteredCheck')">立即注册</div>
+                        <div class="btn" @click="phoneRegister('phoneRegisteredCheck')">立即注册</div>
                     </el-form>
                 </div>
             </div>

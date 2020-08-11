@@ -7,24 +7,42 @@
           <img src="/static/home/logo.png"/>
         <el-divider>账号登录密码</el-divider>
         <div class="login-area">
-        <!--用户名-->
-        <div class="login-item">
-          <div class="icon-box">
-            <img src="/static/home/zhuce_yonghu.png" />
-        </div>
-          <input type="password"   placeholder="请输入用户名"/>
-          <p class="item"></p>
+            <el-form
+                :model="loginCheck"
+                :rules="loginRules"
+                status-icon
+                ref="quickCheck"
+
+            >
+                <!--用户名-->
+                <div class="login-item">
+                    <div class="icon-box">
+                        <img src="/static/home/zhuce_yonghu.png"/>
+                    </div>
+                    <el-form-item prop="username">
+                        <el-input
+                    type="text"
+                    v-model="loginCheck.username"
+                    placeholder="请输入用户名"
+                ></el-input>
+            </el-form-item>
         </div>
          <!--密码-->
         <div class="login-item">
           <div class="icon-box">
             <img src="/static/home/zhu_safety.png" />
           </div>
-          <input type="password" class="wd-input"  placeholder="请输入密码"/>
-          <p class="item"></p>
+            <el-form-item prop="password">
+                <el-input
+                    type="password"
+                    v-model="loginCheck.password"
+                    placeholder="请输入密码"
+                ></el-input>
+            </el-form-item>
         </div>
         </div>
-        <button class="login-btn" type="submit">立即登录</button>
+        <button class="login-btn" type="submit" @click="loginAfter('loginCheck')">立即登录</button>
+            </el-form>
         <div class="login-reminder">
           <p>如您没有账户 <span>点击注册>></span></p>
           <p class="text-left"  >忘记密码</p>
@@ -40,14 +58,75 @@
 </template>
 
 <script>
-  export default {
+export default {
     name: 'Login',
     data() {
-      return {
+        return {
+            loginCheck: {
+                username: '',
+                password: '',
 
-      };
+            },
+            loginRules: {
+                username: [
+                    {
+                        required: true,
+                        message: '请输入用户名',
+                        trigger: 'blur'
+                    },
+                    {
+                        pattern: /^((?![0-9]+$)(?![a-zA-Z]+$)[0-9A-Za-z]{6,11}|1[3456789]\d{9})$/,
+                        message: '对不起,你输入的用户名不正确',
+                        trigger: 'blur'
+                    }
+                ],
+                password: [{
+                    required: true,
+                    message: '请输入密码',
+                    trigger: 'blur'
+                },
+                    {
+                        message: '对不起,密码你输入的密码不正确',
+                        pattern: /^(?![0-9]+$)(?![a-zA-Z]+$)[0-9A-Za-z]{6,12}$/,
+                    }]
+            },
+            methods: {
+                loginAfter(formName) {
+                    this.$refs[formName].validate((valid) => {
+                        if (valid) {
+                            this.requestLogin();
+                        } else {
+                            console.log(this.loginCheck);
+                            console.log('error submit!!');
+                            return false;
+                        }
+                    });
+                },
+                requestLogin() {
+                    this.axios.post('api/unauthor/gateway/account/register', qs.stringify(
+                        Object.assign(this.loginCheck, {
+                            repassword: this.loginCheck.password
+                        })))
+                        .then((response) => {
+                            const data = response.data;
+                            if (data.status === 10000) {
+                                // alert(response.msg);
+                                this.$alert(data.msg);
+                                window.localStorage.setItem('token', data.token);
+                                this.$router.push('/');
+                                this.$emit('logined', true);
+                            } else {
+                                this.$alert(data.msg);
+                            }
+
+                        }).catch(error => {
+                        alert(error);
+                    })
+                }
+            },
+        }
     }
-  }
+}
 
 </script>
 <style  scoped>
