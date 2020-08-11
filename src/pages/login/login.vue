@@ -1,65 +1,69 @@
 <template>
-  <div class="login">
-    <div class="shadow">
-      <div class="loginContent">
-        <div class="login-interface">
-          <img class="dele-icon" @click="$emit('onLogin')" src="/static/home/dele.png">
-          <img src="/static/home/logo.png"/>
-        <el-divider>账号登录密码</el-divider>
-        <div class="login-area">
-            <el-form
-                :model="loginCheck"
-                :rules="loginRules"
-                status-icon
-                ref="quickCheck"
-
-            >
-                <!--用户名-->
-                <div class="login-item">
-                    <div class="icon-box">
-                        <img src="/static/home/zhuce_yonghu.png"/>
+    <div class="login">
+        <div class="shadow">
+            <div class="loginContent">
+                <div class="login-interface">
+                    <img class="dele-icon" @click="$emit('onLogin')" src="/static/home/dele.png">
+                    <img src="/static/home/logo.png"/>
+                    <el-divider>账号登录密码</el-divider>
+                    <div class="login-area">
+                        <el-form
+                            :model="loginCheck"
+                            :rules="loginRules"
+                            status-icon
+                            ref="loginCheck"
+                        >
+                            <!--用户名-->
+                            <div class="login-item">
+                                <div class="icon-box">
+                                    <img src="/static/home/zhuce_yonghu.png"/>
+                                </div>
+                                <div class="loginInput">
+                                <el-form-item prop="username">
+                                    <el-input
+                                        type="text"
+                                        v-model="loginCheck.username"
+                                        placeholder="请输入用户名"
+                                    ></el-input>
+                                </el-form-item>
+                                </div>
+                            </div>
+                            <!--密码-->
+                            <div class="login-item">
+                                <div class="icon-box">
+                                    <img src="/static/home/zhu_safety.png"/>
+                                </div>
+                                <div class="loginInput">
+                                <el-form-item prop="password">
+                                    <el-input
+                                        type="password"
+                                        v-model="loginCheck.password"
+                                        placeholder="请输入密码"
+                                    ></el-input>
+                                </el-form-item>
+                            </div>
+                            </div>
+                            <button class="login-btn" type="submit" @click="loginAfter('loginCheck')">立即登录</button>
+                        </el-form>
+                        <div class="login-reminder">
+                            <p>如您没有账户 <span>点击注册>></span></p>
+                            <p class="text-left">忘记密码</p>
+                        </div>
                     </div>
-                    <el-form-item prop="username">
-                        <el-input
-                    type="text"
-                    v-model="loginCheck.username"
-                    placeholder="请输入用户名"
-                ></el-input>
-            </el-form-item>
+                </div>
+                <div class="login-advisory">
+                    登录时有任何问题，请联系我们24小时 <span>&nbsp;在线客服&nbsp;</span>
+                    协助解决，本网站采用Global Trust最先进的128/256 bit SSL服务器加密机制
+                </div>
+
+            </div>
         </div>
-         <!--密码-->
-        <div class="login-item">
-          <div class="icon-box">
-            <img src="/static/home/zhu_safety.png" />
-          </div>
-            <el-form-item prop="password">
-                <el-input
-                    type="password"
-                    v-model="loginCheck.password"
-                    placeholder="请输入密码"
-                ></el-input>
-            </el-form-item>
-        </div>
-        </div>
-        <button class="login-btn" type="submit" @click="loginAfter('loginCheck')">立即登录</button>
-            </el-form>
-        <div class="login-reminder">
-          <p>如您没有账户 <span>点击注册>></span></p>
-          <p class="text-left"  >忘记密码</p>
-        </div>
-        </div>
-        <div class="login-advisory">
-         登录时有任何问题，请联系我们24小时 <span>&nbsp;在线客服&nbsp;</span>
-            协助解决，本网站采用Global Trust最先进的128/256 bit SSL服务器加密机制
-        </div>
-      </div>
     </div>
-  </div>
 </template>
 
 <script>
-export default {
-    name: 'Login',
+    export default {
+        name: 'Login',
     data() {
         return {
             loginCheck: {
@@ -174,16 +178,31 @@ export default {
   .login-area{
     width: 300px;
     height:120px;
-    margin-top: 40px;
+    margin-top: 30px;
   }
   .login-item{
     width: 298px;
     height: 40px;
     display: flex;
     flex-wrap: wrap;
-    margin-top: 25px;
-    border: 1px solid #d9d9d9;
+    margin-top: 20px;
+    margin-bottom: 15px;
+    /*border: 1px solid #d9d9d9;*/
     border-radius: 4px;;
+  }
+  .loginInput {
+      width: 256px;
+      height: 42px;
+      border: none;
+  }
+
+  .loginInput input {
+      width: 256px;
+      height: 16px;
+      line-height: 16px;
+      font-size: 16px;
+      border: none;
+      padding: 11px 0 11px 15px;
   }
   .icon-box{
     width: 40px;
