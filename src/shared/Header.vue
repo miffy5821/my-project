@@ -39,23 +39,24 @@
                 </router-link>
             </ul>
             <div class="navLogin" v-if="!getIsLogin">
-          <div class="left">
-             <router-link to="/register">
-            注册
-            </router-link>
-          </div>
+                <div class="left">
+                    <router-link to="/register">
+                        注册
+                    </router-link>
+                </div>
                 <div class="center" @click="toggleLogin()">
-                登录
-          </div>
+                    登录
+                </div>
                 <div class="right">
-            <router-link to="/personal">
-            试玩
-          </router-link></div>
+                    <router-link to="/personal">
+                        试玩
+                    </router-link>
+                </div>
             </div>
 
             <!--登陆后的效果-->
             <div class="login-after" v-if="getIsLogin">
-<!--                <div class="login-after" >-->
+                <!--                <div class="login-after" >-->
                 <div class="login-after-btn">
                     ￥0.00
                     <router-link to="/personal/deposit">
@@ -101,7 +102,7 @@
                 </div>
             </div>
         </div>
-        <Login @onLogin="toggleLogin()" v-if="isShowLogin"></Login>
+        <Login @onLogin="toggleLogin()" @onLoginSuccess="loginSuccess" v-if="isShowLogin"></Login>
     </div>
 
 </template>
@@ -114,27 +115,37 @@
         components: {
             Login: Login
         },
-        props:['isLogin'],
+        props: ['isLogin'],
         data () {
             return {
-                isShowLogin:false, // 是否显示登录框
+                isShowLogin: false, // 是否显示登录框,
             }
         },
         methods: {
             toggleLogin () {
                 this.isShowLogin = !this.isShowLogin;
             },
-        //     enter () {
-        //        this.class={"nav-login":display=};
-        //     },
-        //    leaver (){
-        //     this.seen=false;
-        //     },
+            loginSuccess () {
+                this.isLogin = true;
+            }
+            //     enter () {
+            //        this.class={"nav-login":display=};
+            //     },
+            //    leaver (){
+            //     this.seen=false;
+            //     },
         },
-        computed:{
-            getIsLogin(){
+        computed: {
+            getIsLogin () {
                 return this.isLogin;
             }
+        },
+        mounted(){
+            console.log('mounted');
+            window.setInterval(()=>{
+                console.log(this.isLogin);
+
+            },1000)
         }
     }
 </script>
@@ -237,21 +248,23 @@
         background: white;
         color: #c8a675;
     }
-    .login-after{
+
+    .login-after {
         width: 250px;
         height: 30px;
         position: absolute;
         left: 1400px;
-        top:30px;
+        top: 30px;
         display: flex;
         flex-wrap: wrap;
     }
-    .login-after-btn{
+
+    .login-after-btn {
         width: 100px;
         height: 18px;
         cursor: pointer;
-        font-size:13px ;
-        color:white;
+        font-size: 13px;
+        color: white;
         line-height: 18px;
         text-align: left;
         padding: 5px 1px 5px 10px;
@@ -261,7 +274,8 @@
         flex-wrap: wrap;
 
     }
-    .login-after-deposit{
+
+    .login-after-deposit {
         width: 50px;
         height: 24px;
         font-size: 13px;
@@ -272,27 +286,29 @@
         padding: 5px;
         margin-left: 11px;
         margin-top: -3px;
-        color:#c8a675 !important;
-        text-decoration:none;
+        color: #c8a675 !important;
+        text-decoration: none;
         background-color: white;
     }
-    .img-login-after{
+
+    .img-login-after {
         width: 30px;
-        height:30px;
+        height: 30px;
         margin-left: 20px;
-        background-color:#c8a675 ;
+        background-color: #c8a675;
         border-radius: 50%;
     }
 
-    .personal-img{
+    .personal-img {
         width: 40px;
         height: 40px;
     }
-    .nav-login11{
+
+    .nav-login11 {
         width: 120px;
         height: 230px;
         color: black;
-        margin-left:80px;
+        margin-left: 80px;
         margin-top: 10px;
         display: none;
         background: white;
@@ -300,25 +316,30 @@
         border-radius: 5px;
         z-index: 999;
     }
-    .nav-login11 ul{
+
+    .nav-login11 ul {
         width: 120px;
         height: 200px;
         margin-top: 10px;
     }
-    .nav-login11 a{
+
+    .nav-login11 a {
         color: #1c171d;
-        text-decoration:none;
+        text-decoration: none;
     }
-    .nav-login11 ul li{
+
+    .nav-login11 ul li {
         width: 120px;
         height: 35px;
         line-height: 35px;
         font-size: 14px;
     }
-    .border-line{
+
+    .border-line {
         border-top: 1px solid lightgrey;
     }
-    .img-login-after:hover ~ .nav-login11{
+
+    .img-login-after:hover ~ .nav-login11 {
         display: block;
     }
 </style>

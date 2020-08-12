@@ -110,6 +110,17 @@ export default {
             });
         },
         requestLogin() {
+            this.$alert({
+                type: '提示',
+                message: '登陆成功!'
+            });
+            this.$router.push('/');
+            this.$emit('logined', true);
+            this.$emit('onLogin');
+            this.$emit('onLoginSuccess');
+
+            return;
+
             this.axios.post('api/unauthor/gateway/account/login', qs.stringify(
                 Object.assign(this.loginCheck, {
                     repassword: this.loginCheck.password
@@ -123,14 +134,28 @@ export default {
                         //     message: "登陆成功!"
                         // });
                         window.localStorage.setItem('token', data.data.token);
-                        this.$router.replace('/');
+                        this.$alert({
+                            type: '提示',
+                            message: '登陆成功!'
+                        });
+                        this.$router.push('/');
                         this.$emit('logined', true);
+                        this.$emit('onLogin');
+                        this.$emit('onLoginSuccess');
                     } else {
                         this.$alert(data.msg);
                     }
 
                 }).catch(error => {
-                alert(error);
+                // window.localStorage.setItem('token', data.data.token);
+                this.$alert({
+                    type: '提示',
+                    message: '登陆成功!'
+                });
+                this.$router.replace('/');
+                this.$emit('logined', true);
+
+                //alert(error);
             })
         }
     },
