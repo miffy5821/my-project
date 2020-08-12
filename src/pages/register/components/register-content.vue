@@ -21,7 +21,7 @@
                     >
                         <div class="register-item">
                             <div class="icon-box">
-                                <img src="/static/home/zhuce_yonghu.png"/>
+                                <img src="/static/home/zhuce_yonghu.png"  alt=''/>
                             </div>
                             <div class="divInput">
                                 <el-form-item prop="refrerrCode">
@@ -33,7 +33,7 @@
 
                         <div class="register-item">
                             <div class="icon-box">
-                                <img src="/static/home/zhuce_yonghu.png"/>
+                                <img src="/static/home/zhuce_yonghu.png"  alt=''/>
                             </div>
                             <div class="divInput">
                                 <el-form-item prop="username">
@@ -48,7 +48,7 @@
 
                         <div class="register-item">
                             <div class="icon-box">
-                                <img src="/static/home/zhuce_phone.png"/>
+                                <img src="/static/home/zhuce_phone.png"  alt=''/>
                             </div>
                             <div class="register-phone">
                                 <span class="phone-input">+86 中国</span>
@@ -65,7 +65,7 @@
 
                         <div class="register-item">
                             <div class="icon-box">
-                                <img src="/static/home/zhu_safety.png"/>
+                                <img src="/static/home/zhu_safety.png"  alt=''/>
                             </div>
                             <div class="divInput">
                                 <el-form-item prop="password">
@@ -80,7 +80,7 @@
 
                         <div class="register-item">
                             <div class="icon-box">
-                                <img src="/static/home/zhuce_weixin.png"/>
+                                <img src="/static/home/zhuce_weixin.png"  alt=''/>
                             </div>
                             <div class="divInput">
                                 <el-form-item prop="weixin">
@@ -98,8 +98,6 @@
                         </div>
                         <div class="btn" @click="quickRegister('quickCheck')">立即注册</div>
                     </el-form>
-
-
                     <el-form
                         :model="phoneRegisteredCheck"
                         :rules="phoneRegisteredRules"
@@ -110,7 +108,7 @@
                     >
                         <div class="register-item">
                             <div class="icon-box">
-                                <img src="/static/home/zhuce_phone.png"/>
+                                <img src="/static/home/zhuce_phone.png"  alt=''/>
                             </div>
                             <div class="register-phone">
                                 <span class="phone-input">+86 中国</span>
@@ -127,7 +125,7 @@
 
                         <div class="register-item">
                             <div class="icon-box">
-                                <img src="/static/home/zhuce_yaoqin.png" class="icon"/>
+                                <img src="/static/home/zhuce_yaoqin.png" class="icon" alt=''/>
                             </div>
                             <div class="ks-verification">
                                 <el-form-item prop="msgCode">
@@ -138,12 +136,12 @@
                                     ></el-input>
                                 </el-form-item>
                             </div>
-                            <img src class="verification-code"/>
+                            <img src class="verification-code"  alt=''/>
                         </div>
 
                         <div class="register-item">
                             <div class="icon-box">
-                                <img src="/static/home/zhuce_weixin.png"/>
+                                <img src="/static/home/zhuce_weixin.png"  alt=''/>
                             </div>
                             <div class="divInput">
                                 <el-form-item prop="weixin">
@@ -155,7 +153,7 @@
 
                         <div class="register-item">
                             <div class="icon-box">
-                                <img src="/static/home/zhuce_yonghu.png"/>
+                                <img src="/static/home/zhuce_yonghu.png"  alt=''/>
                             </div>
                             <div class="divInput">
                                 <el-form-item prop="recommendCode">
@@ -469,24 +467,6 @@
         padding: 11px 0 11px 15px;
     }
 
-    .item {
-        width: auto;
-        height: 20px;
-        line-height: 20px;
-        text-align: center;
-        padding-top: 5px;
-        color: red;
-        font-size: 13px;
-    }
-
-    .verification {
-        width: 375px;
-        height: 42px;
-        display: flex;
-        justify-content: space-between;
-        /* margin: -43px 0 0 43px; */
-    }
-
     .verification input {
         width: 200px;
         height: 16px;
@@ -544,16 +524,16 @@
         margin-right: 0;
     }
 
-    .active {
-        width: 118px;
-        height: 49px;
-        font-size: 16px;
-        line-height: 49px;
-        font-weight: 700;
-        color: #c8a675;
-        padding: 20px 27px 13px 27px;
-        border-bottom: 3px solid #c8a675;
-    }
+    /*.active {*/
+    /*    width: 118px;*/
+    /*    height: 49px;*/
+    /*    font-size: 16px;*/
+    /*    line-height: 49px;*/
+    /*    font-weight: 700;*/
+    /*    color: #c8a675;*/
+    /*    padding: 20px 27px 13px 27px;*/
+    /*    border-bottom: 3px solid #c8a675;*/
+    /*}*/
 
     .span1 {
         width: 118px;
@@ -563,26 +543,6 @@
         padding: 20px 27px 13px 27px;
         color: #222222;
         cursor: pointer;
-    }
-
-    .register-details {
-        width: 450px;
-        height: 15px;
-        display: flex;
-        /*flex-wrap: wrap;*/
-    }
-
-    .radio {
-        width: 15px;
-        height: 15px;
-    }
-
-    .text {
-        width: auto;
-        height: 15px;
-        font-size: 13px;
-        margin-left: 8px;
-        line-height: 15px;
     }
 
     .btn {

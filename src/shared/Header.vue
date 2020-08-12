@@ -1,7 +1,7 @@
 <template>
     <div class="header">
         <div class="nav">
-            <img class="nav-logo" src="../assets/home-img/logo.png">
+            <img class="nav-logo" src="/static/shared/logo.png " alt=''>
             <ul class="nav-bar-box">
                 <router-link to="/">
                     <li class="current-page">首页</li>
@@ -65,7 +65,7 @@
                     </router-link>
                 </div>
                 <div class="personal-img">
-                    <img src="/static/home/个人.png" class="img-login-after">
+                    <img src="/static/home/个人.png" class="img-login-after" alt=''>
                 </div>
                 <div class="nav-login11">
                     <ul>

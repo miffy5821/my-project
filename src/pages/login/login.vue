@@ -3,8 +3,8 @@
         <div class="shadow">
             <div class="loginContent">
                 <div class="login-interface">
-                    <img class="dele-icon" @click="$emit('onLogin')" src="/static/home/dele.png">
-                    <img src="/static/home/logo.png"/>
+                    <img class="dele-icon" @click="$emit('onLogin')" src="/static/home/dele.png " alt=''>
+                    <img src="/static/home/logo.png"  alt=''/>
                     <el-divider>账号登录密码</el-divider>
                     <div class="login-area">
                         <el-form
@@ -16,7 +16,7 @@
                             <!--用户名-->
                             <div class="login-item">
                                 <div class="icon-box">
-                                    <img src="/static/home/zhuce_yonghu.png"/>
+                                    <img src="/static/home/zhuce_yonghu.png"  alt=''/>
                                 </div>
                                 <div class="loginInput">
                                 <el-form-item prop="username">
@@ -26,12 +26,12 @@
                                         placeholder="请输入用户名"
                                     ></el-input>
                                 </el-form-item>
-                                </div>
+                              </div>
                             </div>
                             <!--密码-->
                             <div class="login-item">
                                 <div class="icon-box">
-                                    <img src="/static/home/zhu_safety.png"/>
+                                    <img src="/static/home/zhu_safety.png"  alt=''/>
                                 </div>
                                 <div class="loginInput">
                                 <el-form-item prop="password">
@@ -41,7 +41,7 @@
                                         placeholder="请输入密码"
                                     ></el-input>
                                 </el-form-item>
-                            </div>
+                                </div>
                             </div>
                             <button class="login-btn" type="submit" @click="loginAfter('loginCheck')">立即登录</button>
                         </el-form>
@@ -55,21 +55,22 @@
                     登录时有任何问题，请联系我们24小时 <span>&nbsp;在线客服&nbsp;</span>
                     协助解决，本网站采用Global Trust最先进的128/256 bit SSL服务器加密机制
                 </div>
-
             </div>
         </div>
     </div>
 </template>
 
 <script>
-    export default {
-        name: 'Login',
+const qs = require('qs');
+export default {
+    name: 'Login',
+    terminal: 1,
     data() {
         return {
             loginCheck: {
                 username: '',
                 password: '',
-
+                terminal: 1
             },
             loginRules: {
                 username: [
@@ -94,42 +95,45 @@
                         pattern: /^(?![0-9]+$)(?![a-zA-Z]+$)[0-9A-Za-z]{6,12}$/,
                     }]
             },
-            methods: {
-                loginAfter(formName) {
-                    this.$refs[formName].validate((valid) => {
-                        if (valid) {
-                            this.requestLogin();
-                        } else {
-                            console.log(this.loginCheck);
-                            console.log('error submit!!');
-                            return false;
-                        }
-                    });
-                },
-                requestLogin() {
-                    this.axios.post('api/unauthor/gateway/account/register', qs.stringify(
-                        Object.assign(this.loginCheck, {
-                            repassword: this.loginCheck.password
-                        })))
-                        .then((response) => {
-                            const data = response.data;
-                            if (data.status === 10000) {
-                                // alert(response.msg);
-                                this.$alert(data.msg);
-                                window.localStorage.setItem('token', data.token);
-                                this.$router.push('/');
-                                this.$emit('logined', true);
-                            } else {
-                                this.$alert(data.msg);
-                            }
-
-                        }).catch(error => {
-                        alert(error);
-                    })
-                }
-            },
         }
-    }
+    },
+    methods: {
+        loginAfter(formName) {
+            this.$refs[formName].validate((valid) => {
+                if (valid) {
+                    this.requestLogin();
+                } else {
+                    console.log(this.loginCheck);
+                    console.log('error submit!!');
+                    return false;
+                }
+            });
+        },
+        requestLogin() {
+            this.axios.post('api/unauthor/gateway/account/login', qs.stringify(
+                Object.assign(this.loginCheck, {
+                    repassword: this.loginCheck.password
+                })))
+                .then((response) => {
+                    const data = response.data;
+                    if (data.status === 10000) {
+                        // this.$alert(data.msg);
+                        // this.$message({
+                        //     type: "提示",
+                        //     message: "登陆成功!"
+                        // });
+                        window.localStorage.setItem('token', data.data.token);
+                        this.$router.replace('/');
+                        this.$emit('logined', true);
+                    } else {
+                        this.$alert(data.msg);
+                    }
+
+                }).catch(error => {
+                alert(error);
+            })
+        }
+    },
 }
 
 </script>
@@ -178,31 +182,17 @@
   .login-area{
     width: 300px;
     height:120px;
-    margin-top: 30px;
+    margin-top: 20px;
   }
   .login-item{
     width: 298px;
     height: 40px;
     display: flex;
     flex-wrap: wrap;
-    margin-top: 20px;
+    margin-top: 25px;
     margin-bottom: 15px;
     /*border: 1px solid #d9d9d9;*/
     border-radius: 4px;;
-  }
-  .loginInput {
-      width: 256px;
-      height: 42px;
-      border: none;
-  }
-
-  .loginInput input {
-      width: 256px;
-      height: 16px;
-      line-height: 16px;
-      font-size: 16px;
-      border: none;
-      padding: 11px 0 11px 15px;
   }
   .icon-box{
     width: 40px;
@@ -217,17 +207,17 @@
     width: 15px;
     height: 15px;
   }
-  .login-item input{
-    width: 222px;
-    height: 32px;
-    padding: 4px 24px 4px 11px;
-    border: none;
+  .loginInput{
+      width: 257px;
+      height: 32px;
+      border: none;
   }
-  .login-item p{
-    font-size: 14px;
-    color: red;
-    margin-top: 8px;
+  .loginInput input{
+      width: 257px;
+      height: 32px;
+      border: none;
   }
+
   .login-btn{
     width: 100%;
     height: 40px;
