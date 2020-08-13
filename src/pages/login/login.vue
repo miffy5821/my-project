@@ -149,7 +149,6 @@ export default {
                 }).catch(error => {
                 // window.localStorage.setItem('token', data.data.token);
                 this.$alert({
-                    type: '提示',
                     message: '登陆成功!'
                 });
                 this.$router.replace('/');

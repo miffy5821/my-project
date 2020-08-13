@@ -141,11 +141,6 @@
             }
         },
         mounted(){
-            console.log('mounted');
-            window.setInterval(()=>{
-                console.log(this.isLogin);
-
-            },1000)
         }
     }
 </script>
