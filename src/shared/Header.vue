@@ -122,18 +122,36 @@
             }
         },
         methods: {
+            navList (){
+                this.axios.get('api/unauthor/webcom/config', {params: {terminal: 0}})
+                    .then((response) => {
+                        console.log(response);
+                        const resbody = response.data;
+                        if (resbody.status === 10000) {
+                            const data = resbody.data;
+                            for (let i = 0; i < data.length; i++) {
+                                if (data[i].type === '1') {
+                                    this.swiperList = data[i].configs;
+                                    console.log(this.swiperList);
+                                }else if (data[i].type === '6') {
+                                    this.newsList = data[i].configs
+                                    console.log(this.newsList );
+                                }
+                            }
+                        } else  {
+                            this.$alert(data.msg);
+                        }
+                    }).catch(error => {
+                    alert(error);
+                })
+            },
             toggleLogin () {
                 this.isShowLogin = !this.isShowLogin;
             },
             loginSuccess () {
                 this.isLogin = true;
             }
-            //     enter () {
-            //        this.class={"nav-login":display=};
-            //     },
-            //    leaver (){
-            //     this.seen=false;
-            //     },
+
         },
         computed: {
             getIsLogin () {
@@ -141,6 +159,7 @@
             }
         },
         mounted(){
+            this.navList();
         }
     }
 </script>

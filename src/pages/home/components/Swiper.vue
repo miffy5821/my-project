@@ -90,26 +90,6 @@ export default {
                 alert(error);
             })
         },
-        // swiperLeft() {
-        //     this.axios.get('api/unauthor/webcom/config', {params: {terminal: 0}})
-        //         .then((response) => {
-        //             console.log(response);
-        //             const resbody = response.data;
-        //             if (resbody.status === 10000) {
-        //                 const data = resbody.data;
-        //                 for (let i = 0; i < data.length; i++) {
-        //                     if (data[i].type === '6') {
-        //                         this.newsList = data[i].configs
-        //                         console.log(this.newsList );
-        //                     }
-        //                 }
-        //             } else  {
-        //                 this.$alert(data.msg);
-        //             }
-        //         }).catch(error => {
-        //         alert(error);
-        //     })
-        // },
         open(index) {
             this.$alert(this.newsList[index].data, '重要通知', {
                 dangerouslyUseHTMLString: true
@@ -118,7 +98,6 @@ export default {
     },
     mounted() {
         this.swiperImg();
-        // this.swiperLeft();
     },
     computed: {
         optionLeft() {

@@ -42,11 +42,13 @@
       </div>
       <!--奖品的展示-->
       <div class="gift">
-        <div class="giftList" v-for="item of giftList" :key="item.id">
-          <img class="giftImg" :src="item.imgUrl" alt="">
+        <div class="giftList" v-for="(item,index) in giftList" :key="item.id">
+          <img class="giftImg" :src="item.icon" alt="">
           <div class="giftText">
-            <span class="tex1">{{item.giftName}}</span><strong class="tex2">{{item.giftIntegral}}</strong>
-            <span class="tex3">{{item.giftValve}}</span><span class="tex4">立即兑换</span>
+              <p>{{item.pluname}}</p>
+            <span class="tex1">礼品价值：</span><strong class="tex2">{{item.price}}</strong>
+              <span class="tex1">积分兑换：</span><strong class="tex2">{{item.cprice}}</strong>
+              <span class="tex4">立即兑换</span>
           </div>
         </div>
       </div>
@@ -60,133 +62,32 @@
     components: {
       vueSeamless
     },
-    name: 'giftContent',
     data () {
       return {
-        listData: [{
-          'title': '【阿玛尼手提包】',
-          'user': '***dv***'
-        }, {
-          'title': '【阿玛尼手提包】',
-          'user': '***dv***'
-        }, {
-          'title': '【阿玛尼手提包】',
-          'user': '***dv***'
-        }, {
-          'title': '【阿玛尼手提包】',
-          'user': '***dv***'
-        }, {
-          'title': '【阿玛尼手提包】',
-          'user': '***dv***'
-        }, {
-          'title': '【阿玛尼手提包】',
-          'user': '***dv***'
-        }, {
-          'title': '【阿玛尼手提包】',
-          'user': '***dv***'
-        }, {
-          'title': '【阿玛尼手提包】',
-          'user': '***dv***'
-        }, {
-          'title': '【阿玛尼手提包】',
-          'user': '***dv***'
-        },{
-          'title': '【阿玛尼手提包】',
-          'user': '***dv***'
-        }, {
-          'title': '【阿玛尼手提包】',
-          'user': '***dv***'
-        }, {
-          'title': '【阿玛尼手提包】',
-          'user': '***dv***'
-        }, {
-          'title': '【阿玛尼手提包】',
-          'user': '***dv***'
-        }, {
-          'title': '【阿玛尼手提包】',
-          'user': '***dv***'
-        }, {
-          'title': '【阿玛尼手提包】',
-          'user': '***dv***'
-        }, {
-          'title': '【阿玛尼手提包】',
-          'user': '***dv***'
-        }, {
-          'title': '【阿玛尼手提包】',
-          'user': '***dv***'
-        }, {
-          'title': '【阿玛尼手提包】',
-          'user': '***dv***'
-        }],
-        giftList: [{
-          id: "0001",
-          imgUrl: "/static/gift/gift1.jpg",
-          giftName: "宝马5系",
-          giftIntegral: "1980000积分",
-          giftValve: "礼品价值：¥660000"
-        },{
-          id: "0002",
-          imgUrl: "/static/gift/gift2.jpg",
-          giftName: "欧米茄手表",
-          giftIntegral: "108000积分",
-          giftValve: "礼品价值：¥36000"
-        },{
-          id: "0003",
-          imgUrl: "/static/gift/gift3.png",
-          giftName: "空投美女",
-          giftIntegral: "54000积分",
-          giftValve: "礼品价值：¥18000"
-        },{
-          id: "0004",
-          imgUrl: "/static/gift/gift4.jpg",
-          giftName: "Apple MacBook Pro",
-          giftIntegral: "36000积分",
-          giftValve: "礼品价值：¥12000"
-        },{
-          id: "0005",
-          imgUrl: "/static/gift/gift5.jpg",
-          giftName: "苹果（Apple）iMac ME",
-          giftIntegral: "28888积分",
-          giftValve: "礼品价值：¥8288"
-        },{
-          id: "0006",
-          imgUrl: "/static/gift/gift6.jpg",
-          giftName: "iPhone 11 Pro MAX",
-          giftIntegral: "32888积分",
-          giftValve: "礼品价值：¥10888"
-        },{
-          id: "0007",
-          imgUrl: "/static/gift/gift7.jpg",
-          giftName: "iPad Pro",
-          giftIntegral: "36888积分",
-          giftValve: "礼品价值：¥10988"
-        },{
-          id: "0008",
-          imgUrl: "/static/gift/gift8.jpg",
-          giftName: "华为 Mate20 RS",
-          giftIntegral: "54000积分",
-          giftValve: "礼品价值：¥18000"
-        },{
-          id: "0009",
-          imgUrl: "/static/gift/gift9.jpg",
-          giftName: "联想 YOGA3 YOGA 13.3英寸",
-          giftIntegral: "26666积分",
-          giftValve: "礼品价值：¥7899"
-        },{
-          id: "0010",
-          imgUrl: "/static/gift/gift10.jpg",
-          giftName: "iPhone 11",
-          giftIntegral: "18888积分",
-          giftValve: "礼品价值：¥5999"
-        },{
-          id: "0011",
-          imgUrl: "/static/gift/gift11.jpg",
-          giftName: "小米电视 255英寸(家庭影院版)",
-          giftIntegral: "13888积分",
-          giftValve: "礼品价值：¥4499"
-        }]
+          listData: [],
+          giftList: []
       }
-    }
+    },
+      methods: {
+          gift(index) {
+              this.axios.get('api/unauthor/mail/goods/ranks', {params: {terminal: 0}})
+                  .then((response) => {
+                      console.log(response);
+                      const resbody = response.data;
+                      if (resbody.status === 10000) {
+                          this.giftList = resbody.data;
+                          console.log(this.giftList);
+                      } else  {
+                          return ;
+                      }
+                  }).catch(error => {
+                  alert(error);
+              })
+          },
+      },
+      mounted() {
+          this.gift();
+      },
   }
 </script>
 <style>
