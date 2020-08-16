@@ -192,10 +192,10 @@
     transition: all .3s;
     background-color: #f2f2f2;
   }
-  .active{
-    color: #c8a675;
-  }
-  /*.text{*/
+  /*.active{*/
+  /*  color: #c8a675;*/
+  /*}*/
+  /*!*.text{*!*/
   /*margin-left: 10px;*/
   /*font-size:14px;*/
   /*height: 45px;*/

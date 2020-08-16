@@ -45,10 +45,9 @@
         <div class="giftList" v-for="(item,index) in giftList" :key="item.id">
           <img class="giftImg" :src="item.icon" alt="">
           <div class="giftText">
-              <p>{{item.pluname}}</p>
-            <span class="tex1">礼品价值：</span><strong class="tex2">{{item.price}}</strong>
-              <span class="tex1">积分兑换：</span><strong class="tex2">{{item.cprice}}</strong>
-              <span class="tex4">立即兑换</span>
+              <p class="gitfName"> {{item.pluname}}</p>
+              <div class="gift-ms"><span class="tex1">礼品价值：</span><strong class="tex2">{{item.price}}</strong></div>
+              <div class="gift-ms"><span class="tex1">积分兑换：</span><strong class="tex2">{{item.cprice}}</strong><span class="tex3">立即兑换</span></div>
           </div>
         </div>
       </div>
@@ -243,6 +242,7 @@
     background: #6c6c6c;
     border-radius: 5px;
     padding: 5px;
+    border: none;
     margin-top: 2px;
     margin-left: 18px;
   }
@@ -252,6 +252,7 @@
     text-align: center;
     font-size: 14px;
     color: #fff;
+    border: none;
     background: #6c6c6c;
     border-radius: 5px;
     padding: 5px;
@@ -266,7 +267,7 @@
   }
   .giftList{
     width:238px;
-    height:312px;
+    height:320px;
     float: left;
     margin: 0 12px 18px 8px;
     border:1px solid darkgrey;
@@ -279,56 +280,61 @@
     height:240px;
   }
   .giftText{
-    width:220px;
-    margin-top: 12px;
+    width:280px;
+    margin-top: 8px;
     height:50px;
+  }
+  .gitfName{
+      font-size: 13px;
+      text-align: left;
+      padding-left: 20px;
+  }
+  .gift-ms{
+      width: 240px;
+      height: 20px;
+      display: flex;
+      margin-top: 5px;
+      flex-wrap: wrap;
+      font-weight: bold;
   }
   .tex1{
     color: #666666;
-    width: 100px;
-    height: 25px;
-    font-size: 14px;
+    width: 60px;
+    height: 20px;
+    font-size: 13px;
     text-align: left;
-    padding-left: 10px;
-    line-height: 25px;
+    padding-left: 20px;
+    line-height: 20px;
     display: inline-block;
     white-space: nowrap;
     overflow: hidden;
   }
   .tex2{
     color: #c8a675;
-    width: 90px;
+    width:40px;
     height: 25px;
     font-size: 14px;
     text-align: right;
     line-height: 25px;
     font-weight: bold;
-    float: right;
+    padding-left: 20px;
     vertical-align: baseline;
      }
   .tex3{
-    color: #c8a675;
     display: inline-block;
-    font-weight: bold;
-    font-size: 14px;
-    padding-left: 10px;
-    height: 23px;
-    line-height: 23px;
-    width: 133px;
-  }
-  .tex4{
-    display: inline-block;
-    width: 77px;
-    height: 23px;
+    width: 50px;
+    height:15px;
     background: #c8a675;
     color: #ffffff;
     text-align: center;
-    line-height: 23px;
+    line-height: 15px;
+      padding: 5px;
     font-size: 12px;
+    margin-left: 25px;
     border-radius: 30px;
     float: right;
   }
-  .tex4:active{
+  .tex3:active{
     transition: all 0.3s;
   }
 </style>

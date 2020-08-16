@@ -64,6 +64,7 @@ export default {
             },
             swiperList: [],
             newsList: [],
+
         }
     },
     methods: {
@@ -173,6 +174,7 @@ export default {
     font-size: 16px;
     float: left;
     height: 48px;
+    width: auto;
     line-height: 48px;
     margin-top: -15px;
     margin-left: 15px;

@@ -3,40 +3,40 @@
         <div class="nav">
             <img class="nav-logo" src="/static/shared/logo.png " alt=''>
             <ul class="nav-bar-box">
-                <router-link to="/">
-                    <li class="current-page">首页</li>
+                <router-link :to="routerConfig[item.menuNameEn]" v-for="(item,index) of topNavList" :key="index">
+                    <li :class="activeClass == index ? 'active':''" @click="getItem(index)">{{item.menuNameCn}}</li>
                 </router-link>
-                <router-link to="/datang">
-                    <li>大唐棋牌</li>
-                </router-link>
-                <router-link to="/chess">
-                    <li>棋牌</li>
-                </router-link>
-                <router-link to="/live">
-                    <li>真人</li>
-                </router-link>
-                <router-link to="/electronic">
-                    <li>电子</li>
-                </router-link>
-                <router-link to="/gaming">
-                    <li>电竞</li>
-                </router-link>
-                <router-link to="/sports">
-                    <li>体育</li>
-                </router-link>
-                <router-link to="/lottery">
-                    <li>彩票</li>
-                </router-link>
-                <router-link to="/fishing">
-                    <li>扑鱼</li>
-                </router-link>
-                <router-link to="/discounts">
-                    <li><a>优惠</a></li>
-                </router-link>
-                <li><a>品牌风采</a></li>
-                <router-link to="/gift">
-                    <li>积分商场</li>
-                </router-link>
+<!--                <router-link to="/datang">-->
+<!--                    <li>大唐棋牌</li>-->
+<!--                </router-link>-->
+<!--                <router-link to="/chess">-->
+<!--                    <li>棋牌</li>-->
+<!--                </router-link>-->
+<!--                <router-link to="/live">-->
+<!--                    <li>真人</li>-->
+<!--                </router-link>-->
+<!--                <router-link to="/electronic">-->
+<!--                    <li>电子</li>-->
+<!--                </router-link>-->
+<!--                <router-link to="/gaming">-->
+<!--                    <li>电竞</li>-->
+<!--                </router-link>-->
+<!--                <router-link to="/sports">-->
+<!--                    <li>体育</li>-->
+<!--                </router-link>-->
+<!--                <router-link to="/lottery">-->
+<!--                    <li>彩票</li>-->
+<!--                </router-link>-->
+<!--                <router-link to="/fishing">-->
+<!--                    <li>扑鱼</li>-->
+<!--                </router-link>-->
+<!--                <router-link to="/discounts">-->
+<!--                    <li><a>优惠</a></li>-->
+<!--                </router-link>-->
+<!--                <li><a>品牌风采</a></li>-->
+<!--                <router-link to="/gift">-->
+<!--                    <li>积分商场</li>-->
+<!--                </router-link>-->
             </ul>
             <div class="navLogin" v-if="!getIsLogin">
                 <div class="left">
@@ -48,7 +48,7 @@
                     登录
                 </div>
                 <div class="right">
-                    <router-link to="/personal">
+                    <router-link to="/personal">l
                         试玩
                     </router-link>
                 </div>
@@ -108,252 +108,295 @@
 </template>
 
 <script>
-    import Login from '../pages/login/login'
+import Login from '../pages/login/login'
 
-    export default {
-        name: 'HomeHeader',
-        components: {
-            Login: Login
-        },
-        props: ['isLogin'],
-        data () {
-            return {
-                isShowLogin: false, // 是否显示登录框,
+export default {
+    name: 'HomeHeader',
+    components: {
+        Login: Login
+    },
+    props: ['isLogin'],
+    data() {
+        return {
+            activeClass: 0, // 0为默认选择第一个，-1为不选择
+            isShowLogin: false, // 是否显示登录框,
+            topNavList: [],
+            routerConfig: {
+                home: '/',
+                DTQP: '/datang',
+                sport: '/sports',
+                LIVE: '/live',
+                electric: '/electronic',
+                fish: '/fishing',
+                esports: '/gaming',
+                lottery: '/lottery',
+                chess: '/chess',
+                discount: '/discounts',
+                mall: '/gift',
+                HOT: '',
+                Playforfun: ""
             }
-        },
-        methods: {
-            navList (){
-                this.axios.get('api/unauthor/webcom/config', {params: {terminal: 0}})
-                    .then((response) => {
-                        console.log(response);
-                        const resbody = response.data;
-                        if (resbody.status === 10000) {
-                            const data = resbody.data;
-                            for (let i = 0; i < data.length; i++) {
-                                if (data[i].type === '1') {
-                                    this.swiperList = data[i].configs;
-                                    console.log(this.swiperList);
-                                }else if (data[i].type === '6') {
-                                    this.newsList = data[i].configs
-                                    console.log(this.newsList );
-                                }
-                            }
-                        } else  {
-                            this.$alert(data.msg);
-                        }
-                    }).catch(error => {
-                    alert(error);
-                })
-            },
-            toggleLogin () {
-                this.isShowLogin = !this.isShowLogin;
-            },
-            loginSuccess () {
-                this.isLogin = true;
-            }
-
-        },
-        computed: {
-            getIsLogin () {
-                return this.isLogin;
-            }
-        },
-        mounted(){
-            this.navList();
         }
+    },
+    methods: {
+           getItem(index) {
+            this.activeClass = index;  // 把当前点击元素的index，赋值给activeClass
+          },
+            navList() {
+            this.axios.get('api/unauthor/webcom/config', {params: {terminal: 0}})
+                .then((response) => {
+                    console.log(response);
+                    const resbody = response.data;
+                    if (resbody.status === 10000) {
+                        const data = resbody.data;
+                        for (let i = 0; i < data.length; i++) {
+                            if (data[i].type === '1') {
+                                this.swiperList = data[i].configs;
+                                console.log(this.swiperList);
+                            } else if (data[i].type === '6') {
+                                this.newsList = data[i].configs
+                                console.log(this.newsList);
+                            }
+                        }
+                    } else {
+                        this.$alert(data.msg);
+                    }
+                }).catch(error => {
+                alert(error);
+            })
+        },
+        mainMenu() {
+            this.axios.get('api//unauthor/sys/menu', {
+                params: {id: 0, terminal: 0}
+            })
+                .then( (response)=> {
+                    console.log(response);
+                    const resData = response.data;
+                    if (resData.status === 10000){
+
+                        this.topNavList = resData.data;
+                        console.log('topNavList',this.topNavList);
+                        // console.log(this.topNavList);
+
+                    }
+                })
+                .catch(function (error) {
+                    console.log(error);
+                });
+        },
+        toggleLogin() {
+            this.isShowLogin = !this.isShowLogin;
+        },
+        loginSuccess() {
+            this.isLogin = true;
+        }
+
+    },
+    computed: {
+        getIsLogin() {
+            return this.isLogin;
+        },
+
+    },
+    mounted() {
+        this.navList();
+        this.mainMenu();
     }
+}
 </script>
 
 <style scoped>
-    .header {
-        width: 100%;
-        height: 78px;
-    }
+.header {
+    width: 100%;
+    height: 78px;
+}
 
-    .nav {
-        width: 1200px;
-        height: 78px;
-        margin: 0 auto;
-        display: flex;
-    }
+.nav {
+    width: auto;
+    height: 78px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+}
 
-    .nav-logo {
-        width: 232px;
-        height: 65px;
-        margin-left: 10px;
-    }
+.nav-logo {
+    width: 232px;
+    height: 65px;
+    margin-left: 10px;
+}
 
-    .nav-bar-box {
-        width: 808px;
-        height: 78px;
-        list-style: none;
-        margin-top: 25px;
-    }
+.nav-bar-box {
+    /*width: 808px;*/
+    height: 78px;
+    list-style: none;
+    margin-left: 20px;
+    margin-top: 25px;
+}
 
-    .nav-bar-box li {
-        display: inline-block;
-        width: auto;
-        height: 35px;
-        color: black;
-        margin: 0 20px 0 0;
-    }
+.nav-bar-box li {
+    display: inline-block;
+    width: auto;
+    height: 35px;
+    color: black;
+    margin: 0 20px 0 0;
+}
 
-    .current-page {
-        color: #c8a675;
-        border-bottom: 2px solid #c8a675;
-    }
+.active {
+    color: #c8a675;
+    border-bottom: 2px solid #c8a675;
+}
 
-    .navLogin {
-        width: 148px;
-        height: 25px;
-        margin-top: 20px;
-        cursor: pointer;
-        /*display: none;*/
-        display: flex;
-        flex-wrap: wrap;
-        background-color: #c8a675;
-        border-radius: 30px;
-    }
+.navLogin {
+    width: 148px;
+    height: 25px;
+    margin-top: 20px;
+    cursor: pointer;
+    /*display: none;*/
+    display: flex;
+    flex-wrap: wrap;
+    background-color: #c8a675;
+    border-radius: 30px;
+}
 
-    .navLogin a {
-        text-decoration: none;
-    }
+.navLogin a {
+    text-decoration: none;
+}
 
-    .left {
-        width: 30px;
-        height: 25px;
-        font-size: 14px;
-        padding-left: 10px;
-        line-height: 25px;
-        text-align: left;
-        color: white;
-    }
+.left {
+    width: 30px;
+    height: 25px;
+    font-size: 14px;
+    padding-left: 10px;
+    line-height: 25px;
+    text-align: left;
+    color: white;
+}
 
-    .left a {
-        color: white;
-        text-decoration: none;
-    }
+.left a {
+    color: white;
+    text-decoration: none;
+}
 
-    .right {
-        width: 30px;
-        height: 25px;
-        font-size: 14px;
-        margin-left: 12px;
-        line-height: 25px;
-        color: white;
-        text-align: right;
-    }
+.right {
+    width: 30px;
+    height: 25px;
+    font-size: 14px;
+    margin-left: 12px;
+    line-height: 25px;
+    color: white;
+    text-align: right;
+}
 
-    .right a {
-        color: white;
-        text-decoration: none;
-    }
+.right a {
+    color: white;
+    text-decoration: none;
+}
 
-    .center {
-        width: 40px;
-        height: 19px;
-        line-height: 19px;
-        font-size: 14px;
-        padding: 2px 2px 2px 5px;
-        margin-top: 1px;
-        margin-left: 10px;
-        border-radius: 30px;
-        text-align: center;
-        background: white;
-        color: #c8a675;
-    }
+.center {
+    width: 40px;
+    height: 19px;
+    line-height: 19px;
+    font-size: 14px;
+    padding: 2px 2px 2px 5px;
+    margin-top: 1px;
+    margin-left: 10px;
+    border-radius: 30px;
+    text-align: center;
+    background: white;
+    color: #c8a675;
+}
 
-    .login-after {
-        width: 250px;
-        height: 30px;
-        position: absolute;
-        left: 1400px;
-        top: 30px;
-        display: flex;
-        flex-wrap: wrap;
-    }
+.login-after {
+    width: 250px;
+    height: 30px;
+    position: absolute;
+    left: 80%;
+    top: 30px;
+    display: flex;
+    flex-wrap: wrap;
+}
 
-    .login-after-btn {
-        width: 100px;
-        height: 18px;
-        cursor: pointer;
-        font-size: 13px;
-        color: white;
-        line-height: 18px;
-        text-align: left;
-        padding: 5px 1px 5px 10px;
-        background-color: #c8a675;
-        border-radius: 30px;
-        display: flex;
-        flex-wrap: wrap;
+.login-after-btn {
+    width: 100px;
+    height: 18px;
+    cursor: pointer;
+    font-size: 13px;
+    color: white;
+    line-height: 18px;
+    text-align: left;
+    padding: 5px 1px 5px 10px;
+    background-color: #c8a675;
+    border-radius: 30px;
+    display: flex;
+    flex-wrap: wrap;
 
-    }
+}
 
-    .login-after-deposit {
-        width: 50px;
-        height: 24px;
-        font-size: 13px;
-        line-height: 10px;
-        text-align: center;
-        border: 1px solid white;
-        border-radius: 30px;
-        padding: 5px;
-        margin-left: 11px;
-        margin-top: -3px;
-        color: #c8a675 !important;
-        text-decoration: none;
-        background-color: white;
-    }
+.login-after-deposit {
+    width: 50px;
+    height: 24px;
+    font-size: 13px;
+    line-height: 10px;
+    text-align: center;
+    border: 1px solid white;
+    border-radius: 30px;
+    padding: 5px;
+    margin-left: 11px;
+    margin-top: -3px;
+    color: #c8a675 !important;
+    text-decoration: none;
+    background-color: white;
+}
 
-    .img-login-after {
-        width: 30px;
-        height: 30px;
-        margin-left: 20px;
-        background-color: #c8a675;
-        border-radius: 50%;
-    }
+.img-login-after {
+    width: 30px;
+    height: 30px;
+    margin-left: 20px;
+    background-color: #c8a675;
+    border-radius: 50%;
+}
 
-    .personal-img {
-        width: 40px;
-        height: 40px;
-    }
+.personal-img {
+    width: 40px;
+    height: 40px;
+}
 
-    .nav-login11 {
-        width: 120px;
-        height: 230px;
-        color: black;
-        margin-left: 80px;
-        margin-top: 10px;
-        display: none;
-        background: white;
-        border: 1px solid darkgrey;
-        border-radius: 5px;
-        z-index: 999;
-    }
+.nav-login11 {
+    width: 120px;
+    height: 230px;
+    color: black;
+    margin-left: 80px;
+    margin-top: 10px;
+    display: none;
+    background: white;
+    border: 1px solid darkgrey;
+    border-radius: 5px;
+    z-index: 999;
+}
 
-    .nav-login11 ul {
-        width: 120px;
-        height: 200px;
-        margin-top: 10px;
-    }
+.nav-login11 ul {
+    width: 120px;
+    height: 200px;
+    margin-top: 10px;
+}
 
-    .nav-login11 a {
-        color: #1c171d;
-        text-decoration: none;
-    }
+.nav-login11 a {
+    color: #1c171d;
+    text-decoration: none;
+}
 
-    .nav-login11 ul li {
-        width: 120px;
-        height: 35px;
-        line-height: 35px;
-        font-size: 14px;
-    }
+.nav-login11 ul li {
+    width: 120px;
+    height: 35px;
+    line-height: 35px;
+    font-size: 14px;
+}
 
-    .border-line {
-        border-top: 1px solid lightgrey;
-    }
+.border-line {
+    border-top: 1px solid lightgrey;
+}
 
-    .img-login-after:hover ~ .nav-login11 {
-        display: block;
-    }
+.img-login-after:hover ~ .nav-login11 {
+    display: block;
+}
 </style>
