@@ -1,42 +1,42 @@
 <template>
-    <div class="header">
+    <div class="header"  :isLogin="isLogin">
         <div class="nav">
             <img class="nav-logo" src="/static/shared/logo.png " alt=''>
             <ul class="nav-bar-box">
                 <router-link :to="routerConfig[item.menuNameEn]" v-for="(item,index) of topNavList" :key="index">
-                    <li :class="activeClass == index ? 'active':''" @click="getItem(index)">{{item.menuNameCn}}</li>
+                    <li :class="activeClass == index ? 'active':''" @click="getItem(index)">{{ item.menuNameCn }}</li>
                 </router-link>
-<!--                <router-link to="/datang">-->
-<!--                    <li>大唐棋牌</li>-->
-<!--                </router-link>-->
-<!--                <router-link to="/chess">-->
-<!--                    <li>棋牌</li>-->
-<!--                </router-link>-->
-<!--                <router-link to="/live">-->
-<!--                    <li>真人</li>-->
-<!--                </router-link>-->
-<!--                <router-link to="/electronic">-->
-<!--                    <li>电子</li>-->
-<!--                </router-link>-->
-<!--                <router-link to="/gaming">-->
-<!--                    <li>电竞</li>-->
-<!--                </router-link>-->
-<!--                <router-link to="/sports">-->
-<!--                    <li>体育</li>-->
-<!--                </router-link>-->
-<!--                <router-link to="/lottery">-->
-<!--                    <li>彩票</li>-->
-<!--                </router-link>-->
-<!--                <router-link to="/fishing">-->
-<!--                    <li>扑鱼</li>-->
-<!--                </router-link>-->
-<!--                <router-link to="/discounts">-->
-<!--                    <li><a>优惠</a></li>-->
-<!--                </router-link>-->
-<!--                <li><a>品牌风采</a></li>-->
-<!--                <router-link to="/gift">-->
-<!--                    <li>积分商场</li>-->
-<!--                </router-link>-->
+                <!--                <router-link to="/datang">-->
+                <!--                    <li>大唐棋牌</li>-->
+                <!--                </router-link>-->
+                <!--                <router-link to="/chess">-->
+                <!--                    <li>棋牌</li>-->
+                <!--                </router-link>-->
+                <!--                <router-link to="/live">-->
+                <!--                    <li>真人</li>-->
+                <!--                </router-link>-->
+                <!--                <router-link to="/electronic">-->
+                <!--                    <li>电子</li>-->
+                <!--                </router-link>-->
+                <!--                <router-link to="/gaming">-->
+                <!--                    <li>电竞</li>-->
+                <!--                </router-link>-->
+                <!--                <router-link to="/sports">-->
+                <!--                    <li>体育</li>-->
+                <!--                </router-link>-->
+                <!--                <router-link to="/lottery">-->
+                <!--                    <li>彩票</li>-->
+                <!--                </router-link>-->
+                <!--                <router-link to="/fishing">-->
+                <!--                    <li>扑鱼</li>-->
+                <!--                </router-link>-->
+                <!--                <router-link to="/discounts">-->
+                <!--                    <li><a>优惠</a></li>-->
+                <!--                </router-link>-->
+                <!--                <li><a>品牌风采</a></li>-->
+                <!--                <router-link to="/gift">-->
+                <!--                    <li>积分商场</li>-->
+                <!--                </router-link>-->
             </ul>
             <div class="navLogin" v-if="!getIsLogin">
                 <div class="left">
@@ -51,58 +51,58 @@
                     <router-link to="/personal">l
                         试玩
                     </router-link>
-                </div>
-            </div>
 
-            <!--登陆后的效果-->
-            <div class="login-after" v-if="getIsLogin">
-                <!--                <div class="login-after" >-->
-                <div class="login-after-btn">
-                    ￥0.00
-                    <router-link to="/personal/deposit">
-                        <button class="login-after-deposit">
-                            存款
-                        </button>
-                    </router-link>
+                    <!--登陆后的效果-->
+                    <div class="login-after" v-if="getIsLogin">
+                        <!--                <div class="login-after" >-->
+                        <div class="login-after-btn">
+                            ￥0.00
+                            <router-link to="/personal/deposit">
+                                <button class="login-after-deposit">
+                                    存款
+                                </button>
+                            </router-link>
+                        </div>
+                        <div class="personal-img">
+                            <img src="/static/home/个人.png" class="img-login-after" alt=''>
+                        </div>
+                        <div class="nav-login11">
+                            <ul>
+                                <router-link to="/personal/deposit">
+                                    <li>
+                                        存款专区
+                                    </li>
+                                </router-link>
+                                <router-link to="/personal/withdrawal">
+                                    <li>
+                                        取款专区
+                                    </li>
+                                </router-link>
+                                <router-link to="/personal/capital">
+                                    <li>
+                                        资金记录
+                                    </li>
+                                </router-link>
+                                <router-link to="/personal/conversion">
+                                    <li>
+                                        财务转账
+                                    </li>
+                                </router-link>
+                                <router-link to="/personal/information">
+                                    <li>
+                                        消息<span>(2)</span>
+                                    </li>
+                                </router-link>
+                                <li class="border-line">
+                                    退出
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
                 </div>
-                <div class="personal-img">
-                    <img src="/static/home/个人.png" class="img-login-after" alt=''>
-                </div>
-                <div class="nav-login11">
-                    <ul>
-                        <router-link to="/personal/deposit">
-                            <li>
-                                存款专区
-                            </li>
-                        </router-link>
-                        <router-link to="/personal/withdrawal">
-                            <li>
-                                取款专区
-                            </li>
-                        </router-link>
-                        <router-link to="/personal/capital">
-                            <li>
-                                资金记录
-                            </li>
-                        </router-link>
-                        <router-link to="/personal/conversion">
-                            <li>
-                                财务转账
-                            </li>
-                        </router-link>
-                        <router-link to="/personal/information">
-                            <li>
-                                消息<span>(2)</span>
-                            </li>
-                        </router-link>
-                        <li class="border-line">
-                            退出
-                        </li>
-                    </ul>
-                </div>
+                <Login @onLogin="toggleLogin()" @onLoginSuccess="loginSuccess" v-if="isShowLogin"></Login>
             </div>
         </div>
-        <Login @onLogin="toggleLogin()" @onLoginSuccess="loginSuccess" v-if="isShowLogin"></Login>
     </div>
 
 </template>
@@ -139,6 +139,9 @@ export default {
         }
     },
     methods: {
+          nLogined (para) {
+              this.isLogin = para;
+          },
            getItem(index) {
             this.activeClass = index;  // 把当前点击元素的index，赋值给activeClass
           },

@@ -107,21 +107,23 @@ export default {
   },
   mounted() {
     this.axios
-      .get("https://version.feivor.com/txh_game_img.json")
+      .get("api//unauthor/sys/menu", {
+          params: {id: 0, terminal: 0}
+      })
       .then(resp => {
         console.log(resp);
-        this.gameList = resp.data.electronic; // 储存所有电子游戏数据
-        const games = Object.keys(resp.data.electronic); // 获取一级目录游戏
-        const data = games.map(item => {
-          // 改变数组的么一个元素，拼接name
-          return {
-            key: item,
-            name: item + "电子"
-          };
-        });
-
-        this.navList = data; // 赋值一级游戏
-        console.log("games", data);
+        this.gameList = resp.data.subMenus; // 储存所有电子游戏数据
+        const games = Object.keys(resp.data.subMenus); // 获取一级目录游戏
+        // const data = games.map(item => {
+        //   // 改变数组的么一个元素，拼接name
+        //   return {
+        //     key: item,
+        //     name: item + "电子"
+        //   };
+        // });
+        //
+        // this.navList = data; // 赋值一级游戏
+        // console.log("games", data);
 
         this.select(games[0]);
         // this.currenPageData = this.currentData.slice(0,this.pageSize);

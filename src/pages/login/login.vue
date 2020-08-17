@@ -3,7 +3,7 @@
         <div class="shadow">
             <div class="loginContent">
                 <div class="login-interface">
-                    <img class="dele-icon" @click="$emit('onLogin')" src="/static/home/dele.png " alt=''>
+                    <img class="dele-icon" @click="$emit('onLogin')" src="/static/home/dele.png " alt=''/>
                     <img src="/static/home/logo.png"  alt=''/>
                     <el-divider>账号登录密码</el-divider>
                     <div class="login-area">
@@ -45,12 +45,12 @@
                             </div>
                             <button class="login-btn" type="submit" @click="loginAfter('loginCheck')">立即登录</button>
                         </el-form>
+                        </div>
                         <div class="login-reminder">
                             <p>如您没有账户 <span>点击注册>></span></p>
                             <p class="text-left">忘记密码</p>
                         </div>
                     </div>
-                </div>
                 <div class="login-advisory">
                     登录时有任何问题，请联系我们24小时 <span>&nbsp;在线客服&nbsp;</span>
                     协助解决，本网站采用Global Trust最先进的128/256 bit SSL服务器加密机制
@@ -260,7 +260,7 @@ export default {
     height: 20px;
     display: flex;
     flex-wrap: wrap;
-    margin-top: 20px;
+    margin-top: 70px;
   }
   .login-reminder p{
     font-size: 12px;
