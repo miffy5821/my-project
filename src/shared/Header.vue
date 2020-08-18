@@ -6,38 +6,6 @@
                 <router-link :to="routerConfig[item.menuNameEn]" v-for="(item,index) of topNavList" :key="index">
                     <li :class="activeClass == index ? 'active':''" @click="getItem(index)">{{ item.menuNameCn }}</li>
                 </router-link>
-                <!--                <router-link to="/datang">-->
-                <!--                    <li>大唐棋牌</li>-->
-                <!--                </router-link>-->
-                <!--                <router-link to="/chess">-->
-                <!--                    <li>棋牌</li>-->
-                <!--                </router-link>-->
-                <!--                </router-link>-->
-                <!--                <router-link to="/live">-->
-                <!--                    <li>真人</li>-->
-                <!--                </router-link>-->
-                <!--                <router-link to="/electronic">-->
-                <!--                    <li>电子</li>-->
-                <!--                </router-link>-->
-                <!--                <router-link to="/gaming">-->
-                <!--                    <li>电竞</li>-->
-                <!--                </router-link>-->
-                <!--                <router-link to="/sports">-->
-                <!--                    <li>体育</li>-->
-                <!--                </router-link>-->
-                <!--                <router-link to="/lottery">-->
-                <!--                    <li>彩票</li>-->
-                <!--                </router-link>-->
-                <!--                <router-link to="/fishing">-->
-                <!--                    <li>扑鱼</li>-->
-                <!--                </router-link>-->
-                <!--                <router-link to="/discounts">-->
-                <!--                    <li><a>优惠</a></li>-->
-                <!--                </router-link>-->
-                <!--                <li><a>品牌风采</a></li>-->
-                <!--                <router-link to="/gift">-->
-                <!--                    <li>积分商场</li>-->
-                <!--                </router-link>-->
             </ul>
             <div class="navLogin" v-if="!isLogin">
                 <div class="left">
@@ -114,6 +82,7 @@ import Login from '../pages/login/login'
 
 export default {
     name: 'HomeHeader',
+
     components: {
         Login: Login
     },
@@ -140,7 +109,14 @@ export default {
             isLogin: false, // 是否已登录
         }
     },
+    // 监听,当路由发生变化的时候执行
+     watch:{
+         this.$route(to,from){
+            this.activeClass = index;
+        }
+    },
     methods: {
+
         getItem (index) {
             this.activeClass = index;  // 把当前点击元素的index，赋值给activeClass
         },
@@ -196,12 +172,6 @@ export default {
         }
 
     },
-    // computed: {
-    //     getIsLogin () {
-    //         return this.isLogin;
-    //     },
-    //
-    // },
     mounted () {
         this.navList();
         this.mainMenu();
