@@ -3,8 +3,8 @@
         <div class="shadow">
             <div class="loginContent">
                 <div class="login-interface">
-                    <img class="dele-icon" @click="$emit('onLogin')" src="/static/home/dele.png " alt=''/>
-                    <img src="/static/home/logo.png"  alt=''/>
+                    <img class="dele-icon" @click="$emit('onToggleLogin')" src="/static/home/dele.png " alt=''/>
+                    <img src="/static/home/logo.png" alt=''/>
                     <el-divider>账号登录密码</el-divider>
                     <div class="login-area">
                         <el-form
@@ -12,45 +12,46 @@
                             :rules="loginRules"
                             status-icon
                             ref="loginCheck"
+                            @submit.native.prevent
                         >
                             <!--用户名-->
                             <div class="login-item">
                                 <div class="icon-box">
-                                    <img src="/static/home/zhuce_yonghu.png"  alt=''/>
+                                    <img src="/static/home/zhuce_yonghu.png" alt=''/>
                                 </div>
                                 <div class="loginInput">
-                                <el-form-item prop="username">
-                                    <el-input
-                                        type="text"
-                                        v-model="loginCheck.username"
-                                        placeholder="请输入用户名"
-                                    ></el-input>
-                                </el-form-item>
-                              </div>
+                                    <el-form-item prop="username">
+                                        <el-input
+                                            type="text"
+                                            v-model="loginCheck.username"
+                                            placeholder="请输入用户名"
+                                        ></el-input>
+                                    </el-form-item>
+                                </div>
                             </div>
                             <!--密码-->
                             <div class="login-item">
                                 <div class="icon-box">
-                                    <img src="/static/home/zhu_safety.png"  alt=''/>
+                                    <img src="/static/home/zhu_safety.png" alt=''/>
                                 </div>
                                 <div class="loginInput">
-                                <el-form-item prop="password">
-                                    <el-input
-                                        type="password"
-                                        v-model="loginCheck.password"
-                                        placeholder="请输入密码"
-                                    ></el-input>
-                                </el-form-item>
+                                    <el-form-item prop="password">
+                                        <el-input
+                                            type="password"
+                                            v-model="loginCheck.password"
+                                            placeholder="请输入密码"
+                                        ></el-input>
+                                    </el-form-item>
                                 </div>
                             </div>
                             <button class="login-btn" type="submit" @click="loginAfter('loginCheck')">立即登录</button>
                         </el-form>
-                        </div>
-                        <div class="login-reminder">
-                            <p>如您没有账户 <span>点击注册>></span></p>
-                            <p class="text-left">忘记密码</p>
-                        </div>
                     </div>
+                    <div class="login-reminder">
+                        <p>如您没有账户 <span>点击注册>></span></p>
+                        <p class="text-left">忘记密码</p>
+                    </div>
+                </div>
                 <div class="login-advisory">
                     登录时有任何问题，请联系我们24小时 <span>&nbsp;在线客服&nbsp;</span>
                     协助解决，本网站采用Global Trust最先进的128/256 bit SSL服务器加密机制
@@ -65,7 +66,7 @@ const qs = require('qs');
 export default {
     name: 'Login',
     terminal: 1,
-    data() {
+    data () {
         return {
             loginCheck: {
                 username: '',
@@ -98,7 +99,7 @@ export default {
         }
     },
     methods: {
-        loginAfter(formName) {
+        loginAfter (formName) {
             this.$refs[formName].validate((valid) => {
                 if (valid) {
                     this.requestLogin();
@@ -109,106 +110,87 @@ export default {
                 }
             });
         },
-        requestLogin() {
-            this.$alert({
-                type: '提示',
-                message: '登陆成功!'
-            });
-            this.$router.push('/');
-            this.$emit('logined', true);
-            this.$emit('onLogin');
-            this.$emit('onLoginSuccess');
-
-            return;
+        requestLogin () {
 
             this.axios.post('api/unauthor/gateway/account/login', qs.stringify(
-                Object.assign(this.loginCheck, {
-                    repassword: this.loginCheck.password
-                })))
+                Object.assign(this.loginCheck)))
                 .then((response) => {
                     const data = response.data;
+
                     if (data.status === 10000) {
-                        // this.$alert(data.msg);
-                        // this.$message({
-                        //     type: "提示",
-                        //     message: "登陆成功!"
-                        // });
                         window.localStorage.setItem('token', data.data.token);
-                        this.$alert({
-                            type: '提示',
-                            message: '登陆成功!'
-                        });
+                        this.$alert(data.msg);
                         this.$router.push('/');
-                        this.$emit('logined', true);
-                        this.$emit('onLogin');
+                        this.$emit('onToggleLogin');  // 显示或者关闭登陆框
                         this.$emit('onLoginSuccess');
                     } else {
                         this.$alert(data.msg);
                     }
 
                 }).catch(error => {
-                // window.localStorage.setItem('token', data.data.token);
                 this.$alert({
-                    message: '登陆成功!'
+                    message: error
                 });
-                this.$router.replace('/');
-                this.$emit('logined', true);
-
-                //alert(error);
             })
         }
     },
 }
 
 </script>
-<style  scoped>
-  /* 最外层设置position定位*/
-  .login {
+<style scoped>
+/* 最外层设置position定位*/
+.login {
     width: 100%;
     height: 100%;
     font-size: 16px;
-  }
-  /*// 遮罩 设置背景层，z-index值要足够大确保能覆盖，高度 宽度设置满 做到全屏遮罩*/
-  .shadow {
+}
+
+/*// 遮罩 设置背景层，z-index值要足够大确保能覆盖，高度 宽度设置满 做到全屏遮罩*/
+.shadow {
     width: 100%;
     height: 100%;
-    background: rgba(0,0,0, 0.6);
+    background: rgba(0, 0, 0, 0.6);
     position: fixed;
     z-index: 200;
     top: 0;
     left: 0;
     display: flex;
     justify-content: center; /*使子项目水平居中*/
-  }
-  /*// 内容层 z-index要比遮罩大，否则会被遮盖，*/
-  .loginContent{
+}
+
+/*// 内容层 z-index要比遮罩大，否则会被遮盖，*/
+.loginContent {
     width: 400px;
     height: 420px;
-    background:white;
+    background: white;
     margin-top: 200px;
     border-radius: 4px;
     z-index: 300;
-  }
-  .login-interface{
+}
+
+.login-interface {
     width: 300px;
     height: 300px;
     padding: 20px 50px 0 50px;
-    background:white;
-  }
-  .dele-icon{
+    background: white;
+}
+
+.dele-icon {
     width: 20px;
     height: 20px;
     position: relative;
-    top:-25px;
+    top: -25px;
     left: 290px;
 
-  }
-  .login-area{
+}
+
+.login-area {
     width: 300px;
-    height:120px;
+    height: 120px;
     margin-top: 20px;
-  }
-  .login-item{
+}
+
+.login-item {
     width: 298px;
     height: 40px;
     display: flex;
@@ -217,32 +199,36 @@ export default {
     margin-bottom: 15px;
     /*border: 1px solid #d9d9d9;*/
     border-radius: 4px;;
-  }
-  .icon-box{
+}
+
+.icon-box {
     width: 40px;
     height: 40px;
     background-color: #c2c2c2;
-    border-right:1px solid #d9d9d9;
-    display:flex;
+    border-right: 1px solid #d9d9d9;
+    display: flex;
     justify-content: center;
     align-items: center;
-  }
-  .icon-box img{
+}
+
+.icon-box img {
     width: 15px;
     height: 15px;
-  }
-  .loginInput{
-      width: 257px;
-      height: 32px;
-      border: none;
-  }
-  .loginInput input{
-      width: 257px;
-      height: 32px;
-      border: none;
-  }
+}
 
-  .login-btn{
+.loginInput {
+    width: 257px;
+    height: 32px;
+    border: none;
+}
+
+.loginInput input {
+    width: 257px;
+    height: 32px;
+    border: none;
+}
+
+.login-btn {
     width: 100%;
     height: 40px;
     line-height: 20px;
@@ -251,32 +237,37 @@ export default {
     font-size: 14px;
     margin-top: 10px;
     background-color: #c2a77d;
-    border:none;
+    border: none;
     border-radius: 5px;
     text-align: center;
-  }
-  .login-reminder{
+}
+
+.login-reminder {
     width: 300px;
     height: 20px;
     display: flex;
     flex-wrap: wrap;
     margin-top: 70px;
-  }
-  .login-reminder p{
+}
+
+.login-reminder p {
     font-size: 12px;
-  }
-  .login-reminder span{
+}
+
+.login-reminder span {
     font-size: 12px;
     color: #439aea;
-  }
-  .text-left{
+}
+
+.text-left {
     width: 160px;
     font-size: 12px;
     /*color: #439aea;*/
-    color:#439aea ;
+    color: #439aea;
     text-align: right;
-  }
-  .login-advisory{
+}
+
+.login-advisory {
     width: 340px;
     height: 36px;
     line-height: 1.5;
@@ -287,10 +278,11 @@ export default {
     color: #837c7c;
     text-align: left;
     border-radius: 0 0 4px 4px;
-  }
-  .login-advisory span{
+}
+
+.login-advisory span {
     color: #439aea;
     margin-top: 5px;
 
-  }
+}
 </style>

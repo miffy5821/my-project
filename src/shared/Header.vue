@@ -1,5 +1,5 @@
 <template>
-    <div class="header"  :isLogin="isLogin">
+    <div class="header">
         <div class="nav">
             <img class="nav-logo" src="/static/shared/logo.png " alt=''>
             <ul class="nav-bar-box">
@@ -11,6 +11,7 @@
                 <!--                </router-link>-->
                 <!--                <router-link to="/chess">-->
                 <!--                    <li>棋牌</li>-->
+                <!--                </router-link>-->
                 <!--                </router-link>-->
                 <!--                <router-link to="/live">-->
                 <!--                    <li>真人</li>-->
@@ -38,7 +39,7 @@
                 <!--                    <li>积分商场</li>-->
                 <!--                </router-link>-->
             </ul>
-            <div class="navLogin" v-if="!getIsLogin">
+            <div class="navLogin" v-if="!isLogin">
                 <div class="left">
                     <router-link to="/register">
                         注册
@@ -48,61 +49,62 @@
                     登录
                 </div>
                 <div class="right">
-                    <router-link to="/personal">l
+                    <router-link to="/personal">
                         试玩
                     </router-link>
-
-                    <!--登陆后的效果-->
-                    <div class="login-after" v-if="getIsLogin">
-                        <!--                <div class="login-after" >-->
-                        <div class="login-after-btn">
-                            ￥0.00
-                            <router-link to="/personal/deposit">
-                                <button class="login-after-deposit">
-                                    存款
-                                </button>
-                            </router-link>
-                        </div>
-                        <div class="personal-img">
-                            <img src="/static/home/个人.png" class="img-login-after" alt=''>
-                        </div>
-                        <div class="nav-login11">
-                            <ul>
-                                <router-link to="/personal/deposit">
-                                    <li>
-                                        存款专区
-                                    </li>
-                                </router-link>
-                                <router-link to="/personal/withdrawal">
-                                    <li>
-                                        取款专区
-                                    </li>
-                                </router-link>
-                                <router-link to="/personal/capital">
-                                    <li>
-                                        资金记录
-                                    </li>
-                                </router-link>
-                                <router-link to="/personal/conversion">
-                                    <li>
-                                        财务转账
-                                    </li>
-                                </router-link>
-                                <router-link to="/personal/information">
-                                    <li>
-                                        消息<span>(2)</span>
-                                    </li>
-                                </router-link>
-                                <li class="border-line">
-                                    退出
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
                 </div>
-                <Login @onLogin="toggleLogin()" @onLoginSuccess="loginSuccess" v-if="isShowLogin"></Login>
             </div>
+            <!--登陆后的效果-->
+            <div class="login-after" v-if="isLogin">
+                <!--                <div class="login-after" >-->
+                <div class="login-after-btn">
+                    ￥0.00
+                    <router-link to="/personal/deposit">
+                        <button class="login-after-deposit">
+                            存款
+                        </button>
+                    </router-link>
+                </div>
+                <div class="personal-img">
+                    <img src="/static/home/个人.png" class="img-login-after" alt=''>
+                </div>
+                <div class="nav-login11">
+                    <ul>
+                        <router-link to="/personal/deposit">
+                            <li>
+                                存款专区
+                            </li>
+                        </router-link>
+                        <router-link to="/personal/withdrawal">
+                            <li>
+                                取款专区
+                            </li>
+                        </router-link>
+                        <router-link to="/personal/capital">
+                            <li>
+                                资金记录
+                            </li>
+                        </router-link>
+                        <router-link to="/personal/conversion">
+                            <li>
+                                财务转账
+                            </li>
+                        </router-link>
+                        <router-link to="/personal/information">
+                            <li>
+                                消息<span>(2)</span>
+                            </li>
+                        </router-link>
+                        <li class="border-line">
+                            退出
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+
         </div>
+        <Login @onToggleLogin="toggleLogin()" @onLoginSuccess="loginSuccess" v-if="isShowLogin"></Login>
     </div>
 
 </template>
@@ -115,8 +117,7 @@ export default {
     components: {
         Login: Login
     },
-    props: ['isLogin'],
-    data() {
+    data () {
         return {
             activeClass: 0, // 0为默认选择第一个，-1为不选择
             isShowLogin: false, // 是否显示登录框,
@@ -134,18 +135,16 @@ export default {
                 discount: '/discounts',
                 mall: '/gift',
                 HOT: '',
-                Playforfun: ""
-            }
+                Playforfun: ''
+            },
+            isLogin: false, // 是否已登录
         }
     },
     methods: {
-          nLogined (para) {
-              this.isLogin = para;
-          },
-           getItem(index) {
+        getItem (index) {
             this.activeClass = index;  // 把当前点击元素的index，赋值给activeClass
-          },
-            navList() {
+        },
+        navList () {
             this.axios.get('api/unauthor/webcom/config', {params: {terminal: 0}})
                 .then((response) => {
                     console.log(response);
@@ -168,17 +167,17 @@ export default {
                 alert(error);
             })
         },
-        mainMenu() {
+        mainMenu () {
             this.axios.get('api//unauthor/sys/menu', {
                 params: {id: 0, terminal: 0}
             })
-                .then( (response)=> {
+                .then((response) => {
                     console.log(response);
                     const resData = response.data;
-                    if (resData.status === 10000){
+                    if (resData.status === 10000) {
 
                         this.topNavList = resData.data;
-                        console.log('topNavList',this.topNavList);
+                        console.log('topNavList', this.topNavList);
                         // console.log(this.topNavList);
 
                     }
@@ -187,21 +186,23 @@ export default {
                     console.log(error);
                 });
         },
-        toggleLogin() {
+        toggleLogin () {
             this.isShowLogin = !this.isShowLogin;
         },
-        loginSuccess() {
+        loginSuccess () {
+
             this.isLogin = true;
+
         }
 
     },
-    computed: {
-        getIsLogin() {
-            return this.isLogin;
-        },
-
-    },
-    mounted() {
+    // computed: {
+    //     getIsLogin () {
+    //         return this.isLogin;
+    //     },
+    //
+    // },
+    mounted () {
         this.navList();
         this.mainMenu();
     }
