@@ -38,39 +38,40 @@
                      v-on:mouseleave="mouseleave"
                      >
                     <img src="/static/home/个人.png" class="img-login-after" alt=''>
+                    <div class="nav-login11" v-if="isShow"   v-on:mouseover="mouseover" >
+                        <ul>
+                            <router-link to="/personal/deposit">
+                                <li>
+                                    存款专区
+                                </li>
+                            </router-link>
+                            <router-link to="/personal/withdrawal">
+                                <li>
+                                    取款专区
+                                </li>
+                            </router-link>
+                            <router-link to="/personal/capital">
+                                <li>
+                                    资金记录
+                                </li>
+                            </router-link>
+                            <router-link to="/personal/conversion">
+                                <li>
+                                    财务转账
+                                </li>
+                            </router-link>
+                            <router-link to="/personal/information">
+                                <li>
+                                    消息<span>(2)</span>
+                                </li>
+                            </router-link>
+                            <li class="border-line" @click="logout">
+                                退出
+                            </li>
+                        </ul>
+                    </div>
                 </div>
-                <div class="nav-login11" v-if="isShow"   v-on:mouseover="mouseover" >
-                    <ul>
-                        <router-link to="/personal/deposit">
-                            <li>
-                                存款专区
-                            </li>
-                        </router-link>
-                        <router-link to="/personal/withdrawal">
-                            <li>
-                                取款专区
-                            </li>
-                        </router-link>
-                        <router-link to="/personal/capital">
-                            <li>
-                                资金记录
-                            </li>
-                        </router-link>
-                        <router-link to="/personal/conversion">
-                            <li>
-                                财务转账
-                            </li>
-                        </router-link>
-                        <router-link to="/personal/information">
-                            <li>
-                                消息<span>(2)</span>
-                            </li>
-                        </router-link>
-                        <li class="border-line" @click="logout">
-                            退出
-                        </li>
-                    </ul>
-                </div>
+
             </div>
 
 
@@ -179,7 +180,7 @@ export default {
             this.isLogin = true;
         },
         logout(){
-            this.axios.get('api/gateway/logout')
+            this.axios.post('api/gateway/logout')
                 .then((response) => {
                     console.log(response);
                     const resbody = response.data;
@@ -354,19 +355,20 @@ export default {
 }
 
 .personal-img {
-    width: 40px;
-    height: 40px;
+    width:100px;
+    height:100px;
 }
 
 .nav-login11 {
     width: 120px;
     height: 230px;
     color: black;
-    margin-left: 80px;
-    margin-top: 10px;
+    margin-left: 10px;
+    margin-top: 20px;
     background: white;
     border: 1px solid darkgrey;
     border-radius: 5px;
+    /*z-index: 999;*/
     z-index: 999;
 }
 
@@ -374,6 +376,7 @@ export default {
     width: 120px;
     height: 200px;
     margin-top: 10px;
+    /*z-index: 999;*/
 }
 
 .nav-login11 a {
