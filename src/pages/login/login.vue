@@ -111,7 +111,6 @@ export default {
             });
         },
         requestLogin () {
-
             this.axios.post('api/unauthor/gateway/account/login', qs.stringify(
                 Object.assign(this.loginCheck)))
                 .then((response) => {
@@ -132,7 +131,8 @@ export default {
                     message: error
                 });
             })
-        }
+        },
+
     },
 }
 

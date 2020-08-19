@@ -33,10 +33,12 @@
                         </button>
                     </router-link>
                 </div>
-                <div class="personal-img">
+                <div class="personal-img"
+                     v-on:mouseover="mouseover"
+                     v-on:mouseleave="mouseleave">
                     <img src="/static/home/个人.png" class="img-login-after" alt=''>
                 </div>
-                <div class="nav-login11">
+                <div class="nav-login11" :v-show="isShow" >
                     <ul>
                         <router-link to="/personal/deposit">
                             <li>
@@ -63,7 +65,7 @@
                                 消息<span>(2)</span>
                             </li>
                         </router-link>
-                        <li class="border-line">
+                        <li class="border-line" @click="logout">
                             退出
                         </li>
                     </ul>
@@ -107,15 +109,22 @@ export default {
                 Playforfun: ''
             },
             isLogin: false, // 是否已登录
+            isShow:false,//是否显示
         }
     },
-    // 监听,当路由发生变化的时候执行
-     watch:{
-         this.$route(to,from){
-            this.activeClass = index;
-        }
-    },
+    // // 监听,当路由发生变化的时候执行
+    //  watch:{
+    //      this.$route(to,from){
+    //         this.activeClass = index;
+    //     }
+    // },vue-router.esm.js?fe87:2100 Uncaught (in promise)
     methods: {
+        mouseover () {
+            this.isShow = true;
+        },
+        mouseleave () {
+            this.isShow = false;
+        },
 
         getItem (index) {
             this.activeClass = index;  // 把当前点击元素的index，赋值给activeClass
@@ -166,16 +175,29 @@ export default {
             this.isShowLogin = !this.isShowLogin;
         },
         loginSuccess () {
-
             this.isLogin = true;
-
-        }
-
+        },
+        logout(){
+            this.axios.get('api/gateway/logout')
+                .then((response) => {
+                    console.log(response);
+                    const resbody = response.data;
+                    if (resbody.status === 10000) {
+                        console.log(msg);
+                        this.$alert(data.msg);
+                        // this.$router.push('/index');
+                        this.isLogin=true;
+                    }
+                })
+                .catch(error => {
+                    alert(error);
+                })
+        },
     },
     mounted () {
         this.navList();
         this.mainMenu();
-    }
+    },
 }
 </script>
 
