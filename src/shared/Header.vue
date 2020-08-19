@@ -35,10 +35,11 @@
                 </div>
                 <div class="personal-img"
                      v-on:mouseover="mouseover"
-                     v-on:mouseleave="mouseleave">
+                     v-on:mouseleave="mouseleave"
+                     >
                     <img src="/static/home/个人.png" class="img-login-after" alt=''>
                 </div>
-                <div class="nav-login11" :v-show="isShow" >
+                <div class="nav-login11" v-if="isShow"   v-on:mouseover="mouseover" >
                     <ul>
                         <router-link to="/personal/deposit">
                             <li>
@@ -363,7 +364,6 @@ export default {
     color: black;
     margin-left: 80px;
     margin-top: 10px;
-    display: none;
     background: white;
     border: 1px solid darkgrey;
     border-radius: 5px;
