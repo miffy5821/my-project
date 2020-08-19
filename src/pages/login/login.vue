@@ -119,7 +119,9 @@ export default {
                     if (data.status === 10000) {
                         window.localStorage.setItem('token', data.data.token);
                         this.$alert(data.msg);
-                        this.$router.push('/');
+                        if (this.$router.currentRoute.path !== '/') {
+                            this.$router.push('/');
+                        }
                         this.$emit('onToggleLogin');  // 显示或者关闭登陆框
                         this.$emit('onLoginSuccess');
                     } else {
