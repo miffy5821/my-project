@@ -125,7 +125,10 @@
           imgUrl: '/static/datang/game19.jpg'
         }]
       }
-    }
+    },
+      methods: {
+
+      },
   }
 </script>
 <style scoped>

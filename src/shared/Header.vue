@@ -114,12 +114,6 @@ export default {
             isShow:false,//是否显示
         }
     },
-    // // 监听,当路由发生变化的时候执行
-    //  watch:{
-    //      this.$route(to,from){
-    //         this.activeClass = index;
-    //     }
-    // },vue-router.esm.js?fe87:2100 Uncaught (in promise)
     methods: {
         mouseover () {
             this.isShow = true;
@@ -185,10 +179,14 @@ export default {
                     console.log(response);
                     const resbody = response.data;
                     if (resbody.status === 10000) {
-                        console.log(msg);
+                        console.log(resbody.msg);
+                        if (this.$router.currentRoute.path !== '/') {
+                            this.$router.push('/');
+                        }
+                        this.$alert(resbody.msg);
+                        this.isLogin=false;
+                    } else {
                         this.$alert(data.msg);
-                        // this.$router.push('/index');
-                        this.isLogin=true;
                     }
                 })
                 .catch(error => {
@@ -357,6 +355,8 @@ export default {
 .personal-img {
     width:100px;
     height:100px;
+    z-index: 999;
+    cursor:pointer;
 }
 
 .nav-login11 {
@@ -368,8 +368,8 @@ export default {
     background: white;
     border: 1px solid darkgrey;
     border-radius: 5px;
-    /*z-index: 999;*/
     z-index: 999;
+    cursor:pointer;
 }
 
 .nav-login11 ul {
