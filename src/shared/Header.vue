@@ -153,12 +153,12 @@ export default {
                 params: {id: 0, terminal: 0}
             })
                 .then((response) => {
-                    console.log(response);
+                    // console.log(response);
                     const resData = response.data;
                     if (resData.status === 10000) {
 
                         this.topNavList = resData.data;
-                        console.log('topNavList', this.topNavList);
+                        // console.log('topNavList', this.topNavList);
                         // console.log(this.topNavList);
 
                     }
@@ -177,9 +177,9 @@ export default {
             this.axios.post('api/gateway/logout')
                 .then((response) => {
                     console.log(response);
-                    const resbody = response.data;
+                    // const resbody = response.data;
                     if (resbody.status === 10000) {
-                        console.log(resbody.msg);
+                        // console.log(resbody.msg);
                         if (this.$router.currentRoute.path !== '/') {
                             this.$router.push('/');
                         }
