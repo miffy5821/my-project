@@ -8,16 +8,16 @@
             <div class="chess-text">
                 <h4 class="chess-name">{{item.menuNameCn}}</h4>
                  <p class="chess-introduce">{{item.remark}}</p>
-              <span class="button" @click="goGame(item)">进入游戏</span>
-              <span class="button">免费试玩</span>
+              <span class="button" @click="goGames(item)">进入游戏</span>
+              <span class="button"  @click="goForward(item)">免费试玩</span>
             </div>
           </div>
-          <div class="chess right" >
-            <img class="chess-img" src="/static/datang/game20.jpg"/>
-            <div class="chess-text">
-              <h4 class="chess-name">敬请期待</h4>
-            </div>
-          </div>
+<!--          <div class="chess right" >-->
+<!--            <img class="chess-img" src="/static/datang/game20.jpg"/>-->
+<!--            <div class="chess-text">-->
+<!--              <h4 class="chess-name">敬请期待</h4>-->
+<!--            </div>-->
+<!--          </div>-->
         </div>
     </div>
   </div>
@@ -32,6 +32,33 @@
           }
       },
       computed: {
+
+      },
+      methods: {
+          goGames(item){
+                  this.axios.post('api//game/forward', {params: {gameId: item.gameId, gameCode: item.gameCode, terminal: 0}})
+                      .then((resGames) => {
+
+                      console.log(resGames)
+                          if (resGames.data.status === 10000) {
+                              window.location.href = resGames.data.data.config.transformResponse.url;
+                          }
+                      })
+                  // .catch(function (error) {
+                  //     console.log('hi');
+                  // });
+          },
+          goForward(item) {
+              this.axios.get('api/unauthor/game/fun/forward', {params: {gameId: item.gameId, gameCode: item.gameCode, terminal: 0}})
+                  .then((res) => {
+                      if (res.data.status === 10000) {
+                          window.location.href = res.data.data.data;
+                      }
+                  })
+                  .catch(function (error) {
+                      console.log(error);
+                  });
+          },
           navDatang() {
               this.axios.get('api//unauthor/sys/menu', {
                   params: {id: 0, terminal: 0}
@@ -49,19 +76,6 @@
                   });
           },
       },
-      methods: {
-          goGame(item) {
-              this.axios.get('api/unauthor/game/fun/forward', {params: {gameId: item.gameId, gameCode: item.gameCode, terminal: 0}})
-                  .then((res) => {
-                      if (res.data.status === 10000) {
-                          window.location.href = res.data.data.data;
-                      }
-                  })
-                  // .catch(function (error) {
-                  //     console.log(error);
-                  // });
-          }
-      },
       mounted() {
           this.navDatang();
       },
@@ -70,7 +84,7 @@
 <style scoped>
   .dt{
   width:100%;
-  height:3250px;
+  height:4100px;
   }
   .txqp-banner{
     width: 100%;
@@ -80,11 +94,11 @@
   }
   .txqp-chess{
     width: 100%;
-    height: 2680px;
+    /*height: 2680px;*/
   }
   .chess-box{
     width: 1230px;
-    height: 2680px;
+    /*height: 2680px;*/
     margin: 150px auto 100px auto;
   }
   .chess{
@@ -97,6 +111,7 @@
   .chess-img{
     width:332px ;
     height:230px;
+    cursor: pointer;
     float: left;
   }
   .chess-text{
@@ -131,6 +146,7 @@
     border-radius: 5px;
     border: 1px solid #c8a675;
     color: white;
+    cursor: pointer;
   }
   .right{
     float: right;
