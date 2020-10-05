@@ -149,7 +149,7 @@ export default {
             })
         },
         mainMenu () {
-            this.axios.get('api//unauthor/sys/menu', {
+            this.axios.get('api/menu', {
                 params: {id: 0, terminal: 0}
             })
                 .then((response) => {

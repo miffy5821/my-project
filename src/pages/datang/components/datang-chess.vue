@@ -36,7 +36,7 @@
       },
       methods: {
           goGames(item){
-                  this.axios.post('api//game/forward', {params: {gameId: item.gameId, gameCode: item.gameCode, terminal: 0}})
+                  this.axios.post('api/game/forward', {params: {gameId: item.gameId, gameCode: item.gameCode, terminal: 0}})
                       .then((resGames) => {
 
                       console.log(resGames)
@@ -60,7 +60,7 @@
                   });
           },
           navDatang() {
-              this.axios.get('api//unauthor/sys/menu', {
+              this.axios.get('api/menu', {
                   params: {id: 0, terminal: 0}
               })
                   .then((response) => {

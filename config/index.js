@@ -12,7 +12,8 @@ module.exports = {
     assetsPublicPath: '/',
     proxyTable: {
       '/api': {
-        target: 'http://192.168.101.2:6021', // 要代理的域名
+        // target: 'http://192.168.101.2:6021', // 要代理的域名
+          target: 'http://localhost:3300', // 要代理的域名
         changeOrigin: true,//允许跨域
       },
     },
