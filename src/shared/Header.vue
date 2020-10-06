@@ -98,17 +98,18 @@ export default {
             routerConfig: {
                 home: '/',
                 DTQP: '/datang',
-                sport: '/sports',
-                LIVE: '/live',
-                electric: '/electronic',
-                fish: '/fishing',
-                esports: '/gaming',
-                lottery: '/lottery',
+                OG: '/OG',
                 chess: '/chess',
+                LIVE: '/LIVE',
+                SLOTS: '/electronic',
+                sport: '/sports',
+                lottery: '/lottery',
+                fish: '/fishing',
                 discount: '/discounts',
+                brand: 'https://88y00.com/',
                 mall: '/gift',
-                HOT: '',
-                Playforfun: ''
+                HOT: '/gift',
+                Playforfun: '/'
             },
             isLogin: false, // 是否已登录
             isShow:false,//是否显示
@@ -126,47 +127,53 @@ export default {
             this.activeClass = index;  // 把当前点击元素的index，赋值给activeClass
         },
         navList () {
-            this.axios.get('api/unauthor/webcom/config', {params: {terminal: 0}})
+            this.axios.get('api/menu', {params: {terminal: 0}})
                 .then((response) => {
-                    console.log(response);
+                    console.log('response',response);
                     const resbody = response.data;
+                    console.log('resbody',resbody);
                     if (resbody.status === 10000) {
-                        const data = resbody.data;
-                        for (let i = 0; i < data.length; i++) {
-                            if (data[i].type === '1') {
-                                this.swiperList = data[i].configs;
-                                console.log(this.swiperList);
-                            } else if (data[i].type === '6') {
-                                this.newsList = data[i].configs
-                                console.log(this.newsList);
-                            }
-                        }
-                    } else {
-                        this.$alert(data.msg);
+                        this.topNavList = resbody.data;
+
+
+                        console.log('topNavList',this.topNavList);
+                        //                 console.log('topNavList', this.topNavList);
+                        // for (let i = 0; i < data.length; i++) {
+                        //     if (data[i].type === '1') {
+                        //         this.swiperList = data[i].configs;
+                        //         console.log(this.swiperList);
+                        //     } else if (data[i].type === '6') {
+                        //         this.newsList = data[i].configs
+                        //         console.log('newsList', this.newsList);
+                        //     }
+                        // }
+                    // } else {
+                    //     this.$alert(data.msg);
                     }
                 }).catch(error => {
                 alert(error);
             })
         },
-        mainMenu () {
-            this.axios.get('api/menu', {
-                params: {id: 0, terminal: 0}
-            })
-                .then((response) => {
-                    // console.log(response);
-                    const resData = response.data;
-                    if (resData.status === 10000) {
-
-                        this.topNavList = resData.data;
-                        // console.log('topNavList', this.topNavList);
-                        // console.log(this.topNavList);
-
-                    }
-                })
-                .catch(function (error) {
-                    console.log(error);
-                });
-        },
+        // mainMenu () {
+        //     this.axios.get('api/menu', {
+        //         params: {id: 0, terminal: 0}
+        //     })
+        //         .then((response) => {
+        //             // console.log(response);
+        //             const resData = response.data;
+        //             console.log('resData',this.resData);
+        //             if (resData.status === 10000) {
+        //
+        //                 this.topNavList = resData.data;
+        //                 console.log('topNavList', this.topNavList);
+        //                 // console.log(this.topNavList);
+        //
+        //             }
+        //         })
+        //         .catch(function (error) {
+        //             console.log(error);
+        //         });
+        // },
         toggleLogin () {
             this.isShowLogin = !this.isShowLogin;
         },
@@ -196,7 +203,7 @@ export default {
     },
     mounted () {
         this.navList();
-        this.mainMenu();
+        // this.mainMenu();
     },
 }
 </script>
