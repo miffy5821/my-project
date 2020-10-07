@@ -1,58 +1,107 @@
 <template>
   <div class="gift-content">
   <div class="content">
-    <!--左边的内容-->
-    <div class="content-left">
-      <!--奖品公布-->
-      <div class="scroll">
-        <div class="redeem">兑换排行榜</div>
-        <!--<div class="scroll-wrapper">-->
-          <!--<ul class="gift-scroll div2">-->
-            <!--<li v-for="item of 22" :key="item"><span class="giftName">【阿玛尼手提包】</span><span class="prize-winner">***dv***</span></li>-->
-          <!--</ul>-->
-          <!--<ul class="gift-scroll div2" >-->
-            <!--<li v-for="item of 22" :key="item"><span class="giftName">【阿玛尼手提包】</span><span class="prize-winner">***dv***</span></li>-->
-          <!--</ul>-->
-        <!--</div>-->
-        <vue-seamless-scroll :data="listData" class="seamless-warp">
-          <ul class="item">
-            <li v-for="item in listData">
-              <span class="title" v-text="item.title"></span><span class="date" v-text="item.user"></span>
-            </li>
-          </ul>
-        </vue-seamless-scroll>
+      <div class="banner">
+          <img class="banner-img" src="" alt="">
       </div>
-
-      <!--人气推荐-->
-      <div class="hot">
-        <div class="gift-hot">人气推荐</div>
-        <img class="hotImg" src="/static/gift/gift3.png"/>
-        <p class="hotName">空投美女</p>
-        <div class="hot-text"><span class="tex5">¥18000</span><span class="tex5">54000积分</span></div>
-      </div>
-    </div>
-    <!--右边的内容-->
-    <div class="content-right">
-      <!--顶部介绍-->
-      <div class="gift-herder">
-        <div class="line"></div>
-        <div class="gift-">热门礼品</div>
-        <button class="gift-check">查看订单记录</button>
-        <button class="gift-regulation">兑奖规则</button>
-      </div>
-      <!--奖品的展示-->
-      <div class="gift">
-        <div class="giftList" v-for="(item,index) in giftList" :key="item.id">
-          <img class="giftImg" :src="item.icon" alt="">
-          <div class="giftText">
-              <p class="gitfName"> {{item.pluname}}</p>
-              <div class="gift-ms"><span class="tex1">礼品价值：</span><strong class="tex2">{{item.price}}</strong></div>
-              <div class="gift-ms"><span class="tex1">积分兑换：</span><strong class="tex2">{{item.cprice}}</strong><span class="tex3">立即兑换</span></div>
+     <div class="integral">
+          <div class="title">
+              <div class="login">
+                  <span class="login-text1">我的积分：</span><span class="login-text2">请登录</span>
+              </div>
+              <div class="blank"></div>
+              <div class="title-button">
+                  <div class="button">
+                      <img class="button-img" src="/static/gift/icon1.png" />
+                      <span class="button-text">订单记录</span>
+                  </div>
+                  <div class="button">
+                      <img class="button-img" src="/static/gift/icon2.png" />
+                      <span class="button-text">兑换规则</span>
+                  </div>
+              </div>
           </div>
-        </div>
-      </div>
-    </div>
-  </div>
+         <div class="boutique">
+             <div class="boutique-title">
+                 <div class="line"></div>
+                 <div class="boutique-text1">精品商店</div>
+                 <div class="boutique-text2">/SELECTED COMMODITIES</div>
+             </div>
+             <div class="boutique-swiper">
+                 <div class="boutique-img">
+                     <img class="jingpin-img" src="" alt="">
+                     <div class="hover-text">
+                         <div class="product">
+                             <p>空投美女</p>
+                             <p>礼品价值：<span>18000</span></p>
+                             <p>兑换积分：<span>54000积分</span></p>
+                         </div>
+                         <div class="boutique-button">
+                             <button>立即兑换</button>
+                         </div>
+                     </div>
+                 </div>
+                 <div class="redeem">兑换热榜清单</div>
+
+                 <vue-seamless-scroll :data="listData" class="seamless-warp">
+                 <ul class="item">
+                 <li v-for="item in listData">
+                 <span class="title" v-text="item.title"></span><span class="date" v-text="item.user"></span>
+                 </li>
+                 </ul>
+                 </vue-seamless-scroll>
+                 </div>
+             </div>
+         </div>
+     </div>
+
+
+
+    <!--&lt;!&ndash;左边的内容&ndash;&gt;-->
+    <!--<div class="content-left">-->
+      <!--&lt;!&ndash;奖品公布&ndash;&gt;-->
+      <!--<div class="scroll">-->
+        <!--<div class="redeem">兑换排行榜</div>-->
+       <!---->
+        <!--<vue-seamless-scroll :data="listData" class="seamless-warp">-->
+          <!--<ul class="item">-->
+            <!--<li v-for="item in listData">-->
+              <!--<span class="title" v-text="item.title"></span><span class="date" v-text="item.user"></span>-->
+            <!--</li>-->
+          <!--</ul>-->
+        <!--</vue-seamless-scroll>-->
+      <!--</div>-->
+
+      <!--&lt;!&ndash;人气推荐&ndash;&gt;-->
+      <!--<div class="hot">-->
+        <!--<div class="gift-hot">人气推荐</div>-->
+        <!--<img class="hotImg" src="/static/gift/gift3.png"/>-->
+        <!--<p class="hotName">空投美女</p>-->
+        <!--<div class="hot-text"><span class="tex5">¥18000</span><span class="tex5">54000积分</span></div>-->
+      <!--</div>-->
+    <!--</div>-->
+    <!--&lt;!&ndash;右边的内容&ndash;&gt;-->
+    <!--<div class="content-right">-->
+      <!--&lt;!&ndash;顶部介绍&ndash;&gt;-->
+      <!--<div class="gift-herder">-->
+        <!--<div class="line"></div>-->
+        <!--<div class="gift-">热门礼品</div>-->
+        <!--<button class="gift-check">查看订单记录</button>-->
+        <!--<button class="gift-regulation">兑奖规则</button>-->
+      <!--</div>-->
+      <!--&lt;!&ndash;奖品的展示&ndash;&gt;-->
+      <!--<div class="gift">-->
+        <!--<div class="giftList" v-for="(item,index) in giftList" :key="item.id">-->
+          <!--<img class="giftImg" :src="item.icon" alt="">-->
+          <!--<div class="giftText">-->
+              <!--<p class="gitfName"> {{item.pluname}}</p>-->
+              <!--<div class="gift-ms"><span class="tex1">礼品价值：</span><strong class="tex2">{{item.price}}</strong></div>-->
+              <!--<div class="gift-ms"><span class="tex1">积分兑换：</span><strong class="tex2">{{item.cprice}}</strong><span class="tex3">立即兑换</span></div>-->
+          <!--</div>-->
+        <!--</div>-->
+      <!--</div>-->
+    <!--</div>-->
+  <!--</div>-->
   </div>
 </template>
 <script>
@@ -146,16 +195,153 @@
 <style>
   .gift-content{
     width: 100%;
-    height: 1049px;
   }
   .content {
-    width: 1010px;
-    height: 1049px;
-    margin: 10px auto 50px auto;
+    width: 100%;
     background-color: white;
     cursor:pointer;
   }
+  .banner {
+      width: 100%;
+      height: 600px;
+      background: antiquewhite;
+  }
+  .banner-img{
+      width: 100%;
+      height: 100%;
+  }
+  .integral{
+      width: 1200px;
+      height: 1500px;
+      padding: 15px 0;
+      margin: 0 auto;
+      background: aquamarine;
+  }
+  .title{
+      width: 1163px;
+      height: 60px;
+      padding: 0 15px 0 22px;
+      border-bottom: 2px solid  #757575;
+      background: azure;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+  }
+  .login{
+      width: 168px;
+      height: 48px;
+  }
+  .login-text1{
+      display: inline-block;
+      font-family: MicrosoftYaHei;
+      font-size: 20px;
+      font-weight: 500;
+      color: #404040;
+  }
+  .login-text2{
+      font-size: 20px;
+      color: #c8a675;
 
+  }
+  .blank{
+      width: 735px;
+      height: 48px;
+  }
+  .title-button{
+      width: 260px;
+      height: 48px;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+  }
+  .button{
+      width: 100px;
+      height: 25px;
+      padding: 0 10px 7px 10px;
+      border-radius: 30px;
+      border: 2px solid #757575;
+  }
+  .button-img{
+      width: 25px;
+      height: 25px;
+  }
+  .button-text{
+      font-size: 16px;
+      font-weight: 500;
+      color: #777477;
+  }
+  .boutique{
+      width: 1200px;
+      height: 566px;
+      margin-top: 40px;
+      background: cadetblue;
+  }
+  .boutique-title{
+      width: 1163px;
+      height: 40px;
+      padding: 0 15px 0 22px;
+      display: flex;
+      flex-wrap: wrap;
+  }
+  .boutique-text1{
+      font-size: 32px;
+      display: inline-block;
+      color: #404040;
+      font-weight: 500;
+      text-align: center;
+      margin-left: 8px;
+  }
+  .boutique-text2{
+      font-size: 18px;
+      color: #757575;
+      text-align: center;
+      margin-left: 10px;
+  }
+  .boutique-swiper{
+      width: 1200px;
+      margin-top: 20px;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content:space-between;
+  }
+  .boutique-img{
+      width: 870px;
+      height: 500px;
+  }
+  .jingpin-img{
+      width: 870px;
+      height: 500px;
+  }
+  .hover-text{
+      width: 870px;
+      height: 120px;
+      background: crimson;
+      position: relative;
+      top:-115px;
+      z-index: 999;
+
+  }
+  .product{
+      width: 250px;
+      height: 90px;
+      display: flex;
+      flex-wrap: wrap;
+      align-content:space-between;
+      padding: 15px 0 15px 20px;
+  }
+  .product p{
+      width: 250px;
+      height: 20px;
+      text-align: left;
+      font-size: 24px;
+  }
+  .boutique-button{
+      width: 120px;
+      height: 120px;
+  }
+  .boutique-button button{
+
+  }
   .content-left {
     width: 212px;
     height: 1008px;

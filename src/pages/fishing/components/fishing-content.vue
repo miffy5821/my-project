@@ -1,9 +1,9 @@
 <template>
   <div class="fishing">
-    <div class="fishing-box" v-for="item of fishList" :key="item.id">
-      <div class="fish">
-          <img  class="fish-img" :src="item.imgs[0].img"/>
-      </div>
+    <div class="fishing-box" >
+      <!--<div class="fish">-->
+          <img v-for="item of fishList" :key="item.id" class="fish-img" :src="item.imgs[0].img"/>
+      <!--</div>-->
     </div>
   </div>
 </template>
@@ -44,10 +44,13 @@ export default {
     width: 100%;
     background: url("/static/fishing/fish_banner.jpg") no-repeat center top;
     overflow: hidden;
+      /*!*display: flex;*!*/
+      /*flex-wrap: wrap;*/
+      /*align-content:center;*/
   }
   .fishing-box{
     width: 1050px;
-    margin-top: 400px;
+    margin-top: 380px;
     /*overflow: visible;*/
     margin-right: auto;
     margin-left: auto;
@@ -62,9 +65,7 @@ export default {
   .fish-img{
     width: 200px;
     height: 217px;
-    margin: 0;
-    padding: 0;
-    border: 0;
+    margin: 30px;
     vertical-align: baseline;
   }
 </style>
