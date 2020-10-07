@@ -4,11 +4,11 @@
     <div class="liveContent">
       <div class="live-box">
         <div class="live-distribute"  v-for="item of liveList" :key="item.id">
-          <img class="live-img" :src="item.imgUrl"/>
+          <img class="live-img" :src="item.imgs[0].img"/>
           <div class="live-text">
-            <p class="live-name">{{item.liveName}}</p>
-            <p class="live-js">{{item.liveIntro}}</p>
-            <p class="live-introduce">{{item.liveIntroduce}}</p>
+            <p class="live-name">{{item.parentName}}</p>
+            <p class="live-js">{{item.menuNameCn}}</p>
+            <p class="live-introduce">{{item.remark}}</p>
             <span class="button">进入游戏</span>
           </div>
         </div>
@@ -21,81 +21,37 @@
     name: 'liveContent',
     data () {
       return {
-        liveList: [{
-          id: '0001',
-          liveName: 'OG真人',
-          liveIntro: '感受刺激 体验心跳',
-          liveIntroduce: '糅合亚洲及欧洲风格，集所有顶级游戏功能设计理念于一体',
-          imgUrl: '/static/live/live-og1.jpg'
-        }, {
-          id: '0002',
-          liveName: 'WM视讯',
-          liveIntro: '不一样的极致娱乐体验',
-          liveIntroduce: '美女主播 提供最佳品质',
-          imgUrl:'/static/live/live-wm2.jpg'
-        }, {
-          id: '0003',
-          liveName: 'BG视讯',
-          liveIntro: '老牌旗舰 玩法齐全',
-          liveIntroduce: '专属品牌百家乐 创新极限由你定义',
-          imgUrl: '/static/live/live-bg3.jpg'
-        }, {
-          id: '0004',
-          liveName: 'HBO视讯',
-          liveIntro: '多种娱乐,优质的投注方式',
-          liveIntroduce: '感受刺激 玩法齐全',
-          imgUrl: '/static/live/live-hbo4.jpg'
-        }, {
-          id: '0005',
-          liveName: 'AG国际厅',
-          liveIntro: '美女主播 热线传情',
-          liveIntroduce: '全球首创6张牌先发，VIP包桌独享，先发牌后下注，公平公正',
-          imgUrl: '/static/live/live-agg5.jpg'
-        }, {
-          id: '0006',
-          liveName: 'AG极速厅',
-          liveIntro: '极速玩法 趣味多多',
-          liveIntroduce: '全球首创6张牌先发，VIP包桌独享，先发牌后下注，公平公正',
-          imgUrl: '/static/live/live-agj6.jpg'
-        },{
-          id: '0007',
-          liveName: 'BBIN真人',
-          liveIntro: '老牌旗舰 玩法齐全',
-          liveIntroduce: '专属品牌百家乐 创新极限由你定义',
-          imgUrl:'/static/live/live-bbin7.jpg'
-        },{
-          id: '0008',
-          liveName: '申博视讯',
-          liveIntro: '多款百家乐 一次拥有',
-          liveIntroduce: '多种游戏星级玩法，体验无穷',
-          imgUrl:'/static/live/live-sun8.jpg'
-        },{
-          id: '0009',
-          liveName: '欧博视讯',
-          liveIntro: '挑选好路 直接入座',
-          liveIntroduce: '全球知名实力博彩平台，精彩游戏等你来',
-          imgUrl: '/static/live/live-abg9.jpg'
-        },{
-          id: '0010',
-          liveName: 'Cagayan88 视讯',
-          liveIntro: '美女主播 多元化玩法',
-          liveIntroduce: '美女主播热线传情，赢钱机会绝不错过',
-          imgUrl: '/static/live/live-caganya10.jpg'
-        },{
-          id: '0011',
-          liveName: 'DS真人',
-          liveIntro: '专业游戏研发 提供最佳品质',
-          liveIntroduce: '专属品牌百家乐 创新极限由你定义',
-          imgUrl: '/static/live/live-ds11.jpg'
-        }]
+          liveList: []
       }
-    }
+    },
+      methods: {
+          navLive() {
+              this.axios.get('api/menu', {
+                  params: {id: 0, terminal: 0}
+              })
+                  .then((response) => {
+                      const data = response.data;
+                      if (data.status === 10000) {
+
+                          const live = response.data.data[3].subMenus;// 储存所有真人游戏数据
+                          this.liveList = live;
+                          console.log('liveList',this.liveList);
+                      }
+                  })
+                  .catch(function (error) {
+                      console.log(error);
+                  });
+          }
+      },
+      mounted() {
+          this.navLive();
+      },
   }
 </script>
 <style scoped>
   .live{
-    width:100%;
-    height:2100px;
+   width:100%;
+   height: auto;
   }
   .live-banner{
     width: 100%;
@@ -105,11 +61,14 @@
   }
   .liveContent{
     width: 100%;
-    height: 1650px;
+    height: auto;
+    margin-bottom: 30px;
   }
   .live-box{
     width: 1230px;
-    height: 1650px;
+    /*height: 1300px;*/
+    display: flex;
+    flex-wrap: wrap;
     margin: 70px auto 70px auto;
   }
   .live-distribute{
@@ -117,7 +76,6 @@
     height: 230px;
     margin:0  15px 40px 0;
     border:1px solid #e6e2de;
-    float: left;
   }
   .live-img{
     width:332px ;

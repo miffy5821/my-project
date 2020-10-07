@@ -3,11 +3,11 @@
     <div class="sports-banner"></div>
     <div class="sportsContent">
       <div class="sports-box">
-        <div class="sports-distribute"  v-for="item of sportsList" :key="item.id">
-          <img class="sports-img" :src="item.imgUrl"/>
+        <div class="sports-distribute"  v-for="item of sportList" :key="item.id">
+          <img class="sports-img" :src="item.imgs[0].img"/>
           <div class="sports-text">
-            <p class="sports-name">{{item.sportsName}}</p>
-            <p class="sports-introduce">{{item.sportsIntroduce}}</p>
+            <p class="sports-name">{{item.menuNameCn}}</p>
+            <p class="sports-introduce">{{item.remark}}</p>
             <span class="button">进入游戏</span>
           </div>
         </div>
@@ -20,35 +20,36 @@
     name: 'sportsContent',
     data () {
       return {
-        sportsList: [{
-          id: '0001',
-          sportsName: '皇冠体育',
-          sportsIntroduce: '五大联赛，信誉良好，放心选择',
-          imgUrl: '/static/sports/sport_hg.jpg'
-        }, {
-          id: '0002',
-          sportsName: 'AG体育',
-          sportsIntroduce: '大额玩家选择，世界杯放心玩',
-          imgUrl:'/static/sports/sport_ag.jpg'
-        }, {
-          id: '0003',
-          sportsName: '沙巴体育',
-          sportsIntroduce: '每月超过1500场,赛事应有尽有！',
-          imgUrl: '/static/sports/sport_ibc.jpg'
-        }, {
-          id: '0004',
-          sportsName: 'IM体育',
-          sportsIntroduce: '大额玩家选择，赛事应有尽有！',
-          imgUrl: '/static/sports/sport_im.jpg'
-        }]
+          sportList: []
       }
-    }
+    },
+      methods:{
+        navSport() {
+            this.axios.get('api/menu', {
+                params: {id: 0, terminal: 0}
+            })
+                .then((response) => {
+                    const data = response.data;
+                    if (data.status === 10000) {
+
+                        const sport = response.data.data[5].subMenus;// 储存所有体育游戏数据
+                        this.sportList = sport;
+                        console.log('sportList',this.sportList);
+                    }
+                })
+                .catch(function (error) {
+                    console.log(error);
+                });
+        }
+      },
+      mounted() {
+          this.navSport();
+      }
   }
 </script>
 <style scoped>
   .sports{
     width:100%;
-    height:1000px;
   }
   .sports-banner{
     width: 100%;
@@ -58,19 +59,18 @@
   }
   .sportsContent{
     width: 100%;
-    height: 550px;
   }
   .sports-box{
     width: 1230px;
-    height: 550px;
     margin: 70px auto 70px auto;
+    display: flex;
+    flex-wrap: wrap;
   }
   .sports-distribute{
     width: 590px;
     height: 230px;
     margin:0  15px 40px 0;
     border:1px solid #e6e2de;
-    float: left;
   }
   .sports-img{
     width:332px ;

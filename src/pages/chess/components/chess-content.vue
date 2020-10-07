@@ -20,38 +20,8 @@
     name: 'chessContent',
     data () {
       return {
-          chessList: ''
-        // chessList: [{
-        //   id: '0001',
-        //   chessName: '欢乐棋牌',
-        //   chessIntroduce: '流畅画面，超多玩法',
-        //   imgUrl: '/static/chess/chess1.png'
-        // }, {
-        //   id: '0002',
-        //   chessName: '开元棋牌',
-        //   chessIntroduce: '棋牌游戏，火热战局，等您来战！',
-        //   imgUrl: '/static/chess/chess2.jpg'
-        // }, {
-        //   id: '0003',
-        //   chessName: '乐游棋牌',
-        //   chessIntroduce: '与时俱进，强势来袭!',
-        //   imgUrl: '/static/chess/chess3.jpg'
-        // }, {
-        //   id: '0004',
-        //   chessName: '新世界棋牌',
-        //   chessIntroduce: '大额玩法，强势来袭!',
-        //   imgUrl: '/static/chess/chess4.png'
-        // }, {
-        //   id: '0005',
-        //   chessName: 'VG棋牌',
-        //   chessIntroduce: '劲爆够劲，其乐无穷！',
-        //   imgUrl: '/static/chess/chess5.jpg'
-        // }, {
-        //   id: '0006',
-        //   chessName: '德胜棋牌',
-        //   chessIntroduce: '大吉大利，旗开德胜！',
-        //   imgUrl: '/static/chess/chess6.jpg'
-        // }]
+          chessList: []
+
       }
     },
       methods: {
@@ -81,7 +51,6 @@
 <style scoped>
   .chess{
     width:100%;
-    height:1350px;
   }
   .chess-banner{
     width: 100%;
@@ -91,11 +60,11 @@
   }
   .chessContent{
     width: 100%;
-    height: 880px;
   }
   .chess-box{
     width: 1230px;
-    height:880px;
+    display: flex;
+    flex-wrap: wrap;
     margin: 130px auto 100px auto;
   }
   .chess-distribute{
@@ -103,7 +72,6 @@
     height: 230px;
     margin:0  15px 40px 0;
     border:1px solid #e6e2de;
-    float: left;
   }
   .chess-img{
     width:332px ;
