@@ -6,7 +6,7 @@
             </div>
             <div class="integral">
                 <div class="title">
-                    <div class="login">
+                    <div class="integral-login">
                         <span class="login-text1">我的积分：</span><span class="login-text2">请登录</span>
                     </div>
                     <div class="blank"></div>
@@ -212,12 +212,14 @@ export default {
     background: azure;
     display: flex;
     flex-wrap: wrap;
-    justify-content: center;
+    /*justify-content: center;*/
 }
 
-.login {
-    width: 168px;
+.integral-login {
+    width: 250px;
     height: 48px;
+    display: flex;
+    flex-wrap: wrap;
 }
 
 .login-text1 {
@@ -226,21 +228,23 @@ export default {
     font-size: 20px;
     font-weight: 500;
     color: #404040;
+    width: 100px;
 }
 
 .login-text2 {
-    font-size: 20px;
+    width: 100px;
+    /*font-size: 20px;*/
     color: #c8a675;
 
 }
 
 .blank {
-    width: 735px;
+    width: 700px;
     height: 48px;
 }
 
 .title-button {
-    width: 260px;
+    width: 270px;
     height: 48px;
     display: flex;
     flex-wrap: wrap;
@@ -565,13 +569,15 @@ export default {
     margin-top: 10px;
     height: 980px;
     overflow: hidden;
+    display: flex;
+    flex-wrap: wrap;
 }
 
 .giftList {
-    width: 238px;
-    height: 320px;
-    float: left;
-    margin: 0 12px 18px 8px;
+    width: 278px;
+    height: 382px;
+    background: #666666;
+    margin: 6px 0 0 10px;
     border: 1px solid darkgrey;
 }
 
