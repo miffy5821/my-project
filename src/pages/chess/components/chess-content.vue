@@ -33,7 +33,7 @@
                       const data = response.data;
                       if (data.status === 10000) {
 
-                          const chess = response.data.data[3].subMenus;// 储存所有棋牌游戏数据
+                          const chess = response.data.data[2].subMenus;// 储存所有棋牌游戏数据
                           this.chessList = chess;
                           console.log(this.chessList)
                       }
@@ -65,12 +65,12 @@
     width: 1230px;
     display: flex;
     flex-wrap: wrap;
-    margin: 130px auto 100px auto;
+    margin: 60px auto 0 auto;
   }
   .chess-distribute{
     width: 590px;
     height: 230px;
-    margin:0  15px 40px 0;
+    margin:0  15px 20px 0;
     border:1px solid #e6e2de;
   }
   .chess-img{

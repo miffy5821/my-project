@@ -109,7 +109,6 @@
 <style scoped>
   .discounts {
     width: 100%;
-    height: 3500px;
     background-color: #f9f9f9;
   }
   .discounts-banner{
@@ -119,11 +118,12 @@
   }
   .discounts-box{
     width: 1170px;
-    height: 2920px;
     margin-left: auto;
     margin-top: 30px;
     margin-right: auto;
     background-color: white;
+      display: flex;
+      flex-wrap: wrap;
     padding: 10px 0 50px 20px;
   }
   .discount{

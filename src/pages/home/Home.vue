@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="home">
     <!--<home-header @onLogin="toggleLogin()"></home-header>-->
     <home-swiper></home-swiper>
     <home-plate1></home-plate1>
@@ -49,4 +49,8 @@
 </script>
 
 <style>
+.home{
+    width: 100%;
+    margin-bottom: 80px;
+}
 </style>

@@ -62,19 +62,19 @@
   .liveContent{
     width: 100%;
     height: auto;
-    margin-bottom: 30px;
+    /*margin-bottom: 20px;*/
   }
   .live-box{
     width: 1230px;
     /*height: 1300px;*/
     display: flex;
     flex-wrap: wrap;
-    margin: 70px auto 70px auto;
+    margin: 60px auto 0 auto;
   }
   .live-distribute{
     width: 590px;
     height: 230px;
-    margin:0  15px 40px 0;
+    margin:0  15px 20px 0;
     border:1px solid #e6e2de;
   }
   .live-img{

@@ -62,14 +62,14 @@
   }
   .sports-box{
     width: 1230px;
-    margin: 70px auto 70px auto;
+    margin: 70px auto 0 auto;
     display: flex;
     flex-wrap: wrap;
   }
   .sports-distribute{
     width: 590px;
     height: 230px;
-    margin:0  15px 40px 0;
+    margin:0  15px 20px 0;
     border:1px solid #e6e2de;
   }
   .sports-img{

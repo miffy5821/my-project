@@ -84,7 +84,7 @@
 <style scoped>
   .dt{
   width:100%;
-  height:4100px;
+  /*margin-bottom: 80px;*/
   }
   .txqp-banner{
     width: 100%;
@@ -99,12 +99,14 @@
   .chess-box{
     width: 1230px;
     /*height: 2680px;*/
-    margin: 150px auto 100px auto;
+      display: flex;
+      flex-wrap: wrap;
+    margin: 60px auto 0 auto;
   }
   .chess{
     width: 590px;
     height: 230px;
-    margin:0  15px 40px 0;
+    margin:0  15px 20px 0;
     border:1px solid #e6e2de;
     float: left;
   }
