@@ -2,7 +2,12 @@
     <div class="gift-content">
         <div class="content">
             <div class="banner">
-                <img class="banner-img" src="" alt="">
+                <swiper :options="swiperGift">
+                    <swiper-slide v-for="item of swiperList" :key="item.id">
+                        <img class="banner-img" :src="item.imgUrl" />
+                    </swiper-slide>
+                    <div class="swiper-pagination pagination" slot="pagination"></div>
+                </swiper>
             </div>
             <div class="integral">
                 <div class="title">
@@ -150,27 +155,66 @@ export default {
                 'title': '【阿玛尼手提包】',
                 'user': '***dv***'
             }],
+
+            swiperGift: {
+                pagination: '.swiper-pagination',
+                autoplay: 2000,
+                speed: 1000,
+                loop: true
+            },
+
+
+            swiperIntegral: {
+                pagination: '.swiper-pagination',
+                autoplay: 1000,
+                speed: 1000,
+                loop: true
+            },
+
+            swiperList: [{
+                id: '0001',
+                imgUrl: '/static/home/banner-slideshow1.jpg'
+            }, {
+                id: '0002',
+                imgUrl: '/static/home/banner-slideshow2.jpg'
+            }]
         }
     },
     methods: {
-        gift(index) {
-            this.axios.get('api/unauthor/mail/goods/ranks', {params: {terminal: 0}})
-                .then((response) => {
-                    console.log(response);
-                    const resbody = response.data;
-                    if (resbody.status === 10000) {
-                        this.giftList = resbody.data;
-                        console.log(this.giftList);
-                    } else {
-                        return;
-                    }
-                }).catch(error => {
-                alert(error);
+        giftBanner(index) {
+            this.axios.get('/api/config', {
+                params: {id: 0, terminal: 0}
             })
+                .then((response) => {
+                    const data = response.data;
+                    if (data.status === 10000) {
+
+                        const giftImg = response.data.data[1].configs;// 储存所有优惠数据
+                        this.swiperListt= giftImg;
+                        console.log('swiperList',this.swiperList);
+                    }
+                })
+                .catch(function (error) {
+                    console.log(error);
+                });
         },
+        getGift (){
+            this.axios.get('/api/goods/list', {
+                params: {id: 0, terminal: 0}
+            })
+                .then((response) => {
+                        const giftItem = response.data.list;// 储存所有优惠数据
+                        this.giftList= giftItem;
+                        console.log('giftList',this.giftList);
+                })
+                .catch(function (error) {
+                    console.log(error);
+                });
+        }
     },
     mounted() {
-        this.gift();
+        this.giftBanner();
+        this.getGift();
     },
 }
 </script>
@@ -188,20 +232,18 @@ export default {
 .banner {
     width: 100%;
     height: 600px;
-    background: antiquewhite;
 }
 
 .banner-img {
     width: 100%;
-    height: 100%;
+    height: 600px;
 }
 
 .integral {
     width: 1200px;
-    height: 1500px;
+    height: 1800px;
     padding: 15px 0;
     margin: 0 auto;
-    background: aquamarine;
 }
 
 .title {
@@ -274,7 +316,7 @@ export default {
     width: 1200px;
     height: 566px;
     margin-top: 40px;
-    background: cadetblue;
+
 }
 
 .boutique-title {
@@ -447,127 +489,17 @@ export default {
     margin-top: 50px;
 
 }
-/*.scroll-wrapper:hover .div2 {*/
-/*animation-play-state:paused;*/
-/*}*/
-/*.div2 {*/
-/*animation:anis 30s linear infinite;*/
-/*}*/
-.hot {
-    width: 212px;
-    height: 313px;
-    margin-top: 10px;
-    border: 1px solid darkgrey;
-}
-
-.gift-hot {
-    width: 200px;
-    height: 40px;
-    text-align: left;
-    font-weight: bold;
-    font-size: 14px;
-    line-height: 40px;
-    padding-left: 12px;
-    background-color: #ece9e9;
-    border-bottom: 1px solid darkgrey;
-}
-
-.hotImg {
-    width: 200px;
-    height: 200px;
-    padding: 5px;
-}
-
-.hotName {
-    width: 200px;
-    height: 20px;
-    font-size: 14px;
-    color: darkgrey;
-    line-height: 20px;
-    text-align: center;
-    margin-top: 7px;
-}
-
-.hot-text {
-    width: 200px;
-    margin-top: 5px;
-    height: 20px;
-}
-
-.tex5 {
-    width: auto;
-    height: 20px;
-    color: #c8a675;
-    font-weight: bold;
-    font-size: 14px;
-    line-height: 20px;
-    text-align: left;
-    margin-left: 20px;
-}
-
-.content-right {
-    width: 782px;
-    height: 1049px;
-    margin-left: 5px;
-    float: right;
-}
-
-.gift-herder {
-    width: 780px;
-    height: 41px;
-    display: flex;
-}
 
 .line {
     width: 2px;
     height: 41px;
-    background-color: saddlebrown;
-}
-
-.gift- {
-    width: 492px;
-    height: 39px;
-    text-align: left;
-    font-weight: bold;
-    font-size: 14px;
-    line-height: 39px;
-    padding-left: 12px;
-    background-color: #ece9e9;
-    border: 1px solid darkgrey;
-}
-
-.gift-check {
-    width: 115px;
-    height: 35px;
-    text-align: center;
-    font-size: 14px;
-    color: #fff;
-    background: #6c6c6c;
-    border-radius: 5px;
-    padding: 5px;
-    border: none;
-    margin-top: 2px;
-    margin-left: 18px;
-}
-
-.gift-regulation {
-    width: 93px;
-    height: 35px;
-    text-align: center;
-    font-size: 14px;
-    color: #fff;
-    border: none;
-    background: #6c6c6c;
-    border-radius: 5px;
-    padding: 5px;
-    margin-top: 2px;
-    margin-left: 32px;
+    /*background-color: saddlebrown;*/
 }
 
 .gift {
-    width: 780px;
+    width: 1200px;
+    height: 1220px;
     margin-top: 10px;
-    height: 980px;
     overflow: hidden;
     display: flex;
     flex-wrap: wrap;
@@ -576,8 +508,8 @@ export default {
 .giftList {
     width: 278px;
     height: 382px;
-    background: #666666;
-    margin: 6px 0 0 10px;
+    /*background: #666666;*/
+    margin: 6px 0 0 15px;
     border: 1px solid darkgrey;
 }
 
@@ -586,8 +518,9 @@ export default {
 }
 
 .giftImg {
-    width: 238px;
-    height: 240px;
+    margin-top: 2px;
+    width: 274px;
+    height: 274px;
 }
 
 .giftText {
@@ -606,6 +539,7 @@ export default {
     width: 240px;
     height: 20px;
     display: flex;
+    color: coral;
     margin-top: 5px;
     flex-wrap: wrap;
     font-weight: bold;

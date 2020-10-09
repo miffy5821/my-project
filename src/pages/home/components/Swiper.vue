@@ -69,36 +69,49 @@ export default {
     },
     methods: {
         swiperImg() {
-            this.axios.get('api/unauthor/webcom/config', {params: {terminal: 0}})
-                .then((response) => {
-                    console.log(response);
-                    const resbody = response.data;
-                    if (resbody.status === 10000) {
-                        const data = resbody.data;
-                        for (let i = 0; i < data.length; i++) {
-                            if (data[i].type === '1') {
-                                this.swiperList = data[i].configs;
-                                console.log(this.swiperList);
-                            }else if (data[i].type === '6') {
-                                this.newsList = data[i].configs
-                                console.log(this.newsList );
-                            }
-                        }
-                    } else  {
-                        this.$alert(data.msg);
-                    }
-                }).catch(error => {
-                alert(error);
+            this.axios.get('/api/config', {
+                params: {id: 0, terminal: 0}
             })
+                .then((response) => {
+                    const data = response.data;
+                    if (data.status === 10000) {
+
+                        const swiper = response.data.data[0].configs;// 储存所有优惠数据
+                        this.swiperList = swiper;
+                        console.log('swiperList',this.swiperList);
+                    }
+                })
+                .catch(function (error) {
+                    console.log(error);
+                });
         },
         open(index) {
             this.$alert(this.newsList[index].data, '重要通知', {
                 dangerouslyUseHTMLString: true
             });
+        },
+        getConfigs() {
+            this.axios.get('/api/config', {
+                params: {id: 0, terminal: 0}
+            })
+                .then((response) => {
+                    const data = response.data;
+                    if (data.status === 10000) {
+
+                        const configs = response.data.data[3].configs;// 储存所有优惠数据
+                        this.newsList = configs;
+                        console.log('newsList',this.newsList);
+                    }
+                })
+                .catch(function (error) {
+                    console.log(error);
+                });
+
         }
     },
     mounted() {
         this.swiperImg();
+        this.getConfigs();
     },
     computed: {
         optionLeft() {
