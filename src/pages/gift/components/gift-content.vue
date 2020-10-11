@@ -37,14 +37,14 @@
                     <div class="boutique-swiper">
                         <div class="boutique-img">
                             <img class="jingpin-img" :src="ranksList" alt="">
-                            <div class="hover-text">
+                            <div class="hover-text" >
                                 <div class="product">
                                     <p>空投美女</p>
                                     <p>礼品价值：<span>18000</span></p>
                                     <p>兑换积分：<span>54000积分</span></p>
                                 </div>
                                 <div class="boutique-button">
-                                    <button>立即兑换</button>
+                                    <button class="boutique-button-btn">立即兑换</button>
                                 </div>
                             </div>
                         </div>
@@ -315,7 +315,7 @@
 
     .boutique {
         width: 1200px;
-        height: 566px;
+        /*height: 566px;*/
         margin-top: 40px;
 
     }
@@ -365,6 +365,9 @@
         width: 870px;
         height: 500px;
     }
+    .boutique-img:hover .hover-text{
+        display: block;
+    }
 
     .hover-text {
         width: 870px;
@@ -373,9 +376,11 @@
         background: #aaa;
         position: relative;
         top: -115px;
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: space-between;
+        display: none;
+        /*visibility:hidden;*/
+        /*display: flex;*/
+        /*flex-wrap: wrap;*/
+        /*justify-content: space-between;*/
         z-index: 999;
     }
 
@@ -404,22 +409,26 @@
         width: 200px;
         height: 80px;
         padding-right: 50px;
+        position: absolute;
+        top:25px;
+        left: 640px;
         margin-top: auto;
         margin-bottom: auto;
     }
 
-    .boutique-button button {
+    .boutique-button-btn{
         width: 150px;
         margin-top: 20px;
         padding: 10px 20px;
         color: #c19045;
         font: inherit;
         border: 1px solid #c19045;
-    }
 
-    .boutique-button button:hover {
-        color: white;
-        background: #c19045;
+    }
+    .boutique-button-btn:hover {
+        color: #fff;
+        background: #c2a77d;
+        animation-duration: ;
     }
 
     .boutique-right {
@@ -515,10 +524,12 @@
         /*background: #666666;*/
         margin: 6px 0 0 15px;
         border: 1px solid darkgrey;
+        transition: all .3s ease-in-out;
     }
 
     .giftList:hover {
-        border: 1px solid goldenrod;
+        transform: translate3d(0,-3px,0);
+        box-shadow: 0 2px 20px 0 #666;
     }
 
     .giftImg {

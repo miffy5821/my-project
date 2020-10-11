@@ -3,9 +3,20 @@
         <div class="nav">
             <img class="nav-logo" src="/static/shared/logo.png " alt=''>
             <ul class="nav-bar-box">
-                <router-link :to="routerConfig[item.menuNameEn]" v-for="(item,index) of topNavList" :key="index">
-                    <li :class="activeClass == index ? 'active':''" @click="getItem(index)">{{ item.menuNameCn }}</li>
-                </router-link>
+
+                <li class="nav-bar-box-li" :class="activeClass == index ? 'active':''" @click="getItem(index)"
+                    v-for="(item,index) of topNavList" :key="index">
+                    <router-link :to="routerConfig[item.menuNameEn]">
+                        {{ item.menuNameCn }}
+                    </router-link>
+                    <ul class="lower-nav">
+                        <li class="lower-nav-list" v-for="(subItem,index) of item.subMenus" :key="index">
+                            <img class="lower-nav-list-img" :src="subItem.icons[0] && subItem.icons[0].img"/>
+                            <div>{{ subItem.menuNameCn }}</div>
+                        </li>
+                    </ul>
+                </li>
+
             </ul>
             <div class="navLogin" v-if="!isLogin">
                 <div class="left">
@@ -36,9 +47,9 @@
                 <div class="personal-img"
                      v-on:mouseover="mouseover"
                      v-on:mouseleave="mouseleave"
-                     >
+                >
                     <img src="/static/home/个人.png" class="img-login-after" alt=''>
-                    <div class="nav-login11" v-if="isShow"   v-on:mouseover="mouseover" >
+                    <div class="nav-login11" v-if="isShow" v-on:mouseover="mouseover">
                         <ul>
                             <router-link to="/personal/deposit">
                                 <li>
@@ -90,7 +101,7 @@ export default {
     components: {
         Login: Login
     },
-    data () {
+    data() {
         return {
             activeClass: 0, // 0为默认选择第一个，-1为不选择
             isShowLogin: false, // 是否显示登录框,
@@ -112,75 +123,44 @@ export default {
                 Playforfun: '/'
             },
             isLogin: false, // 是否已登录
-            isShow:false,//是否显示
+            isShow: false,//是否显示
+            link: 'https://88y00.com/'
         }
     },
     methods: {
-        mouseover () {
+        mouseover() {
             this.isShow = true;
         },
-        mouseleave () {
+        mouseleave() {
             this.isShow = false;
         },
 
-        getItem (index) {
+        getItem(index) {
             this.activeClass = index;  // 把当前点击元素的index，赋值给activeClass
         },
-        navList () {
+        navList() {
             this.axios.get('api/menu', {params: {terminal: 0}})
                 .then((response) => {
-                    console.log('response',response);
+                    console.log('response', response);
                     const resbody = response.data;
-                    console.log('resbody',resbody);
+                    console.log('resbody', resbody);
                     if (resbody.status === 10000) {
                         this.topNavList = resbody.data;
+                        console.log('topNavList', this.topNavList);
 
-
-                        console.log('topNavList',this.topNavList);
-                        //                 console.log('topNavList', this.topNavList);
-                        // for (let i = 0; i < data.length; i++) {
-                        //     if (data[i].type === '1') {
-                        //         this.swiperList = data[i].configs;
-                        //         console.log(this.swiperList);
-                        //     } else if (data[i].type === '6') {
-                        //         this.newsList = data[i].configs
-                        //         console.log('newsList', this.newsList);
-                        //     }
-                        // }
-                    // } else {
-                    //     this.$alert(data.msg);
                     }
                 }).catch(error => {
                 alert(error);
             })
         },
-        // mainMenu () {
-        //     this.axios.get('api/menu', {
-        //         params: {id: 0, terminal: 0}
-        //     })
-        //         .then((response) => {
-        //             // console.log(response);
-        //             const resData = response.data;
-        //             console.log('resData',this.resData);
-        //             if (resData.status === 10000) {
-        //
-        //                 this.topNavList = resData.data;
-        //                 console.log('topNavList', this.topNavList);
-        //                 // console.log(this.topNavList);
-        //
-        //             }
-        //         })
-        //         .catch(function (error) {
-        //             console.log(error);
-        //         });
-        // },
-        toggleLogin () {
+
+        toggleLogin() {
             this.isShowLogin = !this.isShowLogin;
         },
-        loginSuccess () {
+        loginSuccess() {
             this.isLogin = true;
         },
-        logout(){
+        logout() {
             this.axios.post('api/gateway/logout')
                 .then((response) => {
                     console.log(response);
@@ -191,7 +171,7 @@ export default {
                             this.$router.push('/');
                         }
                         this.$alert(resbody.msg);
-                        this.isLogin=false;
+                        this.isLogin = false;
                     } else {
                         this.$alert(data.msg);
                     }
@@ -201,7 +181,7 @@ export default {
                 })
         },
     },
-    mounted () {
+    mounted() {
         this.navList();
         // this.mainMenu();
     },
@@ -229,23 +209,31 @@ export default {
 }
 
 .nav-bar-box {
-    /*width: 808px;*/
-    height: 78px;
+    height: 65px;
+    line-height:65px;
     list-style: none;
-    margin-left: 20px;
-    margin-top: 25px;
+    margin:0 20px;
+    display: flex;
 }
 
-.nav-bar-box li {
-    display: inline-block;
+.nav-bar-box-li {
+    position: relative;
     width: auto;
     height: 35px;
-    color: black;
+    transition: all .2s;
+    transition-property: all;
+    transition-duration: 0.2s;
+    transition-timing-function: ease;
+    transition-delay: 0s;
     margin: 0 20px 0 0;
 }
-
+.nav-bar-box-li:hover .lower-nav {
+    display: block;
+    transition: all .2s;
+}
 .active {
     color: #c8a675;
+    height:50px ;
     border-bottom: 2px solid #c8a675;
 }
 
@@ -263,6 +251,42 @@ export default {
 
 .navLogin a {
     text-decoration: none;
+}
+
+.lower-nav {
+    position: absolute;
+    cursor:pointer;
+    top: 61px;
+    left: calc(50% - 80px);
+    width: 160px;
+    height: auto;
+    color: white;
+    display: none;
+    text-align: center;
+    z-index: 100;
+    border: 1px solid #c8a675;
+}
+
+.lower-nav-list {
+    width: 160px;
+    height: 45px;
+    text-align: center;
+    line-height: 45px;
+    color: white;
+    background: black;
+    display: flex;
+    transition: all .2s;
+    border-bottom: 1px solid #c8a675;
+}
+.lower-nav-list:hover{
+    color:#c8a675 ;
+}
+
+.lower-nav-list-img {
+    width: 60px;
+    height: 35px;
+    margin: 8px 6px 0 6px;
+    background-size: 100% 100%;
 }
 
 .left {
@@ -360,10 +384,10 @@ export default {
 }
 
 .personal-img {
-    width:100px;
-    height:100px;
+    width: 100px;
+    height: 100px;
     z-index: 999;
-    cursor:pointer;
+    cursor: pointer;
 }
 
 .nav-login11 {
@@ -376,7 +400,7 @@ export default {
     border: 1px solid darkgrey;
     border-radius: 5px;
     z-index: 999;
-    cursor:pointer;
+    cursor: pointer;
 }
 
 .nav-login11 ul {
