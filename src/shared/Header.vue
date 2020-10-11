@@ -9,12 +9,12 @@
                     <router-link :to="routerConfig[item.menuNameEn]">
                         {{ item.menuNameCn }}
                     </router-link>
-                    <ul class="lower-nav">
-                        <li class="lower-nav-list" v-for="(subItem,index) of item.subMenus" :key="index">
+                    <ol class="lower-nav">
+                        <li class="lower-nav-list" v-for="(subItem,index) of item.subMenus.slice(0,8)" :key="index">
                             <img class="lower-nav-list-img" :src="subItem.icons[0] && subItem.icons[0].img"/>
                             <div>{{ subItem.menuNameCn }}</div>
                         </li>
-                    </ul>
+                    </ol>
                 </li>
 
             </ul>
@@ -221,16 +221,16 @@ export default {
     width: auto;
     height: 35px;
     transition: all .2s;
-    transition-property: all;
-    transition-duration: 0.2s;
-    transition-timing-function: ease;
-    transition-delay: 0s;
+    /*transition-property: all;*/
+    /*transition-duration: 0.2s;*/
+    /*transition-timing-function: ease;*/
+    /*transition-delay: 0s;*/
     margin: 0 20px 0 0;
 }
-.nav-bar-box-li:hover .lower-nav {
-    display: block;
-    transition: all .2s;
-}
+/*.nav-bar-box-li:hover .lower-nav {*/
+    /*display: block;*/
+    /*transition: all .2s;*/
+/*}*/
 .active {
     color: #c8a675;
     height:50px ;
@@ -259,12 +259,13 @@ export default {
     top: 61px;
     left: calc(50% - 80px);
     width: 160px;
-    height: auto;
+    height: 0;
     color: white;
-    display: none;
+
+    /*display: none;*/
     text-align: center;
     z-index: 100;
-    border: 1px solid #c8a675;
+    /*border: 1px solid #c8a675;*/
 }
 
 .lower-nav-list {
@@ -275,11 +276,58 @@ export default {
     color: white;
     background: black;
     display: flex;
-    transition: all .2s;
     border-bottom: 1px solid #c8a675;
+
+    cursor: pointer;
+    opacity: 0;
+    transform: rotateY(90deg);
+    transition: opacity .4s,transform .5s;
+    transition-timing-function: ease-in-out;
 }
-.lower-nav-list:hover{
+
+.ower-nav-list:nth-child(2){
+    transition-delay: 50ms;
+}
+
+.lower-nav-list:nth-child(3){
+    transition-delay: 100ms;
+}
+.lower-nav-list:nth-child(4){
+    transition-delay: 150ms;
+}
+
+.lower-nav-list:nth-child(5){
+    transition-delay: 200ms;
+}
+
+.lower-nav-list:nth-child(6){
+    transition-delay: 250ms;
+}
+
+.lower-nav-list:nth-child(7){
+    transition-delay: 300ms;
+}
+
+.lower-nav-list:nth-child(8){
+    transition-delay: 350ms;
+}
+
+.lower-nav-list:nth-child(9){
+    transition-delay: 400ms;
+}
+.lower-nav-list:nth-child(10){
+    transition-delay: 450ms;
+}
+
+
+.lower-nav-list:hover div{
     color:#c8a675 ;
+}
+
+.nav-bar-box-li:hover .lower-nav .lower-nav-list{
+    /*color:#c8a675 ;*/
+    opacity: 1;
+    transform: rotateY(0);
 }
 
 .lower-nav-list-img {

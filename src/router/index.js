@@ -10,6 +10,7 @@ import sports from '@/pages/sports/sports.vue'
 import lottery from '@/pages/lottery/lottery.vue'
 import fishing from '@/pages/fishing/fishing.vue'
 import discounts from '@/pages/discounts/discounts.vue'
+import discountsDetail from '@/pages/discount-detail/discount-detail.vue'
 import gift from '@/pages/gift/gift.vue'
 import register from '@/pages/register/register.vue'
 import login from '@/pages/login/login.vue'
@@ -69,6 +70,10 @@ export default new Router({
     name: 'discounts',
     component: discounts
   }, {
+     path: '/discountsDetail',
+     name: 'discountsDetail',
+     component: discountsDetail
+      }, {
     path: '/gift',
     name: 'gift',
     component: gift

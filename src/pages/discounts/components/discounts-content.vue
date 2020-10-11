@@ -2,7 +2,7 @@
   <div class="discounts">
     <div class="discounts-banner"></div>
     <div class="discounts-box">
-      <div class="discount" v-for="item of discountList" :key="item.id">
+      <div class="discount" @click="jump(item)" v-for="item of discountList" :key="item.id">
 <!--          <router-link ：to='#'> <img class="discount-img" :src="item.bigImg"/></router-link>-->
           <img class="discount-img" :src="item.bigImg"/>
       </div>
@@ -35,6 +35,10 @@
                       console.log(error);
                   });
           },
+          jump(item){
+              console.log('item',item);
+              this.$router.push({ path: '/discountsDetail', query: { item }});
+          }
       },
       mounted() {
         this.navDiscounts();
