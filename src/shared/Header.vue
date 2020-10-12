@@ -4,9 +4,9 @@
             <img class="nav-logo" src="/static/shared/logo.png " alt=''>
             <ul class="nav-bar-box">
                 <img class="icon-hot" src="https://image.beike188.com/YHHB/images/hot.gif">
-                <li class="nav-bar-box-li" :class="activeClass == index ? 'active':''" @click="getItem(index)"
+                <li class="nav-bar-box-li" :class="activeClass == index ? 'active':''" @click="getItem(index,routerConfig[item.menuNameEn])"
                     v-for="(item,index) of topNavList" :key="index">
-                    <router-link :to="routerConfig[item.menuNameEn]">
+                    <router-link :to="routerConfig[item.menuNameEn]" >
                         {{ item.menuNameCn }}
                     </router-link>
                     <ol class="lower-nav">
@@ -117,7 +117,7 @@ export default {
                 lottery: '/lottery',
                 fish: '/fishing',
                 discount: '/discounts',
-                brand: 'https://88y00.com/',
+                brand: '###',
                 mall: '/gift',
                 HOT: '/gift',
                 Playforfun: '/'
@@ -135,8 +135,11 @@ export default {
             this.isShow = false;
         },
 
-        getItem(index) {
+        getItem(index,path) {
             this.activeClass = index;  // 把当前点击元素的index，赋值给activeClass
+            if(path === '###'){
+                window.open(this.link);
+            }
         },
         navList() {
             this.axios.get('api/menu', {params: {terminal: 0}})
@@ -179,7 +182,7 @@ export default {
                 .catch(error => {
                     alert(error);
                 })
-        },
+        }
     },
     mounted() {
         this.navList();

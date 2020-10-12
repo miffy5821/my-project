@@ -75,11 +75,20 @@ export default {
     width: 200px;
     height: 217px;
     margin: 30px;
-    opacity: .8;
-      transition-property: all;
-      transition-duration: 0.5s;
-      transition-timing-function: ease;
-      transition-delay: 0s;
+    /*opacity: .8;*/
+      /*transition-property: all;*/
+      /*transition-duration: 0.5s;*/
+      /*transition-timing-function: ease;*/
+      /*transition-delay: 0s;*/
     vertical-align: baseline;
+    animation: 4s linear infinite fishAnimate;
   }
+  .fish-img:hover{
+    opacity: 1;
+    animation-play-state: paused;
+}
+  @keyframes fishAnimate{
+       50%{transform:translateY(-20%);}
+       100%{transform:translateZ(0);}
+   }
 </style>

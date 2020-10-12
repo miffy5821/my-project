@@ -86,6 +86,13 @@
                         </div>
                     </div>
                 </div>
+                <div class="pager">
+                    <el-pagination
+                        background
+                        layout="prev, pager, next"
+                        :total="89">
+                    </el-pagination>
+                </div>
             </div>
         </div>
 
@@ -161,15 +168,15 @@
 
                 swiperGift: {
                     pagination: '.swiper-pagination',
-                    autoplay: 2000,
-                    speed: 1000,
+                    autoplay: 5000,
+                    speed: 5000,
                     loop: true
                 },
 
                 swiperIntegral: {
                     pagination: '.swiper-pagination',
-                    autoplay: 1000,
-                    speed: 1000,
+                    autoplay: 5000,
+                    speed: 5000,
                     loop: true
                 },
 
@@ -377,10 +384,6 @@
         position: relative;
         top: -115px;
         display: none;
-        /*visibility:hidden;*/
-        /*display: flex;*/
-        /*flex-wrap: wrap;*/
-        /*justify-content: space-between;*/
         z-index: 999;
     }
 
@@ -521,7 +524,6 @@
     .giftList {
         width: 278px;
         height: 382px;
-        /*background: #666666;*/
         margin: 6px 0 0 15px;
         border: 1px solid darkgrey;
         transition: all .3s ease-in-out;
@@ -603,4 +605,9 @@
     .tex3:active {
         transition: all 0.3s;
     }
+
+    .pager{
+        width: 1200px;
+        height: 62px;
+     }
 </style>
