@@ -3,7 +3,7 @@
         <div class="nav">
             <img class="nav-logo" src="/static/shared/logo.png " alt=''>
             <ul class="nav-bar-box">
-
+                <img class="icon-hot" src="https://image.beike188.com/YHHB/images/hot.gif">
                 <li class="nav-bar-box-li" :class="activeClass == index ? 'active':''" @click="getItem(index)"
                     v-for="(item,index) of topNavList" :key="index">
                     <router-link :to="routerConfig[item.menuNameEn]">
@@ -211,11 +211,18 @@ export default {
 .nav-bar-box {
     height: 65px;
     line-height:65px;
+    min-width: 870px;
     list-style: none;
     margin:0 20px;
     display: flex;
 }
-
+.icon-hot{
+    width: 16px;
+    height: 21px;
+    position: absolute;
+    top:13px;
+    left: 418px;
+}
 .nav-bar-box-li {
     position: relative;
     width: auto;
@@ -259,12 +266,11 @@ export default {
     top: 61px;
     left: calc(50% - 80px);
     width: 160px;
-    height: 0;
+    min-height:368px;
     color: white;
-
-    /*display: none;*/
     text-align: center;
     z-index: 100;
+    /*opacity:0;*/
     /*border: 1px solid #c8a675;*/
 }
 
@@ -276,8 +282,8 @@ export default {
     color: white;
     background: black;
     display: flex;
-    border-bottom: 1px solid #c8a675;
-
+    border: 1px solid #c8a675;
+    margin:0 -1px -1px 0;
     cursor: pointer;
     opacity: 0;
     transform: rotateY(90deg);
@@ -324,8 +330,12 @@ export default {
     color:#c8a675 ;
 }
 
+.nav-bar-box-li:hover .lower-nav-list{
+    border: 1px solid #c8a675 ;
+}
 .nav-bar-box-li:hover .lower-nav .lower-nav-list{
     /*color:#c8a675 ;*/
+
     opacity: 1;
     transform: rotateY(0);
 }

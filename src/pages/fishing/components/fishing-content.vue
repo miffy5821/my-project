@@ -44,6 +44,10 @@ export default {
     width: 100%;
     background: url("/static/fishing/fish_banner.jpg") no-repeat center top;
     overflow: hidden;
+      transition-property: all;
+      transition-duration: 0.5s;
+      transition-timing-function: ease;
+      transition-delay: 0s;
       /*!*display: flex;*!*/
       /*flex-wrap: wrap;*/
       /*align-content:center;*/
@@ -54,6 +58,11 @@ export default {
     /*overflow: visible;*/
     margin-right: auto;
     margin-left: auto;
+    opacity: .8;
+      transition-property: all;
+      transition-duration: 0.5s;
+      transition-timing-function: ease;
+      transition-delay: 0s;
     display: flex;
     flex-wrap: wrap;
   }
@@ -66,6 +75,11 @@ export default {
     width: 200px;
     height: 217px;
     margin: 30px;
+    opacity: .8;
+      transition-property: all;
+      transition-duration: 0.5s;
+      transition-timing-function: ease;
+      transition-delay: 0s;
     vertical-align: baseline;
   }
 </style>
