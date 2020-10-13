@@ -42,7 +42,7 @@
                       const data = response.data;
                       if (data.status === 10000) {
 
-                          const live = response.data.data[3].subMenus;// 储存所有真人游戏数据
+                          const live = response.data.data[3].subMenus.slice(1,9);// 储存所有真人游戏数据
                           this.liveList = live;
                           console.log('liveList',this.liveList);
                       }
