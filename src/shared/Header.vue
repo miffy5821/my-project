@@ -186,7 +186,6 @@ export default {
     },
     mounted() {
         this.navList();
-        // this.mainMenu();
     },
 }
 </script>

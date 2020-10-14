@@ -3,7 +3,7 @@
         <div class="announcement">
             <div class="top">
                 <h2>平台公告</h2>
-                <img class="top-img"
+                <img class="top-img" @click="$emit('toggleGg()')"
                      src="https://image.beike188.com/YHHB/images/close.png"/>
             </div>
             <div class="center">

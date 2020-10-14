@@ -33,14 +33,10 @@
     },
     data () {
       return {
-        isShowLogin: false,
-        isShowGg:true
+        isShowGg:false
       }
     },
     methods:{
-      toggleLogin(){
-        this.isShowLogin = !this.isShowLogin;
-      },
       toggleGg(){
           this.isShowGg = !this.isShowGg;
       }
