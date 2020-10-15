@@ -3,18 +3,22 @@
         <div class="announcement">
             <div class="top">
                 <h2>平台公告</h2>
-                <img class="top-img" @click="$emit('toggleGg()')"
+                <img class="top-img" @click="$emit('closeAn')"
                      src="https://image.beike188.com/YHHB/images/close.png"/>
             </div>
             <div class="center">
                 <div class="left">
                     <ul class="left-ul">
-                        <li class="left-ul-li"> USTD入款</li>
+                        <li class="left-ul-li"
+                            v-for="(item,index) of listMenu" :key="item.id"
+                            @click="switchItem(index)" :class="activeIndex === index ? 'active':''">
+                            {{item.title}}
+                        </li>
                     </ul>
                 </div>
                 <div class="right">
                     <img class="right-img"
-                         src="https://line.jzs001.cn/group1/M00/00/9D/Z_QBx19BD9yAf3YlAASNaG8VDM4751.jpg"/>
+                         :src="listMenu && listMenu[activeIndex].data"/>
                 </div>
 
             </div>
@@ -30,21 +34,42 @@
 <script>
     export default {
         name: 'announcement.vue',
-        data(){
-            return{
 
+        data () {
+            return {
+                checked: false,
+                listMenu: [],
+                activeIndex: 0
             }
         },
-        mounted:{
-            toggleGg() {
-                this.isShowGg = !this.isShowGg;
+        methods: {
+            getMenu () {
+                this.axios.get('/api/config', {params: {terminal: 0}})
+                    .then((response) => {
+                        const menu = response.data;
+                        console.log('menu', menu);
+                        if (menu.status === 10000) {
+                            const menuData = response.data.data[2].configs;
+                            this.listMenu = menuData;
+                            console.log('listMenu', this.listMenu);
+
+                        }
+                    }).catch(error => {
+                    alert(error);
+                })
             },
+            switchItem (index) {
+                this.activeIndex = index;
+            }
+        },
+        mounted () {
+            this.getMenu();
         }
     }
 </script>
 
 <style scoped>
-    .announcement{
+    .announcement {
         width: 951px;
         height: 634px;
         background: #fff;
@@ -54,7 +79,8 @@
         margin-left: -475px;
         margin-top: -360px;
         z-index: 999999;
-   }
+    }
+
     /*// 遮罩 设置背景层，z-index值要足够大确保能覆盖，高度 宽度设置满 做到全屏遮罩*/
     .shadow {
         width: 100%;
@@ -67,7 +93,8 @@
         display: flex;
         justify-content: center; /*使子项目水平居中*/
     }
-    .top{
+
+    .top {
         height: 50px;
         line-height: 50px;
         background: #fff;
@@ -78,62 +105,75 @@
         /*margin-bottom: 1px;*/
         border-bottom: 1px solid #dddee1;
     }
-    .top h2{
+
+    .top h2 {
         width: 951px;
         height: 46px;
         text-align: center;
         line-height: 46px;
     }
-    .top-img{
+
+    .top-img {
         width: 20px;
         height: 20px;
         position: absolute;
         left: 920px;
-        top:10px;
+        top: 10px;
     }
-    .center{
+
+    .center {
         width: 950px;
         height: 535px;
         display: flex;
     }
-    .left{
+
+    .left {
         height: 462px;
         /*overflow-y: scroll;*/
     }
-    .left-ul{
+
+    .left-ul {
         width: 268px;
     }
-    .left-ul-li{
+
+    .left-ul-li {
         text-align: center;
         width: 242px;
         white-space: normal;
-        padding: 12px 13px!important;
-        margin: 0!important;
+        padding: 12px 13px !important;
+        margin: 0 !important;
         background: #b6976b;
         color: #fff;
-
     }
-    .right{
+
+    .active {
+        background: #c8a675;
+    }
+
+    .right {
         width: 720px;
         height: 535px;
         text-align: left;
     }
-    .right-img{
+
+    .right-img {
         width: 648px;
         height: 462px;
         margin-left: 10px;
     }
-    .button{
+
+    .button {
         width: 951px;
         height: 46px;
         /*background: #cccccc;*/
-        border-top:1px solid #dddee1;
+        border-top: 1px solid #dddee1;
     }
-    .pst{
+
+    .pst {
         width: 150px;
         height: 50px;
         position: relative;
-        top:15px;
+        top: 15px;
         left: 800px;
     }
 </style>

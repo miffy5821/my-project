@@ -7,8 +7,7 @@
     <home-plate3></home-plate3>
     <home-plate4></home-plate4>
 
-    <!--<login @onLogin="toggleLogin()" v-if="isShowLogin"></login>-->
-      <announcement  @onShow="toggleGg()" v-if="isShowGg"></announcement>
+    <announcement  @closeAn="toggleGg()" v-if="isShowGg"></announcement>
   </div>
 </template>
 
@@ -33,12 +32,12 @@
     },
     data () {
       return {
-        isShowGg:false
+        isShowGg:true
       }
     },
     methods:{
       toggleGg(){
-          this.isShowGg = !this.isShowGg;
+          this.isShowGg = false;
       }
     }
   }

@@ -3,7 +3,6 @@
     <div class="discounts-banner"></div>
     <div class="discounts-box">
       <div class="discount" @click="jump(item)" v-for="item of discountList" :key="item.id">
-<!--          <router-link ：to='#'> <img class="discount-img" :src="item.bigImg"/></router-link>-->
           <img class="discount-img" :src="item.bigImg"/>
       </div>
     </div>
