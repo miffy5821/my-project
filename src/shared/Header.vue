@@ -215,6 +215,7 @@ export default {
     line-height:65px;
     min-width: 870px;
     list-style: none;
+    position: relative;
     margin:0 20px;
     display: flex;
 }
@@ -222,8 +223,8 @@ export default {
     width: 16px;
     height: 21px;
     position: absolute;
-    top:13px;
-    left: 418px;
+    top: 4%;
+    left:12%;
 }
 .nav-bar-box-li {
     position: relative;

@@ -221,7 +221,7 @@
                     });
             },
             jump( ){
-                this.$router.push('/pageges/integral/integral')
+                this.$router.push('/integral')
                 // this.$router.push({ path: '/'});
             }
 
