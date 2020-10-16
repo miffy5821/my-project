@@ -1,6 +1,15 @@
 <template>
   <div class="electronic">
-    <div class="banner"></div>
+    <div class="banner">
+        <div class="dynamic-digital">
+            <div class="dynamic-border">
+                <div class="center1"></div>
+                <div class="center2"></div>
+                <div class="center3"></div>
+            </div>
+            <div class="dynamic-button"></div>
+        </div>
+    </div>
     <div class="content">
       <div class="electronic-">
         <div class="electronic-nav">
@@ -150,6 +159,44 @@ export default {
   height: 450px;
   background-image: url("/static/electronic/solts_banner.jpg");
   background-size: cover;
+}
+.dynamic-digital{
+    width: 1200px;
+    height: 250px;
+    position: absolute;
+    left: 10%;
+    top: 18%;
+}
+.dynamic-border{
+    width: 600px;
+    height: 180px;
+    display: flex;
+}
+.center1{
+    height: 180px;
+    width: 93px;
+    background: url(//image.beike188.com/YHHB/images/slots/dianzi_02L.54e0512.png) no-repeat;
+}
+
+.center2{
+    height: 3px;
+    width: 450px;
+    background: url(//image.beike188.com/YHHB/images/slots/dianzi_01.e67c171.png) 0 0/cover no-repeat;
+    position: relative;
+    top: 38px
+}
+.center3{
+    height: 180px;
+    width: 93px;
+    background: url(//image.beike188.com/YHHB/images/slots/dianzi_03R.42e0e27.png) no-repeat;
+}
+.dynamic-button{
+    width: 312px;
+    height: 56px;
+    background: url(//image.beike188.com/YHHB/images/slots/dianzi_zi.25161e0.png) no-repeat;
+    position: relative;
+    left: 145px;
+    top: -20px;
 }
 
 .content {

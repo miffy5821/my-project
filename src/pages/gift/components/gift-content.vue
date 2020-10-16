@@ -20,7 +20,7 @@
                             <!--<span class="button-text"></span>-->
                             订单记录
                         </div>
-                        <div class="button">
+                        <div class="button" @click="jump()">
                             <img class="button-img" src="/static/gift/icon2.png"/>
                             <!--<span class="button-text"></span>-->
                             兑换规则
@@ -219,7 +219,12 @@
                     .catch(function (error) {
                         console.log(error);
                     });
+            },
+            jump( ){
+                this.$router.push('/pageges/integral/integral')
+                // this.$router.push({ path: '/'});
             }
+
         },
         mounted () {
             this.giftBanner();
