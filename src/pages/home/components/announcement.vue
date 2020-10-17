@@ -38,7 +38,7 @@
         data () {
             return {
                 checked: false,
-                listMenu: [],
+                listMenu: undefined,
                 activeIndex: 0
             }
         },

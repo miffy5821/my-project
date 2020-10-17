@@ -15,7 +15,7 @@
                 <div class="content">
                     <vue-seamless-scroll :data="newsList" :class-option="optionLeft" class="seamless-warp2">
                         <ul class="item">
-                            <li v-for="(item,index) in newsList" v-text="item.data"  @click="open(index)"></li>
+                            <li v-for="(item,index) in newsList" v-text="item.data" @click="open(index)"></li>
                         </ul>
                     </vue-seamless-scroll>
                 </div>
@@ -55,7 +55,7 @@ export default {
                     stopOnLastSlide: false,
                     disableOnInteraction: true,
                 },
-                speed:3000,
+                speed: 3000,
                 //  设置前进后退按钮
                 navigation: {
                     nextEl: '.swiper-button-next',
@@ -76,9 +76,9 @@ export default {
                     const data = response.data;
                     if (data.status === 10000) {
 
-                        const swiper = response.data.data[0].configs;// 储存所有优惠数据
+                        const swiper = response.data.data[0].configs;// 储存所有轮播图
                         this.swiperList = swiper;
-                        console.log('swiperList',this.swiperList);
+                        console.log('swiperList', this.swiperList);
                     }
                 })
                 .catch(function (error) {
@@ -86,8 +86,14 @@ export default {
                 });
         },
         open(index) {
-            this.$alert(this.newsList[index].data, '重要通知', {
-                dangerouslyUseHTMLString: true
+            this.$alert('这是一段内容', '重要通知', {
+                confirmButtonText: '确定',
+                callback: action => {
+                    this.$message({
+                        type: 'info',
+                        message: `action: ${action}`
+                    });
+                }
             });
         },
         getConfigs() {
@@ -98,18 +104,19 @@ export default {
                     const data = response.data;
                     if (data.status === 10000) {
 
-                        const configs = response.data.data[3].configs;// 储存所有优惠数据
+                        const configs = response.data.data[3].configs;// 储存所有公告
+                        console.log('configs',this.configs)
                         this.newsList = configs;
-                        console.log('newsList',this.newsList);
+                        console.log('newsList', this.newsList);
                     }
                 })
                 .catch(function (error) {
                     console.log(error);
                 });
-
-        }
+        },
     },
-    mounted() {
+
+    mounted () {
         this.swiperImg();
         this.getConfigs();
     },
@@ -122,6 +129,8 @@ export default {
         }
     }
 }
+
+
 </script>
 
 <style scoped>
