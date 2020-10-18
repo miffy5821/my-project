@@ -15,7 +15,7 @@
                         <span class="login-text1">我的积分：</span><span class="login-text2">请登录</span>
                     </div>
                     <div class="title-history">
-                        <div class="button">
+                        <div class="button" @click="jumpOrderRecord()">
                             <img class="button-img" src="/static/gift/icon1.png"/>
                             <!--<span class="button-text"></span>-->
                             订单记录
@@ -223,6 +223,9 @@
             jump( ){
                 this.$router.push('/integral')
                 // this.$router.push({ path: '/'});
+            },
+            jumpOrderRecord( ){
+                this.$router.push('/orderRecord')
             }
 
         },

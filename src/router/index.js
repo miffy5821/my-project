@@ -13,6 +13,7 @@ import discounts from '@/pages/discounts/discounts.vue'
 import discountsDetail from '@/pages/discount-detail/discount-detail.vue'
 import gift from '@/pages/gift/gift.vue'
 import integral from '@/pages/integral/integral.vue'
+import orderRecord from '@/pages/orderRecord/orderRecord.vue'
 import register from '@/pages/register/register.vue'
 import personal from '@/pages/personal/personal.vue'
 import deposit from '@/pages/personal/components/deposit.vue'
@@ -73,17 +74,19 @@ export default new Router({
      path: '/discountsDetail',
      name: 'discountsDetail',
      component: discountsDetail
-      }, {
+  }, {
     path: '/gift',
     name: 'gift',
     component: gift
-  },
-    {
-     path: '/integral',
-     name: 'integral',
-     component: integral
-      },
-      {
+  }, {
+    path: '/integral',
+    name: 'integral',
+    component: integral
+  }, {
+     path: '/orderRecord',
+     name: 'orderRecord',
+     component: orderRecord
+  }, {
     path: '/register',
     name: 'register',
     component: register
