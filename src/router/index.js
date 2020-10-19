@@ -1,6 +1,8 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import Home from '@/pages/home/home.vue'
+import news from '@/pages/news/news.vue'
+import vip from '@/pages/vip/vip.vue'
 import datang from '@/pages/datang/datang.vue'
 import chess from '@/pages/chess/chess.vue'
 import live from '@/pages/live/live.vue'
@@ -34,6 +36,14 @@ export default new Router({
     path: '/',
     name: 'Home',
     component: Home
+  }, {
+      path: '/news',
+      name: 'news',
+      component: news
+  }, {
+      path: '/vip',
+      name: 'vip',
+      component: vip
   }, {
     path: '/datang',
     name: 'datang',

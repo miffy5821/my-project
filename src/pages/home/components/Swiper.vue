@@ -19,7 +19,7 @@
                         </ul>
                     </vue-seamless-scroll>
                 </div>
-                <div class="notice-more">查看更多&gt;</div>
+                <div class="notice-more" @click="jumpMore()">查看更多&gt;</div>
             </div>
         </div>
 
@@ -110,6 +110,9 @@ export default {
                     console.log(error);
                 });
         },
+        jumpMore(){
+            this.$router.push('/news')
+        }
     },
 
     mounted () {
@@ -123,7 +126,8 @@ export default {
                 limitMoveNum: 2
             }
         }
-    }
+    },
+
 }
 
 
@@ -151,22 +155,21 @@ export default {
     height: 48px;
     margin-left: auto;
     margin-right: auto;
+    display: flex;
+    justify-content:space-between;
 }
 
 .notice-img {
     width: 30px;
     height: 30px;
-    margin-top: 10px;
-    margin-left: -1170px;
+    margin-top: 8px;
 }
 
 .notice-ins {
     width: 80px;
     height: 48px;
-    font-size: 15px;
+    font-size: 14px;
     line-height: 48px;
-    margin-left: 40px;
-    margin-top: -38px;
 }
 
 .content {
@@ -177,34 +180,27 @@ export default {
 
 .seamless-warp2 {
     overflow: hidden;
-    height: 25px;
-    width: 1000px;
-    margin-top: -30px;
-    margin-left: 20px;
+    height: 48px;
+    width: auto;
 }
 
 .item {
     width: 1400px;
-    white-space: nowrap;
+    height: 48px;
+    display: flex;
 }
 
 .item li {
-    font-size: 16px;
-    float: left;
+    font-size: 15px;
     height: 48px;
     width: auto;
     line-height: 48px;
-    margin-top: -15px;
-    margin-left: 15px;
-    margin-right: 10px;
 }
 
 .notice-more {
     width: 80px;
     height: 48px;
     line-height: 48px;
-    font-size: 15px;
-    margin-top: -65px;
-    margin-left: 1125px;
+    font-size: 13px;
 }
 </style>

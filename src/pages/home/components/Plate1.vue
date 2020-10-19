@@ -4,8 +4,9 @@
     <div class="plate1-line"></div>
     <div class="plate1-title">真人娱乐 </div>
     <div class="plate1-introduced">汇聚全球顶级真人娱乐平台</div>
-    <div class="plate1-moro">查看更多</div>
-    <img class="plate1-icon" src="../../../assets/home-img/icon.png" />
+    <div class="plate1-moro" @click="jumpLive()">查看更多</div>
+    <img class="plate1-icon" @click="jumpLive()"
+         src="../../../assets/home-img/icon.png" />
   </div>
   <div class="plate1-left">
     <swiper :options="swiperOptions">
@@ -49,7 +50,12 @@ export default {
         imgUrl: '/static/home/banner-slideshow4.jpg'
       }]
     }
-  }
+  },
+    methods: {
+      jumpLive() {
+          this.$router.push('/live')
+      }
+    }
 }
 </script>
 
@@ -64,6 +70,7 @@ export default {
   .plate1-information{
     width: 1200px;
     height: 18px;
+    display: flex;
   }
   .plate1-line{
     width: 3px;
@@ -71,29 +78,30 @@ export default {
     background-color: orange;
   }
   .plate1-title {
-    width:120px;
-    height:18px;
-    font-size:17px;
-    margin-left:-10px;
-    margin-top:-18px;
+      color: #6c6c6c;
+      font-size: 18px;
+      font-weight: 400;
+      margin-left:10px;
   }
   .plate1-introduced{
-    width:180px;
-    height:18px;
-    font-size:14px;
-    margin-left:90px;
-    margin-top:-16px;
+      color: #666;
+      line-height: 18px;
+      margin-left: 20px;
+      font-size: 14px;
+      font-weight: 100;
   }
   .plate1-moro{
     width:80px;
     height:18px;
-    font-size:14px;
-    margin-left:1108px;
-    margin-top:-18px;
+    font-size:13px;
+    line-height: 18px;
+      margin-left: 828px;
+  }
+  .plate1-moro:hover{
+      color: orange;
   }
   .plate1-icon{
-    margin-left:1180px;
-    margin-top:-36px;
+    line-height: 18px;
     width: 15px;
     height: 15px;
   }

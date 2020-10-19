@@ -4,8 +4,9 @@
       <div class="plate3-line"></div>
       <div class="plate3-title">精选大促  </div>
       <div class="plate3-introduced">各种优惠为您撑腰</div>
-      <div class="plate3-moro">查看更多</div>
-      <img class="plate3-icon" src="../../../assets/home-img/icon.png" />
+      <div class="plate3-moro" @click="jumpDiscounts()">查看更多</div>
+      <img class="plate3-icon" @click="jumpDiscounts()"
+           src="../../../assets/home-img/icon.png" />
     </div>
     <div class="plate3-left">
       <swiper :options="swiperOptions">
@@ -55,7 +56,14 @@
           imgUrl: '/static/home/jp-slideshow6.jpg'
         }]
       }
-    }
+    },
+      methods:{
+        jumpDiscounts(){
+            this.$router.push('/discounts')
+        }
+
+      }
+
   }
 </script>
 
@@ -70,6 +78,7 @@
   .plate3-information{
     width: 1200px;
     height: 18px;
+      display: flex;
   }
   .plate3-line{
     width: 3px;
@@ -77,38 +86,39 @@
     background-color: orange;
   }
   .plate3-title {
-    width:120px;
-    height:18px;
-    font-size:17px;
-    margin-left:-10px;
-    margin-top:-18px;
+      color: #6c6c6c;
+      width: auto;
+      font-size: 18px;
+      font-weight: 400;
+      margin-left:10px;
   }
   .plate3-introduced{
-    width:180px;
-    height:18px;
-    font-size:14px;
-    margin-left:90px;
-    margin-top:-16px;
+      color: #666;
+      line-height: 18px;
+      margin-left: 20px;
+      font-size: 14px;
+      font-weight: 100;
   }
   .plate3-moro{
-    width:80px;
-    height:18px;
-    font-size:14px;
-    margin-left:1108px;
-    margin-top:-18px;
+      width:80px;
+      height:18px;
+      font-size:13px;
+      line-height: 18px;
+      margin-left: 880px;
+  }
+  .plate3-moro:hover{
+      color: orange;
   }
   .plate3-icon{
-    margin-left:1180px;
-    margin-top:-36px;
-    width: 15px;
-    height: 15px;
+      line-height: 18px;
+      width: 15px;
+      height: 15px;
   }
   .plate3-left{
     width: 600px;
     height: 450px;
     margin-top: 10px;
     margin-right: 10px;
-    /*background-image: url('../../../assets/home-img/banner-slideshow1.jpg');*/
     background-size: cover;
   }
   .swiper-img{

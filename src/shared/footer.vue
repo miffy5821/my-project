@@ -9,8 +9,8 @@
         <span>免责条款 |</span>
         <span>用户隐私 | </span>
         <span>在线客服 |</span>
-        <span>帮助中心 |</span>
-        <span>代理中心</span>
+        <span class="text1">帮助中心 |</span>
+        <span class="text2" @click="jumpVip()">代理中心</span>
         <div class="bottom-sm">Copyright © 2017 澳门银河Galaxy Macau All Rights Reserved</div>
       </div>
       <div class="bottom-right">
@@ -59,7 +59,13 @@
 
 <script>
 export default {
-  name: 'homeFooter'
+  name: 'homeFooter',
+    methods:{
+      jumpVip(){
+          this.$router.push('/vip')
+      }
+    }
+
 }
 </script>
 
@@ -93,6 +99,12 @@ export default {
     color:white;
     padding:3px;
 
+  }
+  .text1{
+      color: #c8a675!important;
+  }
+  .text2{
+      color: red!important;
   }
   .bottom-sm{
     font-size:14px;

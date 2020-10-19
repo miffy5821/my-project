@@ -4,8 +4,8 @@
       <div class="plate2-line"></div>
       <p class="plate2-title">热门游戏 </p>
       <p class="plate2-introduced">多款游戏高额奖金</p>
-      <div class="plate2-moro">查看更多</div>
-      <div class='plate2-icon'></div>
+      <div class="plate2-moro" @click="jumpElectronic()">查看更多</div>
+      <div class='plate2-icon' @click="jumpElectronic()"></div>
     </div>
     <div class="plate2-left">
       <div class="ag-fish" ></div>
@@ -60,6 +60,11 @@
 <script>
 export default {
   name: 'homePlate2',
+    methods:{
+      jumpElectronic(){
+          this.$router.push('/electronic')
+      }
+    }
 }
 </script>
 
@@ -67,6 +72,7 @@ export default {
   .plate2{
     width: 1200px;
     height: 360px;
+    /*display: flex;*/
     margin-right: auto;
     margin-top: 40px;
     margin-left: auto;
@@ -74,6 +80,7 @@ export default {
   .plate2-div{
     width: 905px;
     height: 20px;
+    display: flex;
     margin-bottom:8px;
   }
   .plate2-line{
@@ -82,29 +89,31 @@ export default {
     background-color: orange;
   }
   .plate2-title {
-    width:120px;
-    height:18px;
-    font-size:17px;
-    margin-left:-10px;
-    margin-top:-18px;
+      color: #6c6c6c;
+      width: auto;
+      font-size: 18px;
+      font-weight: 400;
+      margin-left:10px;
   }
   .plate2-introduced{
-    width:180px;
-    height:18px;
-    font-size:14px;
-    margin-left:65px;
-    margin-top:-16px;
+      color: #666;
+      line-height: 18px;
+      margin-left: 20px;
+      font-size: 14px;
+      font-weight: 100;
   }
   .plate2-moro{
-    width:80px;
-    height:18px;
-    font-size:14px;
-    margin-left:810px;
-    margin-top:-18px;
+      width:80px;
+      height:18px;
+      font-size:13px;
+      line-height: 18px;
+      margin-left: 590px;
+  }
+  .plate2-moro:hover{
+      color: orange;
   }
   .plate2-icon{
-    margin-left:885px;
-    margin-top:-20px;
+    line-height: 18px;
     width: 15px;
     height: 15px;
     background-image: url("../../../assets/home-img/icon.png");
@@ -137,7 +146,13 @@ export default {
   .plate2-right{
     width: 290px;
     height: 398px;
+      /*display: flex;*/
     margin: -360px 0 0 909px ;
+  }
+  .plate2-prize{
+      height: 20px;
+      width: auto;
+      display: flex;
   }
   .prize{
     width: 288px;

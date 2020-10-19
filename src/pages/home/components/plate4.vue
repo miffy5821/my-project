@@ -11,7 +11,7 @@
           渡假城内提供超过2,200间客房及套房。 第二期于2015年5月27日，「澳门银河」「澳门百老汇™」的开幕，
           将原来版图双倍扩展至超过110万平方米，总投资额超过430亿港元，并进一步向集团的1,000亿港元投资承诺迈进。
           澳门银河全资线上责任博彩888Y.COM，持澳门合法线上责任博彩牌照，受澳门博彩监察协调局监督。</p>
-        <img class="about-img" src="../../../assets/home-img/button-img.jpg">
+        <img class="about-img" @click="jumpVip()" src="../../../assets/home-img/button-img.jpg">
       </div>
       <div class="dashed"></div>
       <div class="member"></div>
@@ -21,7 +21,13 @@
 
 <script>
 export default {
-  name: 'homePlate4'
+  name: 'homePlate4',
+    methods:{
+      jumpVip(){
+          this.$router.push('/vip')
+      }
+    }
+
 }
 </script>
 
@@ -36,6 +42,7 @@ export default {
   .about{
     width: 1200px;
     height:18px;
+      display: flex;
   }
   .plate4-line{
     width: 3px;
@@ -43,11 +50,11 @@ export default {
     background-color: orange;
   }
   .plate4-title{
-    width:120px;
-    height:18px;
-    font-size:17px;
-    margin-left:10px;
-    margin-top:-18px;
+      color: #6c6c6c;
+      width: auto;
+      font-size: 18px;
+      font-weight: 400;
+      margin-left:10px;
   }
   .about-content{
     width: 1196px;
@@ -94,6 +101,6 @@ export default {
     margin-top:20px;
     margin-right: auto;
     margin-left: auto;
-    background-image: url("../../../assets/home-img/button-img2.jpg");
+    background-image: url(https://image.beike188.com/YHHB/images/123.1407f65.jpg);
   }
 </style>
