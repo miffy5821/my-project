@@ -17,7 +17,7 @@
                         </el-date-picker>
                     </div>
                 </div>
-                <div> 查询</div>
+                <div class="check-btn"> 查询</div>
             </div>
             <div class="orderRecord-title">
                 <table>
@@ -35,9 +35,9 @@
                     </thead>
                     <tbody>
                     <tr>
-                       <div class="divImg">
+<!--                       <div class="divImg">-->
                            <img class="imgs" src="">
-                       </div>
+<!--                       </div>-->
                         <p class="text">暂无数据</p>
                     </tr>
                     </tbody>
@@ -113,21 +113,28 @@
         height: 70px;
         line-height: 70px;
         width: 550px;
-        margin-left: 200px;
+        margin-left: 250px;
     }
 
     .times-text {
-        width: 80px;
+        width: 120px;
         height: 70px;
         line-height: 70px;
     }
 
     .time-select {
-        width: 700px;
+        width: 400px;
         height: 60px;
         line-height: 60px;
     }
-
+    .check-btn{
+        padding: 0 45px;
+        background: #d8b36a;
+        color: #fff;
+        line-height: 35px;
+        border-color: #d8b36a;
+        border-radius: 17px;
+    }
     .orderRecord-title table {
         width: 1158px;
         height: 220px;
@@ -160,9 +167,15 @@
     .imgs{
         width: 62px;
         height: 40px;
+        position: relative;
+        top: 50px;
+        left: 500px;
     }
     .text{
         width:100%;
         text-align: center;
+        position: relative;
+        top: 60px;
+        left: 500px;
     }
 </style>
