@@ -8,13 +8,16 @@ import './assets/styles/reset.css'
 import 'swiper/dist/css/swiper.css'
 import scroll from 'vue-seamless-scroll'
 
+import 'vue-area-linkage/dist/index.css'; // v2 or higher
 import axios from 'axios'
 import VueAxios from 'vue-axios'
 
+import VueAreaLinkage from 'vue-area-linkage';
 import ElementUI from 'element-ui';
 import 'element-ui/lib/theme-chalk/index.css';
 
 // http request 拦截器
+Vue.use(VueAreaLinkage);
 axios.interceptors.request.use(
   config => {
     if (localStorage.token) { //判断token是否存在

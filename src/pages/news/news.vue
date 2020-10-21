@@ -5,7 +5,7 @@
             <div class="title"> 公告中心</div>
             <div class="center">
                 <div class="content-box" v-for="item in newsList" :key="item.id">
-                    <div class="content-title">重要通知11</div>
+                    <div class="content-title">重要通知</div>
                     <div class="content-text">{{item.data}}</div>
                 </div>
             </div>

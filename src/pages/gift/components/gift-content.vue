@@ -44,7 +44,7 @@
                                     <p>兑换积分：<span>54000积分</span></p>
                                 </div>
                                 <div class="boutique-button">
-                                    <button class="boutique-button-btn">立即兑换</button>
+                                    <button class="boutique-button-btn"  @click="exchange()">立即兑换</button>
                                 </div>
                             </div>
                         </div>
@@ -80,7 +80,8 @@
                                     <div class="gift-ms"><span class="tex1">礼品价值：</span><strong
                                         class="tex2">{{ item.price }}</strong></div>
                                     <div class="gift-ms"><span class="tex1">积分兑换：</span><strong
-                                        class="tex2">{{ item.cprice }}</strong><span class="tex3">立即兑换</span></div>
+                                        class="tex2">{{ item.cprice }}</strong>
+                                        <span class="tex3" @click="exchange()">立即兑换</span></div>
                                 </div>
                             </div>
                         </div>
@@ -226,6 +227,9 @@
             },
             jumpOrderRecord( ){
                 this.$router.push('/orderRecord')
+            },
+            exchange(){
+                this.$router.push('/exchange')
             }
 
         },

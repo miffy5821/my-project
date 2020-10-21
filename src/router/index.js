@@ -12,6 +12,7 @@ import sports from '@/pages/sports/sports.vue'
 import lottery from '@/pages/lottery/lottery.vue'
 import fishing from '@/pages/fishing/fishing.vue'
 import discounts from '@/pages/discounts/discounts.vue'
+// import exchange from '@/pages/exchange/exchange.vue'
 import discountsDetail from '@/pages/discount-detail/discount-detail.vue'
 import gift from '@/pages/gift/gift.vue'
 import integral from '@/pages/integral/integral.vue'
@@ -77,9 +78,9 @@ export default new Router({
     name: 'fishing',
     component: fishing
   }, {
-    path: '/discounts',
-    name: 'discounts',
-    component: discounts
+      path: '/discounts',
+      name: 'discounts',
+      component: discounts
   }, {
      path: '/discountsDetail',
      name: 'discountsDetail',
