@@ -4,7 +4,7 @@
             <div class="Content">
                 <img class="close-img" @click="$emit('close')"
                      src="https://image.beike188.com/YHHB/images/close.png"/>
-               <div class="content-box">
+                <div class="content-box">
                     <div class="content-left">
                         <div class="gift-box">
                             <img class="gift-img" src=""/>
@@ -15,46 +15,59 @@
                         </div>
                     </div>
                     <div class="content-right">
-                         <h2>商品兑换信息</h2>
+                        <h2>商品兑换信息</h2>
                         <div class="gift-information">
-                            <div><span class="text1">商品价值:</span>
-                                 <span class="text2">￥1888888</span>
+                            <div class="gift-information-box">
+                                <span class="text1">商品价值:</span>
+                                <span class="text2">￥</span>
                             </div>
-                            <div><span class="text1">兑换积分:</span>
-                                 <span class="text2">6888888</span>
+                            <div class="gift-information-box">
+                                <span class="text1">兑换积分:</span>
+                                <span class="text2"></span>
                             </div>
-                            <div><span class="text3">可用积分:</span>
-                                 <span class="text2">0</span>
+                            <div class="gift-information-box">
+                                <span class="text3">可用积分:</span>
+                                <span class="text2">0</span>
                             </div>
-                            <div>
+                            <div class="gift-information-box">
                                 <span class="text3">兑换数量:</span>
-                                <el-input-number class="widtthCup" v-model="num"
+                                <el-input-number  v-model="num"
                                                  @change="handleChange"
                                                  :min="1"
                                                  :max="10"
+                                                 size="mini"
                                                  label="描述文字">
                                 </el-input-number>
 
+
                             </div>
+                            <!--<area-cascader :level="1" type="text" placeholder="请选择地区" :data="pcaa"-->
+                                           <!--v-model='selected'></area-cascader>-->
                         </div>
                         <h2>地址信息</h2>
                     </div>
-               </div>
+                </div>
             </div>
         </div>
     </div>
 </template>
 
+
 <script>
+    import {pca, pcaa} from 'area-data'; // v5 or higher
     export default {
         name: 'exchange',
-        data() {
+        data () {
             return {
-                num: 1
+                num: 1,
+                selected: '',
+                pca: pca,
+                pcaa: pcaa,
+                selected2: ''
             };
         },
         methods: {
-            handleChange(value) {
+            handleChange (value) {
                 console.log(value);
             }
         }
@@ -92,33 +105,36 @@
         z-index: 300;
     }
 
-    .content-box{
+    .content-box {
         min-height: 504px;
         display: flex;
     }
 
-    .close-img{
+    .close-img {
         width: 20px;
         height: 20px;
         position: relative;
-        top:-10px;
-        left:360px;
+        top: -10px;
+        left: 360px;
     }
-    .content-left{
+
+    .content-left {
         width: 320px;
         height: 100%;
     }
-    .gift-box{
+
+    .gift-box {
         width: 310px;
         height: 310px;
         background: orange;
     }
-    .gift-img{
+
+    .gift-img {
         width: 310px;
         height: 310px;
     }
 
-    .gift-name{
+    .gift-name {
         width: 300px;
         height: 36px;
         margin-top: 40px;
@@ -129,7 +145,7 @@
         line-height: 36px;
     }
 
-    .gift-introduction{
+    .gift-introduction {
         width: 280px;
         height: 100px;
         padding: 10px;
@@ -138,47 +154,47 @@
         background: silver;
     }
 
-    .content-right{
+    .content-right {
         width: 340px;
         height: 100%;
         margin-top: 15px;
-        padding:0 10px;
+        padding: 0 10px;
         background: #b3d4fc;
         color: #666;
     }
 
-    h2{
+    h2 {
         font-size: 18px;
         text-align: left;
         color: grey;
     }
-    .gift-information{
+
+    .gift-information {
         width: 260px;
         height: 110px;
         padding-left: 80px;
         margin-top: 10px;
     }
 
-    .gift-information div{
+    .gift-information-box {
         width: 300px;
         height: 26px;
         text-align: left;
     }
-    .text1{
-         font-size: 13px;
-         color: grey;
+
+    .text1 {
+        font-size: 13px;
+        color: grey;
     }
 
-    .text2{
-         font-size: 16px;
-         color: orange;
+    .text2 {
+        font-size: 16px;
+        color: orange;
     }
 
-    .text3{
+    .text3 {
         font-size: 14px;
         color: grey;
     }
-    .widtthCup{
-        width: 150px;
-    }
+
 </style>

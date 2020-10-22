@@ -12,6 +12,7 @@
   },
   "dependencies": {
     "ant-design-vue": "^1.6.2",
+    "area-data": "^5.0.6",
     "axios": "^0.19.2",
     "element-ui": "^2.13.2",
     "fastclick": "^1.0.6",

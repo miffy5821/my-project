@@ -91,7 +91,11 @@
                     <el-pagination
                         background
                         layout="prev, pager, next"
-                        :total="89">
+                        :total="total"
+                        :current-page.sync = "currentPage"
+                        :page-size="12"
+                        @current-change ="getGift()"
+                    >
                     </el-pagination>
                 </div>
             </div>
@@ -111,6 +115,8 @@
             return {
                 giftList: [],
                 ranksList: '',
+                total:0,
+                currentPage:1,
                 listData: [{
                     'title': '【阿玛尼手提包】',
                     'user': '***dv***'
@@ -209,12 +215,13 @@
                     });
             },
             getGift () {
+                // alert(this.currentPage);
                 this.axios.get('/api/goods/list', {
-                    params: {id: 0, terminal: 0}
-                })
-                    .then((response) => {
+                    params: {pageNo: this.currentPage, pageSize: 12}
+                }).then((response) => {
                         const giftItem = response.data.list;// 储存所有优惠数据
                         this.giftList = giftItem;
+                        this.total = response.data.total;
                         console.log('giftList', this.giftList);
                     })
                     .catch(function (error) {
@@ -443,7 +450,7 @@
     .boutique-button-btn:hover {
         color: #fff;
         background: #c2a77d;
-        animation-duration: ;
+        /*animation-duration: ;*/
     }
 
     .boutique-right {

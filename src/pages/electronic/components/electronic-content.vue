@@ -16,15 +16,19 @@
         <div class="content">
             <div class="electronic-">
                 <div class="electronic-nav">
-                    <ul class="electronic-kind">
-                        <li
+                    <div class="electronic-click"><img src=""/></div>
+                    <div class="electronic-box">
+                        <ul class="electronic-kind">
+                           <li
                             v-for="(item) of navList"
                             :key="item.key"
                             :class="{'active':item.key === currentGameClass}"
                             @click="select(item.key)"
-                        >{{item.name}}
-                        </li>
-                    </ul>
+                           >{{item.name}}
+                           </li>
+                         </ul>
+                    </div>
+                    <div class="electronic-click"><img src=""/></div>
                 </div>
                 <div class="ele-search" v-if="currentGameClass == 'PT'">
                     <button
@@ -252,19 +256,42 @@
 
     .electronic- {
         width: 1200px;
-        margin-top: 30px;
-        margin-bottom: 30px;
-        margin-right: auto;
-        margin-left: auto;
+       margin: 30px auto;
         border: 1px solid #eaeaea;
     }
 
     .electronic-nav {
         width: 1200px;
         height: 80px;
+        display: flex;
         border-bottom: 1px solid #eaeaea;
     }
 
+    .electronic-click{
+        width: 49px;
+        height: 100%;
+        background: #fff;
+        text-align: center;
+        line-height: 90px;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 24px;
+        color: #c8a675;
+        border: 1px solid #eaeaea;
+    }
+
+    .electronic-click img{
+        width: 24px;
+        height: 24px;
+    }
+    .electronic-box{
+        width: calc(100% - 100px);
+        height: 100%;
+        overflow: hidden;
+        position: relative;
+    }
     .electronic-kind {
         width: 100%;
         height: 80px;

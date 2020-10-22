@@ -1,7 +1,7 @@
 <template>
   <div>
     <gift-content></gift-content>
-      <exchange> </exchange>
+      <exchange > </exchange>
 
   </div>
 </template>

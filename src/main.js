@@ -9,6 +9,7 @@ import 'swiper/dist/css/swiper.css'
 import scroll from 'vue-seamless-scroll'
 
 import 'vue-area-linkage/dist/index.css'; // v2 or higher
+import {pca, pcaa} from 'area-data'; // v5 or higher
 import axios from 'axios'
 import VueAxios from 'vue-axios'
 
