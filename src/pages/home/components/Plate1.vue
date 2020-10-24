@@ -17,10 +17,16 @@
     </swiper>
   </div>
   <div class="plate1-right">
-    <div class="cagawan"></div>
-    <div class="DS"></div>
-    <div class="AG"></div>
-    <div class="sunber"></div>
+    <div CLASS="plate1-right-div"  v-for="item of live" :key="item.id">
+        <img class="liveImg" :src="item.imgUrl" />
+        <div class="mask" v-for="item of markList" :key="item.id">
+            <h3>{{item.gameName}}</h3>
+            <p>{{item.gameIntroduce}}</p>
+            <button>
+                <router-link :to="item.gameUrl" >开始游戏</router-link>
+            </button>
+        </div>
+    </div>
   </div>
 </div>
 </template>
@@ -48,6 +54,40 @@ export default {
       },{
         id: '0004',
         imgUrl: '/static/home/banner-slideshow4.jpg'
+      }],
+        live: [{
+            id: '0001',
+            imgUrl: 'https://gamelist.mobanwang.com.cn//menuList/YHHB/0/recommend/recommend02/txh.png'
+        }, {
+            id: '0002',
+            imgUrl: 'https://gamelist.mobanwang.com.cn//menuList/YHHB/0/recommend/recommend02/cg.png'
+        },{
+            id: '0003',
+            imgUrl: 'https://gamelist.mobanwang.com.cn//menuList/YHHB/0/recommend/recommend02/ds.png'
+        },{
+            id: '0004',
+            imgUrl: 'https://gamelist.mobanwang.com.cn//menuList/YHHB/0/recommend/recommend02/ag.png'
+        }],
+      markList: [{
+          id: '0001',
+          gameName: 'WG视讯',
+          gameIntroduce: '实力品牌 专业玩法',
+          gameUrl: '/static/home/banner-slideshow1.jpg'
+      }, {
+          id: '0002',
+          gameName: '卡卡湾视讯',
+          gameIntroduce: '美女主播 多元化玩法',
+          gameUrl: '/static/home/banner-slideshow1.jpg'
+      },{
+          id: '0003',
+          gameName: 'DS视讯',
+          gameIntroduce: '专业游戏研发 提供最佳品质',
+          gameUrl: '/static/home/banner-slideshow1.jpg'
+      },{
+          id: '0004',
+          gameName: 'AG国际厅',
+          gameIntroduce: '美女主播 热线传情',
+          gameUrl: '/static/home/banner-slideshow1.jpg'
       }]
     }
   },
@@ -125,28 +165,60 @@ export default {
   .plate1-right{
     width: 585px;
     height: 450px;
+    display: flex;
+    flex-wrap: wrap;
     margin-left:610px;
     margin-top: -450px;
   }
-  .plate1-right div{
-    display: inline-block;
-    width: 290px;
+  .plate1-right-div{
+    position: relative;
+    width: 280px;
     height: 222px;
+    margin-right: 5px;
   }
-  .cagawan{
-    background-image: url('../../../assets/home-img/live1.png');
-    background-size: cover;
+  .plate1-right-div:hover .mask {
+      opacity: 1;
   }
-  .DS{
-    background-image: url('../../../assets/home-img/live2.png');
-    background-size: cover;
+  .liveImg{
+      width: 280px;
+      height: 222px;
   }
-  .AG{
-    background-image: url('../../../assets/home-img/live3.png');
-    background-size: cover;
+  .mask{
+      width: 280px;
+      height: 222px;
+      position: absolute;
+      top: 0;
+      left: 0;
+      background: rgba(101, 101, 101, 0.6);
+      color: #ffffff;
+      opacity: 0;
   }
-  .sunber{
-    background-image: url('../../../assets/home-img/live4.png');
-    background-size: cover;
+  .mask h3 {
+      text-align: left;
+      width: 280px;
+      margin-top: 40px;
+      padding-left: 20px;
+      font-size: 16px;
+      font-weight: 600;
+  }
+  .mask p{
+      width: 280px;
+      text-align: left;
+      margin-top: 50px;
+      padding-left: 20px;
+      font-size: 16px;
+  }
+  .mask button{
+      background: #c19045;
+      /*margin-left: 10px 0;*/
+  }
+  .mask a{
+      width: 80px;
+      height: 20px;
+      padding: 10px;
+      margin-top: 100px;
+      text-align: center;
+      color: white;
+
   }
 </style>

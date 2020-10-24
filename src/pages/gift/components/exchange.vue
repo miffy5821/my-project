@@ -207,16 +207,19 @@
     .text1 {
         font-size: 13px;
         color: grey;
+        margin-right: 10px;
     }
 
     .text2 {
         font-size: 16px;
         color: #c8a675;
+
     }
 
     .text3 {
         font-size: 14px;
         color: grey;
+        margin-right: 10px;
     }
     .text4{
         width: 100px;
