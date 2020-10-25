@@ -219,7 +219,7 @@
                 this.axios.get('/api/goods/list', {
                     params: {pageNo: this.currentPage, pageSize: 12}
                 }).then((response) => {
-                        const giftItem = response.data.list;// 储存所有优惠数据
+                        const giftItem = response.data.list;// 储存所有数据
                         this.giftList = giftItem;
                         this.total = response.data.total;
                         console.log('giftList', this.giftList);

@@ -72,22 +72,22 @@ export default {
           id: '0001',
           gameName: 'WG视讯',
           gameIntroduce: '实力品牌 专业玩法',
-          gameUrl: '/static/home/banner-slideshow1.jpg'
+          gameUrl: '/live'
       }, {
           id: '0002',
           gameName: '卡卡湾视讯',
           gameIntroduce: '美女主播 多元化玩法',
-          gameUrl: '/static/home/banner-slideshow1.jpg'
+          gameUrl: '/live'
       },{
           id: '0003',
           gameName: 'DS视讯',
           gameIntroduce: '专业游戏研发 提供最佳品质',
-          gameUrl: '/static/home/banner-slideshow1.jpg'
+          gameUrl: '/live'
       },{
           id: '0004',
           gameName: 'AG国际厅',
           gameIntroduce: '美女主播 热线传情',
-          gameUrl: '/static/home/banner-slideshow1.jpg'
+          gameUrl: '/live'
       }]
     }
   },
@@ -184,33 +184,36 @@ export default {
       height: 222px;
   }
   .mask{
-      width: 280px;
-      height: 222px;
+      width: 240px;
+      height: 142px;
+      padding: 40px 20px;
       position: absolute;
       top: 0;
       left: 0;
-      background: rgba(101, 101, 101, 0.6);
+      background: rgba(0,0,0,.8);
       color: #ffffff;
       opacity: 0;
   }
   .mask h3 {
+      font: inherit;
       text-align: left;
-      width: 280px;
-      margin-top: 40px;
-      padding-left: 20px;
+      width: 100px;
       font-size: 16px;
-      font-weight: 600;
   }
   .mask p{
-      width: 280px;
+      font: inherit;
+      width: 150px;
       text-align: left;
-      margin-top: 50px;
-      padding-left: 20px;
-      font-size: 16px;
+      margin-top:25px;
+      font-size: 14px;
   }
   .mask button{
       background: #c19045;
-      /*margin-left: 10px 0;*/
+      border: none;
+      border-radius: 3px;
+      margin-right: 140px;
+      margin-top: 25px;
+      line-height: 35px;
   }
   .mask a{
       width: 80px;

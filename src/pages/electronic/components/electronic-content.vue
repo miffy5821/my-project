@@ -16,31 +16,22 @@
         <div class="content">
             <div class="electronic-">
                 <div class="electronic-nav">
-                    <div class="electronic-click"><img src=""/></div>
+                    <div class="electronic-click"><i class="el-icon-arrow-left"></i></div>
                     <div class="electronic-box">
                         <ul class="electronic-kind">
-                           <li
-                            v-for="(item) of navList"
-                            :key="item.key"
-                            :class="{'active':item.key === currentGameClass}"
-                            @click="select(item.key)"
-                           >{{item.name}}
+                           <li v-for="item of subGameTitle" :key="item.id">
+                               <img class="ele-icon" :src="item.icons[0].href" />
+                               <p class="ele-name">{{item.menuNameCn}}</p>
                            </li>
                          </ul>
                     </div>
-                    <div class="electronic-click"><img src=""/></div>
+                    <div class="electronic-click"><i class="el-icon-arrow-right"></i></div>
                 </div>
-                <div class="ele-search" v-if="currentGameClass == 'PT'">
-                    <button
-                        v-for="item in subGameTitle"
-                        :key="item.key"
-                        @click="subSelect(item)"
-                        class="submenu hot"
-                    >{{item}}
-                    </button>
-
+                <div class="ele-search">
+                    <button class="hit">热门游戏</button>
+                     <div class="center"></div>
                     <input class="search" placeholder="请输入游戏名称"/>
-                    <div class="icon"></div>
+                    <i class="icon"></i>
                 </div>
                 <div class="games">
                     <div class="games-" v-for="item of currentPageData" :key="item.id">
@@ -145,9 +136,27 @@
                 let intPartFormat = intPart.toString().replace(/(\d)(?=(?:\d{3})+$)/g, '$1,') // 将整数部分逢三一断
 
                 return intPartFormat + '.' + decimal;
+            },
+
+            /**二级菜单栏**/
+            sublist() {
+                this.axios.get('api/menu', {params: {terminal: 0}})
+                    .then((response) => {
+                        const resbody = response.data;
+
+                        if (resbody.status === 10000) {
+                            const subName = response.data.data[4].subMenus;// 储存所有电子游戏数据
+                            this.subGameTitle = subName;
+                            console.log('subGameTitle', this.subGameTitle);
+
+                        }
+                    }).catch(error => {
+                    alert(error);
+                })
             }
         },
         mounted () {
+            this.sublist();
             this.autoAddNumber();
             this.axios
                 .get('api//unauthor/sys/menu', {
@@ -293,22 +302,30 @@
         position: relative;
     }
     .electronic-kind {
-        width: 100%;
+        width: 1100px;
         height: 80px;
     }
 
     .electronic-kind li {
-
-        width: 92px;
-        line-height: 80px;
-        text-align: center;
+        width: 98px;
         position: relative;
         height: 80px;
         font-size: 14px;
         list-style: none;
+        border: 1px solid  #eaeaea;
         display: inline-block;
     }
-
+    .ele-icon{
+        margin-top: 5px;
+        width: 40px;
+        height: 40px;
+    }
+    .ele-name{
+        margin-top: 10px;
+        font-size: 13px;
+        color: #666666;
+        text-align: center;
+    }
     .electronic-kind li:hover {
         color: #c8a675;
         border-bottom: 1px solid #c8a675;
@@ -322,11 +339,27 @@
     .ele-search {
         width: 1200px;
         height: 36px;
-        margin-top: 50px;
+        padding-top: 10px;
         display: flex;
-        margin-bottom: 50px;
+        padding-bottom: 10px;
+        border-bottom: 1px solid #eaeaea;
     }
+    .hit{
+        background: #c8a675;
+        color: #fff;
+        padding: 3px 8px;
+        margin-left: 20px;
+        font-size: 14px;
+        border: none;
 
+        border-radius: 3px;
+        cursor: pointer;
+    }
+    .center{
+        width: 820px;
+        height: 36px;
+
+    }
     .submenu {
         width: 75px;
         height: 36px;
