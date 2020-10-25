@@ -34,18 +34,21 @@
                     <i class="icon"></i>
                 </div>
                 <div class="games">
-                    <div class="games-" v-for="item of currentPageData" :key="item.id">
-                        <img class="games-img" :src="item.url" alt/>
-                        <div class="game-label">新MG</div>
-                        <p class="games-name">{{item.gamename }}</p>
-                        <div></div>
+                    <div class="games-" >
+                        <div class="games-box">
+                        <img class="games-img" src="https://gamelist.mobanwang.com.cn/menuList/YHHB/0/electronic/NMG/1103.png" alt/>
+                        </div>
+                        <p class="games-name">不朽情缘</p>
+                        <div class="games-shadow">
+                            <button class="go-game">进入游戏</button>
+                        </div>
                     </div>
                 </div>
                 <div class="page">
                     <div class="turn-page">
                         <button class="pev" @click="pages(false)">上一页</button>
-                        <span class="nowPage">{{currentPage}}</span>/
-                        <span class="total">{{pageCount}}</span>
+                        <span class="nowPage"></span>/
+                        <span class="total"></span>
                         <button class="next" @click="pages(true)">下一页</button>
                     </div>
                 </div>
@@ -60,40 +63,19 @@
             return {
                 gameList: [], //所有电子游戏数据
                 navList: [], // 一级目录
-                currentGameClass: 'PT', // 当前一级游戏
+                currentGameClass: '', // 当前一级游戏
                 MGData: [],
                 subGameTitle: [], // 二级目录
                 currentData: [],
                 currentPage: 1,
                 pageSize: 24,
+                total:0,
                 currentPageData: [],// 当前页数据
                 pageCount: 0,
                 moneyCount: 515122103.85
             };
         },
         methods: {
-            /**
-             * 一级目录选择时触发
-             * key 一级游戏的属性名 对应游戏类型
-             */
-            select (key) {
-                this.currentPage = 1;
-                this.currentGameClass = key; // 记录当前点击的一级目录游戏
-                if (key === 'PT') {
-                    let ptData = this.gameList['PT']; // 获取pt 的数据
-                    this.subGameTitle = Object.keys(ptData); // 获取pt 子分类的属性名
-                    this.subSelect(this.subGameTitle[0]);
-                    return;
-                }
-                this.currentData = this.gameList[key];
-                this.slicePage();
-
-            },
-            subSelect (key) {
-                this.currentPage = 1;
-                this.currentData = this.gameList[this.currentGameClass][key];
-                this.slicePage();
-            },
             pages (isNext) {
                 this.pageCount = Math.ceil(this.currentData.length / this.pageSize);
                 if (isNext) {
@@ -153,41 +135,26 @@
                     }).catch(error => {
                     alert(error);
                 })
+            },
+            getGame(){
+                this.axios.get('/api/game/list', {
+                    params: {pageNo: 1, pageSize: 12}
+                }).then((response) => {
+                    const giftItem = response.data.list;// 储存所有数据
+                    this.currentGameClass = giftItem;
+                    this.total = response.data.total;
+                    console.log('currentGameClass', this.currentGameClass);
+                })
+                    .catch(function (error) {
+                        console.log(error);
+                    });
             }
         },
         mounted () {
             this.sublist();
             this.autoAddNumber();
-            this.axios
-                .get('api//unauthor/sys/menu', {
-                    params: {id: 0, terminal: 0}
-                })
-                .then(resp => {
-                    console.log(resp);
-                    this.gameList = resp.data.subMenus; // 储存所有电子游戏数据
-                    const games = Object.keys(resp.data.subMenus); // 获取一级目录游戏
-                    // const data = games.map(item => {
-                    //   // 改变数组的么一个元素，拼接name
-                    //   return {
-                    //     key: item,
-                    //     name: item + "电子"
-                    //   };
-                    // });
-                    //
-                    // this.navList = data; // 赋值一级游戏
-                    // console.log("games", data);
+            this.getGame();
 
-                    this.select(games[0]);
-                    // this.currenPageData = this.currentData.slice(0,this.pageSize);
-                    this.slicePage();
-
-                })
-                .catch(error => {
-                    this.$notify.error({
-                        title: '提示',
-                        message: error
-                    });
-                });
         }
     };
 </script>
@@ -341,6 +308,7 @@
         height: 36px;
         padding-top: 10px;
         display: flex;
+        margin-bottom: 30px;
         padding-bottom: 10px;
         border-bottom: 1px solid #eaeaea;
     }
@@ -359,22 +327,6 @@
         width: 820px;
         height: 36px;
 
-    }
-    .submenu {
-        width: 75px;
-        height: 36px;
-        line-height: 16px;
-        text-align: center;
-        color: white;
-        font-size: 12px;
-        margin-left: 10px;
-        background: silver;
-        border: none;
-    }
-
-    .hot {
-        background-color: orange;
-        border: none;
     }
 
     .search {
@@ -406,47 +358,74 @@
 
     .games {
         width: 1150px;
-        height: 100%;
+        height: 618px;
         justify-content: space-around;
-        display: flex;
-        flex-wrap: wrap;
         padding: 0 25px 0 25px;
     }
 
     .games- {
+        position: relative;
+        float: left;
         width: 170px;
-        height: 190px;
-        margin-bottom: 20px;
-        position: relative;
-        cursor: pointer;
+        margin: 20px 26px 0 0;
+        background: #4d4d4d;
     }
-
+    .games-:hover .games-shadow{
+        opacity:1;
+    }
     .games-img {
-        width: 168px;
-        height: 168px;
-        border: 1px solid #eaeaea;
+        width: 124px;
+        min-height: 124px;
+        background: #fff;
+        border: 1px solid #f0f0f0;
     }
 
-    .game-label {
-        width: 56px;
-        height: 26px;
-        position: relative;
-        top: -172px;
-        z-index: 11;
-        color: white;
-        text-align: center;
-        line-height: 26px;
-        font-size: 14px;
-        background-color: #fd600e;
-    }
+   .games-box{
+       position: relative;
+       overflow: hidden;
+       height: 145px;
+       margin: 4px 4px 0;
+       padding-top: 12px;
+       border-radius: 6px;
+       background: #252525;
+       text-align: center;
+   }
 
+    .games-shadow{
+       width: 170px;
+       height: 186px;
+       /*background: #222222;*/
+       border: 1px solid #c8a675;
+       background: rgba(0,0,0,.7);
+       position: absolute;
+       top:0;
+       left: 0;
+       z-index: 999;
+       opacity:0;
+   }
+   .go-game{
+       width: 80px;
+       height: 34px;
+       /*padding: 5px;*/
+       line-height: 34px;
+       text-align: center;
+       color: #fff;
+       font-size: 14px;
+       position: absolute;
+       top:80px;
+       left: 50px;
+       background-color: #c2a77d;
+       border: none;
+       border-radius: 3px;
+   }
     .games-name {
         width: 170px;
-        height: 14px;
-        line-height: 14px;
+        height: 24px;
+        line-height: 24px;
         font-size: 14px;
+        color:white;
         text-align: center;
-        margin-top: -15px;
+        /*margin-top: -15px;*/
     }
 
     .page {

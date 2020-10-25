@@ -77,11 +77,15 @@
                                 <img class="giftImg" :src="item.icon" alt="">
                                 <div class="giftText">
                                     <p class="gitfName"> {{ item.pluname }}</p>
-                                    <div class="gift-ms"><span class="tex1">礼品价值：</span><strong
-                                        class="tex2">{{ item.price }}</strong></div>
-                                    <div class="gift-ms"><span class="tex1">积分兑换：</span><strong
-                                        class="tex2">{{ item.cprice }}</strong>
-                                        <span class="tex3" @click="exchange()">立即兑换</span></div>
+                                    <div class="gift-ms">
+                                        <span class="tex1">礼品价值：</span>
+                                        <strong class="tex2">{{ item.price }}</strong>
+                                    </div>
+                                    <div class="gift-ms">
+                                        <span class="tex1">积分兑换：</span>
+                                        <strong class="tex2">{{ item.cprice }}</strong>
+                                        <span class="tex3" @click="exchange()">立即兑换</span>
+                                    </div>
                                 </div>
                             </div>
                         </div>
