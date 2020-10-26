@@ -19,38 +19,46 @@
                     <div class="electronic-click"><i class="el-icon-arrow-left"></i></div>
                     <div class="electronic-box">
                         <ul class="electronic-kind">
-                           <li v-for="item of subGameTitle" :key="item.id">
-                               <img class="ele-icon" :src="item.icons[0].href" />
-                               <p class="ele-name">{{item.menuNameCn}}</p>
-                           </li>
-                         </ul>
+                            <li class="electronic-kind-li"
+                                v-for="item of subGameTitle"
+                                :key="item.id"
+                                @click="changeGameType(item.gameCode)"
+                                :class="activeIndex === index ? 'active':''"
+                            >
+                                <img class="ele-icon" :src="item.icons[0].href"/>
+                                <p class="ele-name">{{item.menuNameCn}}</p>
+                            </li>
+                        </ul>
                     </div>
                     <div class="electronic-click"><i class="el-icon-arrow-right"></i></div>
                 </div>
                 <div class="ele-search">
                     <button class="hit">热门游戏</button>
-                     <div class="center"></div>
+                    <div class="center"></div>
                     <input class="search" placeholder="请输入游戏名称"/>
                     <i class="icon"></i>
                 </div>
                 <div class="games">
-                    <div class="games-" >
+                    <div class="games-" v-for="item of currentGameClass" :key="item.id">
                         <div class="games-box">
-                        <img class="games-img" src="https://gamelist.mobanwang.com.cn/menuList/YHHB/0/electronic/NMG/1103.png" alt/>
+                            <img class="games-img" :src="item.icons[0].href" alt/>
                         </div>
-                        <p class="games-name">不朽情缘</p>
+                        <p class="games-name">{{item.menuNameCn}}</p>
                         <div class="games-shadow">
                             <button class="go-game">进入游戏</button>
                         </div>
                     </div>
                 </div>
                 <div class="page">
-                    <div class="turn-page">
-                        <button class="pev" @click="pages(false)">上一页</button>
-                        <span class="nowPage"></span>/
-                        <span class="total"></span>
-                        <button class="next" @click="pages(true)">下一页</button>
-                    </div>
+                    <el-pagination
+                        background
+                        layout="prev, pager, next"
+                        :total="total"
+                        :current-page.sync="currentPage"
+                        :page-size="18"
+                        @current-change=" getGame()"
+                    >
+                    </el-pagination>
                 </div>
             </div>
         </div>
@@ -61,41 +69,17 @@
         name: 'electronicContent',
         data () {
             return {
-                gameList: [], //所有电子游戏数据
-                navList: [], // 一级目录
-                currentGameClass: '', // 当前一级游戏
-                MGData: [],
-                subGameTitle: [], // 二级目录
-                currentData: [],
+                subGameTitle: [], // 所有电子游戏数据
+                currentGameClass: '', // 当前游戏
                 currentPage: 1,
-                pageSize: 24,
-                total:0,
-                currentPageData: [],// 当前页数据
-                pageCount: 0,
-                moneyCount: 515122103.85
+                pageSize: 18,
+                total: 0,
+                activeIndex: 0,
+                moneyCount: 515122103.85,
+                currentGameType: ''
             };
         },
         methods: {
-            pages (isNext) {
-                this.pageCount = Math.ceil(this.currentData.length / this.pageSize);
-                if (isNext) {
-                    if (this.currentPage >= this.pageCount) return;
-                    this.currentPage += 1;
-
-                } else {
-                    if (this.currentPage <= 1) return;
-                    this.currentPage -= 1;
-                }
-                this.slicePage();
-
-            },
-            slicePage () {
-                this.pageCount = Math.ceil(this.currentData.length / this.pageSize);
-                const start = (this.currentPage - 1) * this.pageSize;
-                const end = start + this.pageSize;
-
-                this.currentPageData = this.currentData.slice(start, end);
-            },
             /**
              * 数值随机累加
              */
@@ -114,14 +98,12 @@
                 if (!value) return ' ';
                 const decimal = value.toString().split('.')[1];
                 let intPart = Number(value).toFixed(0);// 获取整数部分
-
                 let intPartFormat = intPart.toString().replace(/(\d)(?=(?:\d{3})+$)/g, '$1,') // 将整数部分逢三一断
-
                 return intPartFormat + '.' + decimal;
             },
 
             /**二级菜单栏**/
-            sublist() {
+            sublist () {
                 this.axios.get('api/menu', {params: {terminal: 0}})
                     .then((response) => {
                         const resbody = response.data;
@@ -129,17 +111,24 @@
                         if (resbody.status === 10000) {
                             const subName = response.data.data[4].subMenus;// 储存所有电子游戏数据
                             this.subGameTitle = subName;
+                            this.currentGameType = this.subGameTitle[0].gameCode;
                             console.log('subGameTitle', this.subGameTitle);
+                            this.getGame();
 
                         }
                     }).catch(error => {
                     alert(error);
                 })
             },
-            getGame(){
+            getGame () {
                 this.axios.get('/api/game/list', {
-                    params: {pageNo: 1, pageSize: 12}
+                    params: {
+                        gameType: this.currentGameType,
+                        pageNo: this.currentPage,
+                        pageSize: 18
+                    }
                 }).then((response) => {
+                    console.log(response);
                     const giftItem = response.data.list;// 储存所有数据
                     this.currentGameClass = giftItem;
                     this.total = response.data.total;
@@ -148,13 +137,19 @@
                     .catch(function (error) {
                         console.log(error);
                     });
+            },
+            changeGameType (gameCode) {
+                this.currentGameType = gameCode;
+                this.currentPage = 1;
+                this.getGame();
+            },
+            switchItem (index) {
+                this.activeIndex = index;
             }
         },
         mounted () {
             this.sublist();
             this.autoAddNumber();
-            this.getGame();
-
         }
     };
 </script>
@@ -232,7 +227,7 @@
 
     .electronic- {
         width: 1200px;
-       margin: 30px auto;
+        margin: 30px auto;
         border: 1px solid #eaeaea;
     }
 
@@ -243,7 +238,7 @@
         border-bottom: 1px solid #eaeaea;
     }
 
-    .electronic-click{
+    .electronic-click {
         width: 49px;
         height: 100%;
         background: #fff;
@@ -258,49 +253,49 @@
         border: 1px solid #eaeaea;
     }
 
-    .electronic-click img{
+    .electronic-click img {
         width: 24px;
         height: 24px;
     }
-    .electronic-box{
+
+    .electronic-box {
         width: calc(100% - 100px);
         height: 100%;
         overflow: hidden;
         position: relative;
     }
+
     .electronic-kind {
         width: 1100px;
         height: 80px;
     }
 
-    .electronic-kind li {
+    .electronic-kind-li {
         width: 98px;
         position: relative;
         height: 80px;
         font-size: 14px;
         list-style: none;
-        border: 1px solid  #eaeaea;
+        color: #c8a675;
+        border: 1px solid #eaeaea;
         display: inline-block;
     }
-    .ele-icon{
+
+    .ele-icon {
         margin-top: 5px;
         width: 40px;
         height: 40px;
     }
-    .ele-name{
+
+    .ele-name {
         margin-top: 10px;
         font-size: 13px;
         color: #666666;
         text-align: center;
     }
-    .electronic-kind li:hover {
-        color: #c8a675;
-        border-bottom: 1px solid #c8a675;
-    }
 
     .active {
-        color: #c8a675;
-        border-bottom: 1px solid #c8a675;
+        background: 0 0/100% auto #eaeaea!important;
     }
 
     .ele-search {
@@ -312,7 +307,8 @@
         padding-bottom: 10px;
         border-bottom: 1px solid #eaeaea;
     }
-    .hit{
+
+    .hit {
         background: #c8a675;
         color: #fff;
         padding: 3px 8px;
@@ -323,7 +319,8 @@
         border-radius: 3px;
         cursor: pointer;
     }
-    .center{
+
+    .center {
         width: 820px;
         height: 36px;
 
@@ -334,7 +331,7 @@
         height: 22px;
         background-color: #ffffff;
         font-size: 14px;
-        color: #dddee1;
+        color: gray;
         border: 1px solid #eaeaea;
         position: relative;
         left: 50px;
@@ -359,20 +356,27 @@
     .games {
         width: 1150px;
         height: 618px;
+        margin: 0 auto;
+        padding: 0 20px 0 20px;
+        display: flex;
+        flex-wrap: wrap;
         justify-content: space-around;
-        padding: 0 25px 0 25px;
+
     }
 
     .games- {
         position: relative;
-        float: left;
+        /*float: left;*/
+        height: 186px;
         width: 170px;
-        margin: 20px 26px 0 0;
+        margin-bottom: 20px;
         background: #4d4d4d;
     }
-    .games-:hover .games-shadow{
-        opacity:1;
+
+    .games-:hover .games-shadow {
+        opacity: 1;
     }
+
     .games-img {
         width: 124px;
         min-height: 124px;
@@ -380,50 +384,52 @@
         border: 1px solid #f0f0f0;
     }
 
-   .games-box{
-       position: relative;
-       overflow: hidden;
-       height: 145px;
-       margin: 4px 4px 0;
-       padding-top: 12px;
-       border-radius: 6px;
-       background: #252525;
-       text-align: center;
-   }
+    .games-box {
+        position: relative;
+        overflow: hidden;
+        height: 145px;
+        margin: 4px 4px 0;
+        padding-top: 12px;
+        border-radius: 6px;
+        background: #252525;
+        text-align: center;
+    }
 
-    .games-shadow{
-       width: 170px;
-       height: 186px;
-       /*background: #222222;*/
-       border: 1px solid #c8a675;
-       background: rgba(0,0,0,.7);
-       position: absolute;
-       top:0;
-       left: 0;
-       z-index: 999;
-       opacity:0;
-   }
-   .go-game{
-       width: 80px;
-       height: 34px;
-       /*padding: 5px;*/
-       line-height: 34px;
-       text-align: center;
-       color: #fff;
-       font-size: 14px;
-       position: absolute;
-       top:80px;
-       left: 50px;
-       background-color: #c2a77d;
-       border: none;
-       border-radius: 3px;
-   }
+    .games-shadow {
+        width: 170px;
+        height: 186px;
+        /*background: #222222;*/
+        border: 1px solid #c8a675;
+        background: rgba(0, 0, 0, .7);
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: 999;
+        opacity: 0;
+    }
+
+    .go-game {
+        width: 80px;
+        height: 34px;
+        /*padding: 5px;*/
+        line-height: 34px;
+        text-align: center;
+        color: #fff;
+        font-size: 14px;
+        position: absolute;
+        top: 80px;
+        left: 50px;
+        background-color: #c2a77d;
+        border: none;
+        border-radius: 3px;
+    }
+
     .games-name {
         width: 170px;
         height: 24px;
         line-height: 24px;
         font-size: 14px;
-        color:white;
+        color: white;
         text-align: center;
         /*margin-top: -15px;*/
     }
