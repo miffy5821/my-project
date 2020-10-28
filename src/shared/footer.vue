@@ -4,7 +4,7 @@
       <img class="bottom-logo" src="../assets/home-img/logo_button.png" alt="">
       <div class="aboutMe">
         <span>
-            <router-link to="/problem">用户协议</router-link>|
+            <router-link to="/problem/commonProblem">用户协议</router-link>|
         </span>
         <span>关于我们 |</span>
         <span>博彩责任 |</span>

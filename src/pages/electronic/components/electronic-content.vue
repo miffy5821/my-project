@@ -20,7 +20,7 @@
                     <div class="electronic-box">
                         <ul class="electronic-kind">
                             <li class="electronic-kind-li"
-                                v-for="item of subGameTitle"
+                                v-for="(item,index) of subGameTitle"
                                 :key="item.id"
                                 @click="changeGameType(item.gameCode)"
                                 :class="activeIndex === index ? 'active':''"
@@ -295,7 +295,7 @@
     }
 
     .active {
-        background: 0 0/100% auto #eaeaea!important;
+        background: 0 0/100% auto #eaeaea !important;
     }
 
     .ele-search {

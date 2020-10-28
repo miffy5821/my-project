@@ -21,16 +21,22 @@
                  <li>联机问题</li>
                  <li>代理规则</li>
              </ul>
-
          </div>
-         <router-view/>
+        <div class="content-right">
+            <router-view/>
+        </div>
+
     </div>
     </div>
 </template>
 
 <script>
+    import commonProblem from './components/commonProblem'
     export default {
-        // name: 'problem'
+         name: 'problem',
+        components:{
+            commonProblem: commonProblem,
+        }
     }
 </script>
 
@@ -45,12 +51,13 @@
         width: 1000px;
         height: auto;
         margin: 0 auto;
-        border:1px solid gainsboro;
+        border:1px solid #e8e8e8;
+        display: flex;
     }
     .nav{
         width: 258px;
         height: 960px;
-        border:1px solid gainsboro;
+        /*border:1px solid gainsboro;*/
     }
     .title{
         font-size: 18px;
@@ -89,5 +96,12 @@
         font-size: 14px;
         line-height: 40px;
         text-overflow: ellipsis;
+    }
+    .content-right{
+       border: 1px solid #e8e8e8;
+        width: 735px;
+        min-height: 516px;
+        background:white;
+        padding: 30px 56px 38px;
     }
 </style>

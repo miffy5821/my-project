@@ -20,6 +20,8 @@ import orderRecord from '@/pages/orderRecord/orderRecord.vue'
 import register from '@/pages/register/register.vue'
 import personal from '@/pages/personal/personal.vue'
 import problem from '@/pages/help/problem.vue'
+import commonProblem from '@/pages/help/components/commonProblem.vue'
+
 import deposit from '@/pages/personal/components/deposit.vue'
 import conversion from '@/pages/personal/components/conversion.vue'
 import withdrawal from '@/pages/personal/components/withdrawal.vue'
@@ -105,58 +107,60 @@ export default new Router({
     }, {
         path: '/problem',
         name: 'problem',
-        component: problem
-        // children: [
-        //     {
-        //         path: 'commonProblem',//常见问题
-        //         name: 'commonProblem',
-        //         component: commonProblem
-        //     }, {
-        //         path: 'loginRegister',//登录
-        //         name: 'loginRegister',
-        //         component: loginRegister
-        //     }, {
-        //         path: 'registerPact',//注册
-        //         name: 'registerPact',
-        //         component: registerPact
-        //     }, {
-        //         path: 'deposit',//存款
-        //         name: 'deposit',
-        //         component: deposit
-        //     }, {
-        //         path: 'drawing',//取款
-        //         name: 'drawing',
-        //         component: drawing
-        //     }, {
-        //         path: 'transfer',//转帐
-        //         name: 'transfer',
-        //         component: transfer
-        //     }, {
-        //         path: 'privacyInfo',//隐私保护规则
-        //         name: 'privacyInfo',
-        //         component: privacyInfo
-        //     }, {
-        //         path: 'betRules',//投注规则和规定
-        //         name: 'betRules',
-        //         component: betRules
-        //     }, {
-        //         path: 'gamingDuty',//博彩责任
-        //         name: 'gamingDuty',
-        //         component: gamingDuty
-        //     }, {
-        //         path: 'termsConditions',//规则与条款
-        //         name: 'termsConditions',
-        //         component: termsConditions
-        //     }, {
-        //         path: 'privacyAgreement',//用户隐私协议
-        //         name: 'privacyAgreement',
-        //         component: privacyAgreement
-        //     },
-        //     {
-        //         path: 'onlineProblem',//联机问题
-        //         name: 'onlineProblem',
-        //         component: onlineProblem
-        //     }]
+        component: problem,
+        children: [
+            {
+                path: 'commonProblem',//常见问题
+                name: 'commonProblem',
+                component: commonProblem
+            },
+            // {
+            //     path: '/loginRegister',//登录
+            //     name: 'loginRegister',
+            //     component: loginRegister
+            // }, {
+            //     path: '/registerPact',//注册
+            //     name: 'registerPact',
+            //     component: registerPact
+            // }, {
+            //     path: 'deposit',//存款
+            //     name: 'deposit',
+            //     component: deposit
+            // }, {
+            //     path: 'drawing',//取款
+            //     name: 'drawing',
+            //     component: drawing
+            // }, {
+            //     path: 'transfer',//转帐
+            //     name: 'transfer',
+            //     component: transfer
+            // }, {
+            //     path: 'privacyInfo',//隐私保护规则
+            //     name: 'privacyInfo',
+            //     component: privacyInfo
+            // }, {
+            //     path: 'betRules',//投注规则和规定
+            //     name: 'betRules',
+            //     component: betRules
+            // }, {
+            //     path: 'gamingDuty',//博彩责任
+            //     name: 'gamingDuty',
+            //     component: gamingDuty
+            // }, {
+            //     path: 'termsConditions',//规则与条款
+            //     name: 'termsConditions',
+            //     component: termsConditions
+            // }, {
+            //     path: 'privacyAgreement',//用户隐私协议
+            //     name: 'privacyAgreement',
+            //     component: privacyAgreement
+            // },
+            // {
+            //     path: 'onlineProblem',//联机问题
+            //     name: 'onlineProblem',
+            //     component: onlineProblem
+            // }
+        ]
     }, {
         path: '/personal',
         name: 'personal',
