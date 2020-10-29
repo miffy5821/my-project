@@ -21,7 +21,13 @@ import register from '@/pages/register/register.vue'
 import personal from '@/pages/personal/personal.vue'
 import problem from '@/pages/help/problem.vue'
 import commonProblem from '@/pages/help/components/commonProblem.vue'
+import loginRegister from  '@/pages/help/components/loginRegister.vue'
+import termsConditions from '@/pages/help/components/termsConditions.vue'
+import privacyInfo from '@/pages/help/components/privacyInfo.vue'
+import registerPact from '@/pages/help/components/registerPact.vue'
+import depositLive from '@/pages/help/components/depositLive.vue'
 
+import gamingDuty from '@/pages/help/components/gamingDuty.vue'
 import deposit from '@/pages/personal/components/deposit.vue'
 import conversion from '@/pages/personal/components/conversion.vue'
 import withdrawal from '@/pages/personal/components/withdrawal.vue'
@@ -114,19 +120,22 @@ export default new Router({
                 name: 'commonProblem',
                 component: commonProblem
             },
+            {
+                path: 'loginRegister',//登录
+                name: 'loginRegister',
+                component: loginRegister
+            },
+            {
+                path: '/registerPact',//注册registerPact
+                name: 'registerPact',
+                component: registerPact
+            },
+            {
+                path: 'depositLive',//存款
+                name: 'depositLive',
+                component: depositLive
+            },
             // {
-            //     path: '/loginRegister',//登录
-            //     name: 'loginRegister',
-            //     component: loginRegister
-            // }, {
-            //     path: '/registerPact',//注册
-            //     name: 'registerPact',
-            //     component: registerPact
-            // }, {
-            //     path: 'deposit',//存款
-            //     name: 'deposit',
-            //     component: deposit
-            // }, {
             //     path: 'drawing',//取款
             //     name: 'drawing',
             //     component: drawing
@@ -134,23 +143,28 @@ export default new Router({
             //     path: 'transfer',//转帐
             //     name: 'transfer',
             //     component: transfer
-            // }, {
-            //     path: 'privacyInfo',//隐私保护规则
-            //     name: 'privacyInfo',
-            //     component: privacyInfo
-            // }, {
+            // },
+            {
+                path: 'privacyInfo',//隐私保护规则
+                name: 'privacyInfo',
+                component: privacyInfo
+            },
+            // {
             //     path: 'betRules',//投注规则和规定
             //     name: 'betRules',
             //     component: betRules
-            // }, {
-            //     path: 'gamingDuty',//博彩责任
-            //     name: 'gamingDuty',
-            //     component: gamingDuty
-            // }, {
-            //     path: 'termsConditions',//规则与条款
-            //     name: 'termsConditions',
-            //     component: termsConditions
-            // }, {
+            // },
+            {
+                path: 'gamingDuty',//博彩责任
+                name: 'gamingDuty',
+                component: gamingDuty
+            },
+            {
+                path: 'termsConditions',//规则与条款
+                name: 'termsConditions',
+                component: termsConditions
+            },
+            // {
             //     path: 'privacyAgreement',//用户隐私协议
             //     name: 'privacyAgreement',
             //     component: privacyAgreement

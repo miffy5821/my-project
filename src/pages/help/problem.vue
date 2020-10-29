@@ -4,22 +4,48 @@
          <div class="nav">
              <div class="title">帮助中心</div>
              <ul class="title-menu">
-                 <li>常见问题</li>
-                 <li>登录注册</li>
-                 <li>注册协议</li>
-                 <li>存款帮助</li>
-                 <li>取款帮助</li>
-                 <li>转账帮助</li>
+                 <li>
+                     <router-link to="/problem/commonProblem">  常见问题</router-link>
+                 </li>
+                 <li>
+                     <router-link to="/problem/registerPact">登录注册</router-link>
+                 </li>
+                 <li>
+                     <router-link to="/problem/loginRegister">注册协议</router-link>
+                 </li>
+                 <li>
+                     存款帮助
+                 </li>
+                 <li>
+                     取款帮助
+                 </li>
+                 <li>
+                     转账帮助
+                 </li>
                  <li @click="close()">账户安全</li>
                  <ul class="sub-menu">
-                     <li>隐私保护规则</li>
-                     <li>投注规则和规定</li>
-                     <li>博彩责任</li>
-                     <li>规则与条款</li>
-                     <li>用户隐私协议</li>
+                     <li>
+                         <router-link to="/problem/privacyInfo"> 隐私保护规则</router-link>
+                     </li>
+                     <li>
+                         投注规则和规定
+                     </li>
+                     <li>
+                         <router-link to="/problem/gamingDuty"> 博彩责任</router-link>
+                     </li>
+                     <li>
+                         <router-link to="/problem/termsConditions">规则与条款</router-link>
+                     </li>
+                     <li>
+                         用户隐私协议
+                     </li>
                  </ul>
-                 <li>联机问题</li>
-                 <li>代理规则</li>
+                 <li>
+                     联机问题
+                 </li>
+                 <li>
+                     代理规则
+                 </li>
              </ul>
          </div>
         <div class="content-right">
@@ -32,10 +58,21 @@
 
 <script>
     import commonProblem from './components/commonProblem'
+    import loginRegister from  './components/loginRegister.vue'
+    import termsConditions from './components/termsConditions.vue'
+    import privacyInfo from './components/privacyInfo.vue'
+    import registerPact from './components/registerPact.vue'
+    import depositLive from './components/depositLive.vue'
     export default {
          name: 'problem',
         components:{
             commonProblem: commonProblem,
+            loginRegister: loginRegister,
+            termsConditions: termsConditions,
+            privacyInfo:  privacyInfo,
+            registerPact: registerPact,
+            depositLive: depositLive
+
         }
     }
 </script>

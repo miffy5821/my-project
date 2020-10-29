@@ -4,15 +4,27 @@
       <img class="bottom-logo" src="../assets/home-img/logo_button.png" alt="">
       <div class="aboutMe">
         <span>
-            <router-link to="/problem/commonProblem">用户协议</router-link>|
+            <router-link to="/problem/loginRegister">用户协议</router-link>|
         </span>
         <span>关于我们 |</span>
-        <span>博彩责任 |</span>
-        <span>免责条款 |</span>
-        <span>用户隐私 | </span>
-        <span>在线客服 |</span>
-        <span class="text1">帮助中心 |</span>
-        <span class="text2" @click="jumpVip()">代理中心</span>
+        <span>
+            <router-link to="/problem/gamingDuty">博彩责任</router-link> |
+        </span>
+        <span>
+             <router-link to="/problem/termsConditions">免责条款</router-link>  |
+        </span>
+        <span>
+            <router-link to="/problem/privacyInfo"> 用户隐私</router-link> |
+        </span>
+        <span>
+              <router-link to="/problem/termsConditions">在线客服 </router-link> |
+        </span>
+        <span class="text1">
+              <router-link to="/problem/commonProblem">帮助中心</router-link> |
+        </span>
+        <span class="text2" @click="jumpVip()">
+             代理中心
+        </span>
         <div class="bottom-sm">Copyright © 2017 澳门银河Galaxy Macau All Rights Reserved</div>
       </div>
       <div class="bottom-right">
