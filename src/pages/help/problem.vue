@@ -14,21 +14,21 @@
                      <router-link to="/problem/loginRegister">注册协议</router-link>
                  </li>
                  <li>
-                     存款帮助
+                     <router-link to="/problem/depositLive"> 存款帮助</router-link>
                  </li>
                  <li>
-                     取款帮助
+                     <router-link to="/problem/drawing">取款帮助</router-link>
                  </li>
                  <li>
-                     转账帮助
+                     <router-link to="/problem/transfer">转账帮助</router-link>
                  </li>
-                 <li @click="close()">账户安全</li>
+                 <li >账户安全</li>
                  <ul class="sub-menu">
                      <li>
                          <router-link to="/problem/privacyInfo"> 隐私保护规则</router-link>
                      </li>
                      <li>
-                         投注规则和规定
+                         <router-link to="/problem/betRules"> 投注规则和规定</router-link>
                      </li>
                      <li>
                          <router-link to="/problem/gamingDuty"> 博彩责任</router-link>
@@ -37,14 +37,14 @@
                          <router-link to="/problem/termsConditions">规则与条款</router-link>
                      </li>
                      <li>
-                         用户隐私协议
+                         <router-link to="/problem/privacyAgreement">用户隐私协议</router-link>
                      </li>
                  </ul>
                  <li>
-                     联机问题
+                     <router-link to="/problem/onlineProblem">联机问题</router-link>
                  </li>
                  <li>
-                     代理规则
+                     <router-link to="../vip">代理规则</router-link>
                  </li>
              </ul>
          </div>
@@ -63,6 +63,11 @@
     import privacyInfo from './components/privacyInfo.vue'
     import registerPact from './components/registerPact.vue'
     import depositLive from './components/depositLive.vue'
+    import drawing from './components/drawing.vue'
+    import transfer from './components/transfer.vue'
+    import betRules from './components/betRules.vue'
+    import privacyAgreement from './components/privacyAgreement.vue'
+    import onlineProblem from './components/onlineProblem.vue'
     export default {
          name: 'problem',
         components:{
@@ -71,7 +76,12 @@
             termsConditions: termsConditions,
             privacyInfo:  privacyInfo,
             registerPact: registerPact,
-            depositLive: depositLive
+            depositLive: depositLive,
+            drawing: drawing,
+            transfer: transfer,
+            betRules: betRules,
+            privacyAgreement: privacyAgreement,
+            onlineProblem: onlineProblem
 
         }
     }
@@ -93,7 +103,7 @@
     }
     .nav{
         width: 258px;
-        height: 960px;
+        background: white;
         /*border:1px solid gainsboro;*/
     }
     .title{
@@ -135,7 +145,7 @@
         text-overflow: ellipsis;
     }
     .content-right{
-       border: 1px solid #e8e8e8;
+        border-left: 1px solid #e8e8e8;
         width: 735px;
         min-height: 516px;
         background:white;

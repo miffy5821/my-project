@@ -25,7 +25,7 @@
         <el-collapse-item title="如何找回登录密码？" name="6">
             <div class="text">若忘记登录密码，请点击页面顶部登录区（或其他相关页面）的“忘记密码？”，然后根据页面提示进行操作即可。</div>
 
-                <div class="text">     具体操作步骤如下：</div>
+                <div class="text">具体操作步骤如下：</div>
                <ol>
                 <li> (1)输入您要找回登录密码的手机号／邮箱地址；</li>
                    <li> (2)根据页面提示，选择其中一种找回方式；</li>
@@ -39,7 +39,12 @@
 
 <script>
 export default {
-name: "registerPact.vue"
+name: "registerPact.vue",
+    data () {
+        return {
+            activeNames: ['1']
+        };
+    }
 }
 </script>
 
@@ -48,4 +53,10 @@ name: "registerPact.vue"
     text-indent: 2em;
     text-align: left;
 }
+    ol{
+       width: auto;
+        margin-left: 30px;
+        text-align: left;
+    }
+
 </style>

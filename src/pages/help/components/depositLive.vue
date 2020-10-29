@@ -18,22 +18,17 @@
                     我们会马上为您提交到第三方支付公司进行查询。
                 </div>
             </el-collapse-item>
-            <el-collapse-item title="登录时密码提示错误，我该怎么办？" name="3">
-                <div class="text">首先请您再次确认输入的密码是否正确，必须是6-12个字符（由大小写英文字母和数字组成）。若确认后仍提示错误，
-                    建议您通过自助流程找回密码。或者，您也可以在线客服协助您找回密码。
+            <el-collapse-item title="存款是否需要交纳手续费或其他费用？" name="3">
+                <div class="text">澳门银河接收快速入款（包含支付宝转账、银行转账、银行存款、银行柜台存款、ATM机自动转账等）、在线支付、微信扫码、
+                    支付宝扫码等方式。当您通过支付宝、微信、网银、ATM方式存款成功后，存款手续金额由澳门银河承担，让您存款无忧。
+                    使用柜台存款的客户选择收款方支付将不享受存款手续费回馈。
                 </div>
             </el-collapse-item>
 
-            <el-collapse-item title="如何找回登录密码？" name="4">
-                <div class="text">若忘记登录密码，请点击页面顶部登录区（或其他相关页面）的“忘记密码？”，然后根据页面提示进行操作即可。</div>
-
-                <div class="text">具体操作步骤如下：</div>
-                <ol>
-                    <li> (1)输入您要找回登录密码的手机号／邮箱地址；</li>
-                    <li> (2)根据页面提示，选择其中一种找回方式；</li>
-                    <li> (3)核实身份后，重新设置新的登录密码；</li>
-                    <li> (4)登录密码修改成功。</li>
-                </ol>
+            <el-collapse-item title="为什么在线支付成功后额度没有立即增加？" name="4">
+                <div class="text">这是因为在线支付系统需要经过密锁切换及内部验证程序，而这也是我们的保安程序之一，
+                    所以请您不必担心，款项一定不会丢失。如果您在在线支付超过30分钟后仍然还未收到您的款项，请与我们客服联系处理。
+                </div>
             </el-collapse-item>
         </el-collapse>
     </div>
@@ -43,13 +38,24 @@
 
 <script>
 export default {
-name: "depositLive.vue"
+name: "depositLive.vue",
+    data () {
+        return {
+            activeNames: ['1']
+        };
+    }
+
 }
 </script>
 
 <style scoped>
 .text{
     text-indent: 2em;
+    text-align: left;
+}
+ol{
+    width: auto;
+    margin-left: 30px;
     text-align: left;
 }
 </style>

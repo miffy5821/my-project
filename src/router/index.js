@@ -26,6 +26,11 @@ import termsConditions from '@/pages/help/components/termsConditions.vue'
 import privacyInfo from '@/pages/help/components/privacyInfo.vue'
 import registerPact from '@/pages/help/components/registerPact.vue'
 import depositLive from '@/pages/help/components/depositLive.vue'
+import drawing from '@/pages/help/components/drawing.vue'
+import transfer from '@/pages/help/components/transfer.vue'
+import betRules from '@/pages/help/components/betRules.vue'
+import privacyAgreement from '@/pages/help/components/betRules.vue'
+import onlineProblem from '@/pages/help/components/onlineProblem.vue'
 
 import gamingDuty from '@/pages/help/components/gamingDuty.vue'
 import deposit from '@/pages/personal/components/deposit.vue'
@@ -126,7 +131,7 @@ export default new Router({
                 component: loginRegister
             },
             {
-                path: '/registerPact',//注册registerPact
+                path: 'registerPact',//注册registerPact
                 name: 'registerPact',
                 component: registerPact
             },
@@ -135,25 +140,26 @@ export default new Router({
                 name: 'depositLive',
                 component: depositLive
             },
-            // {
-            //     path: 'drawing',//取款
-            //     name: 'drawing',
-            //     component: drawing
-            // }, {
-            //     path: 'transfer',//转帐
-            //     name: 'transfer',
-            //     component: transfer
-            // },
+            {
+                path: 'drawing',//取款
+                name: 'drawing',
+                component: drawing
+            },
+            {
+                path: 'transfer',//转帐
+                name: 'transfer',
+                component: transfer
+            },
             {
                 path: 'privacyInfo',//隐私保护规则
                 name: 'privacyInfo',
                 component: privacyInfo
             },
-            // {
-            //     path: 'betRules',//投注规则和规定
-            //     name: 'betRules',
-            //     component: betRules
-            // },
+            {
+                path: 'betRules',//投注规则和规定
+                name: 'betRules',
+                component: betRules
+            },
             {
                 path: 'gamingDuty',//博彩责任
                 name: 'gamingDuty',
@@ -164,16 +170,16 @@ export default new Router({
                 name: 'termsConditions',
                 component: termsConditions
             },
-            // {
-            //     path: 'privacyAgreement',//用户隐私协议
-            //     name: 'privacyAgreement',
-            //     component: privacyAgreement
-            // },
-            // {
-            //     path: 'onlineProblem',//联机问题
-            //     name: 'onlineProblem',
-            //     component: onlineProblem
-            // }
+            {
+                path: 'privacyAgreement',//用户隐私协议
+                name: 'privacyAgreement',
+                component: privacyAgreement
+            },
+            {
+                path: 'onlineProblem',//联机问题
+                name: 'onlineProblem',
+                component: onlineProblem
+            }
         ]
     }, {
         path: '/personal',
