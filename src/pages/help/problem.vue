@@ -1,64 +1,45 @@
 <template>
     <div class="content">
-    <div class="problem">
-         <div class="nav">
-             <div class="title">帮助中心</div>
-             <ul class="title-menu">
-                 <li>
-                     <router-link to="/problem/commonProblem">  常见问题</router-link>
-                 </li>
-                 <li>
-                     <router-link to="/problem/registerPact">登录注册</router-link>
-                 </li>
-                 <li>
-                     <router-link to="/problem/loginRegister">注册协议</router-link>
-                 </li>
-                 <li>
-                     <router-link to="/problem/depositLive"> 存款帮助</router-link>
-                 </li>
-                 <li>
-                     <router-link to="/problem/drawing">取款帮助</router-link>
-                 </li>
-                 <li>
-                     <router-link to="/problem/transfer">转账帮助</router-link>
-                 </li>
-                 <li >账户安全</li>
-                 <ul class="sub-menu">
-                     <li>
-                         <router-link to="/problem/privacyInfo"> 隐私保护规则</router-link>
-                     </li>
-                     <li>
-                         <router-link to="/problem/betRules"> 投注规则和规定</router-link>
-                     </li>
-                     <li>
-                         <router-link to="/problem/gamingDuty"> 博彩责任</router-link>
-                     </li>
-                     <li>
-                         <router-link to="/problem/termsConditions">规则与条款</router-link>
-                     </li>
-                     <li>
-                         <router-link to="/problem/privacyAgreement">用户隐私协议</router-link>
-                     </li>
-                 </ul>
-                 <li>
-                     <router-link to="/problem/onlineProblem">联机问题</router-link>
-                 </li>
-                 <li>
-                     <router-link to="../vip">代理规则</router-link>
-                 </li>
-             </ul>
-         </div>
-        <div class="content-right">
-            <router-view/>
-        </div>
+        <div class="problem">
+            <div class="nav">
+                <div class="title">帮助中心</div>
+                <ul class="title-menu">
 
-    </div>
+                    <li class="title-menu-li"
+                        v-for="(item,index) of sliderMenu"
+                        :class="activeClass == index ? 'active':''">
+
+                        <router-link :to="item.path"
+                                     @click.native="toggleSubmenu(item.path,index)">
+                            {{item.name}}
+                        </router-link>
+                        <!--子菜单-->
+                        <ul class="sub-menu" :class="{submenuactive: (item.children && isSubMenu)}">
+                            <li class="sub-menu-li"
+                                v-for="subItem of item.children"
+                                :class="activeSubmune == subItem ? 'active':''"
+                            >
+                                <router-link :to="subItem.path"
+                                @click.native="getItem(subItem.path,index)"
+                                >
+                                    {{subItem.name}}
+                                </router-link>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+            <div class="content-right">
+                <router-view/>
+            </div>
+
+        </div>
     </div>
 </template>
 
 <script>
     import commonProblem from './components/commonProblem'
-    import loginRegister from  './components/loginRegister.vue'
+    import loginRegister from './components/loginRegister.vue'
     import termsConditions from './components/termsConditions.vue'
     import privacyInfo from './components/privacyInfo.vue'
     import registerPact from './components/registerPact.vue'
@@ -68,13 +49,14 @@
     import betRules from './components/betRules.vue'
     import privacyAgreement from './components/privacyAgreement.vue'
     import onlineProblem from './components/onlineProblem.vue'
+
     export default {
-         name: 'problem',
-        components:{
+        name: 'problem',
+        components: {
             commonProblem: commonProblem,
             loginRegister: loginRegister,
             termsConditions: termsConditions,
-            privacyInfo:  privacyInfo,
+            privacyInfo: privacyInfo,
             registerPact: registerPact,
             depositLive: depositLive,
             drawing: drawing,
@@ -82,31 +64,77 @@
             betRules: betRules,
             privacyAgreement: privacyAgreement,
             onlineProblem: onlineProblem
+        },
+        data () {
+            return {
+                activeClass: 0, // 0为默认选择第一个，-1为不选择
+                activeSubmune:0,
+                sliderMenu: [
+                    {name: '常见问题', path: '/problem/commonProblem'},
+                    {name: '登录注册', path: '/problem/registerPact'},
+                    {name: '注册协议', path: '/problem/loginRegister'},
+                    {name: '存款帮助', path: '/problem/depositLive'},
+                    {name: '取款帮助', path: '/problem/drawing'},
+                    {name: '转账帮助', path: '/problem/transfer'},
+                    {
+                        name: '账户安全', path: '###',
+                        children: [
+                            {name: '隐私保护规则', path: '/problem/privacyInfo'},
+                            {name: '投注规则和规定', path: '/problem/betRules'},
+                            {name: '博彩责任', path: '/problem/gamingDuty'},
+                            {name: '规则与条款', path: '/problem/termsConditions'},
+                            {name: '用户隐私协议', path: '/problem/privacyAgreement'},
+                        ]
+                    },
+                    {name: '联机问题', path: '/problem/onlineProblem'},
+                    {name: '代理规则', path: '../vip'},
 
+                ],
+                isSubMenu: true
+            }
+        },
+        methods: {
+            toggleSubmenu (path, index) {
+                console.log(path, index)
+
+                if (path !== '###') {
+                    this.activeClass = index;  // 把当前点击元素的index，赋值给activeClass
+                } else {
+                    this.activeClass = -1;
+                    this.isSubMenu = !this.isSubMenu;
+                }
+
+            },
+            getItem (path, subItem) {
+                this.activeSubmune = subItem;  // 把当前点击元素的index，赋值给activeClass
+            },
         }
     }
 </script>
 
 <style scoped>
-    .content{
+    .content {
         width: 100%;
         height: auto;
         padding: 30px 0;
         background: #f9f9f9;
     }
+
     .problem {
         width: 1000px;
         height: auto;
         margin: 0 auto;
-        border:1px solid #e8e8e8;
+        border: 1px solid #e8e8e8;
         display: flex;
     }
-    .nav{
+
+    .nav {
         width: 258px;
         background: white;
         /*border:1px solid gainsboro;*/
     }
-    .title{
+
+    .title {
         font-size: 18px;
         font-weight: 700;
         text-align: left;
@@ -114,41 +142,83 @@
         padding: 26px 25px 20px 45px;
         border-bottom: 1px solid #e8e8e8;
     }
-    .title-menu{
+
+    .title-menu {
         /*padding-left: 21px;*/
         width: 100%;
     }
-    .title-menu li{
-        height: 40px;
+
+    .title-menu-li {
+        min-height: 40px;
         margin-top: 4px;
         margin-bottom: 4px;
         text-align: left;
-        padding: 0 16px 0 45px;
+        padding: 0 0 0 45px;
         overflow: hidden;
         font-size: 14px;
         line-height: 40px;
         text-overflow: ellipsis;
     }
-    .sub-menu{
+
+    .title-menu-li:active {
+        color: #c8a675;
+        border-right: 2px solid #e8e8e8;
+    }
+
+    .title-menu-li:hover {
+        color: #c8a675;
+    }
+
+    .sub-menu {
         width: 80%;
         padding-left: 30px;
+        height: 0;
+        opacity: 0;
+        transition: all .5s;
     }
-    .sub-menu li{
+
+    /*.sub-menu:hover {*/
+    /*height: 1600px;*/
+    /*}*/
+
+    .submenuactive {
+        height: 216px;
+        opacity: 1;
+    }
+
+    .sub-menu-li {
         height: 40px;
+        width: 154px;
         margin-top: 4px;
         margin-bottom: 4px;
         text-align: left;
-        padding: 0 16px 0 45px;
+        padding: 0 0 0 45px;
         overflow: hidden;
         font-size: 14px;
         line-height: 40px;
         text-overflow: ellipsis;
+        color: #2c3e50;
     }
-    .content-right{
+
+    .sub-menu-li:hover {
+        color: #c8a675;
+    }
+
+    .sub-menu-li:active {
+        color: #c8a675;
+        border-right: 1px solid #e8e8e8;
+    }
+
+    .active {
+        color: #c8a675;
+        border-right: 2px solid #e8e8e8;
+    }
+
+    .content-right {
         border-left: 1px solid #e8e8e8;
         width: 735px;
         min-height: 516px;
-        background:white;
+        background: white;
         padding: 30px 56px 38px;
     }
 </style>
