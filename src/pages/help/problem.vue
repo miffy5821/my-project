@@ -9,19 +9,18 @@
                         v-for="(item,index) of sliderMenu"
                         :class="activeClass == index ? 'active':''">
 
-                        <router-link :to="item.path"
+                        <router-link class="title-menu-li-link" :to="item.path"
                                      @click.native="toggleSubmenu(item.path,index)">
                             {{item.name}}
                         </router-link>
                         <!--子菜单-->
                         <ul class="sub-menu" :class="{submenuactive: (item.children && isSubMenu)}">
                             <li class="sub-menu-li"
-                                v-for="subItem of item.children"
-                                :class="activeSubmune == subItem ? 'active':''"
+                                v-for="(subItem,index) of item.children"
+                                :class="activeSubmune == index ? 'active':' '"
+                                @click="getItem(index)"
                             >
-                                <router-link :to="subItem.path"
-                                @click.native="getItem(subItem.path,index)"
-                                >
+                                <router-link :to="subItem.path">
                                     {{subItem.name}}
                                 </router-link>
                             </li>
@@ -68,7 +67,7 @@
         data () {
             return {
                 activeClass: 0, // 0为默认选择第一个，-1为不选择
-                activeSubmune:0,
+                activeSubmune: -1,
                 sliderMenu: [
                     {name: '常见问题', path: '/problem/commonProblem'},
                     {name: '登录注册', path: '/problem/registerPact'},
@@ -99,13 +98,15 @@
 
                 if (path !== '###') {
                     this.activeClass = index;  // 把当前点击元素的index，赋值给activeClass
+                    this.activeSubmune = -1;
                 } else {
                     this.activeClass = -1;
                     this.isSubMenu = !this.isSubMenu;
                 }
 
             },
-            getItem (path, subItem) {
+            getItem (subItem) {
+                this.activeClass = -1;
                 this.activeSubmune = subItem;  // 把当前点击元素的index，赋值给activeClass
             },
         }
@@ -160,14 +161,14 @@
         text-overflow: ellipsis;
     }
 
-    .title-menu-li:active {
-        color: #c8a675;
-        border-right: 2px solid #e8e8e8;
-    }
+    /*.title-menu-li:active {*/
+    /*color: #c8a675;*/
+    /*border-right: 2px solid #e8e8e8;*/
+    /*}*/
 
-    .title-menu-li:hover {
-        color: #c8a675;
-    }
+    /*.title-menu-li:hover {*/
+    /*color: #c8a675;*/
+    /*}*/
 
     .sub-menu {
         width: 80%;
@@ -176,6 +177,8 @@
         opacity: 0;
         transition: all .5s;
     }
+
+
 
     /*.sub-menu:hover {*/
     /*height: 1600px;*/
@@ -192,7 +195,7 @@
         margin-top: 4px;
         margin-bottom: 4px;
         text-align: left;
-        padding: 0 0 0 45px;
+        /*padding: 0 0 0 45px;*/
         overflow: hidden;
         font-size: 14px;
         line-height: 40px;
@@ -204,10 +207,17 @@
         color: #c8a675;
     }
 
-    .sub-menu-li:active {
+    /*.sub-menu-li:hover {*/
+    /*color: #c8a675;*/
+    /*}*/
+    .title-menu-li-link:hover {
         color: #c8a675;
-        border-right: 1px solid #e8e8e8;
     }
+
+    /*.sub-menu-li:active {*/
+    /*color: #c8a675;*/
+    /*border-right: 1px solid #e8e8e8;*/
+    /*}*/
 
     .active {
         color: #c8a675;
