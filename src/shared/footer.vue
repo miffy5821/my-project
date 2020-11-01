@@ -6,7 +6,9 @@
         <span>
             <router-link to="/problem/loginRegister">用户协议</router-link>|
         </span>
-        <span>关于我们 |</span>
+        <span>
+            <router-link to="../aboutMe">关于我们</router-link> |
+        </span>
         <span>
             <router-link to="/problem/gamingDuty">博彩责任</router-link> |
         </span>

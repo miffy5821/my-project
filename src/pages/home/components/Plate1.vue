@@ -17,13 +17,13 @@
     </swiper>
   </div>
   <div class="plate1-right">
-    <div CLASS="plate1-right-div"  v-for="item of live" :key="item.id">
+    <div CLASS="plate1-right-div"  v-for="(item,index) of live" :key="item.id">
         <img class="liveImg" :src="item.imgUrl" />
-        <div class="mask" v-for="item of markList" :key="item.id">
-            <h3>{{item.gameName}}</h3>
-            <p>{{item.gameIntroduce}}</p>
+        <div class="mask">
+            <h3>{{markList[index].gameName}}</h3>
+            <p>{{markList[index].gameIntroduce}}</p>
             <button>
-                <router-link :to="item.gameUrl" >开始游戏</router-link>
+                <router-link :to="markList[index].gameUrl" >开始游戏</router-link>
             </button>
         </div>
     </div>
@@ -57,7 +57,8 @@ export default {
       }],
         live: [{
             id: '0001',
-            imgUrl: 'https://gamelist.mobanwang.com.cn//menuList/YHHB/0/recommend/recommend02/txh.png'
+            imgUrl: 'https://gamelist.mobanwang.com.cn//menuList/YHHB/0/recommend/recommend02/txh.png',
+
         }, {
             id: '0002',
             imgUrl: 'https://gamelist.mobanwang.com.cn//menuList/YHHB/0/recommend/recommend02/cg.png'
@@ -150,7 +151,6 @@ export default {
     height: 450px;
     margin-top: 10px;
     margin-right: 10px;
-    /*background-image: url('../../../assets/home-img/banner-slideshow1.jpg');*/
     background-size: cover;
   }
   .swiper-img{
@@ -205,6 +205,8 @@ export default {
       width: 150px;
       text-align: left;
       margin-top:25px;
+      height: 40px;
+      line-height: 20px;
       font-size: 14px;
   }
   .mask button{

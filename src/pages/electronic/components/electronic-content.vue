@@ -250,7 +250,7 @@
         justify-content: center;
         font-size: 24px;
         color: #c8a675;
-        border: 1px solid #eaeaea;
+        /*border: 1px solid #eaeaea;*/
     }
 
     .electronic-click img {
@@ -277,7 +277,8 @@
         font-size: 14px;
         list-style: none;
         color: #c8a675;
-        border: 1px solid #eaeaea;
+        border-left: 1px solid #eaeaea;
+        border-right: 1px solid #eaeaea;
         display: inline-block;
     }
 

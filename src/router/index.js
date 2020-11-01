@@ -31,7 +31,7 @@ import transfer from '@/pages/help/components/transfer.vue'
 import betRules from '@/pages/help/components/betRules.vue'
 import privacyAgreement from '@/pages/help/components/betRules.vue'
 import onlineProblem from '@/pages/help/components/onlineProblem.vue'
-
+import aboutMe from '@/pages/aboutMe/aboutMe.vue'
 import gamingDuty from '@/pages/help/components/gamingDuty.vue'
 import deposit from '@/pages/personal/components/deposit.vue'
 import conversion from '@/pages/personal/components/conversion.vue'
@@ -59,6 +59,10 @@ export default new Router({
         path: '/vip',
         name: 'vip',
         component: vip
+    }, {
+        path: '/aboutMe',
+        name: 'aboutMe',
+        component: aboutMe
     }, {
         path: '/datang',
         name: 'datang',
