@@ -6,7 +6,7 @@
                 <img class="icon-hot" src="https://image.beike188.com/YHHB/images/hot.gif">
                 <li class="nav-bar-box-li" :class="activeClass == index ? 'active':''"
                     @click="getItem(index,routerConfig[item.menuNameEn])"
-                    v-for="(item,index) of topNavList" :key="index">
+                    v-for="(item,index) of topNavList.slice(0,11)" :key="index">
                     <router-link :to="routerConfig[item.menuNameEn]">
                         {{ item.menuNameCn }}
                     </router-link>
@@ -214,11 +214,12 @@
     .nav-bar-box {
         height: 65px;
         line-height: 65px;
-        min-width: 870px;
+        min-width: 770px;
         list-style: none;
         position: relative;
-        margin: 0 20px;
+        margin: 0 40px;
         display: flex;
+        justify-content: space-around;
     }
 
     .icon-hot {
@@ -232,19 +233,10 @@
     .nav-bar-box-li {
         position: relative;
         width: auto;
-        /*height: 35px;*/
         transition: all .2s;
-        /*transition-property: all;*/
-        /*transition-duration: 0.2s;*/
-        /*transition-timing-function: ease;*/
-        /*transition-delay: 0s;*/
         margin: 0 20px 0 0;
     }
 
-    /*.nav-bar-box-li:hover .lower-nav {*/
-    /*display: block;*/
-    /*transition: all .2s;*/
-    /*}*/
     .active {
         color: #c8a675;
         height: 50px;

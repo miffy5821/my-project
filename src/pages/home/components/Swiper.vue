@@ -86,7 +86,7 @@ export default {
                 });
         },
         open(index) {
-            this.$alert(this.newsList[index], '重要通知', {
+            this.$alert(this.newsList[index].data, '重要通知', {
                 confirmButtonText: '确定',
                 callback: action => {
                 }

@@ -39,32 +39,32 @@
       <ul class="floatWindow-box">
         <li>
           <div>
-            <div class="fw-qq"><a href="http://wpa.qq.com/msgrd?v=3&uin=781846144&site=qq&menu=yes"></a></div>
+            <div class="fw-qq"></div>
           </div>
         </li>
         <li>
           <div>
-            <div class="fw-online"><a href="https://chatlink.mstatik.com/widget/standalone.html?eid=205701"></a></div>
+            <div class="fw-online" @click="jumpOnlineService()"></div>
           </div>
         </li>
         <li>
           <div>
-            <div class="fw-complain"><a href="http://wpa.qq.com/msgrd?v=3&uin=781846144&site=qq&menu=yes"></a></div>
+            <div class="fw-complain"></div>
           </div>
         </li>
         <li>
           <div>
-            <div class="fw-consult"><a href="https://chatlink.mstatik.com/widget/standalone.html?eid=221081"></a></div>
+            <div class="fw-consult" @click="jumpConsultingAgent()"></div>
           </div>
         </li>
         <li>
           <div>
-            <div class="fw-help"><a href="https://www.yh345a.com/help/help_all.html#/help_commonProblem"></a></div>
+              <div class="fw-help" @click="jumpHelp()"></div>
           </div>
         </li>
         <li>
           <div>
-            <div class="go-top"><a href=""></a></div>
+            <div class="go-top" @click="goTop()"></div>
           </div>
         </li>
       </ul>
@@ -76,9 +76,19 @@
 <script>
 export default {
   name: 'homeFooter',
+    // link: 'https://chatlink.mstatik.com/widget/standalone.html?eid=221081',
     methods:{
-      jumpVip(){
-          this.$router.push('/vip')
+      jumpHelp(){
+          this.$router.push('./problem/commonProblem')
+      },
+      jumpConsultingAgent(){
+          window.open('https://chatlink.mstatik.com/widget/standalone.html?eid=221081');
+      },
+      jumpOnlineService(){
+          window.open('https://chatlink.mstatik.com/widget/standalone.html?eid=76107099dd1ba17a94453359257851c8');
+      },
+      goTop(){
+          document.body.scrollTo(0,0);
       }
     }
 
@@ -165,7 +175,7 @@ export default {
     position: fixed;
     cursor:pointer;
     left: 83%;
-    top:65%;
+    top:58%;
     z-index: 2;
   }
   .floatWindow-box{

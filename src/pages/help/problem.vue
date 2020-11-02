@@ -66,7 +66,7 @@
         },
         data () {
             return {
-                activeClass: 0, // 0为默认选择第一个，-1为不选择
+                activeClass: 2, // 0为默认选择第一个，-1为不选择
                 activeSubmune: -1,
                 sliderMenu: [
                     {name: '常见问题', path: '/problem/commonProblem'},

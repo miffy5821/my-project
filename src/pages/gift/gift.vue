@@ -1,7 +1,7 @@
 <template>
     <div>
         <gift-content></gift-content>
-        <exchange v-if="falses"></exchange>
+        <exchange v-if="true"></exchange>
 
     </div>
 </template>
