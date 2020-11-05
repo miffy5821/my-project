@@ -37,14 +37,14 @@
                     <div class="boutique-swiper">
                         <div class="boutique-img">
                             <img class="jingpin-img" :src="ranksList" alt="">
-                            <div class="hover-text" >
+                            <div class="hover-text">
                                 <div class="product">
                                     <p>空投美女</p>
                                     <p>礼品价值：<span>18000</span></p>
                                     <p>兑换积分：<span>54000积分</span></p>
                                 </div>
                                 <div class="boutique-button">
-                                    <button class="boutique-button-btn"  @click="exchange()">立即兑换</button>
+                                    <button class="boutique-button-btn" @click="exchange()">立即兑换</button>
                                 </div>
                             </div>
                         </div>
@@ -84,7 +84,7 @@
                                     <div class="gift-ms">
                                         <span class="tex1">积分兑换：</span>
                                         <strong class="tex2">{{ item.cprice }}</strong>
-                                        <span class="tex3" @click="exchange()">立即兑换</span>
+                                        <span class="tex3" @click="exchange(item)">立即兑换</span>
                                     </div>
                                 </div>
                             </div>
@@ -96,31 +96,34 @@
                         background
                         layout="prev, pager, next"
                         :total="total"
-                        :current-page.sync = "currentPage"
+                        :current-page.sync="currentPage"
                         :page-size="12"
-                        @current-change ="getGift()"
+                        @current-change="getGift()"
                     >
                     </el-pagination>
                 </div>
             </div>
         </div>
 
-
+        <exchange :goods="giftItem" @close="exchange()" v-if="isShowChangeGift"></exchange>
     </div>
 </template>
 <script>
     import vueSeamless from 'vue-seamless-scroll'
+    import Exchange from './exchange';
 
     export default {
         components: {
-            vueSeamless
+            vueSeamless,
+            Exchange,
         },
         data () {
             return {
+                isShowChangeGift: false,
                 giftList: [],
                 ranksList: '',
-                total:0,
-                currentPage:1,
+                total: 0,
+                currentPage: 1,
                 listData: [{
                     'title': '【阿玛尼手提包】',
                     'user': '***dv***'
@@ -197,7 +200,8 @@
                 }, {
                     id: '0002',
                     imgUrl: '//image.beike188.com/YHHB/images/jfsc/jfsc_banner02.jpg'
-                }]
+                }],
+                giftItem: ''
             }
         },
         methods: {
@@ -223,24 +227,26 @@
                 this.axios.get('/api/goods/list', {
                     params: {pageNo: this.currentPage, pageSize: 12}
                 }).then((response) => {
-                        const giftItem = response.data.list;// 储存所有数据
-                        this.giftList = giftItem;
-                        this.total = response.data.total;
-                        console.log('giftList', this.giftList);
-                    })
+                    const giftItem = response.data.list;// 储存所有数据
+                    this.giftList = giftItem;
+                    this.total = response.data.total;
+                    console.log('giftList', this.giftList);
+                })
                     .catch(function (error) {
                         console.log(error);
                     });
             },
-            jump( ){
+            jump () {
                 this.$router.push('/integral')
                 // this.$router.push({ path: '/'});
             },
-            jumpOrderRecord( ){
+            jumpOrderRecord () {
                 this.$router.push('/orderRecord')
             },
-            exchange(){
-                this.$router.push('/exchange')
+            exchange (item) {
+                console.log('item', item);
+                this.isShowChangeGift = !this.isShowChangeGift;
+                this.giftItem = item;
             }
 
         },
@@ -285,7 +291,7 @@
         padding: 0 20px;
         border-bottom: 2px solid #757575;
         display: flex;
-        justify-content:space-between;
+        justify-content: space-between;
         align-items: center;
     }
 
@@ -310,7 +316,6 @@
         color: #c8a675;
 
     }
-
 
     .title-history {
         /*height: 48px;*/
@@ -395,7 +400,8 @@
         width: 870px;
         height: 500px;
     }
-    .boutique-img:hover .hover-text{
+
+    .boutique-img:hover .hover-text {
         display: block;
     }
 
@@ -436,13 +442,13 @@
         height: 80px;
         padding-right: 50px;
         position: absolute;
-        top:25px;
+        top: 25px;
         left: 640px;
         margin-top: auto;
         margin-bottom: auto;
     }
 
-    .boutique-button-btn{
+    .boutique-button-btn {
         width: 150px;
         margin-top: 20px;
         padding: 10px 20px;
@@ -451,6 +457,7 @@
         border: 1px solid #c19045;
 
     }
+
     .boutique-button-btn:hover {
         color: #fff;
         background: #c2a77d;
@@ -553,7 +560,7 @@
     }
 
     .giftList:hover {
-        transform: translate3d(0,-3px,0);
+        transform: translate3d(0, -3px, 0);
         box-shadow: 0 2px 20px 0 #666;
     }
 
@@ -629,8 +636,8 @@
         transition: all 0.3s;
     }
 
-    .pager{
+    .pager {
         width: 1200px;
         height: 62px;
-     }
+    }
 </style>

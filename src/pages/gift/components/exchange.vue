@@ -7,11 +7,11 @@
                 <div class="content-box">
                     <div class="content-left">
                         <div class="gift-box">
-                            <img class="gift-img" src=""/>
+                            <img class="gift-img" :src="goods.icon"/>
                         </div>
-                        <div class="gift-name">奔驰大G</div>
+                        <div class="gift-name">{{goods.pluname}}</div>
                         <div class="gift-introduction">
-
+                            {{goods.describe}}
                         </div>
                     </div>
                     <div class="content-right">
@@ -19,11 +19,11 @@
                         <div class="gift-information">
                             <div class="gift-information-box">
                                 <span class="text1">商品价值:</span>
-                                <span class="text2">￥</span>
+                                <span class="text2">￥ {{goods.price}}</span>
                             </div>
                             <div class="gift-information-box">
                                 <span class="text1">兑换积分:</span>
-                                <span class="text2"></span>
+                                <span class="text2">{{goods.cprice}}</span>
                             </div>
                             <div class="gift-information-box">
                                 <span class="text3">可用积分:</span>
@@ -87,6 +87,7 @@
                 selected2: ''
             };
         },
+        props: ['goods'],
         methods: {
             handleChange (value) {
                 console.log(value);
@@ -100,6 +101,8 @@
         width: 100%;
         height: 100%;
         font-size: 16px;
+        display: flex;
+
     }
 
     /*// 遮罩 设置背景层，z-index值要足够大确保能覆盖，高度 宽度设置满 做到全屏遮罩*/
@@ -113,6 +116,7 @@
         left: 0;
         display: flex;
         justify-content: center; /*使子项目水平居中*/
+        align-items:center;
     }
 
     /*// 内容层 z-index要比遮罩大，否则会被遮盖，*/
@@ -120,7 +124,6 @@
         width: 720px;
         height: 600px;
         background: white;
-        margin-top: 150px;
         border-radius: 4px;
         padding: 20px;
         z-index: 300;
@@ -171,7 +174,11 @@
         width: 280px;
         height: 100px;
         padding: 10px;
-        color: white;
+        font-size: 14px;
+        text-align: left;
+        text-indent: 1.5em;
+        line-height: 20px;
+        color: #666;
         border-radius: 3px;
         background: #ddd;
     }
@@ -221,7 +228,8 @@
         color: grey;
         margin-right: 10px;
     }
-    .text4{
+
+    .text4 {
         width: 100px;
         font-size: 14px;
         color: grey;
@@ -229,6 +237,7 @@
         text-align: right;
         margin-right: 15px;
     }
+
     .address-information {
         margin-top: 10px;
         width: 340px;
@@ -242,35 +251,38 @@
         /*text-align: right;*/
         justify-content: right;
         font-size: 14px;
+        color: #666;
         margin-bottom: 10px;
     }
-    .address-information input{
+
+    .address-information input {
         width: 186px;
         text-align: left;
         font-family: inherit;
         font-size: 13px;
-        color: gainsboro;
+        color: #666;
         padding: 0 8px;
         border: 1px solid #d9d9d9;
         border-radius: 3px;
     }
-    .address-information textarea{
+
+    .address-information textarea {
         width: 186px;
         height: 50px;
         text-align: left;
         font-family: inherit;
         font-size: 13px;
-        color: gainsboro;
+        color: #666;
         padding: 5px 8px;
         border: 1px solid #d9d9d9;
         border-radius: 3px;
     }
 
-    .exchange-btn{
+    .exchange-btn {
         width: 140px;
         height: 40px;
         line-height: 40px;
-        background: #c8a675!important;
+        background: #c8a675 !important;
         border: 1px solid #c8a675;
         border-radius: 3px;
         margin-left: 140px;
