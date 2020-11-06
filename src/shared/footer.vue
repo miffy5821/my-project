@@ -79,7 +79,7 @@ export default {
     // link: 'https://chatlink.mstatik.com/widget/standalone.html?eid=221081',
     methods:{
       jumpHelp(){
-          this.$router.push('./problem/commonProblem')
+          this.$router.push('/problem/commonProblem')
       },
       jumpConsultingAgent(){
           window.open('https://chatlink.mstatik.com/widget/standalone.html?eid=221081');

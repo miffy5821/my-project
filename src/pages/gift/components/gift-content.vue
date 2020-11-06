@@ -44,7 +44,12 @@
                                     <p>兑换积分：<span>54000积分</span></p>
                                 </div>
                                 <div class="boutique-button">
-                                    <button class="boutique-button-btn" @click="exchange()">立即兑换</button>
+                                    <button class="boutique-button-btn" @click="exchange({
+                                    cprice: 54000,price:18000,
+                                    describe:'空投美女陪玩两晚一天，学生妹 模特 （只针对有机场直达城市） 我们会在7个工作日内联系您选择美女。',
+                                    icon:'https://line.jzs001.cn/group1/M00/00/DA/DsBDFV90oFiAPuELABDwddIMAkw789.gif'})">
+                                        立即兑换
+                                    </button>
                                 </div>
                             </div>
                         </div>
@@ -413,7 +418,7 @@
         position: relative;
         top: -115px;
         display: none;
-        z-index: 999;
+        z-index: 100;
     }
 
     .product {

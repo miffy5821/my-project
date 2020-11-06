@@ -11,7 +11,7 @@
         <div class="gg">
             <div class="notice">
                 <img class="notice-img" src="../../../assets/home-img/gg.png"/>
-                <div class="notice-ins">最新公告:</div>
+                <div class="notice-ins" @click="jumpPersonal()">最新公告:</div>
                 <div class="content">
                     <vue-seamless-scroll :data="newsList" :class-option="optionLeft" class="seamless-warp2">
                         <ul class="item">
@@ -112,6 +112,9 @@ export default {
         },
         jumpMore(){
             this.$router.push('/news')
+        },
+        jumpPersonal(){
+            this.$router.push('/personal')
         }
     },
 
