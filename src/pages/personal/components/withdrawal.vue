@@ -356,12 +356,12 @@
     color:#c8a675 ;
   }
   .amount-wd{
-    width: 750px;
+    width: 100%;
     height: 50px;
     margin-top: 10px;
     margin-left: 80px;
     display: flex;
-    flex-wrap: wrap;
+    /*flex-wrap: wrap;*/
   }
   .amount-wd label{
     font-size: 14px;

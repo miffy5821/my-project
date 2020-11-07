@@ -33,18 +33,17 @@ import privacyAgreement from '@/pages/help/components/betRules.vue'
 import onlineProblem from '@/pages/help/components/onlineProblem.vue'
 import aboutMe from '@/pages/aboutMe/aboutMe.vue'
 import gamingDuty from '@/pages/help/components/gamingDuty.vue'
-import deposit from '@/pages/personal/components/deposit.vue'
 
-
-import personal from '@/pages/personal/personal.vue'
-import conversion from '@/pages/personal/components/conversion.vue'
-import withdrawal from '@/pages/personal/components/withdrawal.vue'
-import capital from '@/pages/personal/components/capital.vue'
-import bet from '@/pages/personal/components/bet.vue'
-import agency from '@/pages/agency/agency.vue'
-import personalData from '@/pages/personal/components/personalData.vue'
-import information from '@/pages/personal/components/information.vue'
-import changePassword from '@/pages/personal/components/changePassword.vue'
+import personal from '@/pages/personal/personal.vue' //个人中心
+import deposit from '@/pages/personal/components/deposit.vue'//存款专区
+import conversion from '@/pages/personal/components/conversion.vue'//额度转换
+import withdrawal from '@/pages/personal/components/withdrawal.vue' //存款专区
+import capital from '@/pages/personal/components/capital.vue'//资金记录
+import bet from '@/pages/personal/components/bet.vue' //资金记录
+import agency from '@/pages/agency/agency.vue'//代理
+import personalData from '@/pages/personal/components/personalData.vue' //个人资料
+import information from '@/pages/personal/components/information.vue' //信息公告
+import changePassword from '@/pages/personal/components/changePassword.vue'//修改密码
 import alipay from '@/pages/personal/components/alipay.vue'
 
 Vue.use(Router);
@@ -194,37 +193,37 @@ export default new Router({
         component: personal,
         children: [
             {
-                path: 'conversion',
+                path: 'conversion',//额度转换
                 name: 'conversion',
                 component: conversion
             },
             {
-                path: 'deposit',
+                path: 'deposit',//存款专区
                 name: 'deposit',
                 component: deposit
             },
             {
-                path: 'withdrawal',
+                path: 'withdrawal',//取款专区
                 name: 'withdrawal',
                 component: withdrawal
             }, {
-                path: 'capital',
+                path: 'capital',//资金记录
                 name: 'capital',
                 component: capital
             }, {
-                path: 'bet',
+                path: 'bet',////投注记录
                 name: 'bet',
                 component: bet
             }, {
-                path: 'personalData',
+                path: 'personalData',//个人资料
                 name: 'personalData',
                 component: personalData
             }, {
-                path: 'information',
+                path: 'information',//信息公告
                 name: 'information',
                 component: information
             }, {
-                path: 'changePassword',
+                path: 'changePassword',//修改密码
                 name: 'changePassword',
                 component: changePassword
             }, {

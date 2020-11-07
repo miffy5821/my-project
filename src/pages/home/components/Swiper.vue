@@ -114,7 +114,7 @@ export default {
             this.$router.push('/news')
         },
         jumpPersonal(){
-            this.$router.push('/personal')
+            this.$router.push('/personal/conversion')
         }
     },
 

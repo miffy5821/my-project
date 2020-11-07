@@ -81,7 +81,11 @@ export default {
       jumpHelp(){
           this.$router.push('/problem/commonProblem')
       },
-      jumpConsultingAgent(){
+        jumpVip(){
+            this.$router.push('/vip')
+        },
+
+    jumpConsultingAgent(){
           window.open('https://chatlink.mstatik.com/widget/standalone.html?eid=221081');
       },
       jumpOnlineService(){
