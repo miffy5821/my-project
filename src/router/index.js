@@ -18,7 +18,7 @@ import gift from '@/pages/gift/gift.vue'
 import integral from '@/pages/integral/integral.vue'
 import orderRecord from '@/pages/orderRecord/orderRecord.vue'
 import register from '@/pages/register/register.vue'
-// import personal from '@/pages/personal/personal.vue'
+//帮助中心
 import problem from '@/pages/help/problem.vue'
 import commonProblem from '@/pages/help/components/commonProblem.vue'
 import loginRegister from  '@/pages/help/components/loginRegister.vue'
@@ -33,7 +33,7 @@ import privacyAgreement from '@/pages/help/components/betRules.vue'
 import onlineProblem from '@/pages/help/components/onlineProblem.vue'
 import aboutMe from '@/pages/aboutMe/aboutMe.vue'
 import gamingDuty from '@/pages/help/components/gamingDuty.vue'
-
+//个人中心
 import personal from '@/pages/personal/personal.vue' //个人中心
 import deposit from '@/pages/personal/components/deposit.vue'//存款专区
 import conversion from '@/pages/personal/components/conversion.vue'//额度转换

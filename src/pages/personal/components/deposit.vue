@@ -13,12 +13,14 @@
     <div class="deposit-case">
       <div class="deposit-zone">
         <ul class="depositWay">
-          <li v-for="(item,index) in navImg" :class = "{active:!(index-menuIndex)}" @click = 'menuShow(index)'>
+          <li v-for="(item,index) in navImg" :class = "{activeNav:!(index-menuIndex)}" @click = 'menuShow(index)'>
             <img class="bankCard "  :src="item.imgUrl"/>
-            <a href="#">{{item.name}}</a><span class="cross-line">|</span></li>
+            <a href="#">{{item.name}}</a><span class="cross-line">|</span>
+          </li>
         </ul>
       </div>
       <div class="depositWay-content">
+
           <!--&lt;!&ndash;VIP支付 &ndash;&gt;-->
           <div class="treasure"  v-show = 'menuIndex == 0'>
               <div class="treasure-ways">
@@ -26,6 +28,7 @@
                       <el-steps :active="active" finish-status="success">
                           <el-step title="输入金额"></el-step>
                           <el-step title="存款成功"></el-step>
+                          <el-step title="生成订单"></el-step>
                       </el-steps>
                   </div>
                   <div class="zfb-way-box">
@@ -38,11 +41,12 @@
               <div class="treasure-amount">
                   <div class="amount-name">
                       <label>存款名字 ：</label>
-                      <input type="text" class="Distribute"/>
+                      <input type="text" class="Distribute" placeholder="请输入存款人姓名"/>
                   </div>
                   <div class="amount-name">
                       <label>存款方式 ：</label>
-                      <input type="number" class="Distribute"/>
+                      <div  class="Dis Dis1">支付宝转账</div>
+                      <div class="Dis">银联转账</div>
                   </div>
                   <div class="amount-name">
                       <label>存款金额 ：</label>
@@ -332,6 +336,11 @@
     height: 20px;
   }
 
+  .activeNav{
+      color: #c8a675;
+      width: auto;
+      border-bottom: 2px solid #c8a675;
+  }
   .deposit {
     width: 998px;
     height: 50px;
@@ -445,7 +454,16 @@
       flex-wrap: wrap;
     background: #eee;
   }
+   .Dis{
+       font-size: 14px;
+       height: 30px;
+       line-height: 30px;
+       padding: 5px 15px;
+       border: 1px solid darkgray;
+   }
+   .Dis1{
 
+   }
   .amount-deposited {
     width: 740px;
     height: 145px;
@@ -460,11 +478,14 @@
   .Distribute {
     width: 185px;
     height: 35px;
+      font-size: 14px;
     padding: 2px 5px 2px 8px;
     border: 1px solid gray;
     border-radius: 5px;
   }
-
+  .Distribute:focus{
+      border-shadow: 1px solid #c8a675;
+  }
   .ts {
     width: 180px;
     height: 35px;

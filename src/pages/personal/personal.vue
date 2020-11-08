@@ -16,7 +16,7 @@
                     <div class="personal-list">
                         <div class="personal-list">
                             <ul class="nav">
-                                <li class="nav-color" v-for="item of sliderMenu">
+                                <li class="nav-color nav-li" v-for="item of sliderMenu">
                                     <router-link :to="item.path">
                                         <img class="nav-icon " :src="item.img"/> <span class="active">{{item.name}}</span>
                                     </router-link>
@@ -175,7 +175,7 @@ export default {
     margin-top: -20px;
 }
 
-.nav li {
+.nav-li {
     height: 45px;
     width: 149px;
     font-size: 14px;
@@ -197,14 +197,11 @@ a {
 }
 
 .nav-color {
-
     transition: all .3s;
-    background-color: #f2f2f2;
+    /*background-color: #f2f2f2;*/
 }
 
-/*.active{*/
-/*  color: #c8a675;*/
-/*}*/
+
 /*!*.text{*!*/
 /*margin-left: 10px;*/
 /*font-size:14px;*/
