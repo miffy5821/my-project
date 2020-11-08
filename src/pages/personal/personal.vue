@@ -21,46 +21,6 @@
                                         <img class="nav-icon " :src="item.img"/> <span class="active">{{item.name}}</span>
                                     </router-link>
                                 </li>
-<!--                                <li>-->
-<!--                                    <router-link to="/personal/deposit">-->
-<!--                                        <img class="nav-icon" src="/static/personal/phone.png"/> <span>存款专区</span>-->
-<!--                                    </router-link>-->
-<!--                                </li>-->
-<!--                                <li>-->
-<!--                                    <router-link to="/personal/withdrawal">-->
-<!--                                        <img class="nav-icon" src="/static/personal/phone.png"/> <span>取款专区</span>-->
-<!--                                    </router-link>-->
-<!--                                </li>-->
-<!--                                <li>-->
-<!--                                    <router-link to="/personal/capital">-->
-<!--                                        <img class="nav-icon" src="/static/personal/phone.png"/> <span>资金记录</span>-->
-<!--                                    </router-link>-->
-<!--                                </li>-->
-<!--                                <li>-->
-<!--                                    <router-link to="/personal/bet">-->
-<!--                                        <img class="nav-icon" src="/static/personal/phone.png"/> <span>投注记录</span>-->
-<!--                                    </router-link>-->
-<!--                                </li>-->
-<!--                                <li>-->
-<!--                                    <router-link to="/agency">-->
-<!--                                        <img class="nav-icon" src="/static/personal/phone.png"/> <span>高级代理人</span>-->
-<!--                                    </router-link>-->
-<!--                                </li>-->
-<!--                                <li>-->
-<!--                                    <router-link to="/personal/personalData">-->
-<!--                                        <img class="nav-icon" src="/static/personal/phone.png"/> <span>个人资料</span>-->
-<!--                                    </router-link>-->
-<!--                                </li>-->
-<!--                                <li>-->
-<!--                                    <router-link to="/personal/information">-->
-<!--                                        <img class="nav-icon" src="/static/personal/phone.png"/> <span>信息公告</span>-->
-<!--                                    </router-link>-->
-<!--                                </li>-->
-<!--                                <li>-->
-<!--                                    <router-link to="/personal/changePassword">-->
-<!--                                        <img class="nav-icon" src="/static/personal/phone.png"/> <span>修改密码</span>-->
-<!--                                    </router-link>-->
-<!--                                </li>-->
                             </ul>
                         </div>
                     </div>
@@ -211,7 +171,7 @@ export default {
 .nav {
     width: 196px;
     height: 427px;
-    background: #fffff;
+    background: #fff;
     margin-top: -20px;
 }
 
