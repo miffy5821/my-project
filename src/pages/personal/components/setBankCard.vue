@@ -3,22 +3,31 @@
         <div class="ym">
         </div>
         <div class="change">
-            <div class="changeName">微信号码</div>
+            <div class="changeName">绑定银行卡</div>
         </div>
         <div class="change-case">
             <div class="cw-step">
                 <el-steps :active="active" finish-status="success">
-                    <el-step title="设定微信号码"></el-step>
+                    <el-step title="设定卡片"></el-step>
+                    <el-step title="确认信息"></el-step>
                     <el-step title="设定成功"></el-step>
                 </el-steps>
             </div>
             <div class="pw">
                 <div class="changeWord-item">
-                    <label>微信号码:</label>
-                    <input type="text" placeholder="请输入微信号码">
+                    <label>持卡人:</label>
+                    <input type="text" placeholder="请输入持卡人姓名">
                 </div>
-
-                <el-button class="cw-btn" @click="next">下一步</el-button>
+                <div class="changeWord-item">
+                    <label>银行卡号:</label>
+                    <input type="text" placeholder="请输入存储银行卡号">
+                </div>
+                <div class="changeWord-item">
+                    <label>选择银行卡:</label>
+                    <input type="text" placeholder="请选择银行卡">
+                </div>
+                <p class="alipay-text">温馨提示：如无开户银行，请选择其他银行，点击提交将银行名填入开户行地址。</p>
+                <el-button class="cw-btn" @click="next">确定</el-button><el-button class="cw-btn" @click="next">重置</el-button>
             </div>
 
         </div>
@@ -26,61 +35,20 @@
 </template>
 <script>
     export default {
-        name: 'changeWechat',
+        name: 'setBankCard',
         data() {
-             return {
-                 active: 1
-             }
-         },
-        methods: {
-             next() {
-                 this.active = 2;
+            return {
+                active:0,
+                success:'',
+            }
+        },methods: {
+            next() {
+                this.active = this.active + 1;
             }
         }
     }
 </script>
 <style>
-    .center {
-        width: 1000px;
-        height: 1000px;
-        background: white;
-        border: 1px solid #eaeaea;
-    }
-
-    .tg {
-        width: 960px;
-        height: 25px;
-        display: flex;
-        justify-content: center;
-        background: #eaeaea;
-        padding: 20px 20px;
-    }
-
-    .tg-icon {
-        width: 30px;
-        height: 30px;
-        background: #c8a675;
-        border-radius: 50%;
-    }
-
-    .iconTg {
-        width: 20px;
-        height: 20px;
-        text-align: center;
-        padding-top: 5px;
-    }
-
-    .tgContent {
-        width: 900px;
-        height: 25px;
-        line-height: 25px;
-        font-size: 14px;
-        margin-left: 20px;
-        text-align: center;
-        overflow: hidden;
-        text-overflow: ellipsis;
-        white-space: nowrap;
-    }
 
     .ym {
         width: 978px;
@@ -155,6 +123,12 @@
         font-size: 14px;
         padding: 6px 11px 6px 15px;
     }
+    .alipay-text{
+        font-size: 14px;
+        color: red;
+        margin-top: 15px;
+        text-align: center;
+    }
     .cw-btn{
         width: 100px;
         padding: 5px;
@@ -166,3 +140,4 @@
         border-color: #c2a77d;
     }
 </style>
+

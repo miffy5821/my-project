@@ -1,10 +1,5 @@
 <template>
-  <div class="center">
-    <div class="tg">
-      <div class="tg-icon"><img class="iconTg" src="/static/personal/phone.png" alt=""></div>
-      <p class="tgContent">尊敬的澳门银河贵宾，由于线上充值会员多通道拥挤，充值成功率降低，建议贵宾使用公司线下转卡方式充值，
-        笔笔入款1.5%,感谢您对我司一直以来的支持，祝您游戏愉快~</p>
-    </div>
+  <div>
     <div class="ym">
     </div>
     <div class="data">
@@ -13,7 +8,7 @@
     <div class="data-case">
       <div class="data-left"><img class="dataImg" src="/static/personal/logo.png"></div>
       <div  class="data-right">
-        <span>rrran123,欢迎您</span><button>修改密码</button>
+        <span>rrran123,欢迎您</span><button @click="changePassword()">修改密码</button>
         <div class="data-text" id="data">上次登录时间:2020-07-22 01:01:46</div>
       </div>
     </div>
@@ -30,21 +25,22 @@
         </tr>
         <tr>
           <th class="bg-color">微信号</th>
-          <th class="dd-content">wei5824<span class="text-color" @click="changeWechat()">修改</span></th>
+          <th class="dd-content">wei5824
+              <span class="text-color" @click="changeWechat()">修改</span></th>
           <th class="bg-color">QQ号</th>
-          <th class="dd-content">未设定</th>
+          <th class="dd-content" @click="setQQ()">未设定</th>
         </tr>
         <tr>
           <th class="bg-color" >提款密码</th>
           <th class="dd-content" @click="changeWithdrawalsPassword">立即设定</th>
           <th class="bg-color">默认银行卡</th>
-          <th class="dd-content">暂未绑定银行卡</th>
+          <th class="dd-content" @click="setBankCard()">暂未绑定银行卡</th>
         </tr>
         <tr>
           <th class="bg-color">支付宝</th>
-          <th class="dd-content">立即绑定</th>
+          <th class="dd-content" @click="setAlipay()">立即绑定</th>
           <th class="bg-color">USTD钱包</th>
-          <th class="dd-content">立即绑定</th>
+          <th class="dd-content" @click="setUstd()">立即绑定</th>
         </tr>
       </table>
     </div>
@@ -55,63 +51,37 @@
   export default {
     name: 'personalData',
     methods:{
+        changePassword(){
+            this.$router.push('/personal/changePassword')
+        },
         changeUerName(){
-            this.$router.push('/changeName')
+            this.$router.push('/personal/changeName')
         },
         changeWithdrawalsPassword(){
-            this.$router.push('/WithdrawalsPassword')
+            this.$router.push('/personal/WithdrawalsPassword')
         },
         changeWechat(){
-            this.$router.push('/changeWechat')
+            this.$router.push('/personal/changeWechat')
+        },
+        setQQ(){
+            this.$router.push('/personal/setQQ')
+        },
+        setBankCard(){
+            this.$router.push('/personal/setBankCard')
+        },
+        setUstd(){
+            this.$router.push('/personal/setUstd')
+        },
+        setAlipay(){
+            this.$router.push('/personal/alipay')
         },
         changePhoneNumber(){
-            this.$router.push('/changePhoneNumber')
+            this.$router.push('/personal/changePhoneNumber')
         },
     }
   }
 </script>
 <style>
-  .center {
-    width: 1000px;
-    height: 1000px;
-    background: white;
-    border: 1px solid #eaeaea;
-  }
-
-  .tg {
-    width: 960px;
-    height: 25px;
-    display: flex;
-    justify-content: center;
-    background: #eaeaea;
-    padding: 20px 20px;
-  }
-
-  .tg-icon {
-    width: 30px;
-    height: 30px;
-    background: #c8a675;
-    border-radius: 50%;
-  }
-
-  .iconTg {
-    width: 20px;
-    height: 20px;
-    text-align: center;
-    padding-top: 5px;
-  }
-
-  .tgContent {
-    width: 900px;
-    height: 25px;
-    line-height: 25px;
-    font-size: 14px;
-    margin-left: 20px;
-    text-align: center;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-  }
 
   .ym {
     width: 978px;

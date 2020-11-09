@@ -48,8 +48,10 @@ import alipay from '@/pages/personal/components/alipay.vue'//设置支付宝
 import changeName from '@/pages/personal/components/changeName.vue'//修改用户名
 import changePhoneNumber from '@/pages/personal/components/changePhoneNumber.vue'//修改手机号码
 import changeWechat from '@/pages/personal/components/changeWechat.vue'//修改微信号
+import setQQ from '@/pages/personal/components/setQQ.vue'//设置QQ
+import setBankCard from '@/pages/personal/components/setBankCard.vue'//修改银行卡
+import setUstd from '@/pages/personal/components/setUstd.vue'//绑定USTD
 import WithdrawalsPassword from '@/pages/personal/components/WithdrawalsPassword.vue'//修改提款密码
-
 
 
 Vue.use(Router);
@@ -252,7 +254,19 @@ export default new Router({
                 path: 'WithdrawalsPassword',//修改提款密码
                 name: 'WithdrawalsPassword',
                 component: WithdrawalsPassword
-            },]
+            },{
+                path: 'setQQ',//设置QQ
+                name: 'setQQ',
+                component: setQQ
+            },{
+                path: 'setBankCard',//绑定银行卡
+                name: 'setBankCard',
+                component: setBankCard
+            },{
+                path: 'setUstd',//绑定USTD
+                name: 'setUstd',
+                component: setUstd
+            }]
     }, {
         path: '/agency',
         name: 'agency',

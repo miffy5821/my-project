@@ -1,10 +1,5 @@
 <template>
-    <div class="center">
-        <div class="tg">
-            <div class="tg-icon"><img class="iconTg" src="/static/personal/phone.png" alt=""></div>
-            <p class="tgContent">尊敬的澳门银河贵宾，由于线上充值会员多通道拥挤，充值成功率降低，建议贵宾使用公司线下转卡方式充值，
-                笔笔入款1.5%,感谢您对我司一直以来的支持，祝您游戏愉快~</p>
-        </div>
+    <div>
         <div class="ym">
         </div>
         <div class="change">

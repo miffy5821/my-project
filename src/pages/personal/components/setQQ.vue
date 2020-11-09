@@ -1,21 +1,22 @@
 <template>
     <div>
+
         <div class="ym">
         </div>
         <div class="change">
-            <div class="changeName">微信号码</div>
+            <div class="changeName">QQ号码</div>
         </div>
         <div class="change-case">
             <div class="cw-step">
                 <el-steps :active="active" finish-status="success">
-                    <el-step title="设定微信号码"></el-step>
+                    <el-step title="设定QQ号码"></el-step>
                     <el-step title="设定成功"></el-step>
                 </el-steps>
             </div>
             <div class="pw">
                 <div class="changeWord-item">
-                    <label>微信号码:</label>
-                    <input type="text" placeholder="请输入微信号码">
+                    <label>QQ号码:</label>
+                    <input type="text" placeholder="请输入QQ号码">
                 </div>
 
                 <el-button class="cw-btn" @click="next">下一步</el-button>
@@ -26,62 +27,20 @@
 </template>
 <script>
     export default {
-        name: 'changeWechat',
+        name: 'setQQ',
         data() {
-             return {
-                 active: 1
-             }
-         },
-        methods: {
-             next() {
-                 this.active = 2;
+            return {
+                active:0,
+                success:'',
+            }
+        },methods: {
+            next() {
+                this.active = 2;
             }
         }
     }
 </script>
 <style>
-    .center {
-        width: 1000px;
-        height: 1000px;
-        background: white;
-        border: 1px solid #eaeaea;
-    }
-
-    .tg {
-        width: 960px;
-        height: 25px;
-        display: flex;
-        justify-content: center;
-        background: #eaeaea;
-        padding: 20px 20px;
-    }
-
-    .tg-icon {
-        width: 30px;
-        height: 30px;
-        background: #c8a675;
-        border-radius: 50%;
-    }
-
-    .iconTg {
-        width: 20px;
-        height: 20px;
-        text-align: center;
-        padding-top: 5px;
-    }
-
-    .tgContent {
-        width: 900px;
-        height: 25px;
-        line-height: 25px;
-        font-size: 14px;
-        margin-left: 20px;
-        text-align: center;
-        overflow: hidden;
-        text-overflow: ellipsis;
-        white-space: nowrap;
-    }
-
     .ym {
         width: 978px;
         height: 20px;

@@ -31,6 +31,11 @@
                 </div>
 
                 <div class="content">
+                    <div class="tg">
+                    <div class="tg-icon"><img class="iconTg" src="/static/personal/phone.png" alt=""></div>
+                    <p class="tgContent">尊敬的澳门银河贵宾，由于线上充值会员多通道拥挤，充值成功率降低，建议贵宾使用公司线下转卡方式充值，
+                        笔笔入款1.5%,感谢您对我司一直以来的支持，祝您游戏愉快~</p>
+                </div>
                     <router-view></router-view>
                 </div>
             </div>
@@ -54,7 +59,9 @@ import changeName from './components/changeName.vue'//修改用户名
 import changePhoneNumber from './components/changePhoneNumber.vue'//修改手机号码
 import changeWechat from './components/changeWechat.vue'//修改微信号
 import WithdrawalsPassword from './components/WithdrawalsPassword.vue'//修改提款密码
-
+import setQQ from './components/setQQ.vue'//设置QQ
+import setBankCard from './components/setBankCard.vue'//修改银行卡
+import setUstd from './components/setUstd.vue'//绑定USTD
 
 export default {
     name: 'personal',
@@ -72,6 +79,9 @@ export default {
         changePhoneNumber:changePhoneNumber,//修改手机号码
         changeWechat:changeWechat,//修改微信号
         WithdrawalsPassword:WithdrawalsPassword,//修改提款密码
+        setQQ:setQQ,//设置QQ
+        setBankCard:setBankCard,//修改银行卡
+        setUstd:setUstd//绑定USTD
               },
     data(){
         return{
@@ -237,6 +247,41 @@ a {
     color: black;
     text-align: center;
 }
+.content{
+    background: #fff;
+}
+.tg {
+    width: 960px;
+    height: 25px;
+    display: flex;
+    justify-content: center;
+    background: #eaeaea;
+    padding: 20px 20px;
+}
+.tg-icon {
+    width: 30px;
+    height: 30px;
+    background: #c8a675;
+    border-radius: 50%;
+}
 
+.iconTg {
+    width: 20px;
+    height: 20px;
+    text-align: center;
+    padding-top: 5px;
+}
+
+.tgContent {
+    /*width: 900px;*/
+    height: 25px;
+    line-height: 25px;
+    font-size: 14px;
+    margin-left: 20px;
+    text-align: center;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
 </style>
 
