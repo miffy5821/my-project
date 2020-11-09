@@ -44,7 +44,13 @@ import agency from '@/pages/agency/agency.vue'//代理
 import personalData from '@/pages/personal/components/personalData.vue' //个人资料
 import information from '@/pages/personal/components/information.vue' //信息公告
 import changePassword from '@/pages/personal/components/changePassword.vue'//修改密码
-import alipay from '@/pages/personal/components/alipay.vue'
+import alipay from '@/pages/personal/components/alipay.vue'//设置支付宝
+import changeName from '@/pages/personal/components/changeName.vue'//修改用户名
+import changePhoneNumber from '@/pages/personal/components/changePhoneNumber.vue'//修改手机号码
+import changeWechat from '@/pages/personal/components/changeWechat.vue'//修改微信号
+import WithdrawalsPassword from '@/pages/personal/components/WithdrawalsPassword.vue'//修改提款密码
+
+
 
 Vue.use(Router);
 
@@ -227,9 +233,25 @@ export default new Router({
                 name: 'changePassword',
                 component: changePassword
             }, {
-                path: 'alipay',
+                path: 'alipay',//设置支付宝
                 name: 'alipay',
                 component: alipay
+            },{
+                path: 'changeName',//修改用户名
+                name: 'changeName',
+                component: changeName
+            },{
+                path: 'changePhoneNumber',//修改手机号码
+                name: 'changePhoneNumber',
+                component: changePhoneNumber
+            },{
+                path: 'changeWechat',//修改微信号
+                name: 'changeWechat',
+                component: changeWechat
+            },{
+                path: 'WithdrawalsPassword',//修改提款密码
+                name: 'WithdrawalsPassword',
+                component: WithdrawalsPassword
             },]
     }, {
         path: '/agency',

@@ -49,12 +49,17 @@ import bet from './components/bet.vue' //投注记录
 import personalData from './components/personalData.vue' //个人资料
 import information from './components/information.vue' //信息公告
 import changePassword from './components/changePassword.vue'//修改密码
-import alipay from './components/alipay.vue'
+import alipay from './components/alipay.vue'//设置支付宝
+import changeName from './components/changeName.vue'//修改用户名
+import changePhoneNumber from './components/changePhoneNumber.vue'//修改手机号码
+import changeWechat from './components/changeWechat.vue'//修改微信号
+import WithdrawalsPassword from './components/WithdrawalsPassword.vue'//修改提款密码
+
 
 export default {
     name: 'personal',
     components: {
-        deposit: deposit,//c
+        deposit: deposit,//存款专区
         conversion: conversion,////额度转换
         withdrawal: withdrawal,//取款专区
         capital: capital,//资金记录
@@ -62,7 +67,11 @@ export default {
         personalData: personalData,//个人资料
         information: information,//信息公告
         changePassword: changePassword,//修改密码
-        alipay: alipay
+        alipay: alipay,//设置支付宝
+        changeName:changeName,//修改用户名
+        changePhoneNumber:changePhoneNumber,//修改手机号码
+        changeWechat:changeWechat,//修改微信号
+        WithdrawalsPassword:WithdrawalsPassword,//修改提款密码
               },
     data(){
         return{

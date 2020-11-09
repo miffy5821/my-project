@@ -24,27 +24,27 @@
       <table class="data-content">
         <tr>
           <th class="bg-color">真实姓名</th>
-          <th class="dd-content">会员<span class="text-color">修改</span></th>
+          <th class="dd-content">会员<span class="text-color" @click="changeUerName()">修改</span></th>
           <th class="bg-color">手机号码</th>
-          <th class="dd-content">189******** <span class="text-color">修改</span></th>
+          <th class="dd-content">189******** <span class="text-color" @click="changePhoneNumber()">修改</span></th>
         </tr>
         <tr>
           <th class="bg-color">微信号</th>
-          <th class="dd-content">wei5824<span class="text-color">修改</span></th>
+          <th class="dd-content">wei5824<span class="text-color" @click="changeWechat()">修改</span></th>
           <th class="bg-color">QQ号</th>
           <th class="dd-content">未设定</th>
         </tr>
         <tr>
-          <th class="bg-color">提款密码</th>
-          <th class="dd-content">立即设定</th>
+          <th class="bg-color" >提款密码</th>
+          <th class="dd-content" @click="changeWithdrawalsPassword">立即设定</th>
           <th class="bg-color">默认银行卡</th>
           <th class="dd-content">暂未绑定银行卡</th>
         </tr>
         <tr>
           <th class="bg-color">支付宝</th>
           <th class="dd-content">立即绑定</th>
-          <th class="bg-color">注册时间</th>
-          <th class="dd-content">2020.07.20 11：05</th>
+          <th class="bg-color">USTD钱包</th>
+          <th class="dd-content">立即绑定</th>
         </tr>
       </table>
     </div>
@@ -53,7 +53,21 @@
 </template>
 <script>
   export default {
-    name: 'personalData'
+    name: 'personalData',
+    methods:{
+        changeUerName(){
+            this.$router.push('/changeName')
+        },
+        changeWithdrawalsPassword(){
+            this.$router.push('/WithdrawalsPassword')
+        },
+        changeWechat(){
+            this.$router.push('/changeWechat')
+        },
+        changePhoneNumber(){
+            this.$router.push('/changePhoneNumber')
+        },
+    }
   }
 </script>
 <style>
