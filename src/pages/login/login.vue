@@ -62,7 +62,7 @@
 </template>
 
 <script>
-const qs = require('qs');
+const qs = require('qs');//处理参数
 export default {
     name: 'Login',
     terminal: 1,
@@ -102,7 +102,7 @@ export default {
         loginAfter (formName) {
             this.$refs[formName].validate((valid) => {
                 if (valid) {
-                    this.requestLogin();
+                    this.requestLogin(formName);
                 } else {
                     console.log(this.loginCheck);
                     console.log('error submit!!');
@@ -111,9 +111,9 @@ export default {
             });
         },
         requestLogin () {
-            this.axios.post('api/unauthor/gateway/account/login', qs.stringify(
-                Object.assign(this.loginCheck)))
+            this.axios.post('/api/user/login', qs.stringify(this.loginCheck))
                 .then((response) => {
+                  console.log(response);
                     const data = response.data;
 
                     if (data.status === 10000) {

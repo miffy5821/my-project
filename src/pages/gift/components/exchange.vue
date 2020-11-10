@@ -65,7 +65,7 @@
                                 <textarea placeholder="请填写备注信息"></textarea>
                             </div>
                         </div>
-                        <button class="exchange-btn">立即兑换</button>
+                        <button class="exchange-btn" @click="goExchange()">立即兑换</button>
                     </div>
                 </div>
             </div>
@@ -91,7 +91,27 @@
         methods: {
             handleChange (value) {
                 console.log(value);
-            }
+            },
+            goExchange () {
+
+                const {id, price} = this.goods;
+
+                this.axios.post('/api/user/exchange', {id, price})
+                    .then((response) => {
+                        const {data} = response;
+                        // if(data.status === 10000){
+                        //
+                        // }else {
+                        //
+                        // }
+                        this.$alert(data.msg);
+
+                        console.log(response);
+                    })
+                    .catch(function (error) {
+                        alert(error);
+                    });
+            },
         }
     }
 </script>
@@ -116,7 +136,7 @@
         left: 0;
         display: flex;
         justify-content: center; /*使子项目水平居中*/
-        align-items:center;
+        align-items: center;
     }
 
     /*// 内容层 z-index要比遮罩大，否则会被遮盖，*/

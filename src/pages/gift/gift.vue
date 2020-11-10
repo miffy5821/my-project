@@ -1,8 +1,6 @@
 <template>
     <div>
         <gift-content></gift-content>
-        <!--<exchange @close="toggleChange()" v-if="isShow"></exchange>-->
-
     </div>
 </template>
 <script>
@@ -17,12 +15,6 @@
         data() {
             return{
                 isShow: true
-            }
-
-        },
-        methods:{
-            toggleChange(){
-                this.isShow = false;
             }
         }
     }

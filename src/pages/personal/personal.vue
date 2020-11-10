@@ -101,7 +101,7 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
 .personal {
     width: 100%;
     height: 1050px;

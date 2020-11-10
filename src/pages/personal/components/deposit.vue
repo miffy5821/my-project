@@ -40,8 +40,10 @@
                   </div>
                   <div class="amount-name">
                       <label>存款方式 ：</label>
-                      <div  class="Dis Dis1">支付宝转账</div>
-                      <div class="Dis">银联转账</div>
+                      <el-radio-group v-model="radio1">
+                          <el-radio-button label="支付宝转账"></el-radio-button>
+                          <el-radio-button label="银联转账"></el-radio-button>
+                      </el-radio-group>
                   </div>
                   <div class="amount-name">
                       <label>存款金额 ：</label>
@@ -238,6 +240,7 @@
     name: 'deposit',
     data() {
       return {
+        radio1: '支付宝转账',
         active: 1,
         menuIndex: 0,
         // navList: ['VIP转账', '天下尊享支付', '加密货币支付', '云支付', '快捷支付', '支付宝支付'],

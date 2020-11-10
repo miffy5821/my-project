@@ -8,7 +8,7 @@
     name: 'agencyContent'
   }
 </script>
-<style>
+<style scoped>
   .center {
     width: 100%;
     height: 100%;

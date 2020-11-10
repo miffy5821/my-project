@@ -68,7 +68,7 @@ export default {
 }
 }
 </script>
-<style>
+<style scoped>
 .center {
     width: 1000px;
     height: 1000px;

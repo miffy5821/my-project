@@ -81,7 +81,7 @@
     }
   }
 </script>
-<style>
+<style scoped>
 
   .ym {
     width: 978px;
