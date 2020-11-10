@@ -1,5 +1,5 @@
 <template>
-    <div class="center">
+    <div>
         <div class="ym">
             <p class="ymContent">请牢记我们官方唯一的域名导航 www.888y.com</p>
         </div>
@@ -13,8 +13,8 @@
             <div class="asset-left">
                 <div class="tex1">0.00</div>
                 <div class="asset-btn">
-                    <button class="asset-btn1">提款</button>
-                    <button class="asset-btn1 btnColor">存款</button>
+                    <button class="asset-btn1" @click="jumpWithdrawal()">提款</button>
+                    <button class="asset-btn1 btnColor" @click="jumpDeposit()">存款</button>
                 </div>
                 <div></div>
             </div>
@@ -57,7 +57,15 @@
 </template>
 <script>
 export default {
-    name: 'conversion'
+    name: 'conversion',
+    methods:{
+    jumpWithdrawal(){
+        this.$router.push('/personal/withdrawal')
+    },
+    jumpDeposit(){
+        this.$router.push('/personal/deposit')
+    }
+}
 }
 </script>
 <style>
