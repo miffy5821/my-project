@@ -18,10 +18,11 @@
                         ref="quickCheck"
                         class="register-kszc"
                         v-show="show === 1"
+                        @validate="formCheck"
                     >
                         <div class="register-item">
                             <div class="icon-box">
-                                <img src="/static/home/zhuce_yonghu.png"  alt=''/>
+                                <img src="/static/home/zhuce_yonghu.png" alt=''/>
                             </div>
                             <div class="divInput">
                                 <el-form-item prop="refrerrCode">
@@ -33,7 +34,7 @@
 
                         <div class="register-item">
                             <div class="icon-box">
-                                <img src="/static/home/zhuce_yonghu.png"  alt=''/>
+                                <img src="/static/home/zhuce_yonghu.png" alt=''/>
                             </div>
                             <div class="divInput">
                                 <el-form-item prop="username">
@@ -48,7 +49,7 @@
 
                         <div class="register-item">
                             <div class="icon-box">
-                                <img src="/static/home/zhuce_phone.png"  alt=''/>
+                                <img src="/static/home/zhuce_phone.png" alt=''/>
                             </div>
                             <div class="register-phone">
                                 <span class="phone-input">+86 中国</span>
@@ -56,7 +57,7 @@
                                     <el-input
                                         class="phone"
                                         type="number"
-                                        v-model="quickCheck.mobileNo"
+                                        v-model="quickCheck.phoneNumber"
                                         placeholder="请输入正确的手机号码"
                                     ></el-input>
                                 </el-form-item>
@@ -65,7 +66,7 @@
 
                         <div class="register-item">
                             <div class="icon-box">
-                                <img src="/static/home/zhu_safety.png"  alt=''/>
+                                <img src="/static/home/zhu_safety.png" alt=''/>
                             </div>
                             <div class="divInput">
                                 <el-form-item prop="password">
@@ -80,7 +81,7 @@
 
                         <div class="register-item">
                             <div class="icon-box">
-                                <img src="/static/home/zhuce_weixin.png"  alt=''/>
+                                <img src="/static/home/zhuce_weixin.png" alt=''/>
                             </div>
                             <div class="divInput">
                                 <el-form-item prop="weixin">
@@ -96,8 +97,12 @@
                                 </el-checkbox-group>
                             </el-form-item>
                         </div>
-                        <div class="btn" @click="quickRegister('quickCheck')">立即注册</div>
+                        <div class="register-item">
+                            <el-button :disabled="submitIsDisable" class="btn" @click="quickRegister('quickCheck')">立即注册
+                            </el-button>
+                        </div>
                     </el-form>
+
                     <el-form
                         :model="phoneRegisteredCheck"
                         :rules="phoneRegisteredRules"
@@ -108,7 +113,7 @@
                     >
                         <div class="register-item">
                             <div class="icon-box">
-                                <img src="/static/home/zhuce_phone.png"  alt=''/>
+                                <img src="/static/home/zhuce_phone.png" alt=''/>
                             </div>
                             <div class="register-phone">
                                 <span class="phone-input">+86 中国</span>
@@ -136,12 +141,12 @@
                                     ></el-input>
                                 </el-form-item>
                             </div>
-                            <img src class="verification-code"  alt=''/>
+                            <img src class="verification-code" alt=''/>
                         </div>
 
                         <div class="register-item">
                             <div class="icon-box">
-                                <img src="/static/home/zhuce_weixin.png"  alt=''/>
+                                <img src="/static/home/zhuce_weixin.png" alt=''/>
                             </div>
                             <div class="divInput">
                                 <el-form-item prop="weixin">
@@ -153,7 +158,7 @@
 
                         <div class="register-item">
                             <div class="icon-box">
-                                <img src="/static/home/zhuce_yonghu.png"  alt=''/>
+                                <img src="/static/home/zhuce_yonghu.png" alt=''/>
                             </div>
                             <div class="divInput">
                                 <el-form-item prop="recommendCode">
@@ -184,11 +189,12 @@
         data () {
             return {
                 show: 1,
+                submitIsDisable: true,
                 quickCheck: {
                     recommendCode: '',
                     username: '',
                     password: '',
-                    mobileNo: '',
+                    phoneNumber: '',
                     weixin: '',
                     protocol: [],
                     terminal: 0
@@ -226,7 +232,7 @@
                             pattern: /^(?![0-9]+$)(?![a-zA-Z]+$)[0-9A-Za-z]{6,12}$/,
                             trigger: 'blur'
                         }],
-                    mobileNo: [
+                    phoneNumber: [
                         {
                             required: true,
                             message: '手机号码不能为空',
@@ -264,8 +270,8 @@
                     wecaht: '',
                     recommendCode: '',
                     protocol: [],
-                    terminal: '',
-                    repassword: ''
+                    repassword: '',
+                    terminal: ''
                 },
                 phoneRegisteredRules: {
                     phoneNumber: [
@@ -345,18 +351,24 @@
                 });
             },
             requestRegister () {
-                this.axios.post('api/unauthor/gateway/account/register', qs.stringify(
+                this.axios.post('/api/user/register', qs.stringify(
                     Object.assign(this.quickCheck, {
-                        repassword: this.quickCheck.password
+                        password: this.quickCheck.password,
+                        username: this.quickCheck.username,
+                        phoneNumber: this.quickCheck.phoneNumber,
+                        wechat: this.quickCheck.weixin,
+                        commend: this.quickCheck.protocol
                     })))
                     .then((response) => {
                         const data = response.data;
                         if (data.status === 10000) {
                             // alert(response.msg);
+
                             this.$alert(data.msg);
                             window.localStorage.setItem('token', data.token);
                             this.$router.push('/');
                             this.$emit('logined', true);
+
                         } else {
                             this.$alert(data.msg);
                         }
@@ -364,10 +376,20 @@
                     }).catch(error => {
                     alert(error);
                 })
+            },
+            formCheck () {
+                // this.$refs['quickCheck'].validate((valid) => {
+                //     console.log('quickRegister-valid', valid);
+                //     // if (valid) this.submitIsDisable = true;
+                // });
+
+                console.log(this.$refs['quickCheck'])
             }
         },
         mounted () {
             this.$emit('logined', true);
+
+
         }
     }
 </script>
@@ -548,12 +570,11 @@
     .btn {
         width: 470px;
         height: 50px;
-        line-height: 50px;
         text-align: center;
         border-radius: 5px;
         color: #6c6c6c;
         background: #ddd;
         cursor: pointer;
-        margin: 0 0 20px 0;
+
     }
 </style>
