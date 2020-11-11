@@ -33,6 +33,39 @@
                 </div>
             </div>
         </div>
+        <div>
+            <div>
+                <div>
+                    <p>总资产</p>
+                    <h2>￥0.00</h2>
+                </div>
+                <div>
+                    <div>
+                        <p>钱包余额</p>
+                        <h3>￥0.00</h3>
+                        <button>存款</button>
+                        <button>提款</button>
+                    </div>
+                    <div>
+                        <p>积分余额</p>
+                        <h3>0</h3>
+                    </div>
+                </div>
+            </div>
+            <div>
+                <div><label>转出 ：</label>
+                    <input type="number" class="Distribute"/>
+                </div>
+                <div><label>转入 ：</label>
+                    <input type="number" class="Distribute"/>
+                </div>
+                <div><label>金额 ：</label>
+                    <input type="number" class="Distribute"/>
+                </div>
+                <el-button class="btn-next" @click="next">确定转款</el-button>
+            </div>
+
+        </div>
         <div class="assetDistribute">
             <div class="assetName">财产分布</div>
             <div>
@@ -51,8 +84,7 @@
                     </div>
                 </div>
             </div>
-        </div>
-
+    </div>
     </div>
 </template>
 <script>
@@ -69,47 +101,6 @@ export default {
 }
 </script>
 <style scoped>
-.center {
-    width: 1000px;
-    height: 1000px;
-    background: white;
-    border: 1px solid #eaeaea;
-}
-
-.tg {
-    width: 960px;
-    height: 25px;
-    display: flex;
-    justify-content: center;
-    background: #eaeaea;
-    padding: 20px 20px;
-}
-
-.tg-icon {
-    width: 30px;
-    height: 30px;
-    background: #c8a675;
-    border-radius: 50%;
-}
-
-.iconTg {
-    width: 20px;
-    height: 20px;
-    text-align: center;
-    padding-top: 5px;
-}
-
-.tgContent {
-    width: 900px;
-    height: 25px;
-    line-height: 25px;
-    font-size: 14px;
-    margin-left: 20px;
-    text-align: center;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-}
 
 .ym {
     width: 978px;
@@ -168,6 +159,7 @@ export default {
     padding: 10px;
     display: flex;
     flex-wrap: wrap;
+    display: none;
 }
 
 .asset-left {
