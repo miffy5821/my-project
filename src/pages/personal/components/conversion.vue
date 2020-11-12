@@ -4,89 +4,116 @@
             <p class="ymContent">请牢记我们官方唯一的域名导航 www.888y.com</p>
         </div>
         <div class="switch">
-            <button class="switchButton">切换至手动转账</button>
+            <button class="switchButton" @click="toggleAuto">{{isAuto?'切换至自动转账':'切换至手动转账'}}</button>
         </div>
-        <div class="asset">
-            <div class="assetName">我的资产</div>
-        </div>
-        <div class="asset-case">
-            <div class="asset-left">
-                <div class="tex1">0.00</div>
-                <div class="asset-btn">
-                    <button class="asset-btn1" @click="jumpWithdrawal()">提款</button>
-                    <button class="asset-btn1 btnColor" @click="jumpDeposit()">存款</button>
-                </div>
-                <div></div>
+        <div class="hand-transfer" v-if="!isAuto">
+            <div class="asset">
+                <div class="assetName">我的资产</div>
             </div>
-            <div class="asset-right">
-                <div class="asset-">
-                    <button class="asset-btn2">刷新</button>
+            <div class="asset-case">
+                <div class="asset-left">
+                    <div class="tex1">￥{{myUser.totalBalance}}</div>
+                    <div class="asset-btn">
+                        <button class="asset-btn1" @click="jumpWithdrawal()">提款</button>
+                        <button class="asset-btn1 btnColor" @click="jumpDeposit()">存款</button>
+                    </div>
+                    <div></div>
                 </div>
-                <div class="asset-wallet">
-                    <span class="wallet">中心钱包</span>
-                    <span class="sum">￥0.00</span>
-                    <span class="recycle">一键回收</span>
-                </div>
-                <div class="asset-wallet">
-                    <span class="integral">积分总额</span>
-                    <span class="total">0</span>
+                <div class="asset-right">
+                    <div class="asset-">
+                        <button class="asset-btn2">刷新</button>
+                    </div>
+                    <div class="asset-wallet">
+                        <span class="wallet">中心钱包</span>
+                        <span class="sum">￥{{myUser.totalBalance}}</span>
+                        <span class="recycle">一键回收</span>
+                    </div>
+                    <div class="asset-wallet">
+                        <span class="integral">积分总额</span>
+                        <span class="total">{{myUser.integral}}</span>
+                    </div>
                 </div>
             </div>
-        </div>
-        <div class="transfer">
-            <div class="transfer-left">
-                <div class="total-num">
-                    <p>总资产</p>
-                    <h2>￥0.00</h2>
-                </div>
-                <div class="transfer-left-bottom">
-                    <div class="bottom-left">
-                        <p>钱包余额</p>
-                        <h3>￥0.00</h3>
-                        <div class="transfer-btn">
-                            <button>存款</button>
-                            <button>提款</button>
+
+            <div class="assetDistribute">
+                <div class="assetName">财产分布</div>
+                <div>
+                    <div>
+                        <div></div>
+                        <div>
+                            <p></p>
+                            <p></p>
                         </div>
-
                     </div>
-                    <div class="bottom-right">
-                        <p>积分余额</p>
-                        <h3>0</h3>
+                    <div>
+                        <div></div>
+                        <div>
+                            <p></p>
+                            <p></p>
+                        </div>
                     </div>
                 </div>
             </div>
-            <div class="transfer-right">
-                <div class="transfer-row">
-                    <label>转出 ：</label>
-                    <input type="number" class="Distribute"/>
-                </div>
-                <div  class="transfer-row">
-                    <label>转入 ：</label>
-                    <input type="number" class="Distribute"/>
-                </div>
-                <div  class="transfer-row">
-                    <label>金额 ：</label>
-                    <input type="number" class="Distribute"/>
-                </div>
-                <el-button class="btn-next" @click="next">确定转款</el-button>
-            </div>
-
         </div>
-        <div class="assetDistribute">
-            <div class="assetName">财产分布</div>
-            <div>
-                <div>
-                    <div></div>
-                    <div>
-                        <p></p>
-                        <p></p>
+        <div class="auto-transfer" v-if="isAuto">
+            <div class="asset">
+                <div class="assetName">我的资产</div>
+            </div>
+            <div class="transfer">
+                <div class="transfer-left">
+                    <div class="total-num">
+                        <p>总资产</p>
+                        <h2>￥{{myUser.totalBalance}}</h2>
+                    </div>
+                    <div class="transfer-left-bottom">
+                        <div class="bottom-left">
+                            <p>钱包余额</p>
+                            <h3>￥{{myUser.wallet}}</h3>
+                            <div class="transfer-btn">
+                                <button class="transfer-btn1" @click="jumpDeposit()">存款</button>
+                                <button class="transfer-btn2"  @click="jumpWithdrawal()">提款</button>
+                            </div>
+
+                        </div>
+                        <div class="bottom-right">
+                            <p>积分余额</p>
+                            <h3>{{myUser.integral}}</h3>
+                        </div>
                     </div>
                 </div>
+                <div class="transfer-right">
+                    <div class="transfer-row">
+                        <label>转出 ：</label>
+                        <input type="number" class="Distribute"/>
+                    </div>
+                    <div class="transfer-row">
+                        <label>转入 ：</label>
+                        <input type="number" class="Distribute"/>
+                    </div>
+                    <div class="transfer-row">
+                        <label>金额 ：</label>
+                        <input type="number" class="Distribute"/>
+                    </div>
+                    <el-button class="btn-next">确定转款</el-button>
+                </div>
+
+            </div>
+            <div class="assetDistribute">
+                <div class="assetName">财产分布</div>
                 <div>
-                    <div></div>
                     <div>
-                        <p></p>
-                        <p></p>
+                        <div></div>
+                        <div>
+                            <p></p>
+                            <p></p>
+                        </div>
+                    </div>
+                    <div>
+                        <div></div>
+                        <div>
+                            <p></p>
+                            <p></p>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -96,12 +123,21 @@
 <script>
     export default {
         name: 'conversion',
+        data () {
+            return {
+                isAuto: false
+            }
+        },
+        props: ['myUser'],
         methods: {
             jumpWithdrawal () {
                 this.$router.push('/personal/withdrawal')
             },
             jumpDeposit () {
                 this.$router.push('/personal/deposit')
+            },
+            toggleAuto () {
+                this.isAuto = !this.isAuto;
             }
         }
     }
@@ -165,7 +201,7 @@
         padding: 10px;
         display: flex;
         flex-wrap: wrap;
-        display: none;
+        /*display: none;*/
     }
 
     .asset-left {
@@ -331,7 +367,7 @@
         height: 87px;
         display: flex;
         flex-wrap: wrap;
-        justify-content:center;
+        justify-content: center;
         border-right: 1px solid gainsboro;
     }
 
@@ -349,13 +385,14 @@
         margin-bottom: 14px;
     }
 
-    .transfer-btn{
+    .transfer-btn {
         width: 150px;
         height: 35px;
         display: flex;
-        justify-content:space-between;
+        justify-content: space-between;
     }
-    .bottom-left button {
+
+    .transfer-btn1{
         height: 30px;
         padding: 5px 15px;
         font-size: 13px;
@@ -363,6 +400,15 @@
         border-radius: 3px;
         border: none;
         color: #fff;
+    }
+    .transfer-btn2{
+        height: 30px;
+        padding: 5px 15px;
+        font-size: 13px;
+        border-radius: 3px;
+        background: #fff;
+        border:1px solid gray;
+        color: gray;
     }
 
     .bottom-right {
@@ -397,14 +443,16 @@
         flex-wrap: wrap;
         justify-content: center;
     }
-    .transfer-row{
+
+    .transfer-row {
         width: 370px;
         height: 35px;
         display: flex;
         padding-left: 20px;
         margin-bottom: 7px;
     }
-    .transfer-row label{
+
+    .transfer-row label {
         height: 35px;
         width: 50px;
         line-height: 44px;
@@ -413,14 +461,16 @@
         color: #666;
         vertical-align: middle;
     }
-    .transfer-row input{
+
+    .transfer-row input {
         line-height: 35px;
         padding: 0 30px 0 5px;
         color: #495060;
         border-radius: 3px;
-        border:1px solid gainsboro;
+        border: 1px solid gainsboro;
     }
-    .btn-next{
+
+    .btn-next {
         margin-left: 50px;
         padding: 0 50px;
         line-height: 40px;

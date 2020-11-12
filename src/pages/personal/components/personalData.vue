@@ -1,15 +1,14 @@
 <template>
   <div>
-    <div class="ym">
-    </div>
+    <div class="ym"></div>
     <div class="data">
       <div class="dataName">个人资料</div>
     </div>
     <div class="data-case">
       <div class="data-left"><img class="dataImg" src="/static/personal/logo.png"></div>
       <div  class="data-right">
-        <span>rrran123,欢迎您</span><button @click="changePassword()">修改密码</button>
-        <div class="data-text" id="data">上次登录时间:2020-07-22 01:01:46</div>
+        <span>{{myUser.username}},欢迎您</span><button @click="changePassword()">修改密码</button>
+        <div class="data-text" id="data">上次登录时间:{{myUser.loginDate}}</div>
       </div>
     </div>
     <div class="data">
@@ -19,13 +18,13 @@
       <table class="data-content">
         <tr>
           <th class="bg-color">真实姓名</th>
-          <th class="dd-content">会员<span class="text-color" @click="changeUerName()">修改</span></th>
+          <th class="dd-content">{{myUser.realname}}<span class="text-color" @click="changeUerName()">修改</span></th>
           <th class="bg-color">手机号码</th>
-          <th class="dd-content">189******** <span class="text-color" @click="changePhoneNumber()">修改</span></th>
+          <th class="dd-content">{{myUser.mobile}} <span class="text-color" @click="changePhoneNumber()">修改</span></th>
         </tr>
         <tr>
           <th class="bg-color">微信号</th>
-          <th class="dd-content">wei5824
+          <th class="dd-content">{{myUser.weixin}}
               <span class="text-color" @click="changeWechat()">修改</span></th>
           <th class="bg-color">QQ号</th>
           <th class="dd-content" @click="setQQ()">未设定</th>
@@ -50,6 +49,7 @@
 <script>
   export default {
     name: 'personalData',
+      props:['myUser'],
     methods:{
         changePassword(){
             this.$router.push('/personal/changePassword')

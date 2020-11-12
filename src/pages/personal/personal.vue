@@ -5,12 +5,17 @@
                 <div class="left">
                     <div class="leftLogo">
                         <img class="personal-logo" src="/static/personal/logo.png"/>
-                        <h3 class="user">ceto5821,欢迎您!</h3>
+                        <h3 class="user">{{user.username}},欢迎您!</h3>
                         <div class="status">
-                            <p>认证状态：<span class="statusBox"><img class="status-icon" src="/static/personal/phone.png"
-                                                                 alt=""></span>
-                                <span class="statusBox"><img class="status-icon" src="/static/personal/phone.png"
-                                                             alt=""></span></p>
+                            <p>认证状态：
+                                <span class="statusBox">
+                                <!--<img class="status-icon" src="/static/personal/phone.png" alt="">-->
+                                <i class="el-icon-mobile-phone status-icon"></i>
+                                </span>
+                                <span class="statusBox">
+                                    <i class="el-icon-bank-card status-icon"></i>
+                                </span>
+                            </p>
                         </div>
                     </div>
                     <div class="personal-list">
@@ -36,7 +41,7 @@
                     <p class="tgContent">尊敬的澳门银河贵宾，由于线上充值会员多通道拥挤，充值成功率降低，建议贵宾使用公司线下转卡方式充值，
                         笔笔入款1.5%,感谢您对我司一直以来的支持，祝您游戏愉快~</p>
                 </div>
-                    <router-view></router-view>
+                    <router-view :myUser="user"> </router-view>
                 </div>
             </div>
         </div>
@@ -85,6 +90,7 @@ export default {
               },
     data(){
         return{
+            user: [],
             sliderMenu: [
                 {name: '额度转换', path: '/personal/conversion',img:'/static/personal/phone.png'},
                 {name: '存款专区', path: '/personal/deposit',img:'/static/personal/phone.png'},
@@ -97,6 +103,26 @@ export default {
                 {name: '修改密码', path: '/personal/changePassword',img:'/static/personal/phone.png'},
             ]
         }
+    },
+    methods:{
+        getUser(){
+            this.axios.get('/api/user/info')
+                .then((response) => {
+                    const data = response.data;
+                    if (data.status === 10000) {
+                        // console.log(data);
+                        this.user = response.data.data;
+                        console.log('user',this.user)
+                    }
+                }).catch(error => {
+                this.$alert({
+                    message: error
+                });
+            })
+        }
+    },
+    mounted(){
+        this.getUser();
     }
 }
 </script>
