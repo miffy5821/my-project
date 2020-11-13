@@ -378,18 +378,11 @@
                 })
             },
             formCheck () {
-                // this.$refs['quickCheck'].validate((valid) => {
-                //     console.log('quickRegister-valid', valid);
-                //     // if (valid) this.submitIsDisable = true;
-                // });
-
                 console.log(this.$refs['quickCheck'])
             }
         },
         mounted () {
             this.$emit('logined', true);
-
-
         }
     }
 </script>

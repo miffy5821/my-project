@@ -40,13 +40,13 @@
             <div class="withdrawal-">
                 <div class="withdrawal-area">
                     <div class="wd-way">
-                        <div class="wd-way1 wd-way-current">提现到USTD钱包</div>
-                        <div class="wd-way1">提现到银行卡</div>
+                        <div class="wd-way1" :class="{'wd-way-current': show === 1}" @click="show = 1">提现到USTD钱包</div>
+                        <div class="wd-way1" :class="{'wd-way-current': show === 2}" @click="show = 2">提现到银行卡</div>
                         <div class="wd-way2">
                             <el-button type="text" @click="open">提现到支付宝</el-button>
                         </div>
                     </div>
-                    <div v-show="false">
+                    <div v-show="show === 2">
                         <div class="addBankCard">
                             <div class="wd-add">+</div>
                             <p>添加银行卡</p>
@@ -69,15 +69,15 @@
                             <el-button class="wd-btn-next" @click="next">下一步</el-button>
                         </div>
                     </div>
-                    <div >
+                    <div v-show="show === 1">
                         <div class="addBankCard">
                             <div class="wd-add">+</div>
                             <p>添加银行卡</p>
                         </div>
                         <el-divider class="wd-line"></el-divider>
                         <div class="daMaLiang">
-                            <p class="">不会操作？请点击查看 <span>USDT钱包使用</span> 教程</p>
-                            <p class="">账户姓名:<span>未绑定</span></p>
+                            <p class="">不会操作？请点击查看 <span  @click="jumpUstd()">USDT钱包使用</span> 教程</p>
+                            <p class="">账户姓名:<span  class="daMaLiang-span1">未绑定</span></p>
                             <p class="">可提金额(RMB)：<span class="daMaLiang-span1">0.00元</span></p>
                             <p>完成打码量：<span class="daMaLiang-span2">完成打码量：0</span>/<span
                                 class="daMaLiang-span2">要求打码量：0</span></p>
@@ -87,29 +87,33 @@
                                 <div class="ts">单笔提款限额（元）：100-500000</div>
                             </div>
                             <p class="">当前汇率:
-                                <span class="daMaLiang-span1">1:0</span>
-                                <span>| 预计到账币额(USDT):</span><span>0</span></p>
+                                <span class="daMaLiang-span">1:0</span>
+                                <span>| 预计到账币额(USDT):</span>
+                                <span class="daMaLiang-span">0</span>
+                            </p>
                             <div class="amount-wd">
                                 <label>提款密码 ：</label>
                                 <input type="password" class="wd-input" placeholder="请输入提款密码"/>
-                                <span>忘记密码</span>
+                                <span  @click="jumpOnlineService()">忘记密码</span>
                             </div>
                             <el-button class="wd-btn-next" @click="next">下一步</el-button>
                         </div>
+                        <div class="tip">
+                            <h2>温馨提示</h2>
+                            <p>1. USDT钱包账户绑定之后不可修改，如有疑问，请联系<span @click="jumpOnlineService()">在线客服</span></p>
+
+                            <p>2. USDT钱包有可能涉及到矿工费和手续费等，到账金额以实际金额到账为准，如有疑问，请联系<span  @click="jumpOnlineService()">在线客服</span></p>
+
+                            <p>3. 为了您的资金安全，绑定USDT钱包时，请填写对应钱包账户名称</p>
+
+                            <p>4. 不会操作？请点击查看 <span @click="jumpUstd()">USDT钱包使用</span> 教程</p>
+
+                            <p>5 USDT钱包提款最多只能绑定<span>3个USDT钱包</span></p>
+                        </div>
                     </div>
+
                 </div>
-                <div class="tip">
-                    温馨提示
-                    1, USDT钱包账户绑定之后不可修改，如有疑问，请联系在线客服
 
-                    2, USDT钱包有可能涉及到矿工费和手续费等，到账金额以实际金额到账为准，如有疑问，请联系在线客服
-
-                    3, 为了您的资金安全，绑定USDT钱包时，请填写对应钱包账户名称
-
-                    4, 不会操作？请点击查看 USDT钱包使用 教程
-
-                    5, USDT钱包提款最多只能绑定3个USDT钱包
-                </div>
             </div>
         </div>
     </div>
@@ -119,7 +123,7 @@ export default {
     name: 'withdrawal',
     data() {
         return {
-            active: 1
+            show: 1
         }
     },
     methods: {
@@ -134,8 +138,13 @@ export default {
                     this.$router.push({path: 'alipay'});
                 }
             });
+        },
+        jumpOnlineService(){
+            window.open('https://chatlink.mstatik.com/widget/standalone.html?eid=76107099dd1ba17a94453359257851c8');
+        },
+        jumpUstd(){
+            window.open("http://txwl-usdt.com/YHHB/0/pc/huobi.html");
         }
-
     }
 }
 </script>
@@ -145,7 +154,6 @@ export default {
     height: 38px;
     margin: 10px;
 }
-
 
 .wd {
     width: 998px;
@@ -159,7 +167,7 @@ export default {
     padding: 0 30px;
     width: 200px;
     text-align: left;
-    padding-left: -30px;
+    /*padding-left: -30px;*/
     font-size: 15px;
     font-weight: 700;
     color: #666;
@@ -181,24 +189,6 @@ export default {
     text-align: left;
 }
 
-.wd-pw {
-    width: 840px;
-    height: 250px;
-    margin-left: auto;
-    margin-right: auto;
-    text-align: center;
-}
-
-.wd-item {
-    width: calc(100% - 400px);
-    height: 40px;
-    margin-left: auto;
-    margin-right: auto;
-    margin-top: 20px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
 
 .wd-item label {
     font-size: 14px;
@@ -219,54 +209,13 @@ export default {
     padding: 6px 11px 6px 15px;
 }
 
-.wd-btn {
-    width: 100px;
-    padding: 5px;
-    line-height: 25px;
-    color: #fff;
-    margin-top: 20px;
-    margin-left: -80px;
-    background-color: #c2a77d;
-    border-color: #c2a77d;
-}
-
-.setWord-succeed {
-    width: 500px;
-    height: 250px;
-    margin-top: 50px;
-    margin-right: auto;
-    margin-left: auto;
-}
-
-.succeed {
-    font-size: 20px;
-    font-weight: 800;
-    text-align: left;
-    color: #c8a675;
-    margin-top: 25px;
-    margin-bottom: 50px;
-}
-
-.dw-tx {
-    font-size: 14px;
-    text-align: left;
-    color: black;
-    margin-bottom: 20px;
-}
-
-.dw-help {
-    font-size: 16px;
-    text-align: left;
-    color: #c8a675;
-}
-
 .dw-help span {
     color: red;
 }
 
 .withdrawal- {
     width: 100%;
-    height: 500px;
+    height: 520px;
     background: #eee;
 }
 
@@ -275,7 +224,7 @@ export default {
     height: 500px;
     margin-left: auto;
     margin-right: auto;
-    padding: 30px 0 50px;
+    padding: 30px 0 0;
 }
 
 .wd-way {
@@ -343,8 +292,7 @@ export default {
 
 .wd-line {
     width: 690px;
-    margin-right: auto;
-    margin-left: auto;
+    margin: 10px auto;
 }
 
 .daMaLiang {
@@ -375,9 +323,16 @@ export default {
 .daMaLiang-span2 {
     width: 150px;
     height: 30px;
-    padding-left: 5px;
+    margin-left: 5px;
     padding-right: 10px;
+    text-align: left;
     color: #c8a675;
+}
+.daMaLiang-span {
+    font-size: 18px;
+    font-weight: 700;
+    color: #c8a675;
+    margin: 0 10px;
 }
 
 .amount-wd {
@@ -392,6 +347,8 @@ export default {
 .amount-wd label {
     font-size: 14px;
     color: #222222;
+    width: auto;
+    text-align: left;
     line-height: 35px;
 }
 
@@ -425,29 +382,38 @@ export default {
 }
 
 .wd-btn-next {
-    width: 140px;
+    width: 200px;
     padding: 5px;
     line-height: 25px;
     color: #fff;
     position: relative;
-    left: 350px;
-    top: 10px;
+    left: 155px;
+    top: 20px;
     background-color: #c2a77d;
     border-color: #c2a77d;
 }
 .tip {
-    width: 998px;
-    height: 100%;
-    padding: 35px;
+    width: 900px;
+    height: auto;
+    padding:8px 35px 20px 35px;
+    margin: 60px 10px 0 -100px;
     text-align: left;
+    display: flex;
+    flex-wrap: wrap;
 }
-
+.tip h2{
+    font-size: 20px;
+    width: 100%;
+    color: red;
+    margin-bottom: 5px;
+}
 .tip p {
-    font-size: 15px;
+    width: 100%;
+    font-size: 14px;
     color: black;
     margin-top: 10px;
 }
-.tip a {
+.tip span {
     color: red;
 }
 </style>

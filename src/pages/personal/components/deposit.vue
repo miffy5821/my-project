@@ -40,7 +40,7 @@
                   </div>
                   <div class="amount-name">
                       <label>存款方式 ：</label>
-                      <el-radio-group v-model="radio1">
+                      <el-radio-group v-model="radio1" class="margin-left">
                           <el-radio-button label="支付宝转账"></el-radio-button>
                           <el-radio-button label="银联转账"></el-radio-button>
                       </el-radio-group>
@@ -474,7 +474,7 @@
   }
 
   .Distribute {
-    width: 185px;
+    width: 195px;
     height: 35px;
       font-size: 14px;
     padding: 2px 5px 2px 8px;
@@ -497,7 +497,7 @@
   }
 
   .btn-next {
-    width: 200px;
+    width: 210px;
     font-size: 14px;
       height: 40px;
     color: white;
@@ -660,7 +660,9 @@
       font-size: 14px;
       padding-left: 10px;
   }
-
+  .margin-left{
+      margin-left: -10px;
+  }
 
 </style>
 

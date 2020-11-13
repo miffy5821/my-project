@@ -472,7 +472,7 @@
 
     .btn-next {
         margin-left: 50px;
-        padding: 0 50px;
+        padding: 0 55px;
         line-height: 40px;
         height: 40px;
         color: #fff;
