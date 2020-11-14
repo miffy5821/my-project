@@ -37,21 +37,17 @@
 
             <div class="assetDistribute">
                 <div class="assetName">财产分布</div>
-                <div>
-                    <div>
-                        <div></div>
-                        <div>
-                            <p></p>
-                            <p></p>
-                        </div>
-                    </div>
-                    <div>
-                        <div></div>
-                        <div>
-                            <p></p>
-                            <p></p>
-                        </div>
-                    </div>
+                <div class="distribution">
+                    <ul class="distribution-ul">
+                        <li class="distribution-li">
+                            <div class="drt-img"></div>
+<!--                            <div class="drt-hover"></div>-->
+                            <div class="drt-text">
+                                <p>大唐棋牌</p>
+                                <p>0.00</p>
+                            </div>
+                        </li>
+                    </ul>
                 </div>
             </div>
         </div>
@@ -100,21 +96,17 @@
             </div>
             <div class="assetDistribute">
                 <div class="assetName">财产分布</div>
-                <div>
-                    <div>
-                        <div></div>
-                        <div>
-                            <p></p>
-                            <p></p>
-                        </div>
-                    </div>
-                    <div>
-                        <div></div>
-                        <div>
-                            <p></p>
-                            <p></p>
-                        </div>
-                    </div>
+                <div class="distribution">
+                    <ul class="distribution-ul">
+                        <li class="distribution-li">
+                            <div class="drt-img"></div>
+                            <div class="drt-hover"></div>
+                            <div class="drt-text">
+                                <p>大唐棋牌</p>
+                                <p>0.00</p>
+                            </div>
+                        </li>
+                    </ul>
                 </div>
             </div>
         </div>
@@ -189,7 +181,7 @@
         padding: 0 30px;
         width: 200px;
         text-align: left;
-        padding-left: -30px;
+        /*padding-left: -30px;*/
         font-size: 15px;
         font-weight: 700;
         color: #666;
@@ -480,4 +472,76 @@
         font-weight: 700;
         border: 1px solid #c8a675;
     }
+    .distribution{
+        width: 100%;
+        height: 122px;
+    }
+    .distribution-ul{
+        padding: 0 15px 40px 25px;
+        display: flex;
+    }
+    .distribution-li{
+        width: 33%;
+        padding-top: 10px;
+        padding-bottom: 10px;
+        font-size: 14px;
+        margin-top: 20px;
+        margin-right: 20px;
+        transition: .3s ease-in-out;
+        position: relative;
+        border-radius: 5px;
+        display: flex;
+        justify-content: left;
+    }
+    .distribution-li:hover{
+        background: #eaeaea;
+        background: linear-gradient(180deg,#f9f9f9,#f2f2f2);
+        border-radius: 4px;
+        transform: translateY(-3px);
+    }
+
+    .drt-img{
+        width: 66px;
+        height: 66px;
+        margin-left: 40px;
+        text-align: center;
+        vertical-align: middle;
+        border-radius: 100%;
+        border: 3px solid #e7e3e3;
+        background-size: contain;
+        cursor: pointer;
+        background-image: url("https://gamelist.mobanwang.com.cn//menuList/YHHB/0/transfer/dt.png");
+    }
+    .drt-img:hover .drt-hover{
+        opacity: 1;
+    }
+    .drt-hover{
+        width: 66px;
+        height: 66px;
+        text-align: center;
+        margin-left: 40px;
+        vertical-align: middle;
+        border-radius: 100%;
+        border: 3px solid #e7e3e3;
+        background-size: contain;
+        position: absolute;
+        left:0;
+        top:10px;
+        cursor: pointer;
+        opacity: 0;
+        background-image: url(//image.beike188.com/YHHB/user_img/recover.png)!important;
+    }
+    .drt-text{
+        height: 60px;
+        width: 80px;
+        text-align: left;
+        margin-left: 15px;
+        position: relative;
+        padding-top: 17px;
+    }
+    .drt-text p{
+        padding-bottom: 8px;
+        font-size: 14px;
+    }
+
 </style>

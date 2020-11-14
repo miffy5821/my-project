@@ -19,7 +19,7 @@
                         </ul>
                     </vue-seamless-scroll>
                 </div>
-                <div class="notice-more" @click="jumpMore()">查看更多&gt;</div>
+                <div class="notice-more" :myNew="newsList" @click="jumpMore()">查看更多&gt;</div>
             </div>
         </div>
 

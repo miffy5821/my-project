@@ -42,42 +42,20 @@
                     <div class="wd-way">
                         <div class="wd-way1" :class="{'wd-way-current': show === 1}" @click="show = 1">提现到USTD钱包</div>
                         <div class="wd-way1" :class="{'wd-way-current': show === 2}" @click="show = 2">提现到银行卡</div>
-                        <div class="wd-way2">
-                            <el-button type="text" @click="open">提现到支付宝</el-button>
-                        </div>
-                    </div>
-                    <div v-show="show === 2">
-                        <div class="addBankCard">
-                            <div class="wd-add">+</div>
-                            <p>添加银行卡</p>
-                        </div>
-                        <el-divider class="wd-line"></el-divider>
-                        <div class="daMaLiang">
-                            <p class="">提现金额：<span class="daMaLiang-span1">0.00元</span></p>
-                            <p>完成打码量：<span class="daMaLiang-span2">完成打码量：0</span>/<span
-                                class="daMaLiang-span2">要求打码量：0</span></p>
-                            <div class="amount-wd">
-                                <label>提款金额 ：</label>
-                                <input type="number" class="wd-input" placeholder="请输入金额"/>
-                                <div class="ts">单笔提款限额（元）：100-500000</div>
-                            </div>
-                            <div class="amount-wd">
-                                <label>提款密码 ：</label>
-                                <input type="password" class="wd-input" placeholder="请输入提款密码"/>
-                                <span>忘记密码</span>
-                            </div>
-                            <el-button class="wd-btn-next" @click="next">下一步</el-button>
+                        <div class="wd-way1" :class="{'wd-way-current': show === 3}" @click="show = 3">
+                            提现到支付宝
+                            <!--                            <el-button type="text" @click="open">提现到支付宝</el-button>-->
                         </div>
                     </div>
                     <div v-show="show === 1">
-                        <div class="addBankCard">
+                        <div class="addBankCard" @click="jumpSetUstd()">
                             <div class="wd-add">+</div>
-                            <p>添加银行卡</p>
+                            <p>添加USTD钱包</p>
                         </div>
                         <el-divider class="wd-line"></el-divider>
                         <div class="daMaLiang">
-                            <p class="">不会操作？请点击查看 <span  @click="jumpUstd()">USDT钱包使用</span> 教程</p>
-                            <p class="">账户姓名:<span  class="daMaLiang-span1">未绑定</span></p>
+                            <p class="">不会操作？请点击查看 <span @click="jumpUstd()">USDT钱包使用</span> 教程</p>
+                            <p class="">账户姓名:<span class="daMaLiang-span1">未绑定</span></p>
                             <p class="">可提金额(RMB)：<span class="daMaLiang-span1">0.00元</span></p>
                             <p>完成打码量：<span class="daMaLiang-span2">完成打码量：0</span>/<span
                                 class="daMaLiang-span2">要求打码量：0</span></p>
@@ -94,7 +72,7 @@
                             <div class="amount-wd">
                                 <label>提款密码 ：</label>
                                 <input type="password" class="wd-input" placeholder="请输入提款密码"/>
-                                <span  @click="jumpOnlineService()">忘记密码</span>
+                                <span @click="jumpOnlineService()">忘记密码</span>
                             </div>
                             <el-button class="wd-btn-next" @click="next">下一步</el-button>
                         </div>
@@ -102,13 +80,65 @@
                             <h2>温馨提示</h2>
                             <p>1. USDT钱包账户绑定之后不可修改，如有疑问，请联系<span @click="jumpOnlineService()">在线客服</span></p>
 
-                            <p>2. USDT钱包有可能涉及到矿工费和手续费等，到账金额以实际金额到账为准，如有疑问，请联系<span  @click="jumpOnlineService()">在线客服</span></p>
+                            <p>2. USDT钱包有可能涉及到矿工费和手续费等，到账金额以实际金额到账为准，如有疑问，请联系<span
+                                @click="jumpOnlineService()">在线客服</span></p>
 
                             <p>3. 为了您的资金安全，绑定USDT钱包时，请填写对应钱包账户名称</p>
 
                             <p>4. 不会操作？请点击查看 <span @click="jumpUstd()">USDT钱包使用</span> 教程</p>
 
                             <p>5 USDT钱包提款最多只能绑定<span>3个USDT钱包</span></p>
+                        </div>
+                    </div>
+                    <div v-show="show === 2">
+                        <div class="addBankCard" @click="jumpSetBankCard()">
+                            <div class="wd-add">+</div>
+                            <p>添加银行卡</p>
+                        </div>
+                        <el-divider class="wd-line"></el-divider>
+                        <div class="daMaLiang">
+                            <p class="">提现金额：<span class="daMaLiang-span1">0.00元</span></p>
+                            <p>完成打码量：<span class="daMaLiang-span2">完成打码量：0</span>/<span
+                                class="daMaLiang-span2">要求打码量：0</span></p>
+                            <div class="amount-wd">
+                                <label>提款金额 ：</label>
+                                <input type="number" class="wd-input" placeholder="请输入金额"/>
+                                <div class="ts">单笔提款限额（元）：100-500000</div>
+                            </div>
+                            <div class="amount-wd">
+                                <label>提款密码 ：</label>
+                                <input type="password" class="wd-input" placeholder="请输入提款密码"/>
+                                <span @click="jumpOnlineService()">忘记密码</span>
+                            </div>
+                            <el-button class="wd-btn-next" @click="next">下一步</el-button>
+                        </div>
+                    </div>
+                    <div v-show="show === 3">
+                        <div class="alipay" >
+                            <div class="alipay-img"></div>
+                            <div class="alipay-text">
+                                <label>姓名 ：</label><span>张三</span>
+                            </div>
+                            <div>
+                                <label>账户 ：</label><span>1465****876</span>
+                            </div>
+                        </div>
+                        <el-divider class="wd-line"></el-divider>
+                        <div class="daMaLiang">
+                            <p class="">提现金额：<span class="daMaLiang-span1">0.00元</span></p>
+                            <p>完成打码量：<span class="daMaLiang-span2">完成打码量：0</span>/<span
+                                class="daMaLiang-span2">要求打码量：0</span></p>
+                            <div class="amount-wd">
+                                <label>提款金额 ：</label>
+                                <input type="number" class="wd-input" placeholder="请输入金额"/>
+                                <div class="ts">单笔提款限额（元）：100-500000</div>
+                            </div>
+                            <div class="amount-wd">
+                                <label>提款密码 ：</label>
+                                <input type="password" class="wd-input" placeholder="请输入提款密码"/>
+                                <span @click="jumpOnlineService()">忘记密码</span>
+                            </div>
+                            <el-button class="wd-btn-next" @click="next">下一步</el-button>
                         </div>
                     </div>
 
@@ -139,11 +169,17 @@ export default {
                 }
             });
         },
-        jumpOnlineService(){
+        jumpOnlineService() {
             window.open('https://chatlink.mstatik.com/widget/standalone.html?eid=76107099dd1ba17a94453359257851c8');
         },
-        jumpUstd(){
+        jumpUstd() {
             window.open("http://txwl-usdt.com/YHHB/0/pc/huobi.html");
+        },
+        jumpSetBankCard() {
+            this.$router.push({path: 'setBankCard'});
+        },
+        jumpSetUstd() {
+            this.$router.push({path: 'setUstd'});
         }
     }
 }
@@ -328,6 +364,7 @@ export default {
     text-align: left;
     color: #c8a675;
 }
+
 .daMaLiang-span {
     font-size: 18px;
     font-weight: 700;
@@ -337,7 +374,7 @@ export default {
 
 .amount-wd {
     width: 100%;
-    height:35px;
+    height: 35px;
     margin-top: 10px;
     margin-left: 80px;
     display: flex;
@@ -392,29 +429,73 @@ export default {
     background-color: #c2a77d;
     border-color: #c2a77d;
 }
+
 .tip {
     width: 900px;
     height: auto;
-    padding:8px 35px 20px 35px;
+    padding: 8px 35px 20px 35px;
     margin: 60px 10px 0 -100px;
     text-align: left;
     display: flex;
     flex-wrap: wrap;
 }
-.tip h2{
+
+.tip h2 {
     font-size: 20px;
     width: 100%;
     color: red;
     margin-bottom: 5px;
 }
+
 .tip p {
     width: 100%;
     font-size: 14px;
     color: black;
     margin-top: 10px;
 }
+
 .tip span {
     color: red;
+}
+.alipay{
+    width: 640px;
+    height: 80px;
+    display: flex;
+    padding: 0 80px;
+    margin-top: 10px;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: left;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+}
+.alipay-img{
+    width: 30px;
+    height: 30px;
+    border-radius: 3px;
+    background-size: cover;
+    /*background-repeat: no-repeat;*/
+    background:url("https://line.txwl-888.com/group1/M00/00/2F/ZxcuGF5Ki0aADrqAAAAJTOT7d78069.png") no-repeat;
+}
+.alipay-text{
+    width: 120px;
+    height: 40px;
+    line-height: 40px;
+    text-align: left;
+    margin-left: 30px;
+}
+.alipay-text label{
+    width: 80px;
+    height: 40px;
+    line-height: 40px;
+    font-size: 15px;
+}
+.alipay-text span{
+    width: 80px;
+    height: 40px;
+    line-height: 40px;
+    font-size: 15px
 }
 </style>
 

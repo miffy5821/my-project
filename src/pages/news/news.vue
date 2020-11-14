@@ -4,9 +4,9 @@
         <div class="content">
             <div class="title"> 公告中心</div>
             <div class="center">
-                <div class="content-box" v-for="item in newsList" :key="item.id">
+                <div class="content-box" v-for="item in myNew" :key="item.id">
                     <div class="content-title">重要通知</div>
-                    <div class="content-text">{{item.data}}</div>
+                    <div class="content-text">{myNew.data.data}}</div>
                 </div>
             </div>
         </div>
@@ -17,29 +17,32 @@
     export default {
         name: 'news',
         newsList: [],
+        props:['myNew'],
         methods:{
-            getNews(){
-                this.axios.get('/api/config', {
-                    params: {id: 0, terminal: 0}
-                })
-                    .then((response) => {
-                        const data = response.data;
-                        if (data.status === 10000) {
-
-                            const configs = response.data.data[3].configs;// 储存所有公告
-                            console.log('configs',this.configs)
-                            this.newsList = configs;
-                            console.log('newsList', this.newsList);
-                        }
-                    })
-                    .catch(function (error) {
-                        console.log(error);
-                    });
-            },
-        },
-        mounted(){
-            this.getNews();
-        }
+        //     getNews(){
+        //         this.axios.get('/api/config', {
+        //             params: {id: 0, terminal: 0}
+        //         })
+        //             .then((response) => {
+        //                 const data = response.data;
+        //                 if (data.status === 10000) {
+        //
+        //                     const configs = response.data.data[3].configs;// 储存所有公告
+        //                     console.log('configs',this.configs)
+        //                     this.newsList = configs;
+        //                     console.log('newsList', this.newsList);
+        //                 }
+        //             })
+        //             .catch(function (error) {
+        //                 console.log(error);
+        //             });
+        //     },
+        // },
+        //
+        // mounted(){
+        //     this.getNews();
+        // }
+     }
     }
 </script>
 
