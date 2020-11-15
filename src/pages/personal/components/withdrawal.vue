@@ -153,7 +153,8 @@ export default {
     name: 'withdrawal',
     data() {
         return {
-            show: 1
+            show: 1,
+            active:1
         }
     },
     methods: {

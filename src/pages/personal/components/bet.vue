@@ -140,8 +140,50 @@
 
         </div>
         <div class="record">
-            <img class="recordImg" src="/static/personal/none.svg"/>
-            <p>暂无数据</p>
+            <!--<img class="recordImg" src="/static/personal/none.svg"/>-->
+            <!--<p>暂无数据</p>-->
+            <ul class="record-box">
+                <li class="record-li">
+                    <div>fujhfu,a</div>
+                    <div>fujhfu,a</div>
+                    <div>fujhfu,a</div>
+                    <div>fujhfu,a</div>
+                    <div>fujhfu,a</div>
+                    <div>fujhfu,a</div>
+                </li>
+                <li class="record-li">
+                    <div>fujhfu,a</div>
+                    <div>fujhfu,a</div>
+                    <div>fujhfu,a</div>
+                    <div>fujhfu,a</div>
+                    <div>fujhfu,a</div>
+                    <div>fujhfu,a</div>
+                </li>
+                <li class="record-li">
+                    <div>fujhfu,a</div>
+                    <div>fujhfu,a</div>
+                    <div>fujhfu,a</div>
+                    <div>fujhfu,a</div>
+                    <div>fujhfu,a</div>
+                    <div>fujhfu,a</div>
+                </li>
+                <li class="record-li">
+                    <div>fujhfu,a</div>
+                    <div>fujhfu,a</div>
+                    <div>fujhfu,a</div>
+                    <div>fujhfu,a</div>
+                    <div>fujhfu,a</div>
+                    <div>fujhfu,a</div>
+                </li>
+                <li class="record-li">
+                    <div>fujhfu,a</div>
+                    <div>fujhfu,a</div>
+                    <div>fujhfu,a</div>
+                    <div>fujhfu,a</div>
+                    <div>fujhfu,a</div>
+                    <div>fujhfu,a</div>
+                </li>
+            </ul>
         </div>
         <div>
             <p class="tex11">当前页总投注：总计0元&nbsp;&nbsp;|&nbsp;&nbsp;当前页派彩： 总计0元&nbsp;&nbsp;|&nbsp;&nbsp;当前页输赢： 总计0元&nbsp;&nbsp;|&nbsp;&nbsp;当前页有效投注：
@@ -267,7 +309,7 @@
         padding: 10px;
         margin-left: 15px;
         margin-right: 20px;
-        background: goldenrod;
+        background: #c8a675;
     }
 
     .queries {
@@ -439,6 +481,41 @@
     .active{
         background: #c8a675;
         color: #fff;
+    }
+
+    .record {
+        width: 927px;
+        height: 495px;
+        margin:0 20px 20px  20px;
+        padding:0 16px 16px 16px;
+        background: #fff;
+        border-left: 1px solid #e8e8e8;
+        border-right: 1px solid #e8e8e8;
+        border-bottom: 1px solid #e8e8e8;
+    }
+    .record-box{
+        width: 927px;
+        height: 495px;
+    }
+    .record-li{
+        width: 893px;
+        height: 50px;
+        font-weight: 700;
+        padding-left: 15px;
+        padding-right: 15px;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+    }
+    .record-li div{
+        width: auto;
+        height: 50px;
+        font-size: 14px;
+        text-align: center;
+        color: #808080;
+        font-family: 'Avenir', Helvetica, Arial, sans-serif;
+        line-height: 50px;
+
     }
 </style>
 

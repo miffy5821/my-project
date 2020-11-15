@@ -54,8 +54,50 @@
 
     </div>
     <div class="record">
-    <img class="recordImg" src="/static/personal/none.svg"/>
-      <p>暂无数据</p>
+    <!--<img class="recordImg" src="/static/personal/none.svg"/>-->
+      <!--<p>暂无数据</p>-->
+        <ul class="record-box">
+            <li class="record-li">
+                <div>fujhfu,a</div>
+                <div>fujhfu,a</div>
+                <div>fujhfu,a</div>
+                <div>fujhfu,a</div>
+                <div>fujhfu,a</div>
+                <div>fujhfu,a</div>
+            </li>
+            <li class="record-li">
+                <div>fujhfu,a</div>
+                <div>fujhfu,a</div>
+                <div>fujhfu,a</div>
+                <div>fujhfu,a</div>
+                <div>fujhfu,a</div>
+                <div>fujhfu,a</div>
+            </li>
+            <li class="record-li">
+                <div>fujhfu,a</div>
+                <div>fujhfu,a</div>
+                <div>fujhfu,a</div>
+                <div>fujhfu,a</div>
+                <div>fujhfu,a</div>
+                <div>fujhfu,a</div>
+            </li>
+            <li class="record-li">
+                <div>fujhfu,a</div>
+                <div>fujhfu,a</div>
+                <div>fujhfu,a</div>
+                <div>fujhfu,a</div>
+                <div>fujhfu,a</div>
+                <div>fujhfu,a</div>
+            </li>
+            <li class="record-li">
+                <div>fujhfu,a</div>
+                <div>fujhfu,a</div>
+                <div>fujhfu,a</div>
+                <div>fujhfu,a</div>
+                <div>fujhfu,a</div>
+                <div>fujhfu,a</div>
+            </li>
+        </ul>
     </div>
   </div>
 </template>
@@ -142,47 +184,6 @@
   }
 </script>
 <style scoped>
-  .center {
-    width: 1000px;
-    height: 1000px;
-    background: white;
-    border: 1px solid #eaeaea;
-  }
-
-  .tg {
-    width: 960px;
-    height: 25px;
-    display: flex;
-    justify-content: center;
-    background: #eaeaea;
-    padding: 20px 20px;
-  }
-
-  .tg-icon {
-    width: 30px;
-    height: 30px;
-    background: #c8a675;
-    border-radius: 50%;
-  }
-
-  .iconTg {
-    width: 20px;
-    height: 20px;
-    text-align: center;
-    padding-top: 5px;
-  }
-
-  .tgContent {
-    width: 900px;
-    height: 25px;
-    line-height: 25px;
-    font-size: 14px;
-    margin-left: 20px;
-    text-align: center;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-  }
 
   .ym {
     width: 978px;
@@ -264,7 +265,7 @@
     width: auto;
     height: 23px;
     line-height: 25px;
-    text-align: center;
+    text-align: left;
     font-size: 14px;
   }
   .record {
@@ -277,7 +278,29 @@
     border-right: 1px solid #e8e8e8;
     border-bottom: 1px solid #e8e8e8;
   }
-
+  .record-box{
+      width: 927px;
+      height: 495px;
+  }
+  .record-li{
+      width: 893px;
+      height: 50px;
+      font-weight: 700;
+      padding-left: 15px;
+      padding-right: 15px;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+  }
+  .record-li div{
+      width: auto;
+      height: 50px;
+      text-align: center;
+      line-height: 50px;
+      color: #808080;
+      font-family: 'Avenir', Helvetica, Arial, sans-serif;
+      font-size: 14px;
+  }
   .recordImg{
     width: 62px;
     height: 40px;

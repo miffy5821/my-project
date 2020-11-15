@@ -21,9 +21,10 @@
                     <div class="personal-list">
                         <div class="personal-list">
                             <ul class="nav">
-                                <li class="nav-color nav-li" v-for="item of sliderMenu">
+                                <li class="nav-color nav-li" v-for="(item,index) of sliderMenu"
+                                    :class="activeClass == index ? 'active':''" @click="active == index">
                                     <router-link :to="item.path">
-                                        <img class="nav-icon " :src="item.img"/> <span class="active">{{item.name}}</span>
+                                        <img class="nav-icon " :src="item.img"/> <span>{{item.name}}</span>
                                     </router-link>
                                 </li>
                             </ul>
@@ -90,6 +91,8 @@ export default {
               },
     data(){
         return{
+            active:0,
+            activeClass: 0,
             user: [],
             sliderMenu: [
                 {name: '额度转换', path: '/personal/conversion',img:'/static/personal/phone.png'},
@@ -243,17 +246,9 @@ a {
 
 .nav-color {
     transition: all .3s;
-    /*background-color: #f2f2f2;*/
 }
 
 
-/*!*.text{*!*/
-/*margin-left: 10px;*/
-/*font-size:14px;*/
-/*height: 45px;*/
-/*line-height: 45px;*/
-/*width: auto;*/
-/*}*/
 .app-code {
     width: 196px;
     height: 234px;
@@ -309,5 +304,10 @@ a {
     text-overflow: ellipsis;
     white-space: nowrap;
 }
+    .active{
+        color: #c8a675;
+        transition: all .3s;
+        background-color: #f2f2f2;
+    }
 </style>
 
