@@ -80,15 +80,30 @@
                 <div class="transfer-right">
                     <div class="transfer-row">
                         <label>转出 ：</label>
-                        <input type="number" class="Distribute"/>
+                        <el-select v-model="value" filterable placeholder="请选择" class="Distribute">
+                            <el-option
+                                v-for="item in options1"
+                                :key="item.value"
+                                :label="item.label"
+                                :value="item.value">
+                            </el-option>
+                        </el-select>
                     </div>
                     <div class="transfer-row">
                         <label>转入 ：</label>
-                        <input type="number" class="Distribute"/>
+                        <el-select v-model="value" filterable placeholder="请选择" class="Distribute">
+                            <el-option
+                                v-for="item in options2"
+                                :key="item.value"
+                                :label="item.label"
+                                :value="item.value">
+                            </el-option>
+                        </el-select>
                     </div>
                     <div class="transfer-row">
                         <label>金额 ：</label>
                         <input type="number" class="Distribute"/>
+
                     </div>
                     <el-button class="btn-next">确定转款</el-button>
                 </div>
@@ -117,11 +132,107 @@
         name: 'conversion',
         data () {
             return {
-                isAuto: false
+                isAuto: false,
+                subPay:[],
+                options1: [{
+                    value: '选项1',
+                    label: '中心娱乐城'
+                }, {
+                    value: '选项2',
+                    label: 'GG捕鱼'
+                }, {
+                    value: '选项3',
+                    label: 'OG视讯'
+                }, {
+                    value: '选项4',
+                    label: '大唐棋牌'
+                }, {
+                    value: '选项5',
+                    label: 'VR彩票'
+                }, {
+                        value: '选项6',
+                        label: 'HABA电子'
+                    }, {
+                        value: '选项7',
+                        label: 'PS电子'
+                    }, {
+                        value: '选项8',
+                        label: 'DS视讯'
+                    }, {
+                        value: '选项9',
+                        label: '皇冠体育'
+                    }, {
+                        value: '选项10',
+                        label: '沙巴体育'
+                    },{
+                    value: '选项11',
+                    label: 'AGIN电子/视讯..'
+                }, {
+                    value: '选项12',
+                    label: 'BG视讯'
+                }, {
+                    value: '选项13',
+                    label: 'JDB电子'
+                }, {
+                    value: '选项14',
+                    label: 'PT电子'
+                }, {
+                    value: '选项15',
+                    label: 'SW电子'
+                },{
+                value: '选项16',
+                    label: 'CQ0电子'
+            }, {
+                value: '选项17',
+                    label: '开元棋牌'
+            }, {
+                value: '选项18',
+                    label: '德胜棋牌'
+            }, {
+                value: '选项19',
+                    label: '雷火电竞'
+            }, {
+                value: '选项20',
+                    label: 'IM游戏'
+            }
+                ],
+                options2: [{
+                    value: '选项1',
+                    label: '黄金糕'
+                }, {
+                    value: '选项2',
+                    label: '双皮奶'
+                }, {
+                    value: '选项3',
+                    label: '蚵仔煎'
+                }, {
+                    value: '选项4',
+                    label: '龙须面'
+                }, {
+                    value: '选项5',
+                    label: '北京烤鸭'
+                }],
+                value: ''
             }
         },
         props: ['myUser'],
         methods: {
+            getPayCofig(){
+                this.axios.get('/api/user/config', {
+                    params: {terminal: 1}
+                })
+                    .then((response) => {
+                        const data = response.data;
+                        if (data.status === 10000) {
+                            // console.log(data);
+                            this.subPay = response.data.data;
+                            console.log('subPay',this.subPay)
+                        }
+                    })
+                    .catch(function (error) {
+                        console.log(error);
+                    });
+            },
             jumpWithdrawal () {
                 this.$router.push('/personal/withdrawal')
             },
@@ -131,6 +242,9 @@
             toggleAuto () {
                 this.isAuto = !this.isAuto;
             }
+        },
+        mounted() {
+            this.getPayCofig();
         }
     }
 </script>
