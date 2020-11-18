@@ -130,6 +130,7 @@
                                 class="daMaLiang-span2">要求打码量：0</span></p>
                             <div class="amount-wd">
                                 <label>提款金额 ：</label>
+                                <!--<el-input v-model="input" type="number" class="wd-input" placeholder="请输入金额"></el-input>-->
                                 <input type="number" class="wd-input" placeholder="请输入金额"/>
                                 <div class="ts">单笔提款限额（元）：100-500000</div>
                             </div>
@@ -388,6 +389,7 @@ export default {
     width: auto;
     text-align: left;
     line-height: 35px;
+    padding: 0;
 }
 
 .amount-wd input {

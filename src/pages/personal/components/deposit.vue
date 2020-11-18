@@ -9,6 +9,7 @@
             <div class="deposit-zone">
                 <ul class="depositWay">
                     <li v-for="(item,index) in payList" :class="{activeNav:!(index-menuIndex)}"
+                        :key="item"
                         @click='menuShow(item,index)'>
                         <img class="bankCard " :src="item.icon"/>
                         <a href="#">{{item.scanname}}</a><span class="cross-line">|</span>
@@ -42,7 +43,7 @@
                         <div class="amount-name">
                             <label>存款方式 ：</label>
                             <el-radio-group v-model="radio1" class="margin-left">
-                                <el-radio-button v-for="item in currentPay.channels"
+                                <el-radio-button v-for="item in currentPay.channels" :key="item"
                                                  :label="item.desc" :value="item.scancode"></el-radio-button>
 
                             </el-radio-group>

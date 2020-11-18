@@ -41,7 +41,7 @@
                     <ul class="distribution-ul">
                         <li class="distribution-li">
                             <div class="drt-img"></div>
-<!--                            <div class="drt-hover"></div>-->
+                            <!--                            <div class="drt-hover"></div>-->
                             <div class="drt-text">
                                 <p>大唐棋牌</p>
                                 <p>0.00</p>
@@ -67,7 +67,7 @@
                             <h3>￥{{myUser.wallet}}</h3>
                             <div class="transfer-btn">
                                 <button class="transfer-btn1" @click="jumpDeposit()">存款</button>
-                                <button class="transfer-btn2"  @click="jumpWithdrawal()">提款</button>
+                                <button class="transfer-btn2" @click="jumpWithdrawal()">提款</button>
                             </div>
 
                         </div>
@@ -80,32 +80,43 @@
                 <div class="transfer-right">
                     <div class="transfer-row">
                         <label>转出 ：</label>
-                        <el-select v-model="value" filterable placeholder="请选择" class="Distribute">
+                        <el-select v-model="outValue" placeholder="请选择">
                             <el-option
                                 v-for="item in options1"
-                                :key="item.value"
-                                :label="item.label"
-                                :value="item.value">
+                                :key="item.gameCode"
+                                :label="item.gameName"
+                                :value="item.gameCode">
+                                <img style="width: 25px;height: 25px;line-height: 33px;float:left;" :src="item.gameImg"/>
+                                <span style="float: left;margin-left: 10px">{{ item.gameName }}</span>
+                                <span style="float: right; color: #8492a6; font-size: 13px">¥&nbsp;{{item.balance.toFixed(2) }}</span>
+
                             </el-option>
                         </el-select>
+
+
                     </div>
                     <div class="transfer-row">
                         <label>转入 ：</label>
-                        <el-select v-model="value" filterable placeholder="请选择" class="Distribute">
+                        <el-select v-model="inValue" placeholder="请选择" >
                             <el-option
-                                v-for="item in options2"
-                                :key="item.value"
-                                :label="item.label"
-                                :value="item.value">
+                                v-for="item in options1"
+                                :key="item.gameCode"
+                                :label="item.gameName"
+                                :value="item.gameCode">
+                                <img style="width: 25px;height: 25px;line-height: 33px;float:left;" :src="item.gameImg"/>
+                                <span style="float: left;margin-left: 10px">{{ item.gameName }}</span>
+                                <span style="float: right; color: #8492a6; font-size: 13px">¥&nbsp;{{item.balance.toFixed(2) }}</span>
+
                             </el-option>
                         </el-select>
+
                     </div>
                     <div class="transfer-row">
                         <label>金额 ：</label>
-                        <input type="number" class="Distribute"/>
+                        <input type="number" v-model="amount" />
 
                     </div>
-                    <el-button class="btn-next">确定转款</el-button>
+                    <el-button class="btn-next" @click="tranferConfirm">确定转款</el-button>
                 </div>
 
             </div>
@@ -133,91 +144,15 @@
         data () {
             return {
                 isAuto: false,
-                subPay:[],
-                options1: [{
-                    value: '选项1',
-                    label: '中心娱乐城'
-                }, {
-                    value: '选项2',
-                    label: 'GG捕鱼'
-                }, {
-                    value: '选项3',
-                    label: 'OG视讯'
-                }, {
-                    value: '选项4',
-                    label: '大唐棋牌'
-                }, {
-                    value: '选项5',
-                    label: 'VR彩票'
-                }, {
-                        value: '选项6',
-                        label: 'HABA电子'
-                    }, {
-                        value: '选项7',
-                        label: 'PS电子'
-                    }, {
-                        value: '选项8',
-                        label: 'DS视讯'
-                    }, {
-                        value: '选项9',
-                        label: '皇冠体育'
-                    }, {
-                        value: '选项10',
-                        label: '沙巴体育'
-                    },{
-                    value: '选项11',
-                    label: 'AGIN电子/视讯..'
-                }, {
-                    value: '选项12',
-                    label: 'BG视讯'
-                }, {
-                    value: '选项13',
-                    label: 'JDB电子'
-                }, {
-                    value: '选项14',
-                    label: 'PT电子'
-                }, {
-                    value: '选项15',
-                    label: 'SW电子'
-                },{
-                value: '选项16',
-                    label: 'CQ0电子'
-            }, {
-                value: '选项17',
-                    label: '开元棋牌'
-            }, {
-                value: '选项18',
-                    label: '德胜棋牌'
-            }, {
-                value: '选项19',
-                    label: '雷火电竞'
-            }, {
-                value: '选项20',
-                    label: 'IM游戏'
-            }
-                ],
-                options2: [{
-                    value: '选项1',
-                    label: '黄金糕'
-                }, {
-                    value: '选项2',
-                    label: '双皮奶'
-                }, {
-                    value: '选项3',
-                    label: '蚵仔煎'
-                }, {
-                    value: '选项4',
-                    label: '龙须面'
-                }, {
-                    value: '选项5',
-                    label: '北京烤鸭'
-                }],
-                value: ''
+                options1: [],
+                inValue: '',
+                outValue: '',
+                amount: ''
             }
         },
         props: ['myUser'],
         methods: {
-            getPayCofig(){
+            getPayCofig () {
                 this.axios.get('/api/user/config', {
                     params: {terminal: 1}
                 })
@@ -225,8 +160,8 @@
                         const data = response.data;
                         if (data.status === 10000) {
                             // console.log(data);
-                            this.subPay = response.data.data;
-                            console.log('subPay',this.subPay)
+                            this.options1 = response.data.data;
+                            console.log('subPay', response.data.data)
                         }
                     })
                     .catch(function (error) {
@@ -241,9 +176,21 @@
             },
             toggleAuto () {
                 this.isAuto = !this.isAuto;
+            },
+            tranferConfirm () {
+                console.log('inValue', this.inValue);
+                console.log('outValue', this.outValue);
+                console.log('amount', this.amount);
+
+                if (!this.inValue || !this.outValue || !this.amount) {
+                    alert('error')
+                }else {
+                    alert('校验成功');
+                }
+
             }
         },
-        mounted() {
+        mounted () {
             this.getPayCofig();
         }
     }
@@ -498,7 +445,7 @@
         justify-content: space-between;
     }
 
-    .transfer-btn1{
+    .transfer-btn1 {
         height: 30px;
         padding: 5px 15px;
         font-size: 13px;
@@ -507,13 +454,14 @@
         border: none;
         color: #fff;
     }
-    .transfer-btn2{
+
+    .transfer-btn2 {
         height: 30px;
         padding: 5px 15px;
         font-size: 13px;
         border-radius: 3px;
         background: #fff;
-        border:1px solid gray;
+        border: 1px solid gray;
         color: gray;
     }
 
@@ -553,7 +501,7 @@
     .transfer-row {
         width: 370px;
         height: 35px;
-        display: flex;
+        /*display: flex;*/
         padding-left: 20px;
         margin-bottom: 7px;
     }
@@ -569,8 +517,9 @@
     }
 
     .transfer-row input {
+        width: 208px;
         line-height: 35px;
-        padding: 0 30px 0 5px;
+        padding: 0 0 0  15px;
         color: #495060;
         border-radius: 3px;
         border: 1px solid gainsboro;
@@ -586,15 +535,18 @@
         font-weight: 700;
         border: 1px solid #c8a675;
     }
-    .distribution{
+
+    .distribution {
         width: 100%;
         height: 122px;
     }
-    .distribution-ul{
+
+    .distribution-ul {
         padding: 0 15px 40px 25px;
         display: flex;
     }
-    .distribution-li{
+
+    .distribution-li {
         width: 33%;
         padding-top: 10px;
         padding-bottom: 10px;
@@ -607,14 +559,15 @@
         display: flex;
         justify-content: left;
     }
-    .distribution-li:hover{
+
+    .distribution-li:hover {
         background: #eaeaea;
-        background: linear-gradient(180deg,#f9f9f9,#f2f2f2);
+        background: linear-gradient(180deg, #f9f9f9, #f2f2f2);
         border-radius: 4px;
         transform: translateY(-3px);
     }
 
-    .drt-img{
+    .drt-img {
         width: 66px;
         height: 66px;
         margin-left: 40px;
@@ -626,10 +579,12 @@
         cursor: pointer;
         background-image: url("https://gamelist.mobanwang.com.cn//menuList/YHHB/0/transfer/dt.png");
     }
-    .drt-img:hover .drt-hover{
+
+    .drt-img:hover .drt-hover {
         opacity: 1;
     }
-    .drt-hover{
+
+    .drt-hover {
         width: 66px;
         height: 66px;
         text-align: center;
@@ -639,13 +594,14 @@
         border: 3px solid #e7e3e3;
         background-size: contain;
         position: absolute;
-        left:0;
-        top:10px;
+        left: 0;
+        top: 10px;
         cursor: pointer;
         opacity: 0;
-        background-image: url(//image.beike188.com/YHHB/user_img/recover.png)!important;
+        background-image: url(//image.beike188.com/YHHB/user_img/recover.png) !important;
     }
-    .drt-text{
+
+    .drt-text {
         height: 60px;
         width: 80px;
         text-align: left;
@@ -653,7 +609,8 @@
         position: relative;
         padding-top: 17px;
     }
-    .drt-text p{
+
+    .drt-text p {
         padding-bottom: 8px;
         font-size: 14px;
     }
