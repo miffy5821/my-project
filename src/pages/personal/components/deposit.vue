@@ -9,7 +9,7 @@
             <div class="deposit-zone">
                 <ul class="depositWay">
                     <li v-for="(item,index) in payList" :class="{activeNav:!(index-menuIndex)}"
-                        :key="item"
+                        :key="item.desc"
                         @click='menuShow(item,index)'>
                         <img class="bankCard " :src="item.icon"/>
                         <a href="#">{{item.scanname}}</a><span class="cross-line">|</span>
@@ -20,6 +20,7 @@
 
                 <!--&lt;!&ndash;VIP支付 &ndash;&gt;-->
                 <div class="treasure" v-show="currentPayItem.scancode === 'card'">
+                    <payCountdown></payCountdown>
                     <div class="treasure-ways">
                         <div class="step">
                             <el-steps :active="active" finish-status="success">
@@ -29,7 +30,7 @@
                             </el-steps>
                         </div>
                         <div class="zfb-way-box">
-                            <div class="zfb-way zfb-way-active" v-for="item in currentPayItem.config">
+                            <div class="zfb-way zfb-way-active" v-for="item in currentPayItem.config" :key="item.scanname">
                                 <img :src="currentPayItem.icon"/>
                                 <span>{{item.scanname}}</span>
                             </div>
@@ -43,7 +44,7 @@
                         <div class="amount-name">
                             <label>存款方式 ：</label>
                             <el-radio-group v-model="radio1" class="margin-left">
-                                <el-radio-button v-for="item in currentPay.channels" :key="item"
+                                <el-radio-button v-for="item in currentPay.channels" :key="item.desc"
                                                  :label="item.desc" :value="item.scancode"></el-radio-button>
 
                             </el-radio-group>
@@ -53,7 +54,7 @@
                             <input type="number" class="Distribute"/>
                             <div class="ts">单笔限额{{currentPay.minquota}}-{{currentPay.maxquota}}(元)</div>
                         </div>
-                        <el-button class="btn-next" @click="next">下一步</el-button>
+                        <el-button class="btn-next" @click="nextJumpPay">下一步</el-button>
                     </div>
                     <div class="tip">
                         <h2>温馨提示</h2>
@@ -102,7 +103,7 @@
                         </div>
                         <div class="amount-name">
                             <div class="zfb-way" :class="{'zfb-way-active': index === currentPayIndex}"
-                                 v-for="(item,index) in currentPayItem.config" @click="switchConfig(item,index)">
+                                 v-for="(item,index) in currentPayItem.config" @click="switchConfig(item,index)" :key="item.icon">
                                 <img :src="currentPayItem.icon"/>
                                 <span>支付{{index+1}}</span>
                             </div>
@@ -131,8 +132,14 @@
     </div>
 </template>
 <script>
+
+    import payCountdown from './payCountdown'
     export default {
         name: 'deposit',
+        components: {
+            payCountdown
+        },
+
         data () {
             return {
                 radio1: '支付宝转账',
@@ -158,6 +165,10 @@
 
                 console.log('item', item);
                 console.log(this.menuIndex)
+            },
+            nextJumpPay(){
+                if (this.active++ > 1) this.active = 2;
+                this.$router.push('/personal/payCountdown')
             },
 
             next () {

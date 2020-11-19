@@ -52,6 +52,7 @@ import setQQ from '@/pages/personal/components/setQQ.vue'//设置QQ
 import setBankCard from '@/pages/personal/components/setBankCard.vue'//修改银行卡
 import setUstd from '@/pages/personal/components/setUstd.vue'//绑定USTD
 import WithdrawalsPassword from '@/pages/personal/components/WithdrawalsPassword.vue'//修改提款密码
+// import payCountdown from '@/pages/personal/components/payCountdown.vue'
 
 
 Vue.use(Router);
@@ -266,7 +267,13 @@ export default new Router({
                 path: 'setUstd',//绑定USTD
                 name: 'setUstd',
                 component: setUstd
-            }]
+            },
+            // {
+            //     path: 'payCountdown',//支付倒计时
+            //     name: 'payCountdown',
+            //     component: payCountdown
+            // }
+            ]
     }, {
         path: '/agency',
         name: 'agency',
