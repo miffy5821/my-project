@@ -22,9 +22,9 @@
                         <div class="personal-list">
                             <ul class="nav">
                                 <li class="nav-color nav-li" v-for="(item,index) of sliderMenu"
-                                    :class="active == index ? 'active':''" @click="active = index">
-                                    <router-link :to="item.path">
-                                        <img class="nav-icon " :src="item.img"/> <span>{{item.name}}</span>
+                                    :class="active == index ? 'active':''" >
+                                    <router-link :to="item.path" >
+                                        <img class="nav-icon "  :src="item.img"/> <span @click="active = index">{{item.name}}</span>
                                     </router-link>
                                 </li>
                             </ul>

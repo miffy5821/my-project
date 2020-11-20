@@ -12,7 +12,21 @@
             </div>
             <div class="asset-case">
                 <div class="asset-left">
-                    <div class="tex1">￥{{myUser.totalBalance}}</div>
+                    <el-tooltip
+                        :content="'Switch value: ' + value" placement="top"
+                        style="margin-left: 250px"
+                    >
+                        <el-switch
+                            v-model="value"
+                            active-color="#13ce66"
+                            inactive-color="#ff4949"
+                            active-value="100"
+                            inactive-value="0">
+                        </el-switch>
+                    </el-tooltip>
+                    <div class="tex1">￥{{myUser.totalBalance}}
+
+                    </div>
                     <div class="asset-btn">
                         <button class="asset-btn1" @click="jumpWithdrawal()">提款</button>
                         <button class="asset-btn1 btnColor" @click="jumpDeposit()">存款</button>
@@ -65,6 +79,7 @@
                         <div class="bottom-left">
                             <p>钱包余额</p>
                             <h3>￥{{myUser.wallet}}</h3>
+
                             <div class="transfer-btn">
                                 <button class="transfer-btn1" @click="jumpDeposit()">存款</button>
                                 <button class="transfer-btn2" @click="jumpWithdrawal()">提款</button>
@@ -86,7 +101,8 @@
                                 :key="item.gameCode"
                                 :label="item.gameName"
                                 :value="item.gameCode">
-                                <img style="width: 25px;height: 25px;line-height: 33px;float:left;" :src="item.gameImg"/>
+                                <img style="width: 25px;height: 25px;line-height: 33px;float:left;"
+                                     :src="item.gameImg"/>
                                 <span style="float: left;margin-left: 10px">{{ item.gameName }}</span>
                                 <span style="float: right; color: #8492a6; font-size: 13px">¥&nbsp;{{item.balance.toFixed(2) }}</span>
 
@@ -97,13 +113,14 @@
                     </div>
                     <div class="transfer-row">
                         <label>转入 ：</label>
-                        <el-select v-model="inValue" placeholder="请选择" >
+                        <el-select v-model="inValue" placeholder="请选择">
                             <el-option
                                 v-for="item in options1"
                                 :key="item.gameCode"
                                 :label="item.gameName"
                                 :value="item.gameCode">
-                                <img style="width: 25px;height: 25px;line-height: 33px;float:left;" :src="item.gameImg"/>
+                                <img style="width: 25px;height: 25px;line-height: 33px;float:left;"
+                                     :src="item.gameImg"/>
                                 <span style="float: left;margin-left: 10px">{{ item.gameName }}</span>
                                 <span style="float: right; color: #8492a6; font-size: 13px">¥&nbsp;{{item.balance.toFixed(2) }}</span>
 
@@ -113,10 +130,10 @@
                     </div>
                     <div class="transfer-row">
                         <label>金额 ：</label>
-                        <input type="number" v-model="amount" />
+                        <input type="number" v-model="amount"/>
 
                     </div>
-                    <el-button class="btn-next" @click="tranferConfirm">确定转款</el-button>
+                    <el-button class="btn-next" @click="tranferConfirm" :loading="isTransfer">确定转款</el-button>
                 </div>
 
             </div>
@@ -143,11 +160,13 @@
         name: 'conversion',
         data () {
             return {
+                value: '100',
                 isAuto: false,
                 options1: [],
                 inValue: '',
                 outValue: '',
-                amount: ''
+                amount: '',
+                isTransfer: false
             }
         },
         props: ['myUser'],
@@ -182,11 +201,42 @@
                 console.log('outValue', this.outValue);
                 console.log('amount', this.amount);
 
-                if (!this.inValue || !this.outValue || !this.amount) {
-                    alert('error')
-                }else {
-                    alert('校验成功');
+                if (!this.outValue) {
+                    this.$alert('请选择转出平台');
+                    return;
+                } else if (!this.inValue) {
+                    this.$alert('请选择转入平台');
+                    return;
+                }else if ( this.inValue === this.outValue){
+                    this.$alert('同平台间不能转账');
+                    return;
+                } else if (!this.amount) {
+                    this.$alert('金额不能为空或小于1');
+                    return;
                 }
+                const inValue = this.inValue;
+                const outValue = this.outValue;
+                const amount = this.amount;
+
+                this.isTransfer = true;
+
+                this.axios.post('/api/user/game/transfer', {
+                    inValue, outValue, amount
+                }).then((response) => {
+                    const data = response.data;
+                    if (data.status === 10000) {
+                        this.amount = '';
+                        this.$message({
+                            message: data.msg,
+                            type: 'success'
+                        });
+                        this.myUser = data.data;
+                    }
+                }).catch(function (error) {
+                    console.log(error);
+                }).finally(() => {
+                    this.isTransfer = false;
+                })
 
             }
         },
@@ -519,20 +569,19 @@
     .transfer-row input {
         width: 208px;
         line-height: 35px;
-        padding: 0 0 0  15px;
+        padding: 0 0 0 15px;
         color: #495060;
         border-radius: 3px;
         border: 1px solid gainsboro;
     }
 
     .btn-next {
-        margin-left: 50px;
-        padding: 0 55px;
-        line-height: 40px;
+        margin-left: 70px;
+        width: 225px;
         height: 40px;
         color: #fff;
         background: #c8a675;
-        font-weight: 700;
+        font-size: 14px;
         border: 1px solid #c8a675;
     }
 

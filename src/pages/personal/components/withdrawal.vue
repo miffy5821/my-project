@@ -37,7 +37,7 @@
             <!--</div>-->
 
             <!--提款专区-->
-            <div class="withdrawal-">
+            <div class="withdrawal-"  style="position:relative">
                 <div class="withdrawal-area">
                     <div class="wd-way">
                         <div class="wd-way1" :class="{'wd-way-current': show === 1}" @click="show = 1">提现到USTD钱包</div>
@@ -47,35 +47,38 @@
                             <!--                            <el-button type="text" @click="open">提现到支付宝</el-button>-->
                         </div>
                     </div>
-                    <div v-show="show === 1">
+                    <div v-show="show === 1" >
                         <div class="addBankCard" @click="jumpSetUstd()">
                             <div class="wd-add">+</div>
                             <p>添加USTD钱包</p>
                         </div>
                         <el-divider class="wd-line"></el-divider>
-                        <div class="daMaLiang">
-                            <p class="">不会操作？请点击查看 <span @click="jumpUstd()">USDT钱包使用</span> 教程</p>
-                            <p class="">账户姓名:<span class="daMaLiang-span1">未绑定</span></p>
-                            <p class="">可提金额(RMB)：<span class="daMaLiang-span1">0.00元</span></p>
-                            <p>完成打码量：<span class="daMaLiang-span2">完成打码量：0</span>/<span
-                                class="daMaLiang-span2">要求打码量：0</span></p>
-                            <div class="amount-wd">
-                                <label>提款金额(RMB) ：</label>
-                                <input type="number" class="wd-input" placeholder="请输入金额"/>
-                                <div class="ts">单笔提款限额（元）：100-500000</div>
+                        <div>
+                            <div class="daMaLiang">
+                                <p class="">不会操作？请点击查看 <span @click="jumpUstd()">USDT钱包使用</span> 教程</p>
+                                <p class="">账户姓名:<span class="daMaLiang-span1">未绑定</span></p>
+                                <p class="">可提金额(RMB)：<span class="daMaLiang-span1">0.00元</span></p>
+                                <p>完成打码量：<span class="daMaLiang-span2">完成打码量：0</span>/<span
+                                    class="daMaLiang-span2">要求打码量：0</span></p>
+                                <div class="amount-wd">
+                                    <label>提款金额(RMB) ：</label>
+                                    <input type="number" class="wd-input" placeholder="请输入金额"/>
+                                    <div class="ts">单笔提款限额（元）：100-500000</div>
+                                </div>
+                                <p class="">当前汇率:
+                                    <span class="daMaLiang-span">1:0</span>
+                                    <span>| 预计到账币额(USDT):</span>
+                                    <span class="daMaLiang-span">0</span>
+                                </p>
+                                <div class="amount-wd">
+                                    <label>提款密码 ：</label>
+                                    <input type="password" class="wd-input" placeholder="请输入提款密码"/>
+                                    <span @click="jumpOnlineService()">忘记密码</span>
+                                </div>
+                                <el-button class="wd-btn-next" @click="next">下一步</el-button>
                             </div>
-                            <p class="">当前汇率:
-                                <span class="daMaLiang-span">1:0</span>
-                                <span>| 预计到账币额(USDT):</span>
-                                <span class="daMaLiang-span">0</span>
-                            </p>
-                            <div class="amount-wd">
-                                <label>提款密码 ：</label>
-                                <input type="password" class="wd-input" placeholder="请输入提款密码"/>
-                                <span @click="jumpOnlineService()">忘记密码</span>
-                            </div>
-                            <el-button class="wd-btn-next" @click="next">下一步</el-button>
                         </div>
+
                         <div class="tip">
                             <h2>温馨提示</h2>
                             <p>1. USDT钱包账户绑定之后不可修改，如有疑问，请联系<span @click="jumpOnlineService()">在线客服</span></p>
@@ -434,24 +437,22 @@ export default {
 }
 
 .tip {
-    width: 900px;
-    height: auto;
-    padding: 8px 35px 20px 35px;
-    margin: 60px 10px 0 -100px;
+    width: 850px;
+    padding: 10px 35px;
     text-align: left;
-    display: flex;
-    flex-wrap: wrap;
+    position: absolute;
+    top: 530px;
+    left: 0;
+
 }
 
 .tip h2 {
     font-size: 20px;
-    width: 100%;
     color: red;
-    margin-bottom: 5px;
+    margin-bottom: 10px;
 }
 
 .tip p {
-    width: 100%;
     font-size: 14px;
     color: black;
     margin-top: 10px;

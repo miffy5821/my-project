@@ -7,133 +7,161 @@
         </div>
         <div class="deposit-case">
             <div class="deposit-zone">
-                <ul class="depositWay">
-                    <li v-for="(item,index) in payList" :class="{activeNav:!(index-menuIndex)}"
-                        :key="item.desc"
-                        @click='menuShow(item,index)'>
-                        <img class="bankCard " :src="item.icon"/>
-                        <a href="#">{{item.scanname}}</a><span class="cross-line">|</span>
-                    </li>
-                </ul>
-            </div>
-            <div class="depositWay-content">
+                <!--<ul class="depositWay">-->
+                <!--<li v-for="(item,index) in payList" :class="{activeNav:!(index-menuIndex)}"-->
+                <!--:key="item.desc"-->
+                <!--@click='menuShow(item,index)'>-->
+                <!--<img class="bankCard " :src="item.icon"/>-->
+                <!--<a href="#">{{item.scanname}}</a><span class="cross-line">|</span>-->
+                <!--</li>-->
+                <!--</ul>-->
 
-                <!--&lt;!&ndash;VIP支付 &ndash;&gt;-->
-                <div class="treasure" v-show="currentPayItem.scancode === 'card'">
-                    <payCountdown></payCountdown>
-                    <div class="treasure-ways">
-                        <div class="step">
-                            <el-steps :active="active" finish-status="success">
-                                <el-step title="输入金额"></el-step>
-                                <el-step title="存款成功"></el-step>
-                                <el-step title="生成订单"></el-step>
-                            </el-steps>
-                        </div>
-                        <div class="zfb-way-box">
-                            <div class="zfb-way zfb-way-active" v-for="item in currentPayItem.config" :key="item.scanname">
-                                <img :src="currentPayItem.icon"/>
-                                <span>{{item.scanname}}</span>
+                <el-tabs v-model="activeName" @tab-click="handClick">
+                    <el-tab-pane v-for="(item,index) in payList" @click='menuShow(item,index)' :label="item.scanname"
+                                 :name="item.scancode">
+                        <span slot="label"><img class="bankCard " :src="item.icon"/> {{item.scanname}}</span>
+
+                        <div class="depositWay-content">
+
+                            <!--&lt;!&ndash;VIP支付 &ndash;&gt;-->
+                            <div class="treasure" v-show="currentPayItem.scancode === 'card'">
+
+                                <div class="treasure-ways">
+                                    <div class="step">
+                                        <el-steps :active="active" finish-status="success">
+                                            <el-step title="输入金额"></el-step>
+                                            <el-step title="存款成功"></el-step>
+                                            <el-step title="生成订单"></el-step>
+                                        </el-steps>
+                                    </div>
+                                </div>
+                                <payCountdown></payCountdown>
+                                <div v-if="false">
+                                    <div class="zfb-way-box">
+                                        <div class="zfb-way zfb-way-active" v-for="item in currentPayItem.config"
+                                             :key="item.scanname">
+                                            <img :src="currentPayItem.icon"/>
+                                            <span>{{item.scanname}}</span>
+                                        </div>
+                                    </div>
+
+                                    <div class="treasure-amount">
+                                        <div class="amount-name">
+                                            <label>存款名字 ：</label>
+                                            <input type="text" class="Distribute" placeholder="请输入存款人姓名"/>
+                                        </div>
+                                        <div class="amount-name">
+                                            <label>存款方式 ：</label>
+                                            <el-radio-group v-model="radio1" class="margin-left">
+                                                <el-radio-button v-for="item in currentPay.channels" :key="item.desc"
+                                                                 :label="item.desc"
+                                                                 :value="item.scancode"></el-radio-button>
+
+                                            </el-radio-group>
+                                        </div>
+                                        <div class="amount-name">
+                                            <label>存款金额 ：</label>
+                                            <input type="number" class="Distribute" v-model="amount"/>
+                                            <div class="ts">单笔限额{{currentPay.minquota}}-{{currentPay.maxquota}}(元)</div>
+                                        </div>
+                                        <el-button class="btn-next" @click="nextJumpPay">下一步</el-button>
+                                    </div>
+
+                                    <div class="tip">
+                                        <h2>温馨提示</h2>
+                                        <p>为确保您的款项及时到账，请您留意以下几点：</p>
+                                        <p> 1.在输入您的存款金额时确保您提交的金额在限额范围之内；</p>
+                                        <p> 2.若您支付过程中遇到问题未完成，请重新下单；</p>
+                                        <p> 3.支付遇到困难？点击“<span @click="jumpOnlineService()">联系客服</span>”人员获得帮助;</p>
+                                    </div>
+                                </div>
                             </div>
-                        </div>
-                    </div>
-                    <div class="treasure-amount">
-                        <div class="amount-name">
-                            <label>存款名字 ：</label>
-                            <input type="text" class="Distribute" placeholder="请输入存款人姓名"/>
-                        </div>
-                        <div class="amount-name">
-                            <label>存款方式 ：</label>
-                            <el-radio-group v-model="radio1" class="margin-left">
-                                <el-radio-button v-for="item in currentPay.channels" :key="item.desc"
-                                                 :label="item.desc" :value="item.scancode"></el-radio-button>
 
-                            </el-radio-group>
-                        </div>
-                        <div class="amount-name">
-                            <label>存款金额 ：</label>
-                            <input type="number" class="Distribute"/>
-                            <div class="ts">单笔限额{{currentPay.minquota}}-{{currentPay.maxquota}}(元)</div>
-                        </div>
-                        <el-button class="btn-next" @click="nextJumpPay">下一步</el-button>
-                    </div>
-                    <div class="tip">
-                        <h2>温馨提示</h2>
-                        <p>为确保您的款项及时到账，请您留意以下几点：</p>
-                        <p> 1.在输入您的存款金额时确保您提交的金额在限额范围之内；</p>
-                        <p> 2.若您支付过程中遇到问题未完成，请重新下单；</p>
-                        <p> 3.支付遇到困难？点击“<span @click="jumpOnlineService()">联系客服</span>”人员获得帮助;</p>
-                    </div>
-                </div>
-
-                <!--天下尊享支付-->
-                <div class="tx" v-show="currentPayItem.scancode === 'kf'">
-                    <div class="tx-top">
-                        <img class="tx-img" src="https://image.beike188.com/YHHB/user_img/excellent_banner.jpg">
-                        <div class="tx-way-box">
-                            <div class="tx-way " :class="{'tx-way-active': styleActive === 1}" @click="styleActive = 1">
-                                <img src="https://line.jzs001.cn/group1/M00/00/7A/Z_QBx18Bp_SAE4gGAAADmClhtIo177.jpg">
-                                <span>VIP支付</span>
+                            <!--天下尊享支付-->
+                            <div class="tx" v-show="currentPayItem.scancode === 'kf'">
+                                <div class="tx-top">
+                                    <img class="tx-img"
+                                         src="https://image.beike188.com/YHHB/user_img/excellent_banner.jpg">
+                                    <div class="tx-way-box">
+                                        <div class="tx-way " :class="{'tx-way-active': styleActive === 1}"
+                                             @click="styleActive = 1">
+                                            <img
+                                                src="https://line.jzs001.cn/group1/M00/00/7A/Z_QBx18Bp_SAE4gGAAADmClhtIo177.jpg">
+                                            <span>VIP支付</span>
+                                        </div>
+                                        <div class="tx-way" :class="{'tx-way-active': styleActive === 2}"
+                                             @click="styleActive = 2">
+                                            <img
+                                                src="https://line.jzs001.cn/group1/M00/00/7A/Z_QBx18Bp_SAE4gGAAADmClhtIo177.jpg">
+                                            <span>数字支付</span>
+                                        </div>
+                                    </div>
+                                    <div class="tx-button">
+                                        <button class="tx-btn11" @click="sumitDeposit">去支付</button>
+                                    </div>
+                                </div>
+                                <div class="tip">
+                                    <h2>温馨提示</h2>
+                                    <p>为确保您的款项及时到账，请您留意以下几点：</p>
+                                    <p> 1.在输入您的存款金额时确保您提交的金额在限额范围之内；</p>
+                                    <p> 2.若您支付过程中遇到问题未完成，请重新下单；</p>
+                                    <p> 3.支付遇到困难？点击“<span @click="jumpOnlineService()">联系客服</span>”人员获得帮助;</p>
+                                </div>
                             </div>
-                            <div class="tx-way" :class="{'tx-way-active': styleActive === 2}" @click="styleActive = 2">
-                                <img src="https://line.jzs001.cn/group1/M00/00/7A/Z_QBx18Bp_SAE4gGAAADmClhtIo177.jpg">
-                                <span>数字支付</span>
-                            </div>
-                        </div>
-                        <div class="tx-button">
-                            <button class="tx-btn11">去支付</button>
-                        </div>
-                    </div>
-                    <div class="tip">
-                        <h2>温馨提示</h2>
-                        <p>为确保您的款项及时到账，请您留意以下几点：</p>
-                        <p> 1.在输入您的存款金额时确保您提交的金额在限额范围之内；</p>
-                        <p> 2.若您支付过程中遇到问题未完成，请重新下单；</p>
-                        <p> 3.支付遇到困难？点击“<span @click="jumpOnlineService()">联系客服</span>”人员获得帮助;</p>
-                    </div>
-                </div>
 
-                <div class="treasure" v-show="currentPayItem.scancode === 'ali'  || currentPayItem.scancode === 'ysf'  ||
+                            <div class="treasure" v-show="currentPayItem.scancode === 'ali'  || currentPayItem.scancode === 'ysf'  ||
                      currentPayItem.scancode === 'kj' || currentPayItem.scancode === 'bit'">
-                    <div class="treasure-ways">
-                        <div class="step">
-                            <el-steps :active="active" finish-status="success">
-                                <el-step title="输入金额"></el-step>
-                                <el-step title="存款成功"></el-step>
-                            </el-steps>
-                        </div>
-                        <div class="amount-name">
-                            <div class="zfb-way" :class="{'zfb-way-active': index === currentPayIndex}"
-                                 v-for="(item,index) in currentPayItem.config" @click="switchConfig(item,index)" :key="item.icon">
-                                <img :src="currentPayItem.icon"/>
-                                <span>支付{{index+1}}</span>
+                                <div class="treasure-ways">
+                                    <div class="step">
+                                        <el-steps :active="active" finish-status="success">
+                                            <el-step title="输入金额"></el-step>
+                                            <el-step title="存款成功"></el-step>
+                                        </el-steps>
+                                    </div>
+                                    <div class="amount-name">
+                                        <div class="zfb-way" :class="{'zfb-way-active': index === currentPayIndex}"
+                                             v-for="(item,index) in currentPayItem.config"
+                                             @click="switchConfig(item,index)"
+                                             :key="item.icon">
+                                            <img :src="currentPayItem.icon"/>
+                                            <span>支付{{index+1}}</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="amount-box">
+                                    <div class="amount-name">
+                                        <label>存款金额 ：</label>
+                                        <input type="number" v-model="amount" class="Distribute"/>
+                                        <div class="ts">单笔限额 {{currentPay.minquota}} - {{currentPay.maxquota}}(元)</div>
+                                    </div>
+                                    <el-button class="btn-next" :loading="isTransfer" @click="sumitDeposit">下一步
+                                    </el-button>
+                                </div>
+                                <div class="tip">
+                                    <h2>温馨提示</h2>
+                                    <p>为确保您的款项及时到账，请您留意以下几点：</p>
+                                    <p> 1.在输入您的存款金额时确保您提交的金额在限额范围之内；</p>
+                                    <p> 2.若您支付过程中遇到问题未完成，请重新下单；</p>
+                                    <p> 3.支付遇到困难？点击“<span @click="jumpOnlineService()">联系客服</span>”人员获得帮助;</p>
+                                </div>
                             </div>
-                        </div>
-                    </div>
-                    <div class="amount-box">
-                        <div class="amount-name">
-                            <label>存款金额 ：</label>
-                            <input type="number" class="Distribute"/>
-                            <div class="ts">单笔限额 {{currentPay.minquota}} - {{currentPay.maxquota}}(元)</div>
-                        </div>
-                        <el-button class="btn-next" @click="next">下一步</el-button>
-                    </div>
-                    <div class="tip">
-                        <h2>温馨提示</h2>
-                        <p>为确保您的款项及时到账，请您留意以下几点：</p>
-                        <p> 1.在输入您的存款金额时确保您提交的金额在限额范围之内；</p>
-                        <p> 2.若您支付过程中遇到问题未完成，请重新下单；</p>
-                        <p> 3.支付遇到困难？点击“<span @click="jumpOnlineService()">联系客服</span>”人员获得帮助;</p>
-                    </div>
-                </div>
 
+
+                        </div>
+
+
+                    </el-tab-pane>
+                </el-tabs>
 
             </div>
+
         </div>
     </div>
 </template>
 <script>
 
     import payCountdown from './payCountdown'
+
     export default {
         name: 'deposit',
         components: {
@@ -151,22 +179,24 @@
                 currentPay: '',
                 currentPayIndex: 0,
                 payList: [],
+                activeName: '',
+                amount: '', //存款金额
+                isTransfer: false
             }
         },
 
         methods: {
-            menuShow (item, index) {
+            handClick (tab, event) {
+                const index = tab.index;
                 this.menuIndex = index;
-                this.currentPayItem = item;
-
-                if (item.config.length > 0) {
-                    this.currentPay = item.config[0];
+                this.currentPayItem = this.payList[index];
+                if (this.currentPayItem.config.length > 0) {
+                    this.currentPay = this.currentPayItem.config[0];
                 }
 
-                console.log('item', item);
-                console.log(this.menuIndex)
+                console.log(tab, event)
             },
-            nextJumpPay(){
+            nextJumpPay () {
                 if (this.active++ > 1) this.active = 2;
                 this.$router.push('/personal/payCountdown')
             },
@@ -188,6 +218,7 @@
                             const pay = response.data.data;
                             this.payList = pay;
                             this.currentPayItem = this.payList[0];
+                            this.activeName = this.currentPayItem.scancode;
                             this.currentPay = this.currentPayItem.config[0];
                             console.log('payList', this.payList);
                         }
@@ -199,6 +230,38 @@
             switchConfig (item, index) {
                 this.currentPay = item;
                 this.currentPayIndex = index;
+            },
+            sumitDeposit () {
+                console.log(this.currentPay);
+
+                const {maxquota, minquota, payId, scancode} = this.currentPay;
+
+                if (maxquota && minquota) {
+                    if (this.amount < minquota || this.amount > maxquota) {
+                        this.$message({
+                            message: `金额范围${minquota}~${maxquota}`,
+                            type: 'warning'
+                        });
+                        return;
+                    }
+                }
+                this.isTransfer = true;
+                const amount = this.amount;
+
+                this.axios.post('/api/user/pay/online/scan', {
+                    payId, scancode, amount
+                }).then((response) => {
+                    const data = response.data;
+                    if (data.status === 10000) {
+                        this.amount = '';
+                        window.open(data.data.url);
+                    }
+                }).catch(function (error) {
+                    console.log(error);
+                }).finally(() => {
+                    this.isTransfer = false;
+                })
+
             }
         },
         mounted () {
@@ -207,57 +270,9 @@
     }
 </script>
 <style>
-    .center {
-        width: 1000px;
-        height: 1000px;
-        background: white;
-        border: 1px solid #eaeaea;
-    }
-
-    .tg {
-        width: 960px;
-        height: 25px;
-        display: flex;
-        justify-content: center;
-        background: #eaeaea;
-        padding: 20px 20px;
-    }
-
-    .tg-icon {
-        width: 30px;
-        height: 30px;
-        background: #c8a675;
-        border-radius: 50%;
-    }
-
-    .iconTg {
-        width: 20px;
-        height: 20px;
-        text-align: center;
-        padding-top: 5px;
-    }
-
-    .tgContent {
-        width: 900px;
-        height: 25px;
-        line-height: 25px;
-        font-size: 14px;
-        margin-left: 20px;
-        text-align: center;
-        overflow: hidden;
-        text-overflow: ellipsis;
-        white-space: nowrap;
-    }
-
     .ym {
         width: 978px;
         height: 20px;
-    }
-
-    .activeNav {
-        color: #c8a675;
-        width: auto;
-        border-bottom: 2px solid #c8a675;
     }
 
     .deposit {
@@ -283,10 +298,9 @@
     }
 
     .deposit-zone {
-        width: 1000px;
         height: 40px;
-
-        border-bottom: 1px solid darkgray;
+        width: 900px;
+        margin: 0 auto;
     }
 
     .depositWay {
@@ -308,14 +322,9 @@
         text-align: center;
     }
 
-    .active1 {
-        color: goldenrod;
-        border-bottom: 3px solid goldenrod;
-    }
-
     .bankCard {
-        width: 25px;
-        height: 25px;
+        width: 20px;
+        height: 20px;
         margin-right: 8px;
     }
 
@@ -329,13 +338,8 @@
     }
 
     .depositWay-content {
-        width: 998px;
-        height: 815px;
-    }
-
-    .kj {
-        width: 998px;
-        height: 815px;
+        /*width: 998px;*/
+        /*height: 815px;*/
     }
 
     .step {
@@ -358,11 +362,6 @@
         margin-left: 80px;
     }
 
-    .tex {
-        font-size: 14px;
-        color: darkgray;
-    }
-
     .amount-box {
         width: 1000px;
         height: 195px;
@@ -372,29 +371,6 @@
         display: flex;
         flex-wrap: wrap;
         background: #eee;
-    }
-
-    .Dis {
-        font-size: 14px;
-        height: 30px;
-        line-height: 30px;
-        padding: 5px 15px;
-        border: 1px solid darkgray;
-    }
-
-    .Dis1 {
-
-    }
-
-    .amount-deposited {
-        width: 740px;
-        height: 145px;
-        text-align: left;
-        font-size: 15px;
-        position: relative;
-        line-height: 145px;
-        margin: auto auto;
-        margin-top: 50px;
     }
 
     .Distribute {
@@ -434,8 +410,8 @@
     }
 
     .tip {
-        width: 998px;
-        height: 485px;
+        width: 100%;
+        height: 300px;
         padding: 35px;
         text-align: left;
     }
@@ -447,7 +423,7 @@
     }
 
     .tip p {
-        font-size: 15px;
+        font-size: 14px;
         color: black;
         margin-top: 10px;
     }
