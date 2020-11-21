@@ -16,49 +16,46 @@
         <div class="content">
             <div class="electronic-">
                 <div class="electronic-nav">
-                    <div class="electronic-click"><i class="el-icon-arrow-left"></i></div>
-                    <div class="electronic-box">
-                        <ul class="electronic-kind">
-                            <li class="electronic-kind-li"
-                                v-for="(item,index) of subGameTitle"
-                                :key="item.id"
-                                @click="changeGameType(item.gameCode)"
-                                :class="activeIndex === index ? 'active':''"
-                            >
-                                <img class="ele-icon" :src="item.icons[0].href"/>
-                                <p class="ele-name">{{item.menuNameCn}}</p>
-                            </li>
-                        </ul>
-                    </div>
-                    <div class="electronic-click"><i class="el-icon-arrow-right"></i></div>
-                </div>
-                <div class="ele-search">
-                    <button class="hit">热门游戏</button>
-                    <div class="center"></div>
-                    <input class="search" placeholder="请输入游戏名称"/>
-                    <i class="icon"></i>
-                </div>
-                <div class="games">
-                    <div class="games-" v-for="item of currentGameClass" :key="item.id">
-                        <div class="games-box">
-                            <img class="games-img" :src="item.icons[0].href" alt/>
-                        </div>
-                        <p class="games-name">{{item.menuNameCn}}</p>
-                        <div class="games-shadow">
-                            <button class="go-game">进入游戏</button>
-                        </div>
-                    </div>
-                </div>
-                <div class="page">
-                    <el-pagination
-                        background
-                        layout="prev, pager, next"
-                        :total="total"
-                        :current-page.sync="currentPage"
-                        :page-size="18"
-                        @current-change=" getGame()"
-                    >
-                    </el-pagination>
+                    <el-tabs v-model="activeName"  class="electronic-box">
+                        <el-tab-pane
+
+                            v-for="(item,index) of subGameTitle"
+                            @click="changeGameType(item.gameCode)"
+                            :label="item.menuNameCn"
+                            :name="item.gameCode"
+                        >
+                            <span slot="label"><img class="ele-icon" :src="item.icons[0].href"/> {{item.menuNameCn}}</span>
+                            <div class="ele-search">
+                                <button class="hit">热门游戏</button>
+                                <div class="center"></div>
+                                <input class="search" placeholder="请输入游戏名称"/>
+                                <i class="icon"></i>
+                            </div>
+                            <div class="games">
+                                <div class="games-" v-for="item of currentGameClass" :key="item.id">
+                                    <div class="games-box">
+                                        <img class="games-img" :src="item.icons[0].href" alt/>
+                                    </div>
+                                    <p class="games-name">{{item.menuNameCn}}</p>
+                                    <div class="games-shadow">
+                                        <button class="go-game">进入游戏</button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="page">
+                                <el-pagination
+                                    background
+                                    layout="prev, pager, next"
+                                    :total="total"
+                                    :current-page.sync="currentPage"
+                                    :page-size="18"
+                                    @current-change=" getGame()"
+                                >
+                                </el-pagination>
+                            </div>
+
+                        </el-tab-pane>
+                    </el-tabs>
                 </div>
             </div>
         </div>
@@ -69,6 +66,7 @@
         name: 'electronicContent',
         data () {
             return {
+                activeName: '',
                 subGameTitle: [], // 所有电子游戏数据
                 currentGameClass: '', // 当前游戏
                 currentPage: 1,
@@ -145,13 +143,15 @@
             },
             switchItem (index) {
                 this.activeIndex = index;
-            }
+            },
+            // handleClick(tab, event) {
+            //     console.log(tab, event);
         },
         mounted () {
             this.sublist();
             this.autoAddNumber();
         }
-    };
+    }
 </script>
 <style scoped>
     .electronic {
@@ -233,24 +233,8 @@
 
     .electronic-nav {
         width: 1200px;
-        height: 80px;
+        /*height: 80px;*/
         display: flex;
-        border-bottom: 1px solid #eaeaea;
-    }
-
-    .electronic-click {
-        width: 49px;
-        height: 100%;
-        background: #fff;
-        text-align: center;
-        line-height: 90px;
-        cursor: pointer;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-size: 24px;
-        color: #c8a675;
-        /*border: 1px solid #eaeaea;*/
     }
 
     .electronic-click img {
@@ -259,48 +243,19 @@
     }
 
     .electronic-box {
-        width: calc(100% - 100px);
-        height: 100%;
-        overflow: hidden;
-        position: relative;
-    }
+        width:95%;
+        margin: 20px auto;
 
-    .electronic-kind {
-        width: 1100px;
-        height: 80px;
-    }
-
-    .electronic-kind-li {
-        width: 98px;
-        position: relative;
-        height: 80px;
-        font-size: 14px;
-        list-style: none;
-        color: #c8a675;
-        border-left: 1px solid #eaeaea;
-        border-right: 1px solid #eaeaea;
-        display: inline-block;
     }
 
     .ele-icon {
-        margin-top: 5px;
-        width: 40px;
-        height: 40px;
-    }
-
-    .ele-name {
-        margin-top: 10px;
-        font-size: 13px;
-        color: #666666;
-        text-align: center;
-    }
-
-    .active {
-        background: 0 0/100% auto #eaeaea !important;
+        /*margin-top: 5px;*/
+        width: 30px;
+        height: 30px;
     }
 
     .ele-search {
-        width: 1200px;
+        width: 100%;
         height: 36px;
         padding-top: 10px;
         display: flex;
@@ -316,13 +271,12 @@
         margin-left: 20px;
         font-size: 14px;
         border: none;
-
         border-radius: 3px;
         cursor: pointer;
     }
 
     .center {
-        width: 820px;
+        width: 765px;
         height: 36px;
 
     }
@@ -355,10 +309,9 @@
     }
 
     .games {
-        width: 1150px;
+        width: 100%;
         height: 618px;
         margin: 0 auto;
-        padding: 0 20px 0 20px;
         display: flex;
         flex-wrap: wrap;
         justify-content: space-around;

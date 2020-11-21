@@ -7,18 +7,13 @@
         </div>
         <div class="deposit-case">
             <div class="deposit-zone">
-                <!--<ul class="depositWay">-->
-                <!--<li v-for="(item,index) in payList" :class="{activeNav:!(index-menuIndex)}"-->
-                <!--:key="item.desc"-->
-                <!--@click='menuShow(item,index)'>-->
-                <!--<img class="bankCard " :src="item.icon"/>-->
-                <!--<a href="#">{{item.scanname}}</a><span class="cross-line">|</span>-->
-                <!--</li>-->
-                <!--</ul>-->
 
                 <el-tabs v-model="activeName" @tab-click="handClick">
-                    <el-tab-pane v-for="(item,index) in payList" @click='menuShow(item,index)' :label="item.scanname"
-                                 :name="item.scancode">
+                    <el-tab-pane
+                        v-for="(item,index) in payList"
+                        @click='menuShow(item,index)'
+                        :label="item.scanname"
+                        :name="item.scancode">
                         <span slot="label"><img class="bankCard " :src="item.icon"/> {{item.scanname}}</span>
 
                         <div class="depositWay-content">
@@ -145,16 +140,10 @@
                                     <p> 3.支付遇到困难？点击“<span @click="jumpOnlineService()">联系客服</span>”人员获得帮助;</p>
                                 </div>
                             </div>
-
-
                         </div>
-
-
                     </el-tab-pane>
                 </el-tabs>
-
             </div>
-
         </div>
     </div>
 </template>
