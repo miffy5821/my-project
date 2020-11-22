@@ -21,6 +21,7 @@
 
                             v-for="(item,index) of subGameTitle"
                             @click="changeGameType(item.gameCode)"
+                            :key="item.gameCode"
                             :label="item.menuNameCn"
                             :name="item.gameCode"
                         >

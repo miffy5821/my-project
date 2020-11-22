@@ -13,6 +13,7 @@
                         v-for="(item,index) in payList"
                         @click='menuShow(item,index)'
                         :label="item.scanname"
+                        :key="item.scancode"
                         :name="item.scancode">
                         <span slot="label"><img class="bankCard " :src="item.icon"/> {{item.scanname}}</span>
 
