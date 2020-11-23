@@ -11,7 +11,7 @@
                 <el-tabs v-model="activeName" @tab-click="handClick">
                     <el-tab-pane
                         v-for="(item,index) in payList"
-                        @click='menuShow(item,index)'
+                        @click="menuShow(item,index)"
                         :label="item.scanname"
                         :key="item.scancode"
                         :name="item.scancode">
@@ -31,8 +31,8 @@
                                         </el-steps>
                                     </div>
                                 </div>
-                                <payCountdown></payCountdown>
-                                <div v-if="false">
+                                <payCountdown v-if="false"></payCountdown>
+                                <div >
                                     <div class="zfb-way-box">
                                         <div class="zfb-way zfb-way-active" v-for="item in currentPayItem.config"
                                              :key="item.scanname">

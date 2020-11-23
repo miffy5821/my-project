@@ -12,19 +12,15 @@
             </div>
             <div class="asset-case">
                 <div class="asset-left">
-                    <el-tooltip
-                        :content="'Switch value: ' + value" placement="top"
+                    <el-switch
+                        v-model="switchValue"
+                        active-color="#13ce66"
+                        inactive-color="#ff4949"
                         style="margin-left: 250px"
                     >
-                        <el-switch
-                            v-model="value"
-                            active-color="#13ce66"
-                            inactive-color="#ff4949"
-                            active-value="100"
-                            inactive-value="0">
-                        </el-switch>
-                    </el-tooltip>
-                    <div class="tex1">￥{{myUser.totalBalance}}
+                    </el-switch>
+
+                    <div class="tex1">￥{{switchValue ? myUser.totalBalance:txtHide}}
 
                     </div>
                     <div class="asset-btn">
@@ -39,12 +35,16 @@
                     </div>
                     <div class="asset-wallet">
                         <span class="wallet">中心钱包</span>
-                        <span class="sum">￥{{myUser.totalBalance}}</span>
-                        <span class="recycle">一键回收</span>
+                        <span class="sum">￥{{ switchValue ? myUser.wallet:txtHide }}</span>
+                        <button class="recycle"
+                                v-loading="loading"
+                                element-loading-spinner="el-icon-loading"
+                        >
+                            一键回收</button>
                     </div>
                     <div class="asset-wallet">
                         <span class="integral">积分总额</span>
-                        <span class="total">{{myUser.integral}}</span>
+                        <span class="total">{{switchValue ? myUser.integral:txtHide}}</span>
                     </div>
                 </div>
             </div>
@@ -53,12 +53,11 @@
                 <div class="assetName">财产分布</div>
                 <div class="distribution">
                     <ul class="distribution-ul">
-                        <li class="distribution-li">
-                            <div class="drt-img"></div>
-                            <!--                            <div class="drt-hover"></div>-->
+                        <li class="distribution-li" v-for="item in batchList"  :key="item.gameCode">
+                            <div class="drt-img" :style="{backgroundImage: 'url(' + item.gameImg + ')', backgroundSize:'contain'}"></div>
                             <div class="drt-text">
-                                <p>大唐棋牌</p>
-                                <p>0.00</p>
+                                <p>{{item.gameName}}</p>
+                                <p>{{switchValue ?  item.balance.toFixed(2) : txtHide}}</p>
                             </div>
                         </li>
                     </ul>
@@ -141,12 +140,12 @@
                 <div class="assetName">财产分布</div>
                 <div class="distribution">
                     <ul class="distribution-ul">
-                        <li class="distribution-li">
-                            <div class="drt-img"></div>
+                        <li class="distribution-li"  v-for="item in batchList"  :key="item.gameCode">
+                            <div class="drt-img" :style="{backgroundImage: 'url(' + item.gameImg + ')', backgroundSize:'contain'}"></div>
                             <div class="drt-hover"></div>
                             <div class="drt-text">
-                                <p>大唐棋牌</p>
-                                <p>0.00</p>
+                                <p>{{item.gameName}}</p>
+                                <p>{{item.balance}}</p>
                             </div>
                         </li>
                     </ul>
@@ -156,17 +155,24 @@
     </div>
 </template>
 <script>
+
+    const HIDE = '****';
+
     export default {
         name: 'conversion',
         data () {
             return {
-                value: '100',
+                switchValue: true,
                 isAuto: false,
                 options1: [],
                 inValue: '',
                 outValue: '',
                 amount: '',
-                isTransfer: false
+                isTransfer: false,
+                priviewUser: '',
+                txtHide: '****',
+                batchList:[], // 资产分布列表
+                loading: true
             }
         },
         props: ['myUser'],
@@ -207,7 +213,7 @@
                 } else if (!this.inValue) {
                     this.$alert('请选择转入平台');
                     return;
-                }else if ( this.inValue === this.outValue){
+                } else if (this.inValue === this.outValue) {
                     this.$alert('同平台间不能转账');
                     return;
                 } else if (!this.amount) {
@@ -238,10 +244,25 @@
                     this.isTransfer = false;
                 })
 
+            },
+            batch(){
+                this.axios.post('/api/user/batch').then((response) => {
+                    const data = response.data;
+                    if (data.status === 10000) {
+
+                        this.batchList = data.data;
+                    }
+                }).catch(function (error) {
+                    console.log(error);
+                }).finally(() => {
+                    this.isTransfer = false;
+                })
             }
+
         },
         mounted () {
             this.getPayCofig();
+            this.batch();
         }
     }
 </script>
@@ -405,6 +426,7 @@
         border-radius: 5px;
         font-size: 13px;
         margin-top: 10px;
+        margin-left: 25px;
         color: #c8a675;
     }
 
@@ -626,7 +648,7 @@
         border: 3px solid #e7e3e3;
         background-size: contain;
         cursor: pointer;
-        background-image: url("https://gamelist.mobanwang.com.cn//menuList/YHHB/0/transfer/dt.png");
+        /*background-image: url("https://gamelist.mobanwang.com.cn//menuList/YHHB/0/transfer/dt.png");*/
     }
 
     .drt-img:hover .drt-hover {
