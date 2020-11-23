@@ -31,16 +31,16 @@
                 </div>
                 <div class="asset-right">
                     <div class="asset-">
-                        <button class="asset-btn2">刷新</button>
+                        <button class="asset-btn2" :loading="isRefresh" @click="refresh()">刷新</button>
                     </div>
                     <div class="asset-wallet">
                         <span class="wallet">中心钱包</span>
                         <span class="sum">￥{{ switchValue ? myUser.wallet:txtHide }}</span>
                         <button class="recycle"
-                                v-loading="loading"
-                                element-loading-spinner="el-icon-loading"
-                        >
-                            一键回收</button>
+                                :loading="isRefresh"
+                                @click="recycle()">
+                                一键回收
+                        </button>
                     </div>
                     <div class="asset-wallet">
                         <span class="integral">积分总额</span>
@@ -172,7 +172,7 @@
                 priviewUser: '',
                 txtHide: '****',
                 batchList:[], // 资产分布列表
-                loading: true
+                isRefresh:false
             }
         },
         props: ['myUser'],
@@ -201,6 +201,29 @@
             },
             toggleAuto () {
                 this.isAuto = !this.isAuto;
+            },
+            refresh(){
+                this.isRefresh = true;
+                this.axios.get('/api/user/info')
+                    .then((response) => {
+                        const data = response.data;
+                        if (data.status === 10000) {
+                            // console.log(data);
+                            this.user = response.data.data;
+                            console.log('user', this.user)
+                        }
+                    }).catch(error => {
+                    this.$alert({
+                        message: error
+                    });
+                })
+                 //定时器
+                this.isRefresh = false;
+            },
+            recycle(){
+                this.isRefresh = true;
+                //定时器
+                this.isRefresh = false;
             },
             tranferConfirm () {
                 console.log('inValue', this.inValue);
