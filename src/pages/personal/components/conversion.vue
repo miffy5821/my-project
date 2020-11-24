@@ -36,11 +36,12 @@
                     <div class="asset-wallet">
                         <span class="wallet">中心钱包</span>
                         <span class="sum">￥{{ switchValue ? myUser.wallet:txtHide }}</span>
-                        <button class="recycle"
-                                :loading="isRefresh"
-                                @click="recycle()">
-                                一键回收
-                        </button>
+                        <el-button class="recycle"
+                                   :loading="testRefresh"
+                                   size="mini"
+                                   @click="recycle()">
+                            一键回收
+                        </el-button>
                     </div>
                     <div class="asset-wallet">
                         <span class="integral">积分总额</span>
@@ -53,11 +54,12 @@
                 <div class="assetName">财产分布</div>
                 <div class="distribution">
                     <ul class="distribution-ul">
-                        <li class="distribution-li" v-for="item in batchList"  :key="item.gameCode">
-                            <div class="drt-img" :style="{backgroundImage: 'url(' + item.gameImg + ')', backgroundSize:'contain'}"></div>
+                        <li class="distribution-li" v-for="item in batchList" :key="item.gameCode">
+                            <div class="drt-img"
+                                 :style="{backgroundImage: 'url(' + item.gameImg + ')', backgroundSize:'contain'}"></div>
                             <div class="drt-text">
                                 <p>{{item.gameName}}</p>
-                                <p>{{switchValue ?  item.balance.toFixed(2) : txtHide}}</p>
+                                <p>{{switchValue ? item.balance.toFixed(2) : txtHide}}</p>
                             </div>
                         </li>
                     </ul>
@@ -140,8 +142,9 @@
                 <div class="assetName">财产分布</div>
                 <div class="distribution">
                     <ul class="distribution-ul">
-                        <li class="distribution-li"  v-for="item in batchList"  :key="item.gameCode">
-                            <div class="drt-img" :style="{backgroundImage: 'url(' + item.gameImg + ')', backgroundSize:'contain'}"></div>
+                        <li class="distribution-li" v-for="item in batchList" :key="item.gameCode">
+                            <div class="drt-img"
+                                 :style="{backgroundImage: 'url(' + item.gameImg + ')', backgroundSize:'contain'}"></div>
                             <div class="drt-hover"></div>
                             <div class="drt-text">
                                 <p>{{item.gameName}}</p>
@@ -171,8 +174,9 @@
                 isTransfer: false,
                 priviewUser: '',
                 txtHide: '****',
-                batchList:[], // 资产分布列表
-                isRefresh:false
+                batchList: [], // 资产分布列表
+                isRefresh: false,
+                testRefresh: false
             }
         },
         props: ['myUser'],
@@ -202,7 +206,7 @@
             toggleAuto () {
                 this.isAuto = !this.isAuto;
             },
-            refresh(){
+            refresh () {
                 this.isRefresh = true;
                 this.axios.get('/api/user/info')
                     .then((response) => {
@@ -217,13 +221,26 @@
                         message: error
                     });
                 })
-                 //定时器
+                //定时器
+                setTimeout(function () {
+                    alert('Hello')
+                }, 1000);
                 this.isRefresh = false;
             },
-            recycle(){
-                this.isRefresh = true;
-                //定时器
-                this.isRefresh = false;
+            recycle () {
+                this.testRefresh = true;
+
+                this.axios.post('/api/user/recycle').then(resp => {
+                    const data = resp.data;
+
+                    if (data.status === 10000) {
+                        this.myUser = Object.assign(this.myUser, data.data);
+                    }
+
+                }).finally(() => {
+                    this.testRefresh = false;
+                });
+
             },
             tranferConfirm () {
                 console.log('inValue', this.inValue);
@@ -268,7 +285,7 @@
                 })
 
             },
-            batch(){
+            batch () {
                 this.axios.post('/api/user/batch').then((response) => {
                     const data = response.data;
                     if (data.status === 10000) {
@@ -417,13 +434,12 @@
     }
 
     .asset-wallet {
-        width: 238px;
+        /*width: 238px;*/
         height: 50px;
-        line-height: 50px;
         font-size: 14px;
         display: flex;
         margin-left: 30px;
-        justify-content: flex-start;
+        align-items: center;
 
     }
 
@@ -442,14 +458,14 @@
     }
 
     .recycle {
-        width: 80px;
-        height: 28px;
-        line-height: 28px;
+        /*width: 80px;*/
+        /*height: 28px;*/
+        /*line-height: 28px;*/
         border: 1px solid #c8a675;
-        border-radius: 5px;
-        font-size: 13px;
-        margin-top: 10px;
-        margin-left: 25px;
+        /*border-radius: 5px;*/
+        /*font-size: 13px;*/
+        /*margin-top: 10px;*/
+        /*margin-left: 25px;*/
         color: #c8a675;
     }
 

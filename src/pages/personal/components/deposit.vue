@@ -32,7 +32,7 @@
                                     </div>
                                 </div>
                                 <payCountdown v-if="false"></payCountdown>
-                                <div >
+                                <div>
                                     <div class="zfb-way-box">
                                         <div class="zfb-way zfb-way-active" v-for="item in currentPayItem.config"
                                              :key="item.scanname">
@@ -44,20 +44,23 @@
                                     <div class="treasure-amount">
                                         <div class="amount-name">
                                             <label>存款名字 ：</label>
-                                            <input type="text" class="Distribute" placeholder="请输入存款人姓名"/>
+                                            <!--<input type="text" class="Distribute" placeholder="请输入存款人姓名"/>-->
+                                            <el-input v-model="card.username" class="Distribute" placeholder="请输入存款人姓名"
+                                                      clearable></el-input>
                                         </div>
                                         <div class="amount-name">
                                             <label>存款方式 ：</label>
-                                            <el-radio-group v-model="radio1" class="margin-left">
+                                            <el-radio-group v-model="card.cardType" class="margin-left">
                                                 <el-radio-button v-for="item in currentPay.channels" :key="item.desc"
                                                                  :label="item.desc"
-                                                                 :value="item.scancode"></el-radio-button>
+                                                                 :value="item.code"></el-radio-button>
 
                                             </el-radio-group>
                                         </div>
                                         <div class="amount-name">
                                             <label>存款金额 ：</label>
-                                            <input type="number" class="Distribute" v-model="amount"/>
+                                            <el-input type="number" v-model="card.amount"
+                                                      placeholder="请输入金额"></el-input>
                                             <div class="ts">单笔限额{{currentPay.minquota}}-{{currentPay.maxquota}}(元)</div>
                                         </div>
                                         <el-button class="btn-next" @click="nextJumpPay">下一步</el-button>
@@ -106,39 +109,45 @@
                             </div>
 
                             <div class="treasure" v-show="currentPayItem.scancode === 'ali'  || currentPayItem.scancode === 'ysf'  ||
-                     currentPayItem.scancode === 'kj' || currentPayItem.scancode === 'bit'">
-                                <div class="treasure-ways">
-                                    <div class="step">
-                                        <el-steps :active="active" finish-status="success">
-                                            <el-step title="输入金额"></el-step>
-                                            <el-step title="存款成功"></el-step>
-                                        </el-steps>
-                                    </div>
-                                    <div class="amount-name">
-                                        <div class="zfb-way" :class="{'zfb-way-active': index === currentPayIndex}"
-                                             v-for="(item,index) in currentPayItem.config"
-                                             @click="switchConfig(item,index)"
-                                             :key="item.icon">
-                                            <img :src="currentPayItem.icon"/>
-                                            <span>支付{{index+1}}</span>
+                     currentPayItem.scancode === 'kj' || currentPayItem.scancode === 'bit' || currentPayItem.scancode === 'yl'">
+
+                                <div class="no-data">暂无数据</div>
+
+                                <div class="pay-wrapper" v-if="currentPayItem.config.length">
+                                    <div class="treasure-ways">
+                                        <div class="step">
+                                            <el-steps :active="active" finish-status="success">
+                                                <el-step title="输入金额"></el-step>
+                                                <el-step title="存款成功"></el-step>
+                                            </el-steps>
+                                        </div>
+                                        <div class="amount-name">
+                                            <div class="zfb-way" :class="{'zfb-way-active': index === currentPayIndex}"
+                                                 v-for="(item,index) in currentPayItem.config"
+                                                 @click="switchConfig(item,index)"
+                                                 :key="item.icon">
+                                                <img :src="currentPayItem.icon"/>
+                                                <span>支付{{index+1}}</span>
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
-                                <div class="amount-box">
-                                    <div class="amount-name">
-                                        <label>存款金额 ：</label>
-                                        <input type="number" v-model="amount" class="Distribute"/>
-                                        <div class="ts">单笔限额 {{currentPay.minquota}} - {{currentPay.maxquota}}(元)</div>
+                                    <div class="amount-box">
+                                        <div class="amount-name">
+                                            <label>存款金额 ：</label>
+                                            <input type="number" v-model="amount" class="Distribute"/>
+                                            <div class="ts">单笔限额 {{currentPay.minquota}} - {{currentPay.maxquota}}(元)
+                                            </div>
+                                        </div>
+                                        <el-button class="btn-next" :loading="isTransfer" @click="sumitDeposit">下一步
+                                        </el-button>
                                     </div>
-                                    <el-button class="btn-next" :loading="isTransfer" @click="sumitDeposit">下一步
-                                    </el-button>
-                                </div>
-                                <div class="tip">
-                                    <h2>温馨提示</h2>
-                                    <p>为确保您的款项及时到账，请您留意以下几点：</p>
-                                    <p> 1.在输入您的存款金额时确保您提交的金额在限额范围之内；</p>
-                                    <p> 2.若您支付过程中遇到问题未完成，请重新下单；</p>
-                                    <p> 3.支付遇到困难？点击“<span @click="jumpOnlineService()">联系客服</span>”人员获得帮助;</p>
+                                    <div class="tip">
+                                        <h2>温馨提示</h2>
+                                        <p>为确保您的款项及时到账，请您留意以下几点：</p>
+                                        <p> 1.在输入您的存款金额时确保您提交的金额在限额范围之内；</p>
+                                        <p> 2.若您支付过程中遇到问题未完成，请重新下单；</p>
+                                        <p> 3.支付遇到困难？点击“<span @click="jumpOnlineService()">联系客服</span>”人员获得帮助;</p>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -171,7 +180,13 @@
                 payList: [],
                 activeName: '',
                 amount: '', //存款金额
-                isTransfer: false
+                isTransfer: false,
+                card: {
+                    username: '',
+                    cardType: '支付宝转账',
+                    amount: ''
+                }
+
             }
         },
 
@@ -184,11 +199,18 @@
                     this.currentPay = this.currentPayItem.config[0];
                 }
 
+                // if (this.currentPay.config[0].channels) {
+                //     this.card.cardType = this.currentPay.config[0].channels[0].code;
+                //     console.log(this.this.card.cardType )
+                // }
+
+                console.log('config', this.currentPayItem.config.length);
                 console.log(tab, event)
             },
             nextJumpPay () {
-                if (this.active++ > 1) this.active = 2;
-                this.$router.push('/personal/payCountdown')
+                // if (this.active++ > 1) this.active = 2;
+                // this.$router.push('/personal/payCountdown')
+
             },
 
             next () {
@@ -210,6 +232,10 @@
                             this.currentPayItem = this.payList[0];
                             this.activeName = this.currentPayItem.scancode;
                             this.currentPay = this.currentPayItem.config[0];
+                            // if (this.currentPay.config[0].channels) {
+                            //     this.card.cardType = this.currentPay.config[0].channels[0].code;
+                            // }
+
                             console.log('payList', this.payList);
                         }
                     })
@@ -364,17 +390,17 @@
     }
 
     .Distribute {
-        width: 195px;
-        height: 35px;
-        font-size: 14px;
-        padding: 2px 5px 2px 8px;
-        border: 1px solid gray;
-        border-radius: 5px;
+        width: 205px;
+        /*height: 35px;*/
+        /*font-size: 14px;*/
+        /*padding: 2px 5px 2px 8px;*/
+        /*border: 1px solid gray;*/
+        /*border-radius: 5px;*/
     }
 
-    .Distribute:focus {
-        border-shadow: 1px solid #c8a675;
-    }
+    /*.Distribute:focus {*/
+    /*border-shadow: 1px solid #c8a675;*/
+    /*}*/
 
     .ts {
         width: 180px;
@@ -541,7 +567,7 @@
     .amount-name {
         padding-left: 200px;
         text-align: left;
-        width: 740px;
+        /*width: 740px;*/
         height: 60px;
         display: flex;
     }
