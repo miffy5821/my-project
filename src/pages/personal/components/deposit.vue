@@ -44,7 +44,6 @@
                                     <div class="treasure-amount">
                                         <div class="amount-name">
                                             <label>存款名字 ：</label>
-                                            <!--<input type="text" class="Distribute" placeholder="请输入存款人姓名"/>-->
                                             <el-input v-model="card.username" class="Distribute" placeholder="请输入存款人姓名"
                                                       clearable></el-input>
                                         </div>
@@ -59,7 +58,7 @@
                                         </div>
                                         <div class="amount-name">
                                             <label>存款金额 ：</label>
-                                            <el-input type="number" v-model="card.amount"
+                                            <el-input class="Distribute"   type="number" v-model="card.amount"
                                                       placeholder="请输入金额"></el-input>
                                             <div class="ts">单笔限额{{currentPay.minquota}}-{{currentPay.maxquota}}(元)</div>
                                         </div>
@@ -111,7 +110,11 @@
                             <div class="treasure" v-show="currentPayItem.scancode === 'ali'  || currentPayItem.scancode === 'ysf'  ||
                      currentPayItem.scancode === 'kj' || currentPayItem.scancode === 'bit' || currentPayItem.scancode === 'yl'">
 
-                                <div class="no-data">暂无数据</div>
+                                <div class="no-data" v-if="!currentPayItem.config.length">
+                                    <img class="recordImg" src="/static/personal/none.svg"/>
+                                    <p>暂无数据</p>
+
+                                </div>
 
                                 <div class="pay-wrapper" v-if="currentPayItem.config.length">
                                     <div class="treasure-ways">
@@ -232,9 +235,6 @@
                             this.currentPayItem = this.payList[0];
                             this.activeName = this.currentPayItem.scancode;
                             this.currentPay = this.currentPayItem.config[0];
-                            // if (this.currentPay.config[0].channels) {
-                            //     this.card.cardType = this.currentPay.config[0].channels[0].code;
-                            // }
 
                             console.log('payList', this.payList);
                         }
@@ -319,15 +319,6 @@
         margin: 0 auto;
     }
 
-    .depositWay {
-        width: 900px;
-        height: 40px;
-        display: flex;
-        flex-wrap: wrap;
-        margin-top: 10px;
-        margin-left: auto;
-        margin-right: auto;
-    }
 
     .depositWay li {
         width: auto;
@@ -344,20 +335,6 @@
         margin-right: 8px;
     }
 
-    .cross-line {
-        height: 50px;
-        width: auto;
-        margin-top: 12px;
-        color: darkgray;
-        padding-left: 18px;
-        padding-right: 18px;
-    }
-
-    .depositWay-content {
-        /*width: 998px;*/
-        /*height: 815px;*/
-    }
-
     .step {
         width: 750px;
         height: 20px;
@@ -365,17 +342,6 @@
         margin-right: auto;
         padding: 50px 80px;
         text-align: left;
-    }
-
-    .way {
-        width: 145px;
-        height: 43px;
-        text-align: center;
-        line-height: 43px;
-        border: 1px solid red;
-        margin-top: 20px;
-        margin-bottom: 30px;
-        margin-left: 80px;
     }
 
     .amount-box {
@@ -391,16 +357,7 @@
 
     .Distribute {
         width: 205px;
-        /*height: 35px;*/
-        /*font-size: 14px;*/
-        /*padding: 2px 5px 2px 8px;*/
-        /*border: 1px solid gray;*/
-        /*border-radius: 5px;*/
     }
-
-    /*.Distribute:focus {*/
-    /*border-shadow: 1px solid #c8a675;*/
-    /*}*/
 
     .ts {
         width: 180px;
@@ -498,10 +455,6 @@
         color: grey;
     }
 
-    .tx-way-active {
-        border: 1px solid red;
-    }
-
     .tx-button {
         width: 800px;
         height: 50px;
@@ -511,7 +464,6 @@
 
     .tx-btn11 {
         width: 200px;
-        /* height: 10px; */
         color: #fff;
         background-color: #c2a77d;
         border: none;
@@ -519,6 +471,20 @@
         border-radius: 5px;
         margin-left: auto;
         margin-right: auto;
+    }
+
+    .no-data {
+        height: 495px;
+        margin: 0 20px 20px 20px;
+        padding: 0 16px 16px 16px;
+        background: #fff;
+    }
+
+    .recordImg {
+        width: 62px;
+        height: 40px;
+        margin-bottom: 15px;
+        margin-top: 150px;
     }
 
     .zfb-way-box {
@@ -567,7 +533,6 @@
     .amount-name {
         padding-left: 200px;
         text-align: left;
-        /*width: 740px;*/
         height: 60px;
         display: flex;
     }

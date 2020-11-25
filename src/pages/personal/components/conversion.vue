@@ -31,7 +31,12 @@
                 </div>
                 <div class="asset-right">
                     <div class="asset-">
-                        <button class="asset-btn2" :loading="isRefresh" @click="refresh()">刷新</button>
+                        <el-button class="asset-btn2"
+                                   :loading="isRefresh"
+                                   size="mini"
+                                   @click="refresh()">
+                            刷新
+                        </el-button>
                     </div>
                     <div class="asset-wallet">
                         <span class="wallet">中心钱包</span>
@@ -216,16 +221,20 @@
                             this.user = response.data.data;
                             console.log('user', this.user)
                         }
-                    }).catch(error => {
-                    this.$alert({
-                        message: error
-                    });
-                })
-                //定时器
-                setTimeout(function () {
-                    alert('Hello')
-                }, 1000);
-                this.isRefresh = false;
+                    }).finally(() => {
+                    // //定时器
+                    setTimeout(() => {
+                        alert('nihao');
+                        this.isRefresh = false;
+                    }, 2000);
+
+                });
+
+                // //定时器
+                // setTimeout(function () {
+                //     alert('Hello')
+                // }, 1000);
+                // this.isRefresh = false;
             },
             recycle () {
                 this.testRefresh = true;
@@ -424,7 +433,7 @@
     }
 
     .asset-btn2 {
-        width: 60px;
+        /*width: 60px;*/
         height: 35px;
         font-size: 14px;
         background: #c8a675;

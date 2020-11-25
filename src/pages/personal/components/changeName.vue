@@ -12,15 +12,24 @@
                     <el-step title="设定成功"></el-step>
                 </el-steps>
             </div>
-            <div class="pw">
+            <div class="pw" v-if="true">
                 <div class="changeWord-item">
                     <label>真实名字:</label>
-                    <input type="text" placeholder="请输入真实姓名">
+                    <el-input
+                        v-model="input"
+                        type="text"
+                        class="width"
+                        placeholder="请输入真实姓名">
+                    </el-input>
                 </div>
 
                 <el-button class="cw-btn" @click="next()">下一步</el-button>
             </div>
-
+            <div class="tips"  v-if="false">
+                <h1>恭喜您设定成功!</h1>
+                <p>贴心提醒</p>
+                <p>当您完成设定后,若有疑问,可联系<span @click="jumpOnlineService">线上客服</span>获得帮助</p>
+            </div>
         </div>
     </div>
 </template>
@@ -31,11 +40,15 @@
             return {
                 active:0,
                 success:'',
+                input: ''
             }
         },methods: {
             next() {
                 this.active = 2;
-            }
+            },
+            jumpOnlineService () {
+                window.open('https://chatlink.mstatik.com/widget/standalone.html?eid=76107099dd1ba17a94453359257851c8');
+            },
         }
     }
 </script>
@@ -59,7 +72,6 @@
         padding: 0 30px;
         width: 200px;
         text-align: left;
-        padding-left: -30px;
         font-size: 15px;
         font-weight: 700;
         color: #666;
@@ -88,7 +100,7 @@
     }
 
     .changeWord-item{
-        width: calc(100% - 400px);
+        width:100%;
         height:40px ;
         margin-left: auto;
         margin-right: auto;
@@ -114,14 +126,41 @@
         font-size: 14px;
         padding: 6px 11px 6px 15px;
     }
+    .width{
+        width: 250px;
+    }
     .cw-btn{
         width: 100px;
         padding: 5px;
         line-height: 25px;
         color: #fff;
         margin-top: 20px;
-        margin-left: -80px;
+        margin-left: -60px;
         background-color: #c2a77d;
         border-color: #c2a77d;
+    }
+    .tips{
+        width:760px;
+        height: 300px;
+        padding: 80px;
+        margin: 0 auto;
+        text-align: left;
+    }
+    h1{
+        font-size: 18px;
+        font-weight: 700;
+        padding: 50px 0;
+        color: #c83434;
+        margin-left: 80px;
+    }
+
+    .tips p{
+        font-size: 14px;
+        color: black;
+        padding: 14px 0;
+        margin-left: 80px;
+    }
+    .tips span{
+        color: red;
     }
 </style>

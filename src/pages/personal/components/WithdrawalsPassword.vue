@@ -3,7 +3,7 @@
         <div class="ym">
         </div>
         <div class="change">
-            <div class="changeName">登录密码</div>
+            <div class="changeName">提款密码</div>
         </div>
         <div class="change-case">
             <div class="cw-step">
@@ -12,23 +12,42 @@
                     <el-step title="设定成功"></el-step>
                 </el-steps>
             </div>
-            <div class="pw">
+            <div class="pw" v-if="true">
                 <div class="changeWord-item">
                     <label>旧密码:</label>
-                    <input type="text" placeholder="请输入6-12位数字或字母组合">
+                    <el-input
+                        v-model="input"
+                        type="number"
+                        class="width"
+                        placeholder="请输入6-12位数字或字母组合">
+                    </el-input>
                 </div>
                 <div class="changeWord-item">
                     <label>新密码:</label>
-                    <input type="text" placeholder="请输入6-12位数字或字母组合">
+                    <el-input
+                        v-model="input"
+                        type="number"
+                        class="width"
+                        placeholder="请输入6-12位数字或字母组合">
+                    </el-input>
                 </div>
                 <div class="changeWord-item">
                     <label>确认密码:</label>
-                    <input type="text" placeholder="请再次输入密码">
+                    <el-input
+                        v-model="input"
+                        type="number"
+                        class="width"
+                        placeholder="请再次输入密码">
+                    </el-input>
                 </div>
 
                 <el-button class="cw-btn" @click="next">下一步</el-button>
             </div>
-
+            <div class="tips"  v-if="false">
+                <h1>恭喜您设定成功!</h1>
+                <p>贴心提醒</p>
+                <p>当您完成设定后,若有疑问,可联系<span  @click="jumpOnlineService">线上客服</span>获得帮助</p>
+            </div>
         </div>
     </div>
 </template>
@@ -37,7 +56,8 @@ export default {
     name: 'WithdrawalsPassword',
     data() {
         return {
-            active: 1
+            active: 1,
+            input:''
         }
     },
     methods: {
@@ -48,47 +68,6 @@ export default {
 }
 </script>
 <style scoped>
-.center {
-    width: 1000px;
-    height: 1000px;
-    background: white;
-    border: 1px solid #eaeaea;
-}
-
-.tg {
-    width: 960px;
-    height: 25px;
-    display: flex;
-    justify-content: center;
-    background: #eaeaea;
-    padding: 20px 20px;
-}
-
-.tg-icon {
-    width: 30px;
-    height: 30px;
-    background: #c8a675;
-    border-radius: 50%;
-}
-
-.iconTg {
-    width: 20px;
-    height: 20px;
-    text-align: center;
-    padding-top: 5px;
-}
-
-.tgContent {
-    width: 900px;
-    height: 25px;
-    line-height: 25px;
-    font-size: 14px;
-    margin-left: 20px;
-    text-align: center;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-}
 
 .ym {
     width: 978px;
@@ -108,7 +87,7 @@ export default {
     padding: 0 30px;
     width: 200px;
     text-align: left;
-    padding-left: -30px;
+
     font-size: 15px;
     font-weight: 700;
     color: #666;
@@ -163,15 +142,46 @@ export default {
     font-size: 14px;
     padding: 6px 11px 6px 15px;
 }
+.width{
+    width: 250px;
+}
+.btn{
+    width: 440px;
+    display: flex;
+    justify-content: center;
+}
 .cw-btn{
     width: 100px;
     padding: 5px;
     line-height: 25px;
     color: #fff;
     margin-top: 20px;
-    margin-left: -80px;
     background-color: #c2a77d;
     border-color: #c2a77d;
+}
+.tips{
+    width:760px;
+    height: 300px;
+    padding: 80px;
+    margin: 0 auto;
+    text-align: left;
+}
+h1{
+    font-size: 18px;
+    font-weight: 700;
+    padding: 50px 0;
+    color: #c83434;
+    margin-left: 80px;
+}
+
+.tips p{
+    font-size: 14px;
+    color: black;
+    padding: 14px 0;
+    margin-left: 80px;
+}
+.tips span{
+    color: red;
 }
 </style>
 

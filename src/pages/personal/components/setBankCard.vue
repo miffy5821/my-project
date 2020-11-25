@@ -13,23 +13,45 @@
                     <el-step title="设定成功"></el-step>
                 </el-steps>
             </div>
-            <div class="pw">
+            <div class="pw" >
                 <div class="changeWord-item">
                     <label>持卡人:</label>
-                    <input type="text" placeholder="请输入持卡人姓名">
+                    <el-input
+                        v-model="input"
+                        type="number"
+                        class="width"
+                        placeholder="请输入持卡人姓名">
+                    </el-input>
                 </div>
                 <div class="changeWord-item">
                     <label>银行卡号:</label>
-                    <input type="text" placeholder="请输入存储银行卡号">
+                    <el-input
+                        v-model="input"
+                        type="number"
+                        class="width"
+                        placeholder="请输入存储银行卡号">
+                    </el-input>
                 </div>
                 <div class="changeWord-item">
                     <label>选择银行卡:</label>
-                    <input type="text" placeholder="请选择银行卡">
+                    <el-input
+                        v-model="input"
+                        type="text"
+                        class="width"
+                        placeholder="请选择银行卡">
+                    </el-input>
                 </div>
                 <p class="alipay-text">温馨提示：如无开户银行，请选择其他银行，点击提交将银行名填入开户行地址。</p>
-                <el-button class="cw-btn" @click="next">确定</el-button><el-button class="cw-btn" @click="next">重置</el-button>
+                <div class="btn">
+                    <el-button class="cw-btn" @click="next">确定</el-button>
+                    <el-button class="cw-btn" @click="next">重置</el-button>
+                </div>
             </div>
-
+            <div class="tips"  v-if="false">
+                <h1>恭喜您设定成功!</h1>
+                <p>贴心提醒</p>
+                <p>当您完成设定后,若有疑问,可联系<span  @click="jumpOnlineService">线上客服</span>获得帮助</p>
+            </div>
         </div>
     </div>
 </template>
@@ -40,11 +62,15 @@
             return {
                 active:0,
                 success:'',
+                input: ''
             }
         },methods: {
             next() {
                 this.active = this.active + 1;
-            }
+            },
+            jumpOnlineService () {
+                window.open('https://chatlink.mstatik.com/widget/standalone.html?eid=76107099dd1ba17a94453359257851c8');
+            },
         }
     }
 </script>
@@ -68,7 +94,6 @@
         padding: 0 30px;
         width: 200px;
         text-align: left;
-        padding-left: -30px;
         font-size: 15px;
         font-weight: 700;
         color: #666;
@@ -91,8 +116,10 @@
 
     .pw{
         width:840px;
-        height: 300px;
         padding: 80px;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
         text-align: center;
     }
 
@@ -129,15 +156,46 @@
         margin-top: 15px;
         text-align: center;
     }
+    .width{
+        width: 250px;
+    }
+    .btn{
+        width: 440px;
+        display: flex;
+        justify-content: center;
+    }
     .cw-btn{
         width: 100px;
         padding: 5px;
         line-height: 25px;
         color: #fff;
         margin-top: 20px;
-        margin-left: -80px;
         background-color: #c2a77d;
         border-color: #c2a77d;
+    }
+    .tips{
+        width:760px;
+        height: 300px;
+        padding: 80px;
+        margin: 0 auto;
+        text-align: left;
+    }
+    h1{
+        font-size: 18px;
+        font-weight: 700;
+        padding: 50px 0;
+        color: #c83434;
+        margin-left: 80px;
+    }
+
+    .tips p{
+        font-size: 14px;
+        color: black;
+        padding: 14px 0;
+        margin-left: 80px;
+    }
+    .tips span{
+        color: red;
     }
 </style>
 

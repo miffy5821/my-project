@@ -15,15 +15,30 @@
       <div class="pw">
         <div class="changeWord-item">
           <label>旧密码:</label>
-          <input type="text" placeholder="请输入6-12位数字或字母组合">
+            <el-input
+                v-model="input"
+                type="text"
+                class="width"
+                placeholder="请输入6-12位数字或字母组合">
+            </el-input>
         </div>
         <div class="changeWord-item">
           <label>新密码:</label>
-          <input type="text" placeholder="请输入6-12位数字或字母组合">
+            <el-input
+                v-model="input"
+                type="text"
+                class="width"
+                placeholder="12位数字或字母组合">
+            </el-input>
         </div>
         <div class="changeWord-item">
           <label>确认密码:</label>
-          <input type="text" placeholder="请再次输入密码">
+            <el-input
+                v-model="input"
+                type="text"
+                class="width"
+                placeholder="请再次输入密码">
+            </el-input>
         </div>
 
         <el-button class="cw-btn" @click="next">下一步</el-button>
@@ -37,7 +52,8 @@
     name: 'changePassord',
     data() {
       return {
-        active: 1
+        active: 1,
+        input:''
       }
     },
     methods: {
@@ -48,47 +64,6 @@
   }
 </script>
 <style scoped>
-  .center {
-    width: 1000px;
-    height: 1000px;
-    background: white;
-    border: 1px solid #eaeaea;
-  }
-
-  .tg {
-    width: 960px;
-    height: 25px;
-    display: flex;
-    justify-content: center;
-    background: #eaeaea;
-    padding: 20px 20px;
-  }
-
-  .tg-icon {
-    width: 30px;
-    height: 30px;
-    background: #c8a675;
-    border-radius: 50%;
-  }
-
-  .iconTg {
-    width: 20px;
-    height: 20px;
-    text-align: center;
-    padding-top: 5px;
-  }
-
-  .tgContent {
-    width: 900px;
-    height: 25px;
-    line-height: 25px;
-    font-size: 14px;
-    margin-left: 20px;
-    text-align: center;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-  }
 
   .ym {
     width: 978px;
@@ -108,7 +83,6 @@
     padding: 0 30px;
     width: 200px;
     text-align: left;
-    padding-left: -30px;
     font-size: 15px;
     font-weight: 700;
     color: #666;
@@ -163,13 +137,18 @@
     font-size: 14px;
     padding: 6px 11px 6px 15px;
   }
+
+  .width{
+      width: 250px;
+  }
+
   .cw-btn{
     width: 100px;
     padding: 5px;
     line-height: 25px;
     color: #fff;
     margin-top: 20px;
-    margin-left: -80px;
+    margin-left: -60px;
     background-color: #c2a77d;
     border-color: #c2a77d;
   }
