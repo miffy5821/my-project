@@ -188,7 +188,7 @@
         methods: {
             getPayCofig () {
                 this.axios.get('/api/user/config', {
-                    params: {terminal: 1}
+                    terminal: 1
                 })
                     .then((response) => {
                         const data = response.data;
@@ -218,23 +218,16 @@
                         const data = response.data;
                         if (data.status === 10000) {
                             // console.log(data);
-                            this.user = response.data.data;
-                            console.log('user', this.user)
+                            //this.myUser = response.data.data;
+                            this.myUser = Object.assign(this.myUser, response.data.data);
+                            console.log('user', this.myUser)
                         }
                     }).finally(() => {
                     // //定时器
-                    setTimeout(() => {
-                        alert('nihao');
                         this.isRefresh = false;
-                    }, 2000);
 
                 });
 
-                // //定时器
-                // setTimeout(function () {
-                //     alert('Hello')
-                // }, 1000);
-                // this.isRefresh = false;
             },
             recycle () {
                 this.testRefresh = true;

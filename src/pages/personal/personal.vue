@@ -39,8 +39,17 @@
                 <div class="content">
                     <div class="tg">
                         <div class="tg-icon"><img class="iconTg" src="/static/personal/phone.png" alt=""></div>
-                        <p class="tgContent">尊敬的澳门银河贵宾，由于线上充值会员多通道拥挤，充值成功率降低，建议贵宾使用公司线下转卡方式充值，
-                            笔笔入款1.5%,感谢您对我司一直以来的支持，祝您游戏愉快~</p>
+                        <div class="content-wrapper">
+
+                            <div class="item-container clearfix">
+                                <p class="tgContent" v-for="item in newsList" v-text="item.data" :key="item.weight">
+                                    <!--尊敬的澳门银河贵宾，由于线上充值会员多通道拥挤，充值成功率降低，建议贵宾使用公司线下转卡方式充值，-->
+                                    <!--笔笔入款1.5%,感谢您对我司一直以来的支持，祝您游戏愉快~-->
+                                </p>
+                            </div>
+
+                        </div>
+
                     </div>
                     <router-view :myUser="user"></router-view>
                 </div>
@@ -50,7 +59,6 @@
 </template>
 
 <script>
-    // import personal from '@/pages/personal/personal.vue' //个人中心
     import deposit from './components/deposit.vue'//存款专区
     import conversion from './components/conversion.vue'////额度转换
     import withdrawal from './components/withdrawal.vue' //取款专区
@@ -68,7 +76,6 @@
     import setQQ from './components/setQQ.vue'//设置QQ
     import setBankCard from './components/setBankCard.vue'//修改银行卡
     import setUstd from './components/setUstd.vue'//绑定USTD
-    // import payCountdown from './components/payCountdown.vue'
 
     export default {
         name: 'personal',
@@ -89,7 +96,6 @@
             setQQ: setQQ,//设置QQ
             setBankCard: setBankCard,//修改银行卡
             setUstd: setUstd,//绑定USTD
-            // payCountdown: payCountdown
         },
         data () {
             return {
@@ -105,7 +111,8 @@
                     {name: '个人资料', path: '/personal/personalData', img: '/static/personal/phone.png'},
                     {name: '信息公告', path: '/personal/information', img: '/static/personal/phone.png'},
                     {name: '修改密码', path: '/personal/changePassword', img: '/static/personal/phone.png'},
-                ]
+                ],
+                newsList:[]
             }
         },
         methods: {
@@ -123,10 +130,29 @@
                         message: error
                     });
                 })
-            }
+            },
+            getConfigs() {
+                this.axios.get('/api/config', {
+                    params: {id: 0, terminal: 0}
+                })
+                    .then((response) => {
+                        const data = response.data;
+                        if (data.status === 10000) {
+
+                            const configs = response.data.data[3].configs;// 储存所有公告
+                            console.log('configs',this.configs)
+                            this.newsList = configs;
+                            console.log('newsList', this.newsList);
+                        }
+                    })
+                    .catch(function (error) {
+                        console.log(error);
+                    });
+            },
         },
         mounted () {
             this.getUser();
+            this.getConfigs();
         }
     }
 </script>
@@ -295,23 +321,47 @@
         text-align: center;
         padding-top: 5px;
     }
+    .content-wrapper {
+        width: 900px;
+        margin-left: 20px;
+        height: 25px;
+        overflow: hidden;
+    }
+    .clearfix:after {
+        content: '.';
+        height: 0;
+        display: block;
+        clear: both;
+    }
 
-    .tgContent {
-        /*width: 900px;*/
+    .item-container {
+        position: absolute;
+        /*display: flex;*/
+    }
+
+     .tgContent {
         height: 25px;
         line-height: 25px;
         font-size: 14px;
-        margin-left: 20px;
-        text-align: center;
-        overflow: hidden;
-        text-overflow: ellipsis;
         white-space: nowrap;
+        float: left;
+         width: fit-content;
+        //animation: 20s wordsLoop linear infinite normal;
     }
+
+    @keyframes wordsLoop {
+        0% {
+            transform: translateX(100%);
+        }
+        100% {
+            transform: translateX(-100%);
+        }
+    }
+
 
     .active {
         transition: all .3s;
         background-color: #f2f2f2;
-        /*color: #c8a675 !important;*/
         a {
             span {
                 color: #c8a675;
