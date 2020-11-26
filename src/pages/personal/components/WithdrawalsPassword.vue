@@ -17,7 +17,7 @@
                     <label>旧密码:</label>
                     <el-input
                         v-model="input"
-                        type="number"
+                        type="text"
                         class="width"
                         placeholder="请输入6-12位数字或字母组合">
                     </el-input>
@@ -26,7 +26,7 @@
                     <label>新密码:</label>
                     <el-input
                         v-model="input"
-                        type="number"
+                        type="text"
                         class="width"
                         placeholder="请输入6-12位数字或字母组合">
                     </el-input>
@@ -35,7 +35,7 @@
                     <label>确认密码:</label>
                     <el-input
                         v-model="input"
-                        type="number"
+                        type="text"
                         class="width"
                         placeholder="请再次输入密码">
                     </el-input>
@@ -63,7 +63,10 @@ export default {
     methods: {
         next() {
             this.active = 2;
-        }
+        },
+        jumpOnlineService () {
+            window.open('https://chatlink.mstatik.com/widget/standalone.html?eid=76107099dd1ba17a94453359257851c8');
+        },
     }
 }
 </script>
@@ -145,11 +148,7 @@ export default {
 .width{
     width: 250px;
 }
-.btn{
-    width: 440px;
-    display: flex;
-    justify-content: center;
-}
+
 .cw-btn{
     width: 100px;
     padding: 5px;

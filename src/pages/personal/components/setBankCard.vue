@@ -18,7 +18,7 @@
                     <label>持卡人:</label>
                     <el-input
                         v-model="input"
-                        type="number"
+                        type="text"
                         class="width"
                         placeholder="请输入持卡人姓名">
                     </el-input>
@@ -162,6 +162,7 @@
     .btn{
         width: 440px;
         display: flex;
+        padding-left: 50px;
         justify-content: center;
     }
     .cw-btn{
@@ -170,6 +171,7 @@
         line-height: 25px;
         color: #fff;
         margin-top: 20px;
+        margin-left: 30px;
         background-color: #c2a77d;
         border-color: #c2a77d;
     }

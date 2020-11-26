@@ -1,10 +1,10 @@
 <template>
   <div>
 
-    <div class="ym">
+    <div class="ym" >
     </div>
     <div class="change">
-      <div class="changeName">登录密码</div>
+      <div class="changeName">绑定支付宝</div>
     </div>
     <div class="change-case">
       <div class="cw-step">
@@ -13,23 +13,42 @@
           <el-step title="绑定支付宝成功"></el-step>
         </el-steps>
       </div>
-      <div class="pw">
+      <div class="pw" v-if="true">
         <div class="changeWord-item">
           <label>支付宝账号:</label>
-          <input type="text" placeholder="请输入6-12位数字或字母组合">
+            <el-input
+                v-model="input"
+                type="text"
+                class="width"
+                placeholder="请输入6-12位数字或字母组合">
+            </el-input>
         </div>
         <div class="changeWord-item">
           <label>支付宝姓名:</label>
-          <input type="text" placeholder="请输入6-12位数字或字母组合">
+            <el-input
+                v-model="input"
+                type="text"
+                class="width"
+                placeholder="请输入6-12位数字或字母组合">
+            </el-input>
         </div>
         <div class="changeWord-item">
           <label>取款密码:</label>
-          <input type="text" placeholder="请再次输入密码">
+            <el-input
+                v-model="input"
+                type="text"
+                class="width"
+                placeholder="请再次输入密码">
+            </el-input>
         </div>
         <p class="alipay-text">支付宝绑定之后不可修改,请填写真实的账号</p>
         <el-button class="cw-btn" @click="next">下一步</el-button>
       </div>
-
+        <div class="tips" v-if="false">
+            <h1>恭喜您设定成功!</h1>
+            <p>贴心提醒</p>
+            <p>当您完成设定后,若有疑问,可联系<span  @click="jumpOnlineService">线上客服</span>获得帮助</p>
+        </div>
     </div>
   </div>
 </template>
@@ -38,13 +57,17 @@
     name: 'alipay',
     data() {
       return {
-        active: 1
+          active: 1,
+          input:''
       }
     },
     methods: {
       next() {
         this.active = 2;
-      }
+      },
+        jumpOnlineService () {
+            window.open('https://chatlink.mstatik.com/widget/standalone.html?eid=76107099dd1ba17a94453359257851c8');
+        },
     }
   }
 </script>
@@ -128,15 +151,42 @@
     margin-top: 15px;
     text-align: center;
   }
+  .width{
+      width: 250px;
+  }
   .cw-btn{
-    width: 100px;
-    padding: 5px;
-    line-height: 25px;
-    color: #fff;
-    margin-top: 20px;
-    margin-left: -80px;
-    background-color: #c2a77d;
-    border-color: #c2a77d;
+      width: 100px;
+      padding: 5px;
+      line-height: 25px;
+      color: #fff;
+      margin-top: 20px;
+      margin-left: -60px;
+      background-color: #c2a77d;
+      border-color: #c2a77d;
+  }
+  .tips{
+      width:760px;
+      height: 300px;
+      padding: 80px;
+      margin: 0 auto;
+      text-align: left;
+  }
+  h1{
+      font-size: 18px;
+      font-weight: 700;
+      padding: 50px 0;
+      color: #c83434;
+      margin-left: 80px;
+  }
+
+  .tips p{
+      font-size: 14px;
+      color: black;
+      padding: 14px 0;
+      margin-left: 80px;
+  }
+  .tips span{
+      color: red;
   }
 </style>
 
