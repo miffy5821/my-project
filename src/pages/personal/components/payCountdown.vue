@@ -13,31 +13,31 @@
             <table>
                 <tr>
                     <th><p class="style-text">订单编号</p></th>
-                    <th><p class="style-text">YHH651451513545151</p></th>
+                    <th><p class="style-text">{{ cardMsg.orderNo }}</p></th>
                 </tr>
                 <tr>
                     <th><p class="style-text">存款金额</p></th>
-                    <th><p class="style-text">200元</p></th>
+                    <th><p class="style-text">{{ cardMsg.amount }}元</p></th>
                 </tr>
                 <tr>
-                    <p class="text-time">订单失效时间还剩58分52秒</p>
+                    <p class="text-time">订单失效时间还剩{{ time }}</p>
                 </tr>
                 <tr>
                     <th>
                         <p>银行</p>
-                        <p>农业银行</p>
+                        <p>{{ cardMsg.data[0].value }}</p>
                         <button>复制</button>
                     </th>
                     <th>
                         <p>账户</p>
-                        <p> 662845256465254652</p>
+                        <p> {{ cardMsg.data[1].value }}</p>
                         <button>复制</button>
                     </th>
                 </tr>
                 <tr>
                     <th>
                         <p>开户名</p>
-                        <p>张飞</p>
+                        <p>{{ cardMsg.data[2].value }}</p>
                         <button>复制</button>
                     </th>
                     <th>
@@ -47,8 +47,8 @@
 
         </div>
         <div class="submit">
-            <button>取消订单</button>
-            <button style="background: #c2a77d;color: white">完成存款，下一步</button>
+            <button @click="orderChange(1)">取消订单</button>
+            <button style="background: #c2a77d;color: white" @click="orderChange(3)">完成存款，下一步</button>
         </div>
         <div class="tip">
             <h2>温馨提示</h2>
@@ -62,136 +62,163 @@
 </template>
 
 <script>
-    export default {
-        name: 'payCountdown',
-        methods: {
-            jumpOnlineService () {
-                window.open('https://chatlink.mstatik.com/widget/standalone.html?eid=76107099dd1ba17a94453359257851c8');
-            },
+export default {
+    name: 'payCountdown',
+    data () {
+        return {
+            time: ''
         }
+    },
+    props: ['cardMsg'],
+    methods: {
+        jumpOnlineService () {
+            window.open('https://chatlink.mstatik.com/widget/standalone.html?eid=76107099dd1ba17a94453359257851c8');
+        },
+        orderChange (active) {
+            this.$emit('orderChange', active);
+        }
+    },
+    mounted () {
+        let sTime = 3600;
+
+        setInterval(() => {
+            sTime -= 1;
+            const minute = Math.floor(sTime / 60);
+            const s = sTime % 60;
+            this.time = `${minute}分${s}秒`;
+            if (sTime <= 0) {
+                this.orderChange(2);
+            }
+        }, 1000)
     }
+}
 </script>
 
 <style lang="less" scoped>
-    .payCountdown {
-        width: 850px;
-        margin: 0 auto;
-        display: flex;
-        flex-wrap: wrap;
-    }
+.payCountdown {
+    width: 850px;
+    margin: 0 auto;
+    display: flex;
+    flex-wrap: wrap;
+}
 
-    .remind {
-        width: 928px;
-        margin-bottom: 20px;
-    }
+.remind {
+    width: 928px;
+    margin-bottom: 20px;
+}
 
-    .remind p {
-        font-size: 14px;
-        line-height: 24px;
-        color: black;
-        text-align: left;
-    }
+.remind p {
+    font-size: 14px;
+    line-height: 24px;
+    color: black;
+    text-align: left;
+}
 
-    .text-color {
-        color: red;
-    }
+.text-color {
+    color: red;
+}
 
-    .form {
-        width: 100%;
-        height: 280px;
-    }
+.form {
+    width: 100%;
+    height: 280px;
+}
 
-    table {
-        width: 100%;
-        border: 2px solid grey;
-        tr {
-            width: 848px;
-            display: flex;
-            height: 50px;
-        }
-    }
+table {
+    width: 100%;
+    border: 2px solid grey;
 
-    th {
-        width: 424px;
-        height: 50px;
-        line-height: 50px;
-        display: flex;
-        align-items: center;
-        border-top: 1px solid grey;
-        p {
-            min-width: 100px;
-            line-height: 50px;
-            text-align: left;
-            font-size: 14px;
-            color: grey;
-            padding-left: 30px;
-
-        }
-
-        button {
-            border: none;
-            height: 25px;
-            background: #c2a77d;
-            color: white;
-            border-radius: 3px;
-            font-size: 14px;
-            margin-left: 50px;
-
-        }
-    }
-    .style-text{
-        width: 424px;
-        height: 50px;
-        padding: 0;
-        text-align: center;
-        border-left: 1px solid grey;
-    }
-    .text-time{
+    tr {
         width: 848px;
-        height: 50px;
-        text-align: center;
-        font-size: 16px;
-        background: #c2a77d;
-        line-height: 50px;
-    }
-    .submit {
-        width: 100%;
-        height: 45px;
         display: flex;
-        justify-content: flex-end;
+        height: 50px;
     }
+}
 
-    .submit button {
-        width: auto;
-        height: 35px;
-        margin-left: 20px;
-        color: grey;
-        font-size: 14px;
-        padding: 0 10px;
-        border-radius: 3px;
-        border:1px solid #e3e1e1;
-    }
+th {
+    width: 424px;
+    height: 50px;
+    line-height: 50px;
+    display: flex;
+    align-items: center;
+    border-top: 1px solid grey;
 
-    .tip {
-        width: 928px;
-        padding: 15px 0;
+    p {
+        min-width: 100px;
+        line-height: 50px;
         text-align: left;
-    }
-
-    .tip h2 {
-        font-size: 20px;
-        color: red;
-        margin-bottom: 10px;
-    }
-
-    .tip p {
         font-size: 14px;
-        color: black;
-        margin-top: 10px;
+        color: grey;
+        padding-left: 30px;
+
     }
 
-    .tip span {
-        color: red;
+    button {
+        border: none;
+        height: 25px;
+        background: #c2a77d;
+        color: white;
+        border-radius: 3px;
+        font-size: 14px;
+        margin-left: 50px;
+
     }
+}
+
+.style-text {
+    width: 424px;
+    height: 50px;
+    padding: 0;
+    text-align: center;
+    border-left: 1px solid grey;
+}
+
+.text-time {
+    width: 848px;
+    height: 50px;
+    text-align: center;
+    font-size: 16px;
+    background: #c2a77d;
+    line-height: 50px;
+}
+
+.submit {
+    width: 100%;
+    height: 45px;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.submit button {
+    width: auto;
+    height: 35px;
+    margin-left: 20px;
+    color: grey;
+    font-size: 14px;
+    padding: 0 10px;
+    border-radius: 3px;
+    border: 1px solid #e3e1e1;
+}
+
+.tip {
+    width: 928px;
+    padding: 15px 0;
+    text-align: left;
+}
+
+.tip h2 {
+    font-size: 20px;
+    color: red;
+    margin-bottom: 10px;
+}
+
+.tip p {
+    font-size: 14px;
+    color: black;
+    margin-top: 10px;
+}
+
+.tip span {
+    color: red;
+}
 
 </style>
