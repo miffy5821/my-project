@@ -36,20 +36,20 @@
             </div>
             <!--登陆后的效果-->
             <div class="login-after" v-if="isLogin">
-                <!--                <div class="login-after" >-->
                 <div class="login-after-btn">
-                    ￥0.00
-                    <router-link to="/personal/deposit">
-                        <button class="login-after-deposit">
+                       <span>￥{{total.totalBalance}}</span>
+                        <button class="login-after-deposit" @click="jumpDeposit()">
                             存款
                         </button>
-                    </router-link>
                 </div>
                 <div class="personal-img"
                      v-on:mouseover="mouseover"
                      v-on:mouseleave="mouseleave"
                 >
-                    <img src="/static/home/个人.png" class="img-login-after" alt=''>
+
+                    <div class="img-login-after"  @click="jumpPersonal()">
+                        <i class="el-icon-user" style="margin-top: 5px"></i>
+                    </div>
                     <div class="nav-login11" v-if="isShow" v-on:mouseover="mouseover">
                         <ul>
                             <router-link to="/personal/deposit">
@@ -107,6 +107,7 @@
                 activeClass: 0, // 0为默认选择第一个，-1为不选择
                 isShowLogin: false, // 是否显示登录框,
                 topNavList: [],
+                total:[],
                 routerConfig: {
                     home: '/',
                     DTQP: '/datang',
@@ -124,7 +125,7 @@
                     Playforfun: '/'
                 },
                 isLogin: false, // 是否已登录
-                isShow: false,//是否显示
+                isShow:false,//是否显示
                 link: 'https://88y00.com/'
             }
         },
@@ -183,10 +184,32 @@
                     .catch(error => {
                         alert(error);
                     })
+            },
+            getTotalAmount(){
+                this.axios.get('/api/user/info')
+                    .then((response) => {
+                        const data = response.data;
+                        if (data.status === 10000) {
+                            // console.log(data);
+                            this.total = response.data.data;
+                            console.log('total', this.total)
+                        }
+                    }).catch(error => {
+                    this.$alert({
+                        message: error
+                    });
+                })
+            },
+            jumpPersonal(){
+                this.$router.push({path: '/personal/conversion'});
+            },
+            jumpDeposit(){
+                this.$router.push({path: '/personal/deposit'});
             }
         },
         mounted () {
             this.navList();
+            this.getTotalAmount();
         },
     }
 </script>
@@ -202,6 +225,7 @@
         height: 78px;
         margin: 0 auto;
         display: flex;
+        position: relative;
         justify-content: center;
     }
 
@@ -400,25 +424,27 @@
         width: 250px;
         height: 30px;
         position: absolute;
-        left: 80%;
-        top: 30px;
+        left: 85%;
+        top: 20px;
         display: flex;
         flex-wrap: wrap;
     }
 
     .login-after-btn {
-        width: 100px;
+        width: 90px;
         height: 18px;
         cursor: pointer;
         font-size: 13px;
         color: white;
         line-height: 18px;
-        text-align: left;
-        padding: 5px 1px 5px 10px;
+        text-align: center;
+        padding: 5px 1px 5px 15px;
         background-color: #c8a675;
         border-radius: 30px;
         display: flex;
         flex-wrap: wrap;
+        text-align: center;
+        justify-content: space-between;
 
     }
 
@@ -428,11 +454,10 @@
         font-size: 13px;
         line-height: 10px;
         text-align: center;
+        margin-top: -3px;
         border: 1px solid white;
         border-radius: 30px;
         padding: 5px;
-        margin-left: 11px;
-        margin-top: -3px;
         color: #c8a675 !important;
         text-decoration: none;
         background-color: white;
