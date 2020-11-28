@@ -95,7 +95,8 @@ export default {
                     this.bankList = data.data;
                 }
             })
-        }
+        },
+
     },
     created () {
         this.getBankName();
