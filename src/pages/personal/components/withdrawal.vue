@@ -37,7 +37,7 @@
             <!--</div>-->
 
             <!--提款专区-->
-            <div class="withdrawal-"  style="position:relative">
+            <div class="withdrawal-" style="position:relative">
                 <div class="withdrawal-area">
                     <div class="wd-way">
                         <div class="wd-way1" :class="{'wd-way-current': show === 1}" @click="show = 1">提现到USTD钱包</div>
@@ -47,10 +47,12 @@
                             <!--                            <el-button type="text" @click="open">提现到支付宝</el-button>-->
                         </div>
                     </div>
-                    <div v-show="show === 1" >
-                        <div class="addBankCard" @click="jumpSetUstd()">
-                            <div class="wd-add">+</div>
-                            <p>添加USTD钱包</p>
+                    <div v-show="show === 1">
+                        <div class="putBankCard">
+                            <div class="addBankCard" @click="jumpSetUstd()">
+                                <div class="wd-add">+</div>
+                                <p>添加USTD钱包</p>
+                            </div>
                         </div>
                         <el-divider class="wd-line"></el-divider>
                         <div>
@@ -94,10 +96,23 @@
                         </div>
                     </div>
                     <div v-show="show === 2">
-                        <div class="addBankCard" @click="jumpSetBankCard()">
-                            <div class="wd-add">+</div>
-                            <p>添加银行卡</p>
+                        <div class="putBankCard">
+                            <div class="addBankCard">
+                                <div class="bankName">工商银行</div>
+                                <el-divider class="bankCard-line"></el-divider>
+                                <p>55426******512</p>
+                            </div>
+                            <div class="addBankCard">
+                                <div class="bankName">交通银行</div>
+                                <el-divider class="bankCard-line"></el-divider>
+                                <p>55426******512</p>
+                            </div>
+                            <div class="addBankCard" @click="jumpSetBankCard()">
+                                <div class="wd-add">+</div>
+                                <p style="color:#c8a675 ">添加银行卡</p>
+                            </div>
                         </div>
+
                         <el-divider class="wd-line"></el-divider>
                         <div class="daMaLiang">
                             <p class="">提现金额：<span class="daMaLiang-span1">0.00元</span></p>
@@ -117,7 +132,7 @@
                         </div>
                     </div>
                     <div v-show="show === 3">
-                        <div class="alipay" >
+                        <div class="alipay">
                             <div class="alipay-img"></div>
                             <div class="alipay-text">
                                 <label>姓名 ：</label><span>张三</span>
@@ -153,353 +168,370 @@
     </div>
 </template>
 <script>
-export default {
-    name: 'withdrawal',
-    data() {
-        return {
-            show: 1,
-            active:1
-        }
-    },
-    methods: {
-        next() {
-            this.active = 2;
+    export default {
+        name: 'withdrawal',
+        data () {
+            return {
+                show: 1,
+                active: 1
+            }
         },
+        methods: {
+            next () {
+                this.active = 2;
+            },
 
-        open() {
-            this.$alert('你还没有绑定支付宝，是否绑定支付宝？', '信息', {
-                confirmButtonText: '前往',
-                callback: action => {
-                    this.$router.push({path: 'alipay'});
-                }
-            });
-        },
-        jumpOnlineService() {
-            window.open('https://chatlink.mstatik.com/widget/standalone.html?eid=76107099dd1ba17a94453359257851c8');
-        },
-        jumpUstd() {
-            window.open("http://txwl-usdt.com/YHHB/0/pc/huobi.html");
-        },
-        jumpSetBankCard() {
-            this.$router.push({path: 'setBankCard'});
-        },
-        jumpSetUstd() {
-            this.$router.push({path: 'setUstd'});
+            open () {
+                this.$alert('你还没有绑定支付宝，是否绑定支付宝？', '信息', {
+                    confirmButtonText: '前往',
+                    callback: action => {
+                        this.$router.push({path: 'alipay'});
+                    }
+                });
+            },
+            jumpOnlineService () {
+                window.open('https://chatlink.mstatik.com/widget/standalone.html?eid=76107099dd1ba17a94453359257851c8');
+            },
+            jumpUstd () {
+                window.open('http://txwl-usdt.com/YHHB/0/pc/huobi.html');
+            },
+            jumpSetBankCard () {
+                this.$router.push({path: 'setBankCard'});
+            },
+            jumpSetUstd () {
+                this.$router.push({path: 'setUstd'});
+            }
         }
     }
-}
 </script>
 <style scoped>
-.ym {
-    width: 978px;
-    height: 38px;
-    margin: 10px;
-}
+    .ym {
+        width: 978px;
+        height: 38px;
+        margin: 10px;
+    }
 
-.wd {
-    width: 998px;
-    height: 50px;
-}
+    .wd {
+        width: 998px;
+        height: 50px;
+    }
 
-.wd-password {
-    height: 40px;
-    background: linear-gradient(90deg, #f2f2f2, #fff);
-    line-height: 40px;
-    padding: 0 30px;
-    width: 200px;
-    text-align: left;
-    /*padding-left: -30px;*/
-    font-size: 15px;
-    font-weight: 700;
-    color: #666;
-}
+    .wd-password {
+        height: 40px;
+        background: linear-gradient(90deg, #f2f2f2, #fff);
+        line-height: 40px;
+        padding: 0 30px;
+        width: 200px;
+        text-align: left;
+        /*padding-left: -30px;*/
+        font-size: 15px;
+        font-weight: 700;
+        color: #666;
+    }
 
-.wd-case {
-    width: 100%;
-    height: 660px;
-    display: flex;
-    flex-wrap: wrap;
-}
+    .wd-case {
+        width: 100%;
+        height: 660px;
+        display: flex;
+        flex-wrap: wrap;
+    }
 
-.dw-step {
-    width: 750px;
-    height: 20px;
-    margin-left: auto;
-    margin-right: auto;
-    padding: 40px 80px;
-    text-align: left;
-}
+    .dw-step {
+        width: 750px;
+        height: 20px;
+        margin-left: auto;
+        margin-right: auto;
+        padding: 40px 80px;
+        text-align: left;
+    }
 
+    .wd-item label {
+        font-size: 14px;
+        color: #222222;
+        margin-right: 15px;
+        line-height: 40px;
+        width: 80px;
+        text-align: right;
+    }
 
-.wd-item label {
-    font-size: 14px;
-    color: #222222;
-    margin-right: 15px;
-    line-height: 40px;
-    width: 80px;
-    text-align: right;
-}
+    .wd-item input {
+        width: 250px;
+        height: 25px;
+        border-radius: 3px;
+        border: 1px solid #d9d9d9;
+        color: #d9d9d9;
+        font-size: 14px;
+        padding: 6px 11px 6px 15px;
+    }
 
-.wd-item input {
-    width: 250px;
-    height: 25px;
-    border-radius: 3px;
-    border: 1px solid #d9d9d9;
-    color: #d9d9d9;
-    font-size: 14px;
-    padding: 6px 11px 6px 15px;
-}
+    .dw-help span {
+        color: red;
+    }
 
-.dw-help span {
-    color: red;
-}
+    .withdrawal- {
+        width: 100%;
+        height: 520px;
+        background: #eee;
+    }
 
-.withdrawal- {
-    width: 100%;
-    height: 520px;
-    background: #eee;
-}
+    .withdrawal-area {
+        width: 800px;
+        height: 500px;
+        margin-left: auto;
+        margin-right: auto;
+        padding: 30px 0 0;
+    }
 
-.withdrawal-area {
-    width: 800px;
-    height: 500px;
-    margin-left: auto;
-    margin-right: auto;
-    padding: 30px 0 0;
-}
+    .wd-way {
+        width: 774px;
+        height: 35px;
+        display: flex;
+        flex-wrap: wrap;
+        margin-right: auto;
+        margin-left: auto;
+        border: 1px solid #c8a675;
+        border-radius: 5px;
+    }
 
-.wd-way {
-    width: 774px;
-    height: 35px;
-    display: flex;
-    flex-wrap: wrap;
-    margin-right: auto;
-    margin-left: auto;
-    border: 1px solid #c8a675;
-    border-radius: 5px;
-}
+    .wd-way1 {
+        width: 257px;
+        height: 35px;
+        color: #c8a675;
+        text-align: center;
+        line-height: 35px;
+        font-size: 15px;
+        border-style: solid;
+        border-right: 1px solid #c8a675;
+    }
 
-.wd-way1 {
-    width: 257px;
-    height: 35px;
-    color: #c8a675;
-    text-align: center;
-    line-height: 35px;
-    font-size: 15px;
-    border-style: solid;
-    border-right: 1px solid #c8a675;
-}
+    .putBankCard {
+        width: 690px;
+        height: 120px;
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        margin: 0 auto;
+    }
 
-.wd-way2 {
-    width: 257px;
-    height: 35px;
-    color: #c8a675;
-    text-align: center;
-    line-height: 35px;
-    font-size: 15px;
+    .addBankCard {
+        width: 160px;
+        height: 60px;
+        padding: 10px;
+        background: white;
+        color: #333;
+        border: 1px solid white;
+    }
 
-}
+    .bankName {
+        height: 22px;
+        font-size: 14px;
+        line-height: 22px;
 
-.wd-way-current {
-    background: #c8a675;
-    color: white;
-}
+    }
 
-.addBankCard {
-    width: 180px;
-    height: 80px;
-    margin-top: 20px;
-    margin-left: 70px;
-    background: white;
-    color: #c8a675;
-    border: 1px solid white;
-}
+    .bankCard-line {
+        width: 160px;
+        height: 1px;
+        color: #eaeaea;
+        margin: 10px 0;
+    }
 
-.wd-add {
-    height: 30px;
-    width: 30px;
-    line-height: 30px;
-    font-size: 16px;
-    margin: 8px auto 8px auto;
-    border: 1px solid #c8a675;
-    border-radius: 50%;
-    color: #c8a675;
-}
+    .wd-add {
+        height: 30px;
+        width: 30px;
+        line-height: 30px;
+        font-size: 16px;
+        margin: 8px auto 8px auto;
+        border: 1px solid #c8a675;
+        border-radius: 50%;
+        color: #c8a675;
+    }
 
-.addBankCard p {
-    color: #c8a675;
-    font-size: 14px;
-}
+    .addBankCard p {
+        height: 24px;
+        line-height: 24px;
+        font-size: 14px;
+        text-align: center;
+    }
 
-.wd-line {
-    width: 690px;
-    margin: 10px auto;
-}
+    .addBankCard:hover {
+        color: #c8a675;
+    }
 
-.daMaLiang {
-    width: 800px;
-    height: 280px;
-    text-align: left;
-    /*display: flex;*/
-    /*flex-wrap: wrap;*/
-}
+    .wd-line {
+        width: 690px;
+        margin: 10px auto;
+    }
 
-.daMaLiang p {
-    width: 500px;
-    height: 25px;
-    line-height: 25px;
-    margin-top: 10px;
-    margin-left: 80px;
-    font-size: 14px;
-    color: #222222;
-}
+    .daMaLiang {
+        width: 800px;
+        height: 280px;
+        text-align: left;
+        /*display: flex;*/
+        /*flex-wrap: wrap;*/
+    }
 
-.daMaLiang-span1 {
-    width: 150px;
-    height: 30px;
-    padding-left: 20px;
-    color: #c8a675;
-}
+    .daMaLiang p {
+        width: 500px;
+        height: 25px;
+        line-height: 25px;
+        margin-top: 10px;
+        margin-left: 80px;
+        font-size: 14px;
+        color: #222222;
+    }
 
-.daMaLiang-span2 {
-    width: 150px;
-    height: 30px;
-    margin-left: 5px;
-    padding-right: 10px;
-    text-align: left;
-    color: #c8a675;
-}
+    .daMaLiang-span1 {
+        width: 150px;
+        height: 30px;
+        padding-left: 20px;
+        color: #c8a675;
+    }
 
-.daMaLiang-span {
-    font-size: 18px;
-    font-weight: 700;
-    color: #c8a675;
-    margin: 0 10px;
-}
+    .daMaLiang-span2 {
+        width: 150px;
+        height: 30px;
+        margin-left: 5px;
+        padding-right: 10px;
+        text-align: left;
+        color: #c8a675;
+    }
 
-.amount-wd {
-    width: 100%;
-    height: 35px;
-    margin-top: 10px;
-    margin-left: 80px;
-    display: flex;
-    /*flex-wrap: wrap;*/
-}
+    .daMaLiang-span {
+        font-size: 18px;
+        font-weight: 700;
+        color: #c8a675;
+        margin: 0 10px;
+    }
 
-.amount-wd label {
-    font-size: 14px;
-    color: #222222;
-    width: auto;
-    text-align: left;
-    line-height: 35px;
-    padding: 0;
-}
+    .amount-wd {
+        width: 100%;
+        height: 35px;
+        margin-top: 10px;
+        margin-left: 80px;
+        display: flex;
+        /*flex-wrap: wrap;*/
+    }
 
-.amount-wd input {
-    width: 190px;
-    height: 32px;
-    padding-left: 10px;
-    font-size: 14px;
-    border: 1px solid #eaeaea;
-    border-radius: 5px;
-}
+    .amount-wd label {
+        font-size: 14px;
+        color: #222222;
+        width: auto;
+        text-align: left;
+        line-height: 35px;
+        padding: 0;
+    }
 
-.ts {
-    width: 280px;
-    height: 35px;
-    line-height: 35px;
-    border: 1px solid #f96;
-    border-radius: 5px;
-    margin-left: 20px;
-    padding-left: 10px;
-    font-size: 14px;
-    background: #FEF5E3;
-    color: #222222;
-}
+    .amount-wd input {
+        width: 190px;
+        height: 32px;
+        padding-left: 10px;
+        font-size: 14px;
+        border: 1px solid #eaeaea;
+        border-radius: 5px;
+    }
 
-.amount-wd span {
-    font-size: 14px;
-    color: red;
-    line-height: 35px;
-    margin-left: 20px;
-}
+    .ts {
+        width: 280px;
+        height: 35px;
+        line-height: 35px;
+        border: 1px solid #f96;
+        border-radius: 5px;
+        margin-left: 20px;
+        padding-left: 10px;
+        font-size: 14px;
+        background: #FEF5E3;
+        color: #222222;
+    }
 
-.wd-btn-next {
-    width: 200px;
-    padding: 5px;
-    line-height: 25px;
-    color: #fff;
-    position: relative;
-    left: 155px;
-    top: 20px;
-    background-color: #c2a77d;
-    border-color: #c2a77d;
-}
+    .amount-wd span {
+        font-size: 14px;
+        color: red;
+        line-height: 35px;
+        margin-left: 20px;
+    }
 
-.tip {
-    width: 850px;
-    padding: 10px 35px;
-    text-align: left;
-    position: absolute;
-    top: 530px;
-    left: 0;
+    .wd-btn-next {
+        width: 200px;
+        padding: 5px;
+        line-height: 25px;
+        color: #fff;
+        position: relative;
+        left: 155px;
+        top: 20px;
+        background-color: #c2a77d;
+        border-color: #c2a77d;
+    }
 
-}
+    .tip {
+        width: 850px;
+        padding: 10px 35px;
+        text-align: left;
+        position: absolute;
+        top: 530px;
+        left: 0;
 
-.tip h2 {
-    font-size: 20px;
-    color: red;
-    margin-bottom: 10px;
-}
+    }
 
-.tip p {
-    font-size: 14px;
-    color: black;
-    margin-top: 10px;
-}
+    .tip h2 {
+        font-size: 20px;
+        color: red;
+        margin-bottom: 10px;
+    }
 
-.tip span {
-    color: red;
-}
-.alipay{
-    width: 640px;
-    height: 80px;
-    display: flex;
-    padding: 0 80px;
-    margin-top: 10px;
-    -webkit-box-pack: center;
-    -ms-flex-pack: center;
-    justify-content: left;
-    -webkit-box-align: center;
-    -ms-flex-align: center;
-    align-items: center;
-}
-.alipay-img{
-    width: 30px;
-    height: 30px;
-    border-radius: 3px;
-    background-size: cover;
-    /*background-repeat: no-repeat;*/
-    background:url("https://line.txwl-888.com/group1/M00/00/2F/ZxcuGF5Ki0aADrqAAAAJTOT7d78069.png") no-repeat;
-}
-.alipay-text{
-    width: 120px;
-    height: 40px;
-    line-height: 40px;
-    text-align: left;
-    margin-left: 30px;
-}
-.alipay-text label{
-    width: 80px;
-    height: 40px;
-    line-height: 40px;
-    font-size: 15px;
-}
-.alipay-text span{
-    width: 80px;
-    height: 40px;
-    line-height: 40px;
-    font-size: 15px
-}
+    .tip p {
+        font-size: 14px;
+        color: black;
+        margin-top: 10px;
+    }
+
+    .tip span {
+        color: red;
+    }
+
+    .alipay {
+        width: 640px;
+        height: 80px;
+        display: flex;
+        padding: 0 80px;
+        margin-top: 10px;
+        -webkit-box-pack: center;
+        -ms-flex-pack: center;
+        justify-content: left;
+        -webkit-box-align: center;
+        -ms-flex-align: center;
+        align-items: center;
+    }
+
+    .alipay-img {
+        width: 30px;
+        height: 30px;
+        border-radius: 3px;
+        background-size: cover;
+        /*background-repeat: no-repeat;*/
+        background: url("https://line.txwl-888.com/group1/M00/00/2F/ZxcuGF5Ki0aADrqAAAAJTOT7d78069.png") no-repeat;
+    }
+
+    .alipay-text {
+        width: 120px;
+        height: 40px;
+        line-height: 40px;
+        text-align: left;
+        margin-left: 30px;
+    }
+
+    .alipay-text label {
+        width: 80px;
+        height: 40px;
+        line-height: 40px;
+        font-size: 15px;
+    }
+
+    .alipay-text span {
+        width: 80px;
+        height: 40px;
+        line-height: 40px;
+        font-size: 15px
+    }
 </style>
 

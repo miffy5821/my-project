@@ -44,7 +44,7 @@
                         <div class="address-information">
                             <div class="address">
                                 <div class="text4">配送至:</div>
-                                <area-cascader :level="1" type="text" placeholder="请选择地区" :data="pcaa"
+                                <area-cascader  :level="1" type="text" placeholder="请选择地区" :data="pcaa"
                                                v-model='selected'></area-cascader>
                             </div>
                             <div class="address address-detailed">
