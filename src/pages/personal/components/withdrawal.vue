@@ -96,52 +96,17 @@
                         </div>
                     </div>
                     <div v-show="show === 2">
-                        <!--                        <div class="putBankCard">-->
-                        <!--                            <div class="addBankCard">-->
-                        <!--                                <div class="bankName">工商银行</div>-->
-                        <!--                                <el-divider class="bankCard-line"></el-divider>-->
-                        <!--                                <p>55426******512</p>-->
-                        <!--                            </div>-->
-                        <!--                            <div class="addBankCard">-->
-                        <!--                                <div class="bankName">交通银行</div>-->
-                        <!--                                <el-divider class="bankCard-line"></el-divider>-->
-                        <!--                                <p>55426******512</p>-->
-                        <!--                            </div>-->
-                        <!--                            <div class="addBankCard" @click="jumpSetBankCard()">-->
-                        <!--                                <div class="wd-add">+</div>-->
-                        <!--                                <p style="color:#c8a675 ">添加银行卡</p>-->
-                        <!--                            </div>-->
-                        <!--                        </div>-->
 
-                        <el-tabs class="putBankCard" @tab-click="bankCardClick">
-                            <el-tab-pane>
-                                <div class="addBankCard" slot="label">
-                                    <div class="bankName">工商银行</div>
+                        <el-tabs class="putBankCard">
+                            <el-tab-pane v-for="(item,index) in cardData" :key="item.id">
+                                <div class="addBankCard" slot="label" @click="bankCardClick(index)"
+                                     :class="{'bank-active':cardSelectIndex === index}">
+                                    <div class="bankName">{{ item.bankName }}</div>
                                     <el-divider class="bankCard-line"></el-divider>
-                                    <p>55426******512</p>
+                                    <p>{{ item.cardNum }}</p>
                                 </div>
                             </el-tab-pane>
-                            <el-tab-pane>
-                                <div class="addBankCard" slot="label">
-                                    <div class="bankName">交通银行</div>
-                                    <el-divider class="bankCard-line"></el-divider>
-                                    <p>55426******512</p>
-                                </div>
-                            </el-tab-pane>
-                            <el-tab-pane>
-                                <div class="addBankCard" slot="label">
-                                    <div class="bankName">交通银行</div>
-                                    <el-divider class="bankCard-line"></el-divider>
-                                    <p>55426******512</p>
-                                </div>
-                            </el-tab-pane>
-                            <el-tab-pane>
-                                <div class="addBankCard" slot="label">
-                                    <div class="bankName">交通银行</div>
-                                    <el-divider class="bankCard-line"></el-divider>
-                                    <p>55426******512</p>
-                                </div>
-                            </el-tab-pane>
+
                             <el-tab-pane>
                                 <div class="addBankCard" @click="jumpSetBankCard()" slot="label">
                                     <div class="wd-add">+</div>
@@ -211,7 +176,9 @@ export default {
     data () {
         return {
             show: 1,
-            active: 1
+            active: 1,
+            cardData: [],
+            cardSelectIndex: 0,
         }
     },
     methods: {
@@ -238,9 +205,21 @@ export default {
         jumpSetUstd () {
             this.$router.push({path: 'setUstd'});
         },
-        bankCardClick (tab, event) {
-
+        bankCardClick (index) {
+            this.cardSelectIndex = index;
+            console.log('cardSelectIndex', this.cardSelectIndex);
+        },
+        getBankInfo () {
+            this.axios.get('/api/user/bankInfo').then((response) => {
+                const data = response.data;
+                if (data.status === 10000) {
+                    this.cardData = data.data;
+                }
+            })
         }
+    },
+    mounted () {
+        this.getBankInfo();
     }
 }
 </script>
@@ -367,6 +346,19 @@ export default {
     /deep/ .el-tabs__nav-wrap::after {
         display: none;
     }
+
+    /deep/ .el-tabs__nav-scroll {
+        height: 90px;
+    }
+}
+
+.bank-active {
+    border: 1px solid #c8a675 !important;
+
+    div, p {
+        color: #c8a675 !important;
+    }
+
 }
 
 .addBankCard {
