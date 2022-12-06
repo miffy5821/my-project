@@ -17,7 +17,7 @@
     "element-ui": "^2.13.2",
     "fastclick": "^1.0.6",
     "less-loader": "^4.1.0",
-    "qs": "^6.9.4",
+    "qs": "^6.9.7",
     "style-resources-loader": "^1.4.1",
     "vue": "^2.5.2",
     "vue-area-linkage": "^5.1.0",
